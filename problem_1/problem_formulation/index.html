@@ -23,7 +23,7 @@
     
     
       
-        <title>Problem 1: Motion in a Uniform Gravitational Field - Physics Problems</title>
+        <title>Motion in a Uniform Gravitational Field - Physics Problems</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#problem-1-motion-in-a-uniform-gravitational-field" class="md-skip">
+        <a href="#motion-in-a-uniform-gravitational-field" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Problem 1: Motion in a Uniform Gravitational Field
+              Motion in a Uniform Gravitational Field
             
           </span>
         </div>
@@ -324,7 +324,7 @@
   <span class="md-ellipsis">
     
   
-    Problem 1: Motion in a Uniform Gravitational Field
+    Motion in a Uniform Gravitational Field
   
 
     
@@ -342,7 +342,7 @@
   <span class="md-ellipsis">
     
   
-    Problem 1: Motion in a Uniform Gravitational Field
+    Motion in a Uniform Gravitational Field
   
 
     
@@ -972,57 +972,57 @@
 
 
 
-<h1 id="problem-1-motion-in-a-uniform-gravitational-field">Problem 1: Motion in a Uniform Gravitational Field</h1>
+<h1 id="motion-in-a-uniform-gravitational-field">Motion in a Uniform Gravitational Field</h1>
 <h2 id="1-objective">1. Objective</h2>
 <p>The goal of this module is to create a comprehensive, self-contained educational resource on kinematics in a uniform gravitational field. The resulting documentation should serve as a complete study guide, deriving physical principles from the ground up rather than presenting ready-made formulas.</p>
 <h2 id="2-theoretical-scope">2. Theoretical Scope</h2>
-<p>Your note must cover the motion of a particle in a two-dimensional space ($x, y$) under the influence of gravity.</p>
+<p>Your note must cover the motion of a particle in a two-dimensional space (<span class="arithmatex">\(x, y\)</span>) under the influence of gravity.</p>
 <h3 id="21-fundamental-derivations">2.1. Fundamental Derivations</h3>
 <p>You are required to derive the equations of motion from first principles (Newton's Laws). <strong>Do not simply copy-paste final formulas for range or height.</strong></p>
 <ul>
 <li><strong>Starting Point</strong>: Begin with the force definitions in a vacuum (gravity only).</li>
-<li><strong>Equations of Motion</strong>: Write down the differential equations for acceleration in $x$ and $y$ directions.</li>
-<li><strong>Integration</strong>: Show the mathematical process of integrating acceleration to obtain velocity functions $v_x(t), v_y(t)$ and position functions $x(t), y(t)$.</li>
-<li><strong>Initial Conditions</strong>: Clearly define how initial velocity $v_0$, angle $\alpha$, and initial height $h_0$ affect the integration constants.</li>
+<li><strong>Equations of Motion</strong>: Write down the differential equations for acceleration in <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> directions.</li>
+<li><strong>Integration</strong>: Show the mathematical process of integrating acceleration to obtain velocity functions <span class="arithmatex">\(v_x(t), v_y(t)\)</span> and position functions <span class="arithmatex">\(x(t), y(t)\)</span>.</li>
+<li><strong>Initial Conditions</strong>: Clearly define how initial velocity <span class="arithmatex">\(v_0\)</span>, angle <span class="arithmatex">\(\alpha\)</span>, and initial height <span class="arithmatex">\(h_0\)</span> affect the integration constants.</li>
 </ul>
 <h3 id="22-analytical-results">2.2. Analytical Results</h3>
 <p>Once the equations of motion are established, derive analytical expressions for the following metrics:</p>
 <ul>
-<li>Maximum height ($H$).</li>
-<li>Time of flight ($T$).</li>
-<li>Horizontal range ($R$).</li>
-<li>Velocity vector at any given time $t$.</li>
+<li>Maximum height (<span class="arithmatex">\(H\)</span>).</li>
+<li>Time of flight (<span class="arithmatex">\(T\)</span>).</li>
+<li>Horizontal range (<span class="arithmatex">\(R\)</span>).</li>
+<li>Velocity vector at any given time <span class="arithmatex">\(t\)</span>.</li>
 </ul>
 <h3 id="23-scenarios-to-analyze">2.3. Scenarios to Analyze</h3>
 <p>You must apply your derivations to the following specific cases:</p>
 <ol>
-<li><strong>Classic Projectile Motion</strong>: Launch from the ground ($h_0 = 0$) at an angle.</li>
+<li><strong>Classic Projectile Motion</strong>: Launch from the ground (<span class="arithmatex">\(h_0 = 0\)</span>) at an angle.</li>
 <li><strong>Free Fall / Aerial Drop</strong>: A scenario where an object is dropped from a moving vehicle (e.g., a package dropped from a plane flying horizontally). Analyze how the horizontal velocity of the plane affects the trajectory.</li>
 </ol>
 <h3 id="24-extension-air-resistance-drag">2.4. Extension: Air Resistance (Drag)</h3>
 <p>Analyze how the problem changes when air resistance is introduced.</p>
 <ul>
-<li>Discuss the modification of the equations of motion when a drag force $\vec{F}_d = -k\vec{v}$ or $\vec{F}_d = -cv^2 \hat{v}$ is applied.</li>
+<li>Discuss the modification of the equations of motion when a drag force <span class="arithmatex">\(\vec{F}_d = -k\vec{v}\)</span> or <span class="arithmatex">\(\vec{F}_d = -cv^2 \hat{v}\)</span> is applied.</li>
 <li>Explain why analytical solutions might become complex or impossible and how this necessitates numerical methods.</li>
 </ul>
 <h2 id="3-interactive-simulation-requirements">3. Interactive Simulation Requirements</h2>
 <p>You must develop an interactive HTML/JavaScript application (to be placed in the <code>assets/</code> folder) that visualizes these concepts. The tool must go beyond simple animation and serve as a "physics inspection" instrument.</p>
 <p><strong>Functional Requirements:</strong></p>
 <ul>
-<li><strong>Trajectory Visualization</strong>: Plot the path of the projectile in 2D space ($y$ vs $x$).</li>
+<li><strong>Trajectory Visualization</strong>: Plot the path of the projectile in 2D space (<span class="arithmatex">\(y\)</span> vs <span class="arithmatex">\(x\)</span>).</li>
 <li><strong>Vector Visualization (Crucial)</strong>: The user must be able to toggle the visibility of specific vectors attached to the object in real-time. This includes:<ul>
-<li>Instantaneous Velocity vector ($\vec{v}$).</li>
-<li>Acceleration vector ($\vec{g}$ or $\vec{a}_{total}$).</li>
-<li>Drag Force vector ($\vec{F}_d$) (if air resistance is active).</li>
-<li>Net Force vector ($\vec{F}_{net}$).</li>
+<li>Instantaneous Velocity vector (<span class="arithmatex">\(\vec{v}\)</span>).</li>
+<li>Acceleration vector (<span class="arithmatex">\(\vec{g}\)</span> or <span class="arithmatex">\(\vec{a}_{total}\)</span>).</li>
+<li>Drag Force vector (<span class="arithmatex">\(\vec{F}_d\)</span>) (if air resistance is active).</li>
+<li>Net Force vector (<span class="arithmatex">\(\vec{F}_{net}\)</span>).</li>
 <li><em>Implementation Note</em>: Add checkboxes/toggles in the UI to show/hide these vectors independently. This allows observers to study how forces and velocities change direction and magnitude relative to each other during flight.</li>
 </ul>
 </li>
 <li><strong>Interactivity</strong>: Allow the user to adjust inputs such as:<ul>
-<li>Initial velocity ($v_0$).</li>
-<li>Launch angle ($\alpha$).</li>
-<li>Initial height ($h_0$).</li>
-<li>Gravitational acceleration ($g$).</li>
+<li>Initial velocity (<span class="arithmatex">\(v_0\)</span>).</li>
+<li>Launch angle (<span class="arithmatex">\(\alpha\)</span>).</li>
+<li>Initial height (<span class="arithmatex">\(h_0\)</span>).</li>
+<li>Gravitational acceleration (<span class="arithmatex">\(g\)</span>).</li>
 </ul>
 </li>
 <li><strong>Scenarios</strong>: The app should support both the "Cannon" mode (ground launch) and the "Plane Drop" mode.</li>
@@ -1090,6 +1090,12 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
