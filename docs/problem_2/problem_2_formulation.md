@@ -29,6 +29,7 @@ You must present Kepler's three laws.
 ### 2.3. Orbital Classification
 
 Analyze the "Vis-viva equation" and explain how the sign of the Total Energy ($E$) determines the shape of the trajectory:
+
 * **Circle**: $E < 0$ (minimum energy).
 * **Ellipse**: $E < 0$.
 * **Parabola**: $E = 0$ (Escape velocity).

@@ -35,6 +35,7 @@ You are required to build a comprehensive **"Virtual Relativity Laboratory"** co
 ### Module A: The Interactive Minkowski Diagram
 
 Create a tool that links the abstract spacetime diagram with a physical representation.
+
 * **Dual View**: The screen should be split.
     * *Left*: The Minkowski Diagram (with adjustable axes based on $v$).
     * *Right*: A spatial simulation ("Real world view") showing observers $O$ and $O'$.
