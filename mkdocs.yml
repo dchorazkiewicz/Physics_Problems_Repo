@@ -1,7 +1,6 @@
 site_name: Physics Problems
 site_url: https://dchorazkiewicz.github.io/Physics_Problems_Repo
 
-
 theme:
   name: material
   palette:
@@ -25,3 +24,35 @@ extra_javascript:
   - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: pl
+          name: Polski
+          build: true
+          nav:
+            - Home: 'index.md'
+        - locale: en
+          name: English
+          default: true
+          build: true
+          nav:
+            - Home: 'index.md'
+            - Problem 1:
+              - 'Formulation': 'extra/problem_1/problem_1_formulation.md'
+              - 'Solution': 'extra/problem_1/problem_solution.md'
+            - Problem 2:
+              - 'Formulation': 'extra/problem_2/problem_2_formulation.md'
+              - 'Solution': 'extra/problem_2/problem_solution.md'
+            - Problem 3:
+              - 'Formulation': 'extra/problem_3/problem_3_formulation.md'
+              - 'Solution': 'extra/problem_3/problem_solution.md'
+            - Problem 4:
+              - 'Formulation': 'extra/problem_4/problem_4_formulation.md'
+              - 'Solution': 'extra/problem_4/problem_solution.md'
