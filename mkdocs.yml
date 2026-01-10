@@ -1,4 +1,7 @@
 site_name: Physics Problems
+site_url: https://dchorazkiewicz.github.io/Physics_Problems_Repo
+
+
 theme:
   name: material
   palette:
