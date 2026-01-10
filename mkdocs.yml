@@ -38,12 +38,40 @@ plugins:
           build: true
           nav:
             - Home: 'index.md'
+            - Wprowadzenie: '00_Intro.md'
+            - Mechanika 1: '01_Mechanics_1.md'
+            - Mechanika 2: '02_Mechanics_2.md'
+            - Fale: '03_Waves.md'
+            - Elektromagnetyzm 1: '04_Electromagnetism_1.md'
+            - Elektromagnetyzm 2: '05_Electromagnetism_2.md'
+            - Obwody 1: '06_Circuits_1.md'
+            - Obwody 2: '07_Circuits_2.md'
+            - Pomiary: '08_Measurements.md'
+            - Kosmos: '09_Cosmos.md'
+            - Astronomia i Astrofizyka: '10_Astronomy_and_Astrophysics.md'
+            - Kosmologia i Względność: '11_Cosmology_and_Relativity.md'
+            - Fizyka Współczesna 1: '12_Modern_Physics_1.md'
+            - Fizyka Współczesna 2: '13_Modern_Physics_2.md'
         - locale: en
           name: English
           default: true
           build: true
           nav:
             - Home: 'index.md'
+            - Introduction: '00_Intro.md'
+            - 'Mechanics 1': '01_Mechanics_1.md'
+            - 'Mechanics 2': '02_Mechanics_2.md'
+            - Waves: '03_Waves.md'
+            - 'Electromagnetism 1': '04_Electromagnetism_1.md'
+            - 'Electromagnetism 2': '05_Electromagnetism_2.md'
+            - 'Circuits 1': '06_Circuits_1.md'
+            - 'Circuits 2': '07_Circuits_2.md'
+            - Measurements: '08_Measurements.md'
+            - Cosmos: '09_Cosmos.md'
+            - 'Astronomy and Astrophysics': '10_Astronomy_and_Astrophysics.md'
+            - 'Cosmology and Relativity': '11_Cosmology_and_Relativity.md'
+            - 'Modern Physics 1': '12_Modern_Physics_1.md'
+            - 'Modern Physics 2': '13_Modern_Physics_2.md'
             - Extra:
               - Problem 1:
                 - 'Formulation': 'extra/problem_1/problem_1_formulation.md'
