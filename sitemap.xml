@@ -1,3 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_1/problem_1_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_1/problem_1_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_1/problem_1_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_1/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_1/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_1/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_2/problem_2_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_2/problem_2_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_2/problem_2_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_2/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_2/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_2/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_3/problem_3_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_3/problem_3_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_3/problem_3_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_3/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_3/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_3/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_4/problem_4_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_4/problem_4_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_4/problem_4_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_4/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_4/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_4/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_1/problem_1_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_1/problem_1_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_1/problem_1_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_1/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_1/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_1/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_2/problem_2_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_2/problem_2_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_2/problem_2_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_2/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_2/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_2/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_3/problem_3_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_3/problem_3_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_3/problem_3_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_3/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_3/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_3/problem_solution/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_4/problem_4_formulation/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_4/problem_4_formulation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_4/problem_4_formulation/"/>
+    </url>
+    <url>
+        <loc>https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_4/problem_solution/</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/extra/problem_4/problem_solution/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/extra/problem_4/problem_solution/"/>
+    </url>
 </urlset>
