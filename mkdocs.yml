@@ -44,15 +44,16 @@ plugins:
           build: true
           nav:
             - Home: 'index.md'
-            - Problem 1:
-              - 'Formulation': 'extra/problem_1/problem_1_formulation.md'
-              - 'Solution': 'extra/problem_1/problem_solution.md'
-            - Problem 2:
-              - 'Formulation': 'extra/problem_2/problem_2_formulation.md'
-              - 'Solution': 'extra/problem_2/problem_solution.md'
-            - Problem 3:
-              - 'Formulation': 'extra/problem_3/problem_3_formulation.md'
-              - 'Solution': 'extra/problem_3/problem_solution.md'
-            - Problem 4:
-              - 'Formulation': 'extra/problem_4/problem_4_formulation.md'
-              - 'Solution': 'extra/problem_4/problem_solution.md'
+            - Extra:
+              - Problem 1:
+                - 'Formulation': 'extra/problem_1/problem_1_formulation.md'
+                - 'Solution': 'extra/problem_1/problem_solution.md'
+              - Problem 2:
+                - 'Formulation': 'extra/problem_2/problem_2_formulation.md'
+                - 'Solution': 'extra/problem_2/problem_solution.md'
+              - Problem 3:
+                - 'Formulation': 'extra/problem_3/problem_3_formulation.md'
+                - 'Solution': 'extra/problem_3/problem_solution.md'
+              - Problem 4:
+                - 'Formulation': 'extra/problem_4/problem_4_formulation.md'
+                - 'Solution': 'extra/problem_4/problem_solution.md'
