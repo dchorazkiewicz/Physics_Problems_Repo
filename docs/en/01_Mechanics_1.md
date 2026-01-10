@@ -2,7 +2,7 @@
 
 ## Projectile Motion Analysis
 
-A projectile is fired from the ground with an initial velocity of $100 	ext{ m/s}$ at an angle of $37^\circ$ above the horizontal. Calculate:
+A projectile is fired from the ground with an initial velocity of $100 	\text{ m/s}$ at an angle of $37^\circ$ above the horizontal. Calculate:
 
 a) The maximum height reached.
 b) The total time of flight.
@@ -18,11 +18,11 @@ Alice is moving along a path described by $A(t) = (2+t, 8-3t)$ and Bob is moving
 
 ## 2D Collision Trajectories
 
-Two cannons are aimed at each other. The first cannon at $(0,0)$ fires a projectile with an initial velocity of $[100 	ext{ m/s}, 80 	ext{ m/s}]$. The second cannon at $(800	ext{ m}, 0)$ fires a projectile with a velocity of $[-100 	ext{ m/s}, 80 	ext{ m/s}]$. At what time $t$ and at what point $(x,y)$ will they collide?
+Two cannons are aimed at each other. The first cannon at $(0,0)$ fires a projectile with an initial velocity of $[100 	\text{ m/s}, 80 	\text{ m/s}]$. The second cannon at $(800	\text{ m}, 0)$ fires a projectile with a velocity of $[-100 	\text{ m/s}, 80 	\text{ m/s}]$. At what time $t$ and at what point $(x,y)$ will they collide?
 
 ## Relative Velocity (River Problem)
 
-A river flows east at $2 	ext{ m/s}$. A boat that can travel at $5 	ext{ m/s}$ in still water wants to go directly north across the river. In what direction (angle) should it head? How long will it take to cross the river if it's 200 meters wide?
+A river flows east at $2 	\text{ m/s}$. A boat that can travel at $5 	\text{ m/s}$ in still water wants to go directly north across the river. In what direction (angle) should it head? How long will it take to cross the river if it's 200 meters wide?
 
 ## Variable Velocity
 
@@ -30,7 +30,7 @@ An object's velocity is given by $v(t) = t^2 + 2t - 5$. If the object is at $x=4
 
 ## Vertical Collision
 
-A stone is thrown vertically upward with a speed of $20 	ext{ m/s}$. A second stone is thrown vertically upward with a speed of $30 	ext{ m/s}$ exactly one second later. At what time and height do they collide?
+A stone is thrown vertically upward with a speed of $20 	\text{ m/s}$. A second stone is thrown vertically upward with a speed of $30 	\text{ m/s}$ exactly one second later. At what time and height do they collide?
 
 ## Circular Motion
 

@@ -2,7 +2,7 @@
 
 ## Analiza rzutu ukośnego
 
-Pocisk wystrzelono z ziemi z prędkością początkową $100 	ext{ m/s}$ pod kątem $37^\circ$ powyżej poziomu. Oblicz:
+Pocisk wystrzelono z ziemi z prędkością początkową $100 	\text{ m/s}$ pod kątem $37^\circ$ powyżej poziomu. Oblicz:
 
 a) Maksymalną osiągniętą wysokość.
 b) Całkowity czas lotu.
@@ -18,11 +18,11 @@ Alicja porusza się po ścieżce opisanej przez $A(t) = (2+t, 8-3t)$, a Bob po �
 
 ## Trajektorie kolizyjne w 2D
 
-Dwie armaty są wycelowane w siebie. Pierwsza armata w punkcie $(0,0)$ wystrzeliwuje pocisk z prędkością początkową $[100 	ext{ m/s}, 80 	ext{ m/s}]$. Druga armata w punkcie $(800	ext{ m}, 0)$ wystrzeliwuje pocisk z prędkością $[-100 	ext{ m/s}, 80 	ext{ m/s}]$. W jakim czasie $t$ i w jakim punkcie $(x,y)$ nastąpi zderzenie?
+Dwie armaty są wycelowane w siebie. Pierwsza armata w punkcie $(0,0)$ wystrzeliwuje pocisk z prędkością początkową $[100 	\text{ m/s}, 80 	\text{ m/s}]$. Druga armata w punkcie $(800	\text{ m}, 0)$ wystrzeliwuje pocisk z prędkością $[-100 	\text{ m/s}, 80 	\text{ m/s}]$. W jakim czasie $t$ i w jakim punkcie $(x,y)$ nastąpi zderzenie?
 
 ## Prędkość względna (Problem rzeki)
 
-Rzeka płynie na wschód z prędkością $2 	ext{ m/s}$. Łódź, która może poruszać się z prędkością $5 	ext{ m/s}$ na stojącej wodzie, chce przepłynąć rzekę dokładnie na północ. W jakim kierunku (kąt) powinna się skierować? Jak długo zajmie jej przepłynięcie rzeki, jeśli ma ona 200 metrów szerokości?
+Rzeka płynie na wschód z prędkością $2 	\text{ m/s}$. Łódź, która może poruszać się z prędkością $5 	\text{ m/s}$ na stojącej wodzie, chce przepłynąć rzekę dokładnie na północ. W jakim kierunku (kąt) powinna się skierować? Jak długo zajmie jej przepłynięcie rzeki, jeśli ma ona 200 metrów szerokości?
 
 ## Prędkość zmienna
 
@@ -30,7 +30,7 @@ Prędkość obiektu dana jest wzorem $v(t) = t^2 + 2t - 5$. Jeśli obiekt znajdu
 
 ## Pionowe zderzenie
 
-Kamień rzucono pionowo w górę z prędkością $20 	ext{ m/s}$. Drugi kamień rzucono pionowo w górę z prędkością $30 	ext{ m/s}$ dokładnie sekundę później. W jakim czasie i na jakiej wysokości się zderzą?
+Kamień rzucono pionowo w górę z prędkością $20 	\text{ m/s}$. Drugi kamień rzucono pionowo w górę z prędkością $30 	\text{ m/s}$ dokładnie sekundę później. W jakim czasie i na jakiej wysokości się zderzą?
 
 ## Ruch po okręgu
 
