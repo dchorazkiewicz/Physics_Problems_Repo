@@ -12,7 +12,7 @@ Point charges of +1C, -2C, +3C, and -4C are placed at the corners of a square wi
 
 An electron is moving in a circular path with a radius of $r=10 \text{ cm}$ at a constant speed of $v=10^6 \text{ m/s}$. Calculate the magnitude of the magnetic field it produces at the center of the circle.
 
-## 4. Mass Spectrometry Principles
+## 4. Mass Spectrometry
 
 A proton (charge $+e$, mass $m_p$) and an alpha particle (charge $+2e$, mass $\approx 4m_p$) enter a uniform magnetic field with the same velocity, perpendicular to the field lines. What is the ratio of the radii of their circular paths, $r_p / r_\alpha$?
 

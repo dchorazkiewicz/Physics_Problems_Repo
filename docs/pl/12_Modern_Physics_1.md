@@ -4,7 +4,7 @@
 
 Oblicz długość fali de Broglie'a dla elektronu o energii kinetycznej 150 eV.
 
-## 2. Makroskopowe granice kwantowe
+## 2. Makroskopowe granice
 
 Oblicz długość fali de Broglie'a dla piłki golfowej o masie 50 gramów lecącej z prędkością 60 m/s. Dlaczego efekty kwantowe nie są zauważalne dla obiektów makroskopowych?
 

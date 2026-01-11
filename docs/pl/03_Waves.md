@@ -16,17 +16,20 @@ Dwie fale opisane są równaniami $y_1(x, t) = A \sin(kx - \omega t)$ i $y_2(x, 
 
 Osoba krzyczy w stronę klifu i słyszy echo 4,0 sekundy później. Jak daleko znajduje się klif? (Prędkość dźwięku w powietrzu wynosi 343 m/s).
 
-## 5. Efekt Dopplera (Światło)
+## 5. Efekt Dopplera
 
 Galaktyka oddala się od Ziemi z prędkością $5 \times 10^6 \text{ m/s}$. Emituje światło o długości fali 486 nm (niebiesko-zielone). Jaka długość fali zostanie zaobserwowana na Ziemi?
 
-## 6. Analiza równania falowego
+## 6. Równanie falowe
 
-Fala opisana jest równaniem $y(x,t) = 0.05 \sin(2\pi x - 50\pi t)$, gdzie x i y są w metrach, a t w sekundach. Określ dla tej fali:
+Fala opisana jest równaniem $y(x,t) = 0.05 \sin(2\pi x - 50\pi t)$, gdzie x i y są w metrach, zaś t w sekundach. Określ dla tej fali:
 
 a) Amplitudę
+
 b) Długość fali
+
 c) Częstotliwość
+
 d) Prędkość.
 
 ## 7. Różnica faz
@@ -37,7 +40,7 @@ Jaka jest różnica faz w radianach między dwoma punktami na fali, które są o
 
 Fala stojąca z czterema strzałkami powstaje na strunie o długości L = 80 cm. Jaka jest długość tej fali?
 
-## 9. Weryfikacja równania falowego
+## 9. Fale
 
 Która z poniższych funkcji może opisywać falę biegnącą? (Wskazówka: sprawdź, czy spełnia równanie falowe $\frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2 y}{\partial t^2}$)
 

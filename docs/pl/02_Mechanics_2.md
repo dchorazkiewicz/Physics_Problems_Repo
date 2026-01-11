@@ -8,7 +8,7 @@ Wahadło proste ma okres 4 sekund na Ziemi. Jaki byłby jego okres na Księżycu
 
 Biegacz o masie 70 kg poruszający się z prędkością $3 \text{ m/s}$ wskakuje na nieruchomy wózek o masie 140 kg. Jaka jest końcowa prędkość wózka z biegaczem? Czy energia kinetyczna jest zachowana w tym zderzeniu? Wyjaśnij.
 
-## 3. Ruch harmoniczny prosty
+## 3. Ruch harmoniczny
 
 Masa 10 kg jest przymocowana do sprężyny i oscyluje zgodnie z równaniem $x(t) = 0.2 \cos(10\pi t)$ (w metrach). Jaka jest stała sprężystości $k$? Jaka jest całkowita energia mechaniczna układu?
 
@@ -16,7 +16,7 @@ Masa 10 kg jest przymocowana do sprężyny i oscyluje zgodnie z równaniem $x(t)
 
 Wahadło o długości 1,0 metra zostaje puszczone z początkowego kąta $15^\circ$. Jaka jest prędkość ciężarka wahadła w najniższym punkcie jego ruchu?
 
-## 5. Połączenie energii i pędu
+## 5. Energia i pęd
 
 Klocek o masie 0,5 kg zsuwa się po torze bez tarcia z wysokości 3,0 m. Na dole zderza się i skleja z klockiem o masie 1,5 kg, który początkowo spoczywa. Jaka jest prędkość połączonej masy tuż po zderzeniu?
 
@@ -28,7 +28,7 @@ Kamień rzucono poziomo z prędkością $20 \text{ m/s}$ ze szczytu klifu o wyso
 
 Klocek o masie 5 kg umieszczono na klocku o masie 10 kg. Do klocka 10 kg przyłożono poziomą siłę 45 N, a klocek 5 kg przywiązano do ściany. Współczynnik tarcia kinetycznego między wszystkimi ruchomymi powierzchniami wynosi 0,2. Znajdź przyspieszenie klocka 10 kg.
 
-## 8. Projektowanie wahadła
+## 8. Wahadło
 
 Jaka jest wymagana długość wahadła prostego, aby miało okres dokładnie 1 sekundy na Ziemi?
 

@@ -4,7 +4,7 @@
 
 Calculate the de Broglie wavelength of an electron with a kinetic energy of 150 eV.
 
-## 2. Macroscopic Quantum Limits
+## 2. Macroscopic Limits
 
 Calculate the de Broglie wavelength of a 50-gram golf ball traveling at a speed of 60 m/s. Why are quantum effects not noticeable for macroscopic objects?
 

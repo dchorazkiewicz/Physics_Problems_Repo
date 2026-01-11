@@ -12,7 +12,7 @@ Cztery ładunki punktowe +1,0 C każdy umieszczono w narożnikach kwadratu o bok
 
 Elektron porusza się po torze kołowym o promieniu $r=10 \text{ cm}$ ze stałą prędkością $v=10^6 \text{ m/s}$. Oblicz wartość pola magnetycznego, jakie wytwarza w środku okręgu.
 
-## 4. Zasady spektrometrii mas
+## 4. Spektrometria masowa
 
 Proton (ładunek $+e$, masa $m_p$) i cząstka alfa (ładunek $+2e$, masa $\approx 4m_p$) wpadają w jednorodne pole magnetyczne z tą samą prędkością, prostopadle do linii pola. Jaki jest stosunek promieni ich torów kołowych, $r_p / r_\alpha$?
 

@@ -5,17 +5,20 @@
 Given two vectors in 3D space: $\vec{a} = [2, 1, -3]$ and $\vec{b} = [4, -2, 1]$. Calculate:
 
 a) The magnitude of each vector.
+
 b) The dot product $\vec{a} \cdot \vec{b}$.
+
 c) The cross product $\vec{a} \times \vec{b}$.
+
 d) The angle between vectors $\vec{a}$ and $\vec{b}$.
 
-## 2. Solving Systems of Equations
+## 2. Systems of Equations
 
 Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
 
-## 3. Proportionality (Scaling)
+## 3. Proportionality
 
-Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F$ is the gravitational force between two masses $m_1$ and $m_2$, $r$ is the distance between their centers, and $G$ is the gravitational constant. Determine the factor by which the force $F$ changes if the distance $r$ is **doubled** and both masses ($m_1$ and $m_2$) are **halved**.
+Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F$ is the gravitational force between two masses $m_1$ and $m_2$, $r$ is the distance between their centers, and $G$ is the gravitational constant. Determine the factor by which the force $F$ changes if the distance $r$ is *doubled* and both masses ($m_1$ and $m_2$) are *halved*.
 
 ## 4. Rearranging Formulas
 
@@ -41,6 +44,6 @@ Calculate the area under the curve of the function $f(x) = \sin(x)$ from $x=0$ t
 
 A rectangle is under the curve $y = 3 - x^2$ in the first quadrant. What are the dimensions of the rectangle with the maximum area?
 
-## 10. Infinite Series in 2D
+## 10. Infinite Series
 
 Determine the final position of an ant that starts at the origin and moves according to the following pattern: 1 m east, 1/2 m north, 1/3 m west, 1/4 m south, 1/5 m east, and so on.

@@ -1,10 +1,10 @@
 # Sekcja 8: Pomiary
 
-## 1. Przenoszenie błędu (Iloczyn)
+## 1. Przenoszenie błędu
 
 Zmierzona długość i szerokość prostokątnej płytki wynoszą $L = (15.3 \pm 0.1)\text{ cm}$ i $W = (8.4 \pm 0.1)\text{ cm}$. Oblicz pole powierzchni płytki i jego niepewność bezwzględną.
 
-## 2. Przenoszenie błędu (Potęgowanie)
+## 2. Przenoszenie błędu
 
 Zmierzony promień kuli wynosi $r = (6.20 \pm 0.05)\text{ cm}$. Oblicz objętość kuli i powiązaną z nią niepewność.
 

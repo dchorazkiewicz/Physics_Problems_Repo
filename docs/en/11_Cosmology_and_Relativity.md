@@ -24,9 +24,9 @@ What speed must a 1-meter-long ruler have for its length to be observed as 0.5 m
 
 The "Little Boy" atomic bomb converted about 0.7 grams of mass into energy. Using $E=mc^2$, calculate the energy released in Joules. (1 kiloton of TNT is approx. $4.184 \times 10^{12}$ J).
 
-## 7. Twin Paradox (Lite)
+## 7. Twin Paradox
 
-An astronaut spends one year on the ISS, which travels at about 7.66 km/s. How much younger would the astronaut be than their twin on Earth due to time dilation?
+An astronaut spends one year on the ISS, which travels at about 7.66 km/s. How much younger would the astronaut be than their twin on Earth due to kinetic time dilation?
 
 ## 8. Velocity Transformation
 

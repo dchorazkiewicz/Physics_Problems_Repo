@@ -1,11 +1,13 @@
 # Sekcja 1: Mechanika I
 
-## 1. Analiza rzutu ukośnego
+## 1. Rzut ukośny
 
 Pocisk wystrzelono z ziemi z prędkością początkową $100 	\text{ m/s}$ pod kątem $37^\circ$ powyżej poziomu. Oblicz:
 
 a) Maksymalną osiągniętą wysokość.
+
 b) Całkowity czas lotu.
+
 c) Zasięg poziomy pocisku.
 
 ## 2. Optymalizacja zasięgu
@@ -16,13 +18,13 @@ Dla rzutu ukośnego wykaż analitycznie, że maksymalny zasięg dla danej prędk
 
 Alicja porusza się po ścieżce opisanej przez $A(t) = (2+t, 8-3t)$, a Bob po ścieżce $B(t) = (2t-1, 2t+2)$. Ustal, czy ich ścieżki się przecinają. Czy zderzą się w tym samym czasie?
 
-## 4. Trajektorie kolizyjne w 2D
+## 4. Zderzenia w 2D
 
-Dwie armaty są wycelowane w siebie. Pierwsza armata w punkcie $(0,0)$ wystrzeliwuje pocisk z prędkością początkową $[100 	\text{ m/s}, 80 	\text{ m/s}]$. Druga armata w punkcie $(800	\text{ m}, 0)$ wystrzeliwuje pocisk z prędkością $[-100 	\text{ m/s}, 80 	\text{ m/s}]$. W jakim czasie $t$ i w jakim punkcie $(x,y)$ nastąpi zderzenie?
+Dwie armaty są wycelowane w siebie. Pierwsza armata w punkcie $(0,0)$ wystrzeliwuje pocisk z prędkością początkową $[100 \text{ m/s}, 80 \text{ m/s}]$. Druga armata w punkcie $(800	\text{ m}, 0)$ wystrzeliwuje pocisk z prędkością $[-100 \text{ m/s}, 80 \text{ m/s}]$. W jakim czasie $t$ i w jakim punkcie $(x,y)$ nastąpi zderzenie?
 
-## 5. Prędkość względna (Problem rzeki)
+## 5. Prędkość względna
 
-Rzeka płynie na wschód z prędkością $2 	\text{ m/s}$. Łódź, która może poruszać się z prędkością $5 	\text{ m/s}$ na stojącej wodzie, chce przepłynąć rzekę dokładnie na północ. W jakim kierunku (kąt) powinna się skierować? Jak długo zajmie jej przepłynięcie rzeki, jeśli ma ona 200 metrów szerokości?
+Rzeka płynie na wschód z prędkością $2 \text{m/s}$. Łódź, która może poruszać się z prędkością $5 \text{m/s}$ na stojącej wodzie, chce przepłynąć rzekę dokładnie na północ. W jakim kierunku (kąt) powinna się skierować? Jak długo zajmie jej przepłynięcie rzeki, jeśli ma ona 200 metrów szerokości?
 
 ## 6. Prędkość zmienna
 
@@ -30,7 +32,7 @@ Prędkość obiektu dana jest wzorem $v(t) = t^2 + 2t - 5$. Jeśli obiekt znajdu
 
 ## 7. Pionowe zderzenie
 
-Kamień rzucono pionowo w górę z prędkością $20 	\text{ m/s}$. Drugi kamień rzucono pionowo w górę z prędkością $30 	\text{ m/s}$ dokładnie sekundę później. W jakim czasie i na jakiej wysokości się zderzą?
+Kamień rzucono pionowo w górę z prędkością $20 \text{m/s}$. Drugi kamień rzucono pionowo w górę z prędkością $30 \text{m/s}$ dokładnie sekundę później. W jakim czasie i na jakiej wysokości się zderzą?
 
 ## 8. Ruch po okręgu
 

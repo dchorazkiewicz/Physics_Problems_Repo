@@ -1,10 +1,10 @@
 # Section 8: Measurements
 
-## 1. Propagation of Error (Product)
+## 1. Propagation of Error
 
 The length and width of a rectangular plate are measured to be $L = (15.3 \pm 0.1)\text{ cm}$ and $W = (8.4 \pm 0.1)\text{ cm}$. Calculate the area of the plate and its absolute uncertainty.
 
-## 2. Propagation of Error (Power)
+## 2. Propagation of Error
 
 The radius of a sphere is measured to be $r = (6.20 \pm 0.05)\text{ cm}$. Calculate the volume of the sphere and its associated uncertainty.
 

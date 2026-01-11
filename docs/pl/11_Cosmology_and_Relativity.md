@@ -24,9 +24,9 @@ Jaką prędkość musi mieć linijka o długości 1 metra, aby jej długość by
 
 Bomba atomowa "Little Boy" zamieniła około 0,7 grama masy w energię. Używając $E=mc^2$, oblicz uwolnioną energię w dżulach. (1 kilotona TNT to ok. $4.184 \times 10^{12}$ J).
 
-## 7. Paradoks bliźniąt (Wersja uproszczona)
+## 7. Paradoks bliźniąt
 
-Astronauta spędza rok na ISS, która porusza się z prędkością około 7,66 km/s. O ile młodszy byłby astronauta od swojego bliźniaka na Ziemi z powodu dylatacji czasu?
+Astronauta spędza rok na ISS, która porusza się z prędkością około 7,66 km/s. O ile młodszy byłby astronauta od swojego bliźniaka na Ziemi z powodu kinetycznej dylatacji czasu?
 
 ## 8. Transformacja prędkości
 
