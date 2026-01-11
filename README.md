@@ -6,7 +6,7 @@
 
 # Interactive Workbook (English Version)
 
-Welcome to the **Math Problems** repository. This project serves as a digital workbook template designed to be your primary tool throughout the course duration.
+Welcome to the **Physics Problems** repository. This project serves as a digital workbook template designed to be your primary tool throughout the course duration.
 
 The repository is bilingual and designed to allow you to build your own knowledge base using a version control system.
 
@@ -20,7 +20,7 @@ To properly use the provided materials, follow the procedure below:
 2.  **Cloning**: Download the repository to your local machine.
 3.  **Creating Documentation**:
     * Task lists are located in the appropriate sections in the menu.
-    * Each task file (e.g., `01_macierze.md`) has a dedicated directory for solutions (e.g., `solution_01_macierze/`).
+    * Each task file (e.g., `03_Waves.md`) has a dedicated directory for solutions (e.g., `solution_03_Waves/`).
     * These directories are your **workspace**. You should create Markdown files within them containing solutions, proofs, and theoretical notes.
 4.  **Committing Changes**: Regularly send your solutions to the server (Commit & Push).
 
@@ -56,16 +56,21 @@ Students interested in technology can publish their notes as a website using Git
 
 ### Available Sections
 
-* **Algebra**: Matrices, determinants, systems of equations.
-* **Geometry**: Vectors, lines, and planes.
-* **Analysis**: Limits, derivatives, function analysis, integrals.
-* **Probabilistic Methods**: Probability theory, statistics, estimation.
+* Mechanics
+* Waves
+* Electromagnetism
+* Circuits
+* Measurements
+* Cosmos
+* Astronomy and Astrophysics
+* Cosmology and Relativity
+* Modern Physics
 
 ---
 
 # Interaktywny Zeszyt Ćwiczeń (Wersja Polska)
 
-Witaj w repozytorium **Math Problems**. Projekt ten służy jako szablon cyfrowego zeszytu, który ma stanowić Twoje główne narzędzie pracy przez cały okres trwania kursu.
+Witaj w repozytorium **Physics Problems**. Projekt ten służy jako szablon cyfrowego zeszytu, który ma stanowić Twoje główne narzędzie pracy przez cały okres trwania kursu.
 
 Repozytorium jest dwujęzyczne i zaprojektowane w sposób umożliwiający budowę własnej bazy wiedzy w oparciu o system kontroli wersji.
 
@@ -115,7 +120,12 @@ Studenci zainteresowani technologią mogą opublikować swoje notatki w formie s
 
 ### Dostępne Działy
 
-* **Algebra**: Macierze, wyznaczniki, układy równań.
-* **Geometria**: Wektory, proste i płaszczyzny.
-* **Analiza**: Granice, pochodne, badanie funkcji, całki.
-* **Metody Probabilistyczne**: Rachunek prawdopodobieństwa, statystyka, estymacja.
+* Mechanika
+* Fale
+* Elektromagnetyzm
+* Obwody elektryczne
+* Pomiary
+* Kosmos
+* Astronomia i astrofizyka
+* Kosmologia i relatywistyka
+* Fizyka współczesna
