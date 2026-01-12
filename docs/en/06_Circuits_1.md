@@ -2,7 +2,7 @@
 
 ## 1. Series Circuit Analysis
 
-Three resistors, $R_1=15\,Ω$, $R_2=30\,Ω$, and $R_3=50\,Ω$, are connected in series to a 12 V battery.
+Three resistors, $R_1=15\,\Omega$, $R_2=30\,\Omega$, and $R_3=50\,\Omega$, are connected in series to a 12 V battery.
 
 a) Draw the circuit diagram.
 b) Calculate the total equivalent resistance.
@@ -10,7 +10,7 @@ c) Calculate the current flowing from the battery.
 
 ## 2. Parallel Circuit Analysis
 
-The same three resistors ($R_1=15\,Ω$, $R_2=30\,Ω$, $R_3=50\,Ω$) are now connected in parallel to the 12 V battery.
+The same three resistors ($R_1=15\,\Omega$, $R_2=30\,\Omega$, $R_3=50\,\Omega$) are now connected in parallel to the 12 V battery.
 
 a) Draw the circuit diagram.
 b) Calculate the total equivalent resistance.
@@ -19,7 +19,7 @@ d) Calculate the total current flowing from the battery.
 
 ## 3. Mixed Circuit
 
-A resistor $R_1=10\,Ω$ is connected in series with a parallel combination of two other resistors, $R_2=20\,Ω$ and $R_3=20\,Ω$. The entire circuit is connected to a 6 V source. What is the total current drawn from the source?
+A resistor $R_1=10\,\Omega$ is connected in series with a parallel combination of two other resistors, $R_2=20\,\Omega$ and $R_3=20\,\Omega$. The entire circuit is connected to a 6 V source. What is the total current drawn from the source?
 
 ## 4. Kirchhoff's Laws
 
@@ -35,7 +35,7 @@ A cube is constructed from 12 identical resistors, each with resistance R. What 
 
 ## 7. Power & Energy
 
-What is the power dissipated by a $100\,Ω$ resistor when a voltage of 50 V is applied across it? How much energy is consumed in 5 minutes?
+What is the power dissipated by a $100\,\Omega$ resistor when a voltage of 50 V is applied across it? How much energy is consumed in 5 minutes?
 
 ## 8. Multi-Source Circuit
 
@@ -43,8 +43,8 @@ For a circuit consisting of a 2V battery and a 1-ohm resistor in the left loop, 
 
 ## 9. Delta Connection
 
-Find the equivalent resistance of a circuit where three $10\,Ω$ resistors are connected to form a triangle (delta connection). What is the resistance between any two vertices?
+Find the equivalent resistance of a circuit where three $10\,\Omega$ resistors are connected to form a triangle (delta connection). What is the resistance between any two vertices?
 
 ## 10. Resistor Logic Puzzle
 
-You have an supply of $1\,Ω$ resistors. How can you combine them to create an equivalent resistance of $2.5\,Ω$? Draw the diagram.
+You have an supply of $1\,\Omega$ resistors. How can you combine them to create an equivalent resistance of $2.5\,\Omega$? Draw the diagram.

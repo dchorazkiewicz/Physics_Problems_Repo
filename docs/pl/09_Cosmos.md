@@ -2,7 +2,7 @@
 
 ## 1. Porównanie gęstości
 
-Zamiast tylko stwierdzać różnicę, oblicz średnią gęstość Układu Słonecznego (masa $\approx M_{Słońca}$, objętość wewnątrz orbity Plutona $\approx 40 \text{ JA}$) w porównaniu z Drogą Mleczną (masa $\approx 10^{12} M_{Słońca}$, objętość $\approx$ dysk $100\text{kly} \times 1\text{kly}$). Porównaj rzędy wielkości.
+Zamiast tylko stwierdzać różnicę, oblicz średnią gęstość Układu Słonecznego (masa $\approx M_{\text{Słońca}}$, objętość wewnątrz orbity Plutona $\approx 40 \text{ JA}$) w porównaniu z Drogą Mleczną (masa $\approx 10^{12} M_{\text{Słońca}}$, objętość $\approx$ dysk $100\text{kly} \times 1\text{kly}$). Porównaj rzędy wielkości.
 
 ## 2. Geometria galaktyczna
 

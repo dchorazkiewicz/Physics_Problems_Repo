@@ -2,7 +2,7 @@
 
 ## 1. Analiza obwodu szeregowego
 
-Trzy rezystory, $R_1=15\,Ω$, $R_2=30\,Ω$ i $R_3=50\,Ω$, są połączone szeregowo do baterii 12 V.
+Trzy rezystory, $R_1=15\,\Omega$, $R_2=30\,\Omega$ i $R_3=50\,\Omega$, są połączone szeregowo do baterii 12 V.
 
 a) Narysuj schemat obwodu.
 b) Oblicz całkowity opór zastępczy.
@@ -10,7 +10,7 @@ c) Oblicz prąd płynący z baterii.
 
 ## 2. Analiza obwodu równoległego
 
-Te same trzy rezystory ($R_1=15\,Ω$, $R_2=30\,Ω$, $R_3=50\,Ω$) są teraz połączone równolegle do baterii 12 V.
+Te same trzy rezystory ($R_1=15\,\Omega$, $R_2=30\,\Omega$, $R_3=50\,\Omega$) są teraz połączone równolegle do baterii 12 V.
 
 a) Narysuj schemat obwodu.
 b) Oblicz całkowity opór zastępczy.
@@ -19,7 +19,7 @@ d) Oblicz całkowity prąd płynący z baterii.
 
 ## 3. Obwód mieszany
 
-Rezystor $R_1=10\,Ω$ jest połączony szeregowo z równoległym połączeniem dwóch innych rezystorów, $R_2=20\,Ω$ i $R_3=20\,Ω$. Cały obwód jest podłączony do źródła 6 V. Jaki jest całkowity prąd pobierany ze źródła?
+Rezystor $R_1=10\,\Omega$ jest połączony szeregowo z równoległym połączeniem dwóch innych rezystorów, $R_2=20\,\Omega$ i $R_3=20\,\Omega$. Cały obwód jest podłączony do źródła 6 V. Jaki jest całkowity prąd pobierany ze źródła?
 
 ## 4. Prawa Kirchhoffa
 
@@ -35,7 +35,7 @@ Sześcian jest zbudowany z 12 identycznych rezystorów, każdy o oporze R. Jaki 
 
 ## 7. Moc i energia
 
-Jaka moc jest wydzielana na rezystorze $100\,Ω$, gdy przyłożone jest do niego napięcie 50 V? Ile energii zostanie zużyte w ciągu 5 minut?
+Jaka moc jest wydzielana na rezystorze $100\,\Omega$, gdy przyłożone jest do niego napięcie 50 V? Ile energii zostanie zużyte w ciągu 5 minut?
 
 ## 8. Obwód wieloźródłowy
 
@@ -43,8 +43,8 @@ Dla obwodu składającego się z baterii 2V i rezystora 1 om w lewej pętli, ora
 
 ## 9. Połączenie w trójkąt
 
-Znajdź opór zastępczy obwodu, w którym trzy rezystory $10\,Ω$ są połączone tworząc trójkąt. Jaki jest opór między dowolnymi dwoma wierzchołkami?
+Znajdź opór zastępczy obwodu, w którym trzy rezystory $10\,\Omega$ są połączone tworząc trójkąt. Jaki jest opór między dowolnymi dwoma wierzchołkami?
 
 ## 10. Zagadka logiczna z rezystorami
 
-Masz zapas rezystorów $1\,Ω$. Jak możesz je połączyć, aby uzyskać opór zastępczy $2,5\,Ω$? Narysuj schemat.
+Masz zapas rezystorów $1\,\Omega$. Jak możesz je połączyć, aby uzyskać opór zastępczy $2,5\,\Omega$? Narysuj schemat.
