@@ -15,7 +15,7 @@ The repository is bilingual and designed to allow you to build your own knowledg
 To properly use the provided materials, follow the procedure below:
 
 1.  **Forking the Repository**:
-    * Go to the website: **[https://dchorazkiewicz.github.io/Physics_Problems_Repo/](https://dchorazkiewicz.github.io/Physics_Problems_Repo/)**
+    * Go to the website: **[https://github.com/dchorazkiewicz/Physics_Problems_Repo](https://github.com/dchorazkiewicz/Physics_Problems_Repo)**
     * Create your own copy of the materials using the `Fork` button on GitHub.
 2.  **Cloning**: Download the repository to your local machine.
 3.  **Creating Documentation**:
@@ -79,7 +79,7 @@ Repozytorium jest dwujęzyczne i zaprojektowane w sposób umożliwiający budow�
 Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zgodnie z poniższą procedurą:
 
 1.  **Forkowanie Repozytorium**:
-    * Przejdź do strony www: **[https://dchorazkiewicz.github.io/Physics_Problems_Repo/](https://dchorazkiewicz.github.io/Physics_Problems_Repo/)**
+    * Przejdź do strony www: **[https://github.com/dchorazkiewicz/Physics_Problems_Repo](https://github.com/dchorazkiewicz/Physics_Problems_Repo)**
     * Utwórz własną kopię materiałów, używając przycisku `Fork` w serwisie GitHub.
 2.  **Klonowanie**: Pobierz repozytorium na swój komputer lokalny.
 3.  **Tworzenie Dokumentacji**:
