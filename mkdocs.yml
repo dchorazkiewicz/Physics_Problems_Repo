@@ -4,18 +4,14 @@ site_url: https://dchorazkiewicz.github.io/Physics_Problems_Repo
 theme:
   name: material
   palette:
-    # Switch for light mode
+    # Palette toggle for light mode
     - scheme: default
-      primary: blue
-      accent: light blue
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
 
-    # Switch for dark mode
+    # Palette toggle for dark mode
     - scheme: slate
-      primary: blue
-      accent: light blue
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
