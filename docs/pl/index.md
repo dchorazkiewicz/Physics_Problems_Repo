@@ -9,7 +9,7 @@ Repozytorium jest dwujęzyczne i zaprojektowane w sposób umożliwiający budow�
 Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zgodnie z poniższą procedurą:
 
 1.  **Forkowanie Repozytorium**:
-    * Przejdź do repozytorium źródłowego: **[https://dchorazkiewicz.github.io/Physics_Problems_Repo/](https://dchorazkiewicz.github.io/Physics_Problems_Repo/)**
+    * Przejdź do repozytorium źródłowego: **[https://github.com/dchorazkiewicz/Physics_Problems_Repo](https://github.com/dchorazkiewicz/Physics_Problems_Repo)**
     * Utwórz własną kopię materiałów, używając przycisku `Fork` w serwisie GitHub.
 2.  **Klonowanie**: Pobierz repozytorium na swój komputer lokalny.
 3.  **Tworzenie Dokumentacji**:

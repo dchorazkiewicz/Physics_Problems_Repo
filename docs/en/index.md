@@ -9,7 +9,7 @@ This repository is bilingual (English/Polish) and structured to facilitate the c
 To utilize this material effectively, follow the standard procedure:
 
 1.  **Fork this Repository**:
-    * Navigate to the source repository: **[https://dchorazkiewicz.github.io/Physics_Problems_Repo/](https://dchorazkiewicz.github.io/Physics_Problems_Repo/)**
+    * Navigate to the source repository: **[https://github.com/dchorazkiewicz/Physics_Problems_Repo](https://github.com/dchorazkiewicz/Physics_Problems_Repo)**
     * Create your private copy using the `Fork` feature on GitHub.
 2.  **Clone Locally**: Download the repository to your local machine.
 3.  **Document Solutions**:
