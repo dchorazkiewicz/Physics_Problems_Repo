@@ -2,7 +2,7 @@
 
 /* Wymuszenie pełnej szerokości (Full Width) */
 .md-grid {
-    max-width: 96% !important; /* Użyj 96% szerokości ekranu zamiast sztywnej wartości */
+    max-width: 86% !important; /* Użyj 86% szerokości ekranu zamiast sztywnej wartości */
     width: 100% !important;
     margin-left: auto;
     margin-right: auto;
@@ -10,3 +10,12 @@
 
 /* Opcjonalnie: Jeśli chcesz, aby sam tekst też był szerszy przy dużych ekranach,
    czasami trzeba też odblokować kontener samej treści, choć zazwyczaj .md-grid wystarcza */
+
+/* Zmniejszenie czcionki w głównym oknie treści */
+.md-typeset {
+  font-size: 0.75rem;
+}
+
+/* Opcjonalnie: jeśli chcesz, aby nagłówki również się proporcjonalnie zmniejszyły */
+.md-typeset h1 { font-size: 1.8em; }
+.md-typeset h2 { font-size: 1.4em; }
