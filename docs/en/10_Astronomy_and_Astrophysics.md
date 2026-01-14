@@ -22,7 +22,7 @@ What is the acceleration due to gravity ($g$) at the altitude of the ISS (400 km
 
 ## 6. Geostationary Orbit
 
-Satellites in geostationary orbit remain above the same point on Earth. What must their orbital period be? Calculate the altitude of a geostation-ary orbit above the Earth's surface.
+Satellites in geostationary orbit remain above the same point on Earth. What must their orbital period be? Calculate the altitude of a geostationary orbit above the Earth's surface.
 
 ## 7. Escape Velocity
 
