@@ -18,7 +18,7 @@ Droga Mleczna zawiera około 200 miliardów gwiazd. Gdyby rozdzielić je równo 
 
 ## 5. Kinetyka podróży kosmicznych
 
-Maksymalna odległość z Ziemi na Marsa wynosi około 55 milionów km. Jak długo zajęłoby statkowi kosmicznemu podróżującemu ze stałą prędkością 40 000 km/h dotarcie na Marsa?
+Minimalna odległość z Ziemi na Marsa wynosi około 55 milionów km. Jak długo zajęłoby statkowi kosmicznemu podróżującemu ze stałą prędkością 40 000 km/h dotarcie na Marsa?
 
 ## 6. Kolizja galaktyczna
 
