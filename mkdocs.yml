@@ -54,6 +54,7 @@ plugins:
             - Fizyka Współczesna 2: '13_Modern_Physics_2.md'
             - Animacje:
               - 'Rzut Ukośny': 'anim/projectile_motion.html'
+              - 'Wahadło': 'anim/pendulum.html'
         - locale: en
           name: English
           default: true
@@ -76,6 +77,7 @@ plugins:
             - 'Modern Physics 2': '13_Modern_Physics_2.md'
             - Animations:
               - 'Projectile Motion': 'anim/projectile_motion.html'
+              - 'Pendulum': 'anim/pendulum.html'
             - Extra:
               - Problem 1:
                 - 'Formulation': 'extra/problem_1/problem_1_formulation.md'
