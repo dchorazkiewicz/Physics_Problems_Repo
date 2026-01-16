@@ -81,7 +81,7 @@
                         <label id="lbl-v0" class="text-sm text-cyan-400">Prędkość początkowa (v₀)</label>
                         <span id="val-v0" class="text-sm font-mono">25 m/s</span>
                     </div>
-                    <input type="range" id="inp-v0" min="1" max="200" step="1" value="100" class="w-full">
+                    <input type="range" id="inp-v0" min="1" max="200" step="1" value="25" class="w-full">
                 </div>
 
                 <!-- Angle -->
@@ -198,7 +198,7 @@
     <script>
         // --- Konfiguracja i Stan ---
         const state = {
-            v0: 100,
+            v0: 25,
             angle: 37,
             h0: 0,
             g: 9.81,
