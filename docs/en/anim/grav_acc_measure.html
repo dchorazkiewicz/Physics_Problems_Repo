@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorium Fizyczne: Pomiar g</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- MathJax do wzorów matematycznych -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
     <style>
         body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
         canvas { border-bottom: 1px solid #334155; }
@@ -76,6 +74,21 @@
     <aside class="w-full md:w-[450px] panel-glass flex flex-col overflow-y-auto z-30 shadow-2xl">
         <div class="p-6 space-y-6">
 
+            <!-- Instrukcja Studenta -->
+            <div class="bg-indigo-900/30 border border-indigo-500/30 p-4 rounded-lg shadow-sm">
+                <h2 class="text-xs font-bold text-indigo-300 uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    Instrukcja Studenta
+                </h2>
+                <ul class="text-xs text-indigo-100 space-y-2 list-decimal list-inside font-medium leading-relaxed opacity-90">
+                    <li><span class="text-slate-400">Cel:</span> Wyznacz <i>g</i> mierząc okres <i>T</i> wahadła.</li>
+                    <li><span class="text-slate-400">Start:</span> Ustaw suwakiem poniżej liczbę pomiarów <i>N</i>.</li>
+                    <li><span class="text-slate-400">Akcja:</span> Naciśnij <strong class="text-amber-400">SPACJĘ</strong> dokładnie w momencie, gdy ciężarek mija linię pionową (celownik).</li>
+                    <li><span class="text-slate-400">Ważne:</span> Klikaj co <b>pełny okres</b> (gdy wahadło wraca w to samo miejsce z tej samej strony)!</li>
+                    <li><span class="text-slate-400">Koniec:</span> Powtarzaj klikanie, aż system zbierze komplet danych.</li>
+                </ul>
+            </div>
+
             <!-- Konfiguracja -->
             <div class="space-y-4 border-b border-slate-700 pb-6">
                 <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Konfiguracja</h2>
@@ -93,7 +106,7 @@
                     <div class="bg-slate-800/50 p-2 rounded border border-slate-700">
                         <div class="text-[10px] text-slate-500">Długość (L)</div>
                         <div class="font-mono text-slate-200">1.000 m</div>
-                        <div class="text-[10px] text-slate-600">±0.001 m</div>
+                        <div class="text-[10px] text-slate-600">&plusmn;0.001 m</div>
                     </div>
                     <div class="bg-slate-800/50 p-2 rounded border border-slate-700">
                         <div class="text-[10px] text-slate-500">Masa (m)</div>
@@ -116,8 +129,8 @@
                         <thead class="bg-slate-800 text-slate-400 text-xs uppercase">
                             <tr>
                                 <th class="px-4 py-2">#</th>
-                                <th class="px-4 py-2">Czas $t_i$ [s]</th>
-                                <th class="px-4 py-2 text-right">Okres $T_i$ [s]</th>
+                                <th class="px-4 py-2">Czas t<sub>i</sub> [s]</th>
+                                <th class="px-4 py-2 text-right">Okres T<sub>i</sub> [s]</th>
                             </tr>
                         </thead>
                         <tbody id="measurement-table" class="font-mono text-slate-300 divide-y divide-slate-800">
@@ -132,38 +145,38 @@
             <div id="report-section" class="hidden space-y-4 border-t border-slate-700 pt-6">
                 <h2 class="text-xs font-bold text-green-400 uppercase tracking-wider">Analiza Niepewności</h2>
                 
-                <div class="text-xs text-slate-300 space-y-4 font-serif leading-relaxed">
+                <div class="text-xs text-slate-300 space-y-4 font-sans leading-relaxed">
                     
                     <!-- Krok 1 -->
                     <div>
                         <p class="font-bold text-slate-400 mb-1">1. Średnia arytmetyczna okresu:</p>
-                        <div id="math-mean" class="bg-slate-800/50 p-2 rounded"></div>
+                        <div id="math-mean" class="bg-slate-800/50 p-2 rounded font-mono"></div>
                     </div>
 
                     <!-- Krok 2 -->
                     <div>
-                        <p class="font-bold text-slate-400 mb-1">2. Odchylenie standardowe średniej ($\Delta T$):</p>
-                        <div id="math-std" class="bg-slate-800/50 p-2 rounded"></div>
+                        <p class="font-bold text-slate-400 mb-1">2. Odchylenie standardowe średniej (&Delta;T):</p>
+                        <div id="math-std" class="bg-slate-800/50 p-2 rounded font-mono"></div>
                         <p class="text-slate-500 mt-1">Przyjęto jako niepewność pomiaru czasu.</p>
                     </div>
 
                     <!-- Krok 3 -->
                     <div>
-                        <p class="font-bold text-slate-400 mb-1">3. Przyspieszenie ziemskie ($g$):</p>
+                        <p class="font-bold text-slate-400 mb-1">3. Przyspieszenie ziemskie (g):</p>
                         <p>Ze wzoru na okres wahadła matematycznego:</p>
-                        <div class="py-2">$$ g = \frac{4\pi^2 L}{\bar{T}^2} $$</div>
-                        <div id="math-g-calc" class="bg-slate-800/50 p-2 rounded"></div>
+                        <div class="py-2 text-center text-slate-200">g = 4&pi;&sup2;L / T&#772;&sup2;</div>
+                        <div id="math-g-calc" class="bg-slate-800/50 p-2 rounded font-mono"></div>
                     </div>
 
                     <!-- Krok 4 -->
                     <div>
-                        <p class="font-bold text-amber-400 mb-1">4. Niepewność pomiarowa ($\Delta g$):</p>
+                        <p class="font-bold text-amber-400 mb-1">4. Niepewność pomiarowa (&Delta;g):</p>
                         <p>Stosujemy metodę różniczki zupełnej (przenoszenie błędu):</p>
-                        <div class="py-2">$$ |\Delta g| = \left| \frac{\partial g}{\partial L} \right| \Delta L + \left| \frac{\partial g}{\partial T} \right| \Delta T $$</div>
-                        <p>Po obliczeniu pochodnych cząstkowych:</p>
-                        <div class="py-2">$$ \Delta g = g \left( \frac{\Delta L}{L} + \frac{2 \Delta T}{\bar{T}} \right) $$</div>
+                        <div class="py-2 text-center text-slate-200">
+                            &Delta;g = g &middot; ( &Delta;L/L + 2&middot;&Delta;T/T&#772; )
+                        </div>
                         <p>Podstawienie wartości:</p>
-                        <div id="math-error-calc" class="bg-slate-800/50 p-2 rounded border border-amber-900/30"></div>
+                        <div id="math-error-calc" class="bg-slate-800/50 p-2 rounded border border-amber-900/30 font-mono text-[11px] leading-6"></div>
                     </div>
 
                     <!-- Wynik -->
@@ -370,37 +383,30 @@
             const relativeError = termL + termT;
             const deltaG = g_calc * relativeError;
 
-            // Renderowanie HTML z MathJax
+            // Renderowanie HTML (BEZ MATHJAX)
             
             // Krok 1: Średnia
-            const latexMean = `$$ \\bar{T} = \\frac{1}{${config.targetN}} \\sum T_i = \\mathbf{${meanT.toFixed(4)}\\,s} $$`;
-            document.getElementById('math-mean').innerHTML = latexMean;
+            const htmlMean = `T&#772; = (1/${config.targetN}) &Sigma;T<sub>i</sub> = <b>${meanT.toFixed(4)} s</b>`;
+            document.getElementById('math-mean').innerHTML = htmlMean;
 
             // Krok 2: Odchylenie
-            const latexStd = `$$ \\Delta T = \\frac{S_T}{\\sqrt{N}} = \\mathbf{${deltaT.toFixed(4)}\\,s} $$`;
-            document.getElementById('math-std').innerHTML = latexStd;
+            const htmlStd = `&Delta;T = S<sub>T</sub> / &radic;N = <b>${deltaT.toFixed(4)} s</b>`;
+            document.getElementById('math-std').innerHTML = htmlStd;
 
             // Krok 3: g
-            const latexG = `$$ g = \\frac{4\\pi^2 \\cdot ${config.L.toFixed(3)}}{(${meanT.toFixed(3)})^2} \\approx \\mathbf{${g_calc.toFixed(3)}\\,m/s^2} $$`;
-            document.getElementById('math-g-calc').innerHTML = latexG;
+            const htmlG = `g = (4&pi;&sup2; L) / T&#772;&sup2; &approx; <b>${g_calc.toFixed(3)} m/s&sup2;</b>`;
+            document.getElementById('math-g-calc').innerHTML = htmlG;
 
             // Krok 4: Błąd
-            const latexErr = `
-                $$ \\begin{aligned} 
-                \\Delta g &= ${g_calc.toFixed(2)} \\cdot \\left( \\frac{${config.dL}}{${config.L}} + \\frac{2 \\cdot ${deltaT.toFixed(3)}}{${meanT.toFixed(3)}} \\right) \\\\
-                \\Delta g &= ${g_calc.toFixed(2)} \\cdot (${termL.toFixed(4)} + ${termT.toFixed(4)}) \\\\
-                \\Delta g &\\approx \\mathbf{${deltaG.toFixed(3)}\\,m/s^2}
-                \\end{aligned} $$
+            const htmlErr = `
+                &Delta;g = ${g_calc.toFixed(2)} &middot; ( ${config.dL}/${config.L} + (2 &middot; ${deltaT.toFixed(3)}) / ${meanT.toFixed(3)} )<br>
+                &Delta;g = ${g_calc.toFixed(2)} &middot; ( ${termL.toFixed(4)} + ${termT.toFixed(4)} )<br>
+                &Delta;g &approx; <b>${deltaG.toFixed(3)} m/s&sup2;</b>
             `;
-            document.getElementById('math-error-calc').innerHTML = latexErr;
+            document.getElementById('math-error-calc').innerHTML = htmlErr;
 
             // Wynik końcowy
-            document.getElementById('final-result').innerText = `${g_calc.toFixed(2)} ± ${deltaG.toFixed(2)} m/s²`;
-
-            // Odśwież MathJax
-            if (window.MathJax) {
-                MathJax.typesetPromise();
-            }
+            document.getElementById('final-result').innerText = `${g_calc.toFixed(2)} \u00B1 ${deltaG.toFixed(2)} m/s²`;
         }
 
         // --- UI HELPERS ---
