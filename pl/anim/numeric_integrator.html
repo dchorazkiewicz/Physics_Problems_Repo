@@ -28,6 +28,15 @@
         .graph-label { position: absolute; top: 4px; left: 8px; font-size: 10px; font-weight: bold; color: #94a3b8; pointer-events: none; }
         
         .mode-btn.active { background-color: #0ea5e9; color: white; border-color: #0ea5e9; }
+        
+        /* Custom Select */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1em;
+        }
     </style>
 </head>
 <body class="h-screen flex flex-col md:flex-row">
@@ -83,7 +92,7 @@
 
     <!-- Prawa strona: Edytor Wykresów -->
     <aside class="w-full md:w-[400px] panel-glass flex flex-col z-20 shadow-2xl h-1/2 md:h-full">
-        <div class="p-4 flex flex-col h-full gap-4">
+        <div class="p-4 flex flex-col h-full gap-2">
 
             <!-- Mode Selector -->
             <div>
@@ -98,23 +107,50 @@
                 </p>
             </div>
 
-            <!-- Graph X -->
-            <div class="flex-1 graph-container relative group">
-                <div class="graph-label text-sky-400" id="lbl-graph-x">Składowa X: Prędkość Vx(t)</div>
-                <canvas id="canvas-x" class="w-full h-full cursor-crosshair"></canvas>
-                <!-- Zero line indicator helper -->
-                <div class="absolute left-0 w-full border-t border-slate-700 border-dashed pointer-events-none" style="top: 50%;"></div>
+            <!-- Graph X Section -->
+            <div class="flex-1 flex flex-col min-h-0">
+                <div class="flex-1 graph-container relative group">
+                    <div class="graph-label text-sky-400" id="lbl-graph-x">Składowa X: Prędkość Vx(t)</div>
+                    <canvas id="canvas-x" class="w-full h-full cursor-crosshair"></canvas>
+                    <div class="absolute left-0 w-full border-t border-slate-700 border-dashed pointer-events-none" style="top: 50%;"></div>
+                </div>
+                <!-- Preset X -->
+                <div class="mt-1 flex items-center justify-end gap-2">
+                    <label class="text-[10px] text-slate-500 uppercase font-bold" id="lbl-func-x">Funkcja X:</label>
+                    <select onchange="applyPreset('x', this.value); this.value=''" class="bg-slate-800 text-slate-300 text-[10px] rounded border border-slate-600 px-2 py-1 focus:outline-none focus:border-sky-500 w-32 cursor-pointer preset-select">
+                        <option value="" id="opt-custom-x">-- Wybierz --</option>
+                        <option value="linear" id="opt-lin-x">Liniowa</option>
+                        <option value="quad" id="opt-quad-x">Kwadratowa</option>
+                        <option value="sin" id="opt-sin-x">Sinus</option>
+                        <option value="cos" id="opt-cos-x">Cosinus</option>
+                        <option value="exp" id="opt-exp-x">Eksponencjalna</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- Graph Y -->
-            <div class="flex-1 graph-container relative group">
-                <div class="graph-label text-orange-400" id="lbl-graph-y">Składowa Y: Prędkość Vy(t)</div>
-                <canvas id="canvas-y" class="w-full h-full cursor-crosshair"></canvas>
-                <div class="absolute left-0 w-full border-t border-slate-700 border-dashed pointer-events-none" style="top: 50%;"></div>
+            <!-- Graph Y Section -->
+            <div class="flex-1 flex flex-col min-h-0">
+                <div class="flex-1 graph-container relative group">
+                    <div class="graph-label text-orange-400" id="lbl-graph-y">Składowa Y: Prędkość Vy(t)</div>
+                    <canvas id="canvas-y" class="w-full h-full cursor-crosshair"></canvas>
+                    <div class="absolute left-0 w-full border-t border-slate-700 border-dashed pointer-events-none" style="top: 50%;"></div>
+                </div>
+                <!-- Preset Y -->
+                <div class="mt-1 flex items-center justify-end gap-2">
+                    <label class="text-[10px] text-slate-500 uppercase font-bold" id="lbl-func-y">Funkcja Y:</label>
+                    <select onchange="applyPreset('y', this.value); this.value=''" class="bg-slate-800 text-slate-300 text-[10px] rounded border border-slate-600 px-2 py-1 focus:outline-none focus:border-sky-500 w-32 cursor-pointer preset-select">
+                        <option value="" id="opt-custom-y">-- Wybierz --</option>
+                        <option value="linear" id="opt-lin-y">Liniowa</option>
+                        <option value="quad" id="opt-quad-y">Kwadratowa</option>
+                        <option value="sin" id="opt-sin-y">Sinus</option>
+                        <option value="cos" id="opt-cos-y">Cosinus</option>
+                        <option value="exp" id="opt-exp-y">Eksponencjalna</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Hint -->
-            <div class="text-center text-[10px] text-slate-500 select-none" id="lbl-hint">
+            <div class="text-center text-[10px] text-slate-500 select-none pb-2" id="lbl-hint">
                 Narysuj wykresy myszką. Oś pozioma to czas (0-10s).
             </div>
 
@@ -143,7 +179,15 @@
                 descAcc: "Rysujesz przyspieszenie. Program policzy prędkość i drogę (podwójna całka).",
                 lblX: "Składowa X: ",
                 lblY: "Składowa Y: ",
-                hint: "Narysuj wykresy myszką. Oś pozioma to czas (0-10s)."
+                hint: "Narysuj wykresy myszką lub wybierz funkcję. Oś pozioma to czas (0-10s).",
+                lblFuncX: "Funkcja X:",
+                lblFuncY: "Funkcja Y:",
+                optCustom: "-- Wybierz --",
+                optLin: "Liniowa",
+                optQuad: "Kwadratowa",
+                optSin: "Sinus",
+                optCos: "Cosinus",
+                optExp: "Eksponencjalna"
             },
             en: {
                 title: "Motion Designer",
@@ -164,7 +208,15 @@
                 descAcc: "Drawing acceleration. App calculates velocity and position (double integral).",
                 lblX: "Component X: ",
                 lblY: "Component Y: ",
-                hint: "Draw graphs with mouse. Horizontal axis is time (0-10s)."
+                hint: "Draw graphs with mouse or select a function. Horizontal axis is time (0-10s).",
+                lblFuncX: "Function X:",
+                lblFuncY: "Function Y:",
+                optCustom: "-- Select --",
+                optLin: "Linear",
+                optQuad: "Quadratic",
+                optSin: "Sine",
+                optCos: "Cosine",
+                optExp: "Exponential"
             }
         };
 
@@ -318,6 +370,41 @@
                     ax: axArr[i], ay: ayArr[i]
                 });
             }
+        }
+
+        // --- PRESETS ---
+
+        function applyPreset(axis, type) {
+            if (!type) return;
+            const arr = axis === 'x' ? state.rawX : state.rawY;
+            
+            for(let i=0; i<SAMPLES; i++) {
+                // normalized time 0..1
+                const t = i / SAMPLES; 
+                let val = 0;
+
+                if (type === 'linear') {
+                    // Ramp from -0.8 to 0.8
+                    val = -0.8 + 1.6 * t;
+                } else if (type === 'quad') {
+                    // Parabola -0.8 to 0.8
+                    val = -0.8 + 1.6 * (t * t);
+                } else if (type === 'sin') {
+                    // 1.5 periods
+                    val = 0.8 * Math.sin(2 * Math.PI * t * 1.5);
+                } else if (type === 'cos') {
+                    val = 0.8 * Math.cos(2 * Math.PI * t * 1.5);
+                } else if (type === 'exp') {
+                    // 1 - exp decay
+                    val = -0.8 + 1.6 * (1 - Math.exp(-5 * t));
+                }
+
+                arr[i] = Math.max(-1, Math.min(1, val));
+            }
+
+            recalcPhysics();
+            drawGraphs();
+            drawMain();
         }
 
         // --- DRAWING GRAPHS (INPUT) ---
@@ -652,8 +739,26 @@
             document.getElementById('btn-mode-acc').innerText = t.btnAcc;
             document.getElementById('lbl-hint').innerText = t.hint;
 
+            document.getElementById('lbl-func-x').innerText = t.lblFuncX;
+            document.getElementById('lbl-func-y').innerText = t.lblFuncY;
+            
+            // Options
+            document.getElementById('opt-custom-x').innerText = t.optCustom;
+            document.getElementById('opt-lin-x').innerText = t.optLin;
+            document.getElementById('opt-quad-x').innerText = t.optQuad;
+            document.getElementById('opt-sin-x').innerText = t.optSin;
+            document.getElementById('opt-cos-x').innerText = t.optCos;
+            document.getElementById('opt-exp-x').innerText = t.optExp;
+
+            document.getElementById('opt-custom-y').innerText = t.optCustom;
+            document.getElementById('opt-lin-y').innerText = t.optLin;
+            document.getElementById('opt-quad-y').innerText = t.optQuad;
+            document.getElementById('opt-sin-y').innerText = t.optSin;
+            document.getElementById('opt-cos-y').innerText = t.optCos;
+            document.getElementById('opt-exp-y').innerText = t.optExp;
+
             // Update Dynamic Labels based on mode
-            setMode(state.mode); // This will refresh graph labels and descriptions
+            setMode(state.mode); 
         }
 
         function togglePlay() {
@@ -711,12 +816,8 @@
                 desc.innerText = t.descAcc;
             }
 
-            // Reset data on mode change to avoid confusion (optional, but cleaner)
-            // resetAll(); // Can be confusing if user just wants to switch labels, but typically mode change means new input
-            // Let's NOT reset all data, just re-interpret raw input. 
-            // Wait, raw input is normalized 0-1. Interpreting "Position" vs "Accel" from same drawing is weird physics-wise but fun visually.
-            // Let's keep data.
-            recalcPhysics();
+            // Let's keep data, only redraw labels
+            // recalcPhysics(); // Called elsewhere if needed or just redraw
             drawGraphs();
             drawMain();
         }
