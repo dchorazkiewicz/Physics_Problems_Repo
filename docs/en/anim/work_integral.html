@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Całka Pracy w Polu Wektorowym</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
+        canvas { touch-action: none; cursor: crosshair; }
+        
+        /* Custom Range Slider styling */
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #38bdf8; margin-top: -6px; cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px;
+        }
+        
+        .panel-glass { background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(8px); border-right: 1px solid #334155; }
+        .stat-box { background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; }
+        
+        .btn-mode.active { background-color: #0ea5e9; color: white; border-color: #0ea5e9; }
+        .btn-path-1.active { background-color: #3b82f6; border-color: #3b82f6; color: white; } /* Blue */
+        .btn-path-2.active { background-color: #f97316; border-color: #f97316; color: white; } /* Orange */
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-700 p-3 flex justify-between items-center z-20 shadow-md">
+        <div class="flex items-center gap-3">
+            <div class="bg-sky-900/50 p-2 rounded text-sky-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-wide text-sky-100" id="title">Całka Pracy (Work Integral)</h1>
+                <div class="text-xs text-slate-400 font-mono">W = ∫ F • dr</div>
+            </div>
+        </div>
+        <button onclick="toggleLang()" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-xs font-bold transition-colors">
+            <span id="lang-btn">EN</span>
+        </button>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar Controls -->
+        <aside class="w-80 panel-glass flex flex-col z-10 overflow-y-auto shrink-0 shadow-2xl">
+            <div class="p-5 space-y-6">
+
+                <!-- Field Selection -->
+                <div>
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block" id="lbl-field">Pole Wektorowe</label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="setField('uniform')" id="btn-f-uniform" class="btn-mode active px-3 py-2 rounded border border-slate-600 text-sm font-medium transition-all text-left">Jednorodne (Uniform)</button>
+                        <button onclick="setField('central')" id="btn-f-central" class="btn-mode px-3 py-2 rounded border border-slate-600 text-sm font-medium transition-all text-left">Centralne (Central)</button>
+                        <button onclick="setField('vortex')" id="btn-f-vortex" class="btn-mode px-3 py-2 rounded border border-slate-600 text-sm font-medium transition-all text-left text-rose-300 border-rose-900/30">Wirowe (Vortex) ⚠️</button>
+                    </div>
+                    <p id="field-desc" class="text-xs text-slate-500 mt-2 italic leading-relaxed">
+                        Stała siła w prawo. Praca zależy tylko od różnicy pozycji X.
+                    </p>
+                </div>
+
+                <hr class="border-slate-700">
+
+                <!-- Drawing Tools -->
+                <div>
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block" id="lbl-tools">Rysowanie Ścieżki</label>
+                    <div class="flex gap-2 mb-2">
+                        <button onclick="setDrawMode(1)" id="btn-draw-1" class="btn-path-1 active flex-1 py-2 rounded border border-slate-600 text-sm font-bold transition-colors">Ścieżka 1</button>
+                        <button onclick="setDrawMode(2)" id="btn-draw-2" class="btn-path-2 flex-1 py-2 rounded border border-slate-600 text-sm font-bold transition-colors">Ścieżka 2</button>
+                    </div>
+                    <button onclick="clearPaths()" id="btn-clear" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded border border-slate-600 transition-colors">
+                        Wyczyść Ścieżki (Clear)
+                    </button>
+                </div>
+
+                <!-- Discretization Slider -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs font-bold text-slate-400 uppercase" id="lbl-segments">Aproksymacja (N)</label>
+                        <span id="val-segments" class="text-xs font-mono text-sky-400">50</span>
+                    </div>
+                    <input type="range" min="5" max="200" step="5" value="50" class="w-full" oninput="updateSegments(this.value)">
+                    <p class="text-[10px] text-slate-500 mt-1" id="lbl-seg-desc">Liczba odcinków sumy Riemanna.</p>
+                </div>
+
+                <!-- View Controls -->
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="text-xs font-bold text-slate-400 uppercase" id="lbl-view">Widok</label>
+                        <button onclick="resetView()" id="btn-reset-view" class="text-[10px] bg-slate-700 hover:bg-slate-600 px-2 py-0.5 rounded text-sky-300 transition-colors">
+                            Reset
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-slate-500" id="view-desc">Użyj rolki myszy do powiększania.<br>Prawy przycisk myszy do przesuwania.</p>
+                </div>
+
+                <hr class="border-slate-700">
+
+                <!-- Results -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block" id="lbl-results">Wyniki (Praca W)</label>
+                    
+                    <!-- Result 1 -->
+                    <div class="stat-box p-3 rounded flex justify-between items-center border-l-4 border-l-blue-500">
+                        <span class="text-xs text-blue-300">W (Ścieżka 1)</span>
+                        <span class="font-mono font-bold text-blue-100 text-lg" id="res-w1">0.00</span>
+                    </div>
+
+                    <!-- Result 2 -->
+                    <div class="stat-box p-3 rounded flex justify-between items-center border-l-4 border-l-orange-500">
+                        <span class="text-xs text-orange-300">W (Ścieżka 2)</span>
+                        <span class="font-mono font-bold text-orange-100 text-lg" id="res-w2">0.00</span>
+                    </div>
+
+                    <!-- Diff -->
+                    <div class="stat-box p-2 rounded flex justify-between items-center">
+                        <span class="text-xs text-slate-400">Różnica |W1 - W2|</span>
+                        <span class="font-mono text-slate-200" id="res-diff">0.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Main Canvas -->
+        <main class="flex-1 relative bg-slate-950 overflow-hidden" id="canvas-container">
+            <canvas id="main-canvas" class="block w-full h-full"></canvas>
+            
+            <!-- Instructions Overlay -->
+            <div class="absolute bottom-4 left-4 pointer-events-none select-none">
+                <div class="bg-slate-900/80 backdrop-blur px-3 py-2 rounded border border-slate-700 text-xs text-slate-400">
+                    <p id="overlay-inst" class="flex flex-col gap-1">
+                        <span><b class="text-sky-400">LPM:</b> Rysowanie</span>
+                        <span><b class="text-sky-400">PPM:</b> Przesuwanie</span>
+                        <span><b class="text-sky-400">Rolka:</b> Zoom w miejscu kursora</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Equation Overlay -->
+            <div class="absolute top-4 right-4 pointer-events-none select-none">
+                <div class="bg-slate-900/80 backdrop-blur px-4 py-3 rounded border border-slate-700 text-slate-200 shadow-xl">
+                    $$ W \approx \sum_{i=1}^{N} \vec{F}_i \cdot \Delta \vec{r}_i $$
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            pl: {
+                title: "Całka Pracy",
+                lblField: "Pole Wektorowe",
+                lblTools: "Rysowanie Ścieżki",
+                lblSegments: "Aproksymacja (N)",
+                lblSegDesc: "Liczba odcinków sumy Riemanna.",
+                lblResults: "Wyniki (Praca W)",
+                lblView: "Widok (Nawigacja)",
+                viewDesc: "Rolka: Zoom w punkt. PPM: Przesuwanie.",
+                btnResetView: "Reset",
+                btnClear: "Wyczyść Ścieżki",
+                btnDraw1: "Ścieżka 1",
+                btnDraw2: "Ścieżka 2",
+                instLMB: "LPM: Rysowanie",
+                instRMB: "PPM: Przesuwanie",
+                instWheel: "Rolka: Zoom",
+                fields: {
+                    uniform: "Jednorodne",
+                    central: "Centralne (Sprężyste)",
+                    vortex: "Wirowe (Niezachowawcze) ⚠️"
+                },
+                desc: {
+                    uniform: "Stała siła F = [1, 0]. Praca zależy tylko od przemieszczenia w osi X. Droga nie ma znaczenia (Pole zachowawcze).",
+                    central: "Siła F = -k*r (do środka). Praca zależy tylko od odległości od centrum. Droga nie ma znaczenia (Pole zachowawcze).",
+                    vortex: "Siła F = [-y, x] (wir). Praca zależy od kierunku obiegu! Droga MA znaczenie (Pole niezachowawcze)."
+                }
+            },
+            en: {
+                title: "Work Integral",
+                lblField: "Vector Field",
+                lblTools: "Draw Path",
+                lblSegments: "Approximation (N)",
+                lblSegDesc: "Number of segments for Riemann sum.",
+                lblResults: "Results (Work W)",
+                lblView: "View (Navigation)",
+                viewDesc: "Wheel: Zoom to point. RMB: Pan.",
+                btnResetView: "Reset",
+                btnClear: "Clear Paths",
+                btnDraw1: "Path 1",
+                btnDraw2: "Path 2",
+                instLMB: "LMB: Draw",
+                instRMB: "RMB: Pan",
+                instWheel: "Wheel: Zoom",
+                fields: {
+                    uniform: "Uniform",
+                    central: "Central (Elastic)",
+                    vortex: "Vortex (Non-conservative) ⚠️"
+                },
+                desc: {
+                    uniform: "Constant force F = [1, 0]. Work depends only on X displacement. Path independent (Conservative).",
+                    central: "Force F = -k*r (inward). Work depends only on distance from center. Path independent (Conservative).",
+                    vortex: "Force F = [-y, x] (swirl). Work depends on direction! Path DOES matter (Non-conservative)."
+                }
+            }
+        };
+
+        // --- STATE ---
+        const state = {
+            lang: 'pl',
+            fieldMode: 'uniform', // uniform, central, vortex
+            drawMode: 1, // 1 or 2
+            segments: 50,
+            
+            // Camera
+            zoom: 1.0,
+            panX: 0,
+            panY: 0,
+            
+            // Raw paths (array of {x, y} in WORLD coordinates)
+            path1: [],
+            path2: [],
+            
+            // Interaction
+            isDrawing: false,
+            isPanning: false,
+            lastMouseX: 0,
+            lastMouseY: 0,
+            
+            // Canvas dims
+            width: 0,
+            height: 0
+        };
+
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- FIELD DEFINITIONS ---
+        // Returns force vector {x, y} at World Position (wx, wy)
+        // World origin (0,0) is center of the field
+        function getForce(wx, wy) {
+            if (state.fieldMode === 'uniform') {
+                return { x: 30, y: 0 }; 
+            } 
+            else if (state.fieldMode === 'central') {
+                const k = 0.15;
+                return { x: -wx * k, y: -wy * k };
+            } 
+            else if (state.fieldMode === 'vortex') {
+                const k = 0.15;
+                return { x: -wy * k, y: wx * k };
+            }
+            return {x:0, y:0};
+        }
+
+        // --- MATH HELPERS ---
+
+        function resamplePath(rawPath, n) {
+            if (rawPath.length < 2) return [];
+            
+            let totalLen = 0;
+            const dists = [0];
+            for (let i = 1; i < rawPath.length; i++) {
+                const dx = rawPath[i].x - rawPath[i-1].x;
+                const dy = rawPath[i].y - rawPath[i-1].y;
+                totalLen += Math.sqrt(dx*dx + dy*dy);
+                dists.push(totalLen);
+            }
+
+            if (totalLen === 0) return [rawPath[0]];
+
+            const newPath = [rawPath[0]];
+            const step = totalLen / n;
+            let currentDist = step;
+            let idx = 0;
+
+            for (let i = 0; i < n; i++) {
+                while (idx < dists.length - 1 && dists[idx+1] < currentDist) {
+                    idx++;
+                }
+                if (idx >= dists.length - 1) break;
+
+                const segmentStart = dists[idx];
+                const segmentEnd = dists[idx+1];
+                const t = (currentDist - segmentStart) / (segmentEnd - segmentStart);
+                
+                const p1 = rawPath[idx];
+                const p2 = rawPath[idx+1];
+                
+                newPath.push({
+                    x: p1.x + (p2.x - p1.x) * t,
+                    y: p1.y + (p2.y - p1.y) * t
+                });
+                
+                currentDist += step;
+            }
+            newPath.push(rawPath[rawPath.length - 1]);
+            return newPath;
+        }
+
+        function calculateWork(pathPoints) {
+            let work = 0;
+            const segmentsData = [];
+
+            for (let i = 0; i < pathPoints.length - 1; i++) {
+                const p1 = pathPoints[i];
+                const p2 = pathPoints[i+1];
+
+                const dx = p2.x - p1.x;
+                const dy = p2.y - p1.y;
+
+                // Use START point of segment for force calculation (left-hand Riemann sum visual)
+                const wx = p1.x;
+                const wy = p1.y;
+
+                const f = getForce(wx, wy);
+                const dW = f.x * dx + f.y * dy;
+                
+                work += dW * 0.001;
+
+                segmentsData.push({
+                    start: {x: wx, y: wy},
+                    f: f,
+                    dr: {x: dx, y: dy},
+                    dW: dW
+                });
+            }
+
+            return { totalWork: work, segments: segmentsData };
+        }
+
+        // --- TRANSFORM HELPERS ---
+
+        // Convert Screen (Pixel) to World Coordinate
+        function toWorld(sx, sy) {
+            return {
+                x: (sx - state.panX) / state.zoom,
+                y: (sy - state.panY) / state.zoom
+            };
+        }
+
+        // Convert World to Screen Coordinate (for manual drawing if needed, usually ctx transform handles this)
+        function toScreen(wx, wy) {
+            return {
+                x: wx * state.zoom + state.panX,
+                y: wy * state.zoom + state.panY
+            };
+        }
+
+        // --- RENDERING ---
+
+        function drawField() {
+            const spacing = 40;
+            
+            // Calculate visible world bounds to optimize drawing
+            // Screen (0,0) -> World TopLeft
+            const tl = toWorld(0, 0);
+            // Screen (w,h) -> World BottomRight
+            const br = toWorld(state.width, state.height);
+
+            // Align to grid
+            const startX = Math.floor(tl.x / spacing) * spacing;
+            const endX = Math.ceil(br.x / spacing) * spacing;
+            const startY = Math.floor(tl.y / spacing) * spacing;
+            const endY = Math.ceil(br.y / spacing) * spacing;
+
+            ctx.lineWidth = 1;
+
+            // Draw Axes (World 0,0)
+            ctx.strokeStyle = '#475569';
+            ctx.beginPath();
+            ctx.moveTo(startX, 0); ctx.lineTo(endX, 0);
+            ctx.moveTo(0, startY); ctx.lineTo(0, endY);
+            ctx.stroke();
+
+            // Draw Vectors
+            for (let x = startX; x <= endX; x += spacing) {
+                for (let y = startY; y <= endY; y += spacing) {
+                    const f = getForce(x, y);
+                    const mag = Math.sqrt(f.x*f.x + f.y*f.y);
+                    
+                    if (mag > 0.1) {
+                        const drawLen = Math.min(20, mag * 0.5); 
+                        const angle = Math.atan2(f.y, f.x);
+                        drawArrow(x, y, angle, drawLen, '#334155', 1 / state.zoom * Math.max(1, state.zoom*0.5)); 
+                        // Adjust line width slightly so it doesn't disappear on zoom out
+                    }
+                }
+            }
+        }
+
+        function drawArrow(x, y, angle, len, color, width) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = width;
+            
+            // Scale arrow visual size inversely with zoom to keep it readable? 
+            // Or keep world scale? Let's keep world scale but clamp minimums.
+            const visualScale = 1; // pure world space
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(len, 0);
+            ctx.stroke();
+            
+            const headSize = Math.max(2, len * 0.25);
+            ctx.beginPath();
+            ctx.moveTo(len, 0);
+            ctx.lineTo(len - headSize, -headSize * 0.6);
+            ctx.lineTo(len - headSize, headSize * 0.6);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+
+        function drawVector(x, y, dx, dy, color, width) {
+            const len = Math.sqrt(dx*dx + dy*dy);
+            if (len < 0.001) return;
+            const angle = Math.atan2(dy, dx);
+            drawArrow(x, y, angle, len, color, width);
+        }
+
+        function drawPath(pathRaw, color, isActive) {
+            if (pathRaw.length < 2) return;
+
+            // 1. Draw smooth raw path
+            ctx.strokeStyle = color + '40';
+            ctx.lineWidth = 4 / state.zoom; // Keep constant screen thickness
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(pathRaw[0].x, pathRaw[0].y);
+            for(let i=1; i<pathRaw.length; i++) ctx.lineTo(pathRaw[i].x, pathRaw[i].y);
+            ctx.stroke();
+
+            // 2. Resample & Calc
+            const resampled = resamplePath(pathRaw, state.segments);
+            const calc = calculateWork(resampled);
+
+            // 3. Draw Segments
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2 / state.zoom;
+            ctx.beginPath();
+            ctx.moveTo(resampled[0].x, resampled[0].y);
+            for(let i=1; i<resampled.length; i++) ctx.lineTo(resampled[i].x, resampled[i].y);
+            ctx.stroke();
+
+            // 4. Vectors
+            if (isActive) {
+                const vecWidth = 2 / state.zoom;
+                calc.segments.forEach(seg => {
+                    const ox = seg.start.x;
+                    const oy = seg.start.y;
+
+                    // Displacement (Yellow)
+                    drawVector(ox, oy, seg.dr.x, seg.dr.y, '#facc15', vecWidth);
+
+                    // Force (Red)
+                    // Scale force visually to match displacement magnitude approx range
+                    const fScale = 0.5; 
+                    drawVector(ox, oy, seg.f.x * fScale, seg.f.y * fScale, '#ef4444', vecWidth);
+
+                    // Dot
+                    ctx.fillStyle = color;
+                    ctx.beginPath(); ctx.arc(ox, oy, 3 / state.zoom, 0, Math.PI*2); ctx.fill();
+                });
+            }
+
+            // Start/End
+            const start = resampled[0];
+            const end = resampled[resampled.length-1];
+            
+            ctx.beginPath(); ctx.arc(start.x, start.y, 6 / state.zoom, 0, Math.PI*2); 
+            ctx.fillStyle = '#22c55e'; ctx.fill();
+            
+            ctx.fillStyle = '#ef4444';
+            const size = 10 / state.zoom;
+            ctx.fillRect(end.x - size/2, end.y - size/2, size, size);
+
+            return calc.totalWork;
+        }
+
+        function render() {
+            if (canvas.width !== canvas.parentElement.clientWidth || canvas.height !== canvas.parentElement.clientHeight) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                state.width = canvas.width;
+                state.height = canvas.height;
+                // Initial center view
+                if (state.panX === 0 && state.panY === 0) resetView();
+            }
+
+            ctx.clearRect(0, 0, state.width, state.height);
+
+            // Apply Camera Transform
+            ctx.save();
+            ctx.translate(state.panX, state.panY);
+            ctx.scale(state.zoom, state.zoom);
+
+            drawField();
+
+            let w1 = 0, w2 = 0;
+
+            if (state.drawMode === 2) {
+                w1 = drawPath(state.path1, '#3b82f6', false);
+                w2 = drawPath(state.path2, '#f97316', true);
+            } else {
+                w2 = drawPath(state.path2, '#f97316', false);
+                w1 = drawPath(state.path1, '#3b82f6', true);
+            }
+            
+            ctx.restore();
+
+            document.getElementById('res-w1').innerText = (w1 || 0).toFixed(2) + " J";
+            document.getElementById('res-w2').innerText = (w2 || 0).toFixed(2) + " J";
+            document.getElementById('res-diff').innerText = Math.abs((w1||0) - (w2||0)).toFixed(2) + " J";
+        }
+
+        // --- INTERACTION ---
+
+        canvas.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+        canvas.addEventListener('wheel', handleWheel, { passive: false });
+        canvas.addEventListener('contextmenu', e => e.preventDefault()); // Block context menu for RMB pan
+
+        function handleMouseDown(e) {
+            const rect = canvas.getBoundingClientRect();
+            state.lastMouseX = e.clientX - rect.left;
+            state.lastMouseY = e.clientY - rect.top;
+
+            if (e.button === 2) { // Right Click
+                state.isPanning = true;
+            } else if (e.button === 0) { // Left Click
+                state.isDrawing = true;
+                const worldPos = toWorld(state.lastMouseX, state.lastMouseY);
+                if (state.drawMode === 1) state.path1 = [worldPos];
+                else state.path2 = [worldPos];
+                render();
+            }
+        }
+
+        function handleMouseMove(e) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            if (state.isPanning) {
+                const dx = mouseX - state.lastMouseX;
+                const dy = mouseY - state.lastMouseY;
+                state.panX += dx;
+                state.panY += dy;
+                render();
+            } else if (state.isDrawing) {
+                const worldPos = toWorld(mouseX, mouseY);
+                if (state.drawMode === 1) state.path1.push(worldPos);
+                else state.path2.push(worldPos);
+                render();
+            }
+
+            state.lastMouseX = mouseX;
+            state.lastMouseY = mouseY;
+        }
+
+        function handleMouseUp(e) {
+            state.isDrawing = false;
+            state.isPanning = false;
+            render();
+        }
+
+        function handleWheel(e) {
+            e.preventDefault();
+            const zoomIntensity = 0.1;
+            const delta = -Math.sign(e.deltaY);
+            const scale = 1 + delta * zoomIntensity;
+
+            // Mouse pos relative to canvas
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+
+            // Calculate world point under mouse before zoom
+            const wx = (mx - state.panX) / state.zoom;
+            const wy = (my - state.panY) / state.zoom;
+
+            // Apply zoom
+            let newZoom = state.zoom * scale;
+            newZoom = Math.max(0.1, Math.min(20.0, newZoom)); // Limits
+
+            // Calculate new pan such that world point (wx, wy) is still under mouse (mx, my)
+            // mx = wx * newZoom + newPan  =>  newPan = mx - wx * newZoom
+            state.panX = mx - wx * newZoom;
+            state.panY = my - wy * newZoom;
+            state.zoom = newZoom;
+
+            render();
+        }
+
+        // --- UI CONTROLS ---
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            document.getElementById('lang-btn').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            updateTexts();
+        }
+
+        function resetView() {
+            state.zoom = 1.0;
+            state.panX = state.width / 2;
+            state.panY = state.height / 2;
+            render();
+        }
+
+        function updateTexts() {
+            const t = translations[state.lang];
+            document.getElementById('title').innerText = t.title;
+            document.getElementById('lbl-field').innerText = t.lblField;
+            document.getElementById('lbl-tools').innerText = t.lblTools;
+            document.getElementById('lbl-segments').innerText = t.lblSegments;
+            document.getElementById('lbl-seg-desc').innerText = t.lblSegDesc;
+            document.getElementById('lbl-results').innerText = t.lblResults;
+            document.getElementById('lbl-view').innerText = t.lblView;
+            document.getElementById('view-desc').innerHTML = t.viewDesc;
+            document.getElementById('btn-reset-view').innerText = t.btnResetView;
+            document.getElementById('btn-clear').innerText = t.btnClear;
+            document.getElementById('btn-draw-1').innerText = t.btnDraw1;
+            document.getElementById('btn-draw-2').innerText = t.btnDraw2;
+            
+            document.getElementById('overlay-inst').innerHTML = `
+                <span><b class="text-sky-400">${t.instLMB}</b></span>
+                <span><b class="text-sky-400">${t.instRMB}</b></span>
+                <span><b class="text-sky-400">${t.instWheel}</b></span>
+            `;
+
+            document.getElementById('btn-f-uniform').innerText = t.fields.uniform;
+            document.getElementById('btn-f-central').innerText = t.fields.central;
+            document.getElementById('btn-f-vortex').innerText = t.fields.vortex;
+            document.getElementById('field-desc').innerText = t.desc[state.fieldMode];
+        }
+
+        function setField(mode) {
+            state.fieldMode = mode;
+            ['uniform', 'central', 'vortex'].forEach(m => {
+                const btn = document.getElementById(`btn-f-${m}`);
+                if (m === mode) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            updateTexts();
+            render(); 
+        }
+
+        function setDrawMode(mode) {
+            state.drawMode = mode;
+            const btn1 = document.getElementById('btn-draw-1');
+            const btn2 = document.getElementById('btn-draw-2');
+            
+            if (mode === 1) {
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
+            } else {
+                btn1.classList.remove('active');
+                btn2.classList.add('active');
+            }
+            render();
+        }
+
+        function clearPaths() {
+            state.path1 = [];
+            state.path2 = [];
+            render();
+        }
+
+        function updateSegments(val) {
+            state.segments = parseInt(val);
+            document.getElementById('val-segments').innerText = val;
+            render();
+        }
+
+        // Init
+        setTimeout(() => {
+            if (canvas.parentElement) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                state.width = canvas.width;
+                state.height = canvas.height;
+                resetView();
+            }
+            updateTexts();
+        }, 100);
+
+    </script>
+</body>
+</html>
