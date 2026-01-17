@@ -39,7 +39,12 @@ plugins:
           nav:
             - Home: 'index.md'
             - Wprowadzenie: '00_Intro.md'
-            - Mechanika 1: '01_Mechanics_1.md'
+            - Mechanika 1:
+              - '01_Mechanics_1.md'
+              - Notatki Dodatkowe:
+                - Notatka 01: '01_Mechanics_1_solution/extra_01.md'
+                - Notatka 02: '01_Mechanics_1_solution/extra_02.md'
+                - Notatka 03: '01_Mechanics_1_solution/extra_03.md'
             - Mechanika 2: '02_Mechanics_2.md'
             - Fale: '03_Waves.md'
             - Elektromagnetyzm 1: '04_Electromagnetism_1.md'
@@ -63,7 +68,12 @@ plugins:
           nav:
             - Home: 'index.md'
             - Introduction: '00_Intro.md'
-            - 'Mechanics 1': '01_Mechanics_1.md'
+            - 'Mechanics 1':
+              - '01_Mechanics_1.md'
+              - Extra Notes:
+                - Extra 01: '01_Mechanics_1_solution/extra_01.md'
+                - Extra 02: '01_Mechanics_1_solution/extra_02.md'
+                - Extra 03: '01_Mechanics_1_solution/extra_03.md'
             - 'Mechanics 2': '02_Mechanics_2.md'
             - Waves: '03_Waves.md'
             - 'Electromagnetism 1': '04_Electromagnetism_1.md'
