@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Całkowanie Pola Coulomba</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
+        canvas { touch-action: none; cursor: crosshair; }
+        
+        /* Stylizacja suwaków */
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #8b5cf6; margin-top: -6px; cursor: pointer; /* Violet-500 */
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px;
+        }
+        
+        .panel-glass { background: rgba(30, 41, 59, 0.95); border-right: 1px solid #334155; }
+        .btn-toggle.active { background-color: #7c3aed; color: white; border-color: #7c3aed; } /* Violet-600 */
+        .btn-mode.active { background-color: #0ea5e9; color: white; border-color: #0ea5e9; } /* Sky-500 */
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-700 p-3 flex justify-between items-center z-20 shadow-md">
+        <div class="flex items-center gap-3">
+            <div class="bg-violet-900/50 p-2 rounded text-violet-400">
+                <!-- Icon: Electric Field -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-wide text-violet-100" id="app-title">Całkowanie Pola (Coulomb Integrator)</h1>
+                <div class="text-xs text-slate-400 font-mono">E = ∫ dE</div>
+            </div>
+        </div>
+        <button onclick="toggleLang()" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-xs font-bold transition-colors text-violet-300">
+            <span id="lang-btn">EN</span>
+        </button>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar Controls -->
+        <aside class="w-80 panel-glass flex flex-col z-10 overflow-y-auto shrink-0 shadow-2xl p-5 space-y-6">
+            
+            <!-- Instructions -->
+            <div class="bg-slate-800/50 p-3 rounded border border-slate-700 text-xs text-slate-300 space-y-1" id="instructions">
+                <p>1. <b>LPM (Drag):</b> Rysuj ładunek (linię).</p>
+                <p>2. <b>LPM (Sonda):</b> Przesuń punkt P.</p>
+                <p>3. <b>PPM (Drag):</b> Przesuwanie widoku.</p>
+                <p>4. <b>Rolka:</b> Zoom w miejscu kursora.</p>
+            </div>
+
+            <hr class="border-slate-700">
+
+            <!-- Physics Controls -->
+            <div class="space-y-4">
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block" id="lbl-physics">Parametry Fizyczne</label>
+                
+                <!-- Charge Q -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs font-bold text-slate-400" id="lbl-charge">Ładunek Całkowity (Q)</label>
+                        <span id="val-charge" class="text-xs font-mono text-violet-400">50.0</span>
+                    </div>
+                    <input type="range" min="-500" max="500" step="1" value="50" class="w-full" oninput="updateCharge(this.value)">
+                </div>
+
+                <!-- Scale K (New) -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs font-bold text-slate-400" id="lbl-scale">Skala Wektorów (k)</label>
+                        <span id="val-scale" class="text-xs font-mono text-violet-400">5000</span>
+                    </div>
+                    <input type="range" min="1000" max="50000" step="1000" value="5000" class="w-full" oninput="updateScaleK(this.value)">
+                </div>
+
+                <!-- Segments N -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs font-bold text-slate-400" id="lbl-segments">Podział (N kawałków)</label>
+                        <span id="val-segments" class="text-xs font-mono text-violet-400">20</span>
+                    </div>
+                    <input type="range" min="2" max="200" step="1" value="20" class="w-full" oninput="updateSegments(this.value)">
+                </div>
+
+                <!-- Law Type -->
+                <div class="flex gap-2">
+                    <button onclick="setLaw(2)" id="btn-law-sq" class="btn-toggle active flex-1 py-1.5 rounded border border-slate-600 text-xs font-bold transition-colors">1 / r² (Coulomb)</button>
+                    <button onclick="setLaw(1)" id="btn-law-lin" class="btn-toggle flex-1 py-1.5 rounded border border-slate-600 text-xs font-bold transition-colors">1 / r (Liniowe)</button>
+                </div>
+            </div>
+
+            <hr class="border-slate-700">
+
+            <!-- Visualization Mode -->
+            <div class="space-y-3">
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block" id="lbl-vis">Wizualizacja</label>
+                
+                <!-- Modes -->
+                <div class="flex flex-col gap-2">
+                    <button onclick="setViewMode('all')" id="btn-view-all" class="btn-mode active px-3 py-2 rounded border border-slate-600 text-xs font-bold text-left transition-colors flex justify-between">
+                        <span id="txt-all">Wszystkie Wektory</span>
+                        <span class="text-violet-300 opacity-50">∑</span>
+                    </button>
+                    <button onclick="setViewMode('sum')" id="btn-view-sum" class="btn-mode px-3 py-2 rounded border border-slate-600 text-xs font-bold text-left transition-colors flex justify-between">
+                        <span id="txt-sum">Tylko Wypadkowa</span>
+                        <span class="text-emerald-300 opacity-50">=</span>
+                    </button>
+                    <button onclick="setViewMode('carousel')" id="btn-view-carousel" class="btn-mode px-3 py-2 rounded border border-slate-600 text-xs font-bold text-left transition-colors flex justify-between">
+                        <span id="txt-carousel">Karuzela (Animacja)</span>
+                        <span class="text-yellow-300 opacity-50">▶</span>
+                    </button>
+                </div>
+
+                <!-- Carousel Controls (Hidden unless active) -->
+                <div id="carousel-controls" class="hidden mt-2 p-2 bg-slate-800 rounded border border-slate-700">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] text-slate-400" id="lbl-piece">Kawałek:</span>
+                        <span id="carousel-idx" class="text-[10px] font-mono text-yellow-400">0/20</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="togglePlay()" id="btn-play" class="flex-1 bg-yellow-600 hover:bg-yellow-500 text-white text-xs py-1 rounded font-bold">Stop / Start</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-auto pt-4 border-t border-slate-700">
+                <div class="flex justify-between items-end">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-slate-500 uppercase font-bold">E Wypadkowe</span>
+                        <button onclick="resetView()" class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-violet-400 hover:bg-slate-700 transition">Reset Widoku</button>
+                    </div>
+                    <span class="text-xl font-mono font-bold text-emerald-400" id="result-e">0.00</span>
+                </div>
+                <button onclick="clearPath()" class="w-full mt-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold rounded border border-slate-600 transition-colors" id="btn-clear">
+                    Wyczyść Rysunek
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- Main Canvas -->
+        <main class="flex-1 relative bg-slate-950 overflow-hidden">
+            <canvas id="main-canvas" class="block w-full h-full"></canvas>
+            
+            <!-- Formula Overlay -->
+            <div class="absolute top-4 right-4 pointer-events-none select-none">
+                <div class="bg-slate-900/80 backdrop-blur px-4 py-3 rounded border border-slate-700 text-slate-200 shadow-xl" id="formula-display">
+                    $$ \vec{E} \approx k \sum \frac{\Delta q}{r^2} \hat{r} $$
+                </div>
+            </div>
+
+            <!-- Legend Overlay -->
+            <div class="absolute bottom-4 right-4 pointer-events-none select-none text-right space-y-1 text-[10px] text-slate-400 font-mono">
+                <div class="flex items-center justify-end gap-2"><span id="leg-seg">Kawałek ładunku dq</span> <div class="w-2 h-2 rounded-full bg-cyan-400"></div></div>
+                <div class="flex items-center justify-end gap-2"><span id="leg-cont">Wkład dE</span> <div class="w-8 h-0.5 bg-purple-500"></div></div>
+                <div class="flex items-center justify-end gap-2"><span id="leg-sum">Suma E</span> <div class="w-8 h-1 bg-emerald-400"></div></div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            pl: {
+                appTitle: "Całkowanie Pola",
+                instructions: "<p>1. <b>LPM (Drag):</b> Rysuj ładunek (linię).</p><p>2. <b>LPM (Sonda):</b> Przesuń punkt P.</p><p>3. <b>PPM (Drag):</b> Przesuwanie widoku.</p><p>4. <b>Rolka:</b> Zoom w miejscu kursora.</p>",
+                lblPhysics: "Parametry Fizyczne",
+                lblCharge: "Ładunek Całkowity (Q)",
+                lblScale: "Skala Wektorów (k)",
+                lblSegments: "Podział (N kawałków)",
+                btnLawSq: "1 / r² (Coulomb)",
+                btnLawLin: "1 / r (Liniowe)",
+                lblVis: "Wizualizacja",
+                txtAll: "Wszystkie Wektory",
+                txtSum: "Tylko Wypadkowa",
+                txtCarousel: "Karuzela (Animacja)",
+                lblPiece: "Kawałek:",
+                btnClear: "Wyczyść Rysunek",
+                legSeg: "Kawałek ładunku dq",
+                legCont: "Wkład dE",
+                legSum: "Suma E",
+                formulaSq: "$$ \\vec{E} \\approx k \\sum \\frac{\\Delta q}{r^2} \\hat{r} $$",
+                formulaLin: "$$ \\vec{E} \\approx k \\sum \\frac{\\Delta q}{r} \\hat{r} $$"
+            },
+            en: {
+                appTitle: "Field Integration",
+                instructions: "<p>1. <b>LMB (Drag):</b> Draw charge (line).</p><p>2. <b>LMB (Probe):</b> Move point P.</p><p>3. <b>RMB (Drag):</b> Pan view.</p><p>4. <b>Wheel:</b> Zoom to cursor.</p>",
+                lblPhysics: "Physics Parameters",
+                lblCharge: "Total Charge (Q)",
+                lblScale: "Vector Scale (k)",
+                lblSegments: "Subdivision (N segments)",
+                btnLawSq: "1 / r² (Coulomb)",
+                btnLawLin: "1 / r (Linear)",
+                lblVis: "Visualization",
+                txtAll: "All Vectors",
+                txtSum: "Resultant Only",
+                txtCarousel: "Carousel (Animation)",
+                lblPiece: "Segment:",
+                btnClear: "Clear Drawing",
+                legSeg: "Charge segment dq",
+                legCont: "Contribution dE",
+                legSum: "Sum E",
+                formulaSq: "$$ \\vec{E} \\approx k \\sum \\frac{\\Delta q}{r^2} \\hat{r} $$",
+                formulaLin: "$$ \\vec{E} \\approx k \\sum \\frac{\\Delta q}{r} \\hat{r} $$"
+            }
+        };
+
+        // --- STATE ---
+        const state = {
+            lang: 'pl',
+            
+            // Physics
+            totalQ: 50,
+            segmentsCount: 20,
+            power: 2, // 2 for Coulomb, 1 for linear
+            scaleK: 5000, // Visual scale factor for vectors
+            
+            // Camera
+            zoom: 1.0,
+            panX: 0,
+            panY: 0,
+            
+            // Data
+            rawPath: [],     // Points from mouse (World Coords)
+            segments: [],    // Calculated segments {x, y, dq} (World Coords)
+            probe: { x: 0, y: 0 }, // World Coords
+            
+            // View
+            viewMode: 'all', // 'all', 'sum', 'carousel'
+            
+            // Animation
+            carouselIndex: 0,
+            isPlaying: true,
+            lastFrame: 0,
+            animTimer: 0,
+            
+            // Interaction
+            isDrawing: false,
+            isPanning: false,
+            isDraggingProbe: false,
+            lastMouseX: 0,
+            lastMouseY: 0,
+            
+            // Canvas
+            width: 0,
+            height: 0
+        };
+
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- TRANSFORM HELPERS ---
+
+        // Convert Screen (Pixel) to World Coordinate
+        function toWorld(sx, sy) {
+            return {
+                x: (sx - state.panX) / state.zoom,
+                y: (sy - state.panY) / state.zoom
+            };
+        }
+
+        // --- MATH LOGIC ---
+
+        function resamplePath() {
+            if (state.rawPath.length < 2) {
+                state.segments = [];
+                return;
+            }
+
+            // 1. Calculate total length
+            let totalLen = 0;
+            const dists = [0];
+            for (let i = 1; i < state.rawPath.length; i++) {
+                const dx = state.rawPath[i].x - state.rawPath[i-1].x;
+                const dy = state.rawPath[i].y - state.rawPath[i-1].y;
+                totalLen += Math.sqrt(dx*dx + dy*dy);
+                dists.push(totalLen);
+            }
+
+            // 2. Divide into N segments
+            const N = state.segmentsCount;
+            const step = totalLen / N;
+            const newSegments = [];
+            
+            // Charge per segment
+            const dq = state.totalQ / N;
+
+            let currentDist = step / 2; // Sample at CENTER of segment
+            let idx = 0;
+
+            for (let i = 0; i < N; i++) {
+                while (idx < dists.length - 1 && dists[idx+1] < currentDist) {
+                    idx++;
+                }
+                if (idx >= dists.length - 1) break;
+
+                const t = (currentDist - dists[idx]) / (dists[idx+1] - dists[idx]);
+                const p1 = state.rawPath[idx];
+                const p2 = state.rawPath[idx+1];
+
+                newSegments.push({
+                    x: p1.x + (p2.x - p1.x) * t,
+                    y: p1.y + (p2.y - p1.y) * t,
+                    dq: dq,
+                    index: i
+                });
+
+                currentDist += step;
+            }
+            state.segments = newSegments;
+        }
+
+        function calculateFieldAtProbe() {
+            let Ex = 0;
+            let Ey = 0;
+            
+            // Scaling factor controlled by slider
+            const k = state.scaleK; 
+
+            state.segments.forEach(seg => {
+                const dx = state.probe.x - seg.x;
+                const dy = state.probe.y - seg.y;
+                // Avoid division by zero with small epsilon
+                const r = Math.sqrt(dx*dx + dy*dy) + 5; 
+                
+                // Magnitude dE = k * dq / r^n
+                const dE = (k * seg.dq) / Math.pow(r, state.power);
+                
+                // Direction
+                const ux = dx / r;
+                const uy = dy / r;
+
+                seg.dEx = dE * ux;
+                seg.dEy = dE * uy;
+
+                Ex += seg.dEx;
+                Ey += seg.dEy;
+            });
+
+            return { x: Ex, y: Ey };
+        }
+
+        // --- RENDERING ---
+
+        function drawArrow(x, y, dx, dy, color, width) {
+            const len = Math.sqrt(dx*dx + dy*dy);
+            if (len < 2 / state.zoom) return; // Scale threshold for visibility
+
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + dx, y + dy);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width / state.zoom; // Constant screen width attempt or scale
+            // Let's keep width somewhat constant in screen space? 
+            // Actually, keep it world space but clamped minimum
+            ctx.lineWidth = Math.max(width / state.zoom, 1.5 / state.zoom);
+            ctx.stroke();
+
+            // Head
+            const angle = Math.atan2(dy, dx);
+            const headLen = Math.min(10 / state.zoom, len * 0.3); // Scale head inversely with zoom to keep constant-ish screen size? Or scale with world?
+            // Let's scale head with world but clamp
+            
+            ctx.beginPath();
+            ctx.moveTo(x + dx, y + dy);
+            ctx.lineTo(x + dx - headLen * Math.cos(angle - Math.PI / 6), y + dy - headLen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(x + dx - headLen * Math.cos(angle + Math.PI / 6), y + dy - headLen * Math.sin(angle + Math.PI / 6));
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+
+        function render() {
+            // Resize check
+            if (canvas.width !== canvas.parentElement.clientWidth || canvas.height !== canvas.parentElement.clientHeight) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                state.width = canvas.width;
+                state.height = canvas.height;
+                // Init probe center if 0 (first run)
+                if (state.probe.x === 0 && state.panX === 0) {
+                    state.panX = state.width / 2;
+                    state.panY = state.height / 2;
+                }
+            }
+
+            ctx.clearRect(0, 0, state.width, state.height);
+
+            // Apply Camera Transform
+            ctx.save();
+            ctx.translate(state.panX, state.panY);
+            ctx.scale(state.zoom, state.zoom);
+
+            // 1. Draw Grid (Optional, but helps with zoom)
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1 / state.zoom;
+            ctx.beginPath();
+            const gridSize = 100;
+            // Draw grid relative to view
+            const tl = toWorld(0, 0);
+            const br = toWorld(state.width, state.height);
+            const startX = Math.floor(tl.x / gridSize) * gridSize;
+            const endX = Math.ceil(br.x / gridSize) * gridSize;
+            const startY = Math.floor(tl.y / gridSize) * gridSize;
+            const endY = Math.ceil(br.y / gridSize) * gridSize;
+
+            for(let x=startX; x<=endX; x+=gridSize) { ctx.moveTo(x, startY); ctx.lineTo(x, endY); }
+            for(let y=startY; y<=endY; y+=gridSize) { ctx.moveTo(startX, y); ctx.lineTo(endX, y); }
+            ctx.stroke();
+
+
+            // 2. Draw Raw Path (Ghost)
+            if (state.rawPath.length > 1) {
+                ctx.beginPath();
+                ctx.moveTo(state.rawPath[0].x, state.rawPath[0].y);
+                for(let p of state.rawPath) ctx.lineTo(p.x, p.y);
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 2 / state.zoom;
+                ctx.setLineDash([5 / state.zoom, 5 / state.zoom]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // 3. Draw Segments
+            state.segments.forEach((seg, i) => {
+                const isActive = (state.viewMode === 'carousel' && i === state.carouselIndex);
+                
+                ctx.beginPath();
+                const r = (isActive ? 6 : 3) / state.zoom;
+                ctx.arc(seg.x, seg.y, r, 0, Math.PI*2);
+                
+                // Color based on charge sign
+                if (isActive) ctx.fillStyle = '#facc15'; // Active Yellow
+                else ctx.fillStyle = seg.dq > 0 ? '#22d3ee' : '#f472b6'; // Cyan (+) / Pink (-)
+                
+                ctx.fill();
+                
+                // Connect dots slightly to show continuity
+                if (i > 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(state.segments[i-1].x, state.segments[i-1].y);
+                    ctx.lineTo(seg.x, seg.y);
+                    ctx.strokeStyle = seg.dq > 0 ? '#0891b2' : '#be185d';
+                    ctx.lineWidth = 1 / state.zoom;
+                    ctx.stroke();
+                }
+            });
+
+            // 4. Draw Probe
+            ctx.beginPath();
+            ctx.arc(state.probe.x, state.probe.y, 6 / state.zoom, 0, Math.PI*2);
+            ctx.fillStyle = '#fbbf24'; // Amber
+            ctx.fill();
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2 / state.zoom;
+            ctx.stroke();
+            // Label P
+            ctx.fillStyle = '#fff';
+            ctx.font = `${12/state.zoom}px monospace`;
+            ctx.fillText("P", state.probe.x + 8/state.zoom, state.probe.y - 8/state.zoom);
+
+            // 5. Draw Field Vectors
+            if (state.segments.length > 0) {
+                const totalE = calculateFieldAtProbe();
+                
+                // Show Resultant?
+                const showSum = state.viewMode !== 'carousel';
+                
+                if (showSum) {
+                    // Draw Total Vector (Green, Thick)
+                    drawArrow(state.probe.x, state.probe.y, totalE.x, totalE.y, '#10b981', 3);
+                }
+
+                // Show Components?
+                if (state.viewMode === 'all') {
+                    // Draw faint vectors for all
+                    state.segments.forEach(seg => {
+                        drawArrow(state.probe.x, state.probe.y, seg.dEx, seg.dEy, 'rgba(167, 139, 250, 0.4)', 1);
+                    });
+                } else if (state.viewMode === 'carousel') {
+                    // Draw only active segment vector
+                    if (state.segments[state.carouselIndex]) {
+                        const seg = state.segments[state.carouselIndex];
+                        // Highlight line from segment to probe
+                        ctx.beginPath();
+                        ctx.moveTo(seg.x, seg.y);
+                        ctx.lineTo(state.probe.x, state.probe.y);
+                        ctx.strokeStyle = 'rgba(250, 204, 21, 0.3)';
+                        ctx.lineWidth = 1 / state.zoom;
+                        ctx.setLineDash([4/state.zoom, 4/state.zoom]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+
+                        // Draw Vector
+                        drawArrow(state.probe.x, state.probe.y, seg.dEx, seg.dEy, '#a78bfa', 3);
+                        
+                        // Text info
+                        ctx.fillStyle = '#a78bfa';
+                        ctx.fillText(`dE`, state.probe.x + seg.dEx + 5/state.zoom, state.probe.y + seg.dEy + 5/state.zoom);
+                    }
+                }
+
+                // Update UI Result
+                const mag = Math.sqrt(totalE.x**2 + totalE.y**2);
+                document.getElementById('result-e').innerText = mag.toFixed(2);
+            }
+
+            ctx.restore();
+        }
+
+        // --- ANIMATION LOOP ---
+
+        function loop(timestamp) {
+            const dt = timestamp - state.lastFrame;
+            
+            if (state.viewMode === 'carousel' && state.isPlaying && state.segments.length > 0) {
+                state.animTimer += dt;
+                // Switch segment every 200ms
+                if (state.animTimer > 200) {
+                    state.carouselIndex = (state.carouselIndex + 1) % state.segments.length;
+                    state.animTimer = 0;
+                    document.getElementById('carousel-idx').innerText = `${state.carouselIndex+1}/${state.segments.length}`;
+                }
+            }
+
+            render();
+            state.lastFrame = timestamp;
+            requestAnimationFrame(loop);
+        }
+
+        // --- INPUT HANDLERS ---
+
+        canvas.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+        canvas.addEventListener('contextmenu', e => e.preventDefault()); // Block context menu for Pan
+        canvas.addEventListener('wheel', handleWheel, { passive: false });
+
+        function handleMouseDown(e) {
+            const rect = canvas.getBoundingClientRect();
+            state.lastMouseX = e.clientX - rect.left;
+            state.lastMouseY = e.clientY - rect.top;
+            const worldPos = toWorld(state.lastMouseX, state.lastMouseY);
+
+            // Check if clicking near probe (to drag it)
+            const dx = worldPos.x - state.probe.x;
+            const dy = worldPos.y - state.probe.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            
+            // Hitbox for probe ~ 15px screen space
+            if (dist * state.zoom < 20 && e.button === 0) {
+                state.isDraggingProbe = true;
+                return;
+            }
+
+            // Right Click = Pan
+            if (e.button === 2) {
+                state.isPanning = true;
+                return;
+            }
+
+            // Left Click = Draw
+            if (e.button === 0) {
+                state.isDrawing = true;
+                state.rawPath = [worldPos]; // Start fresh path
+            }
+        }
+
+        function handleMouseMove(e) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            const worldPos = toWorld(mouseX, mouseY);
+
+            if (state.isPanning) {
+                const dx = mouseX - state.lastMouseX;
+                const dy = mouseY - state.lastMouseY;
+                state.panX += dx;
+                state.panY += dy;
+            } 
+            else if (state.isDraggingProbe) {
+                state.probe.x = worldPos.x;
+                state.probe.y = worldPos.y;
+            }
+            else if (state.isDrawing) {
+                state.rawPath.push(worldPos);
+            }
+
+            state.lastMouseX = mouseX;
+            state.lastMouseY = mouseY;
+        }
+
+        function handleMouseUp(e) {
+            if (state.isDrawing) {
+                resamplePath();
+            }
+            state.isDrawing = false;
+            state.isPanning = false;
+            state.isDraggingProbe = false;
+        }
+
+        function handleWheel(e) {
+            e.preventDefault();
+            const zoomIntensity = 0.1;
+            const delta = -Math.sign(e.deltaY);
+            const scale = 1 + delta * zoomIntensity;
+
+            // Mouse pos relative to canvas
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+
+            // World point under mouse BEFORE zoom
+            const wx = (mx - state.panX) / state.zoom;
+            const wy = (my - state.panY) / state.zoom;
+
+            // Apply zoom
+            let newZoom = state.zoom * scale;
+            newZoom = Math.max(0.1, Math.min(10.0, newZoom));
+
+            // Adjust Pan so world point stays under mouse
+            // mx = wx * newZoom + newPan
+            state.panX = mx - wx * newZoom;
+            state.panY = my - wy * newZoom;
+            state.zoom = newZoom;
+        }
+
+        // --- UI CONTROLS ---
+
+        function updateCharge(val) {
+            state.totalQ = parseFloat(val);
+            document.getElementById('val-charge').innerText = parseFloat(val).toFixed(1);
+            resamplePath(); // Recalc dQ
+        }
+
+        function updateScaleK(val) {
+            state.scaleK = parseInt(val);
+            document.getElementById('val-scale').innerText = val;
+        }
+
+        function updateSegments(val) {
+            state.segmentsCount = parseInt(val);
+            document.getElementById('val-segments').innerText = val;
+            resamplePath();
+            // Reset carousel if needed
+            if (state.carouselIndex >= state.segmentsCount) state.carouselIndex = 0;
+        }
+
+        function setLaw(power) {
+            state.power = power;
+            document.getElementById('btn-law-sq').className = `btn-toggle py-1.5 rounded border border-slate-600 text-xs font-bold transition-colors flex-1 ${power===2?'active':''}`;
+            document.getElementById('btn-law-lin').className = `btn-toggle py-1.5 rounded border border-slate-600 text-xs font-bold transition-colors flex-1 ${power===1?'active':''}`;
+            
+            // Update formula display
+            const t = translations[state.lang];
+            const formulaContainer = document.getElementById('formula-display');
+            formulaContainer.innerHTML = power === 2 ? t.formulaSq : t.formulaLin;
+            if (window.MathJax) MathJax.typesetPromise([formulaContainer]);
+        }
+
+        function setViewMode(mode) {
+            state.viewMode = mode;
+            
+            // Update buttons
+            ['all', 'sum', 'carousel'].forEach(m => {
+                const btn = document.getElementById(`btn-view-${m}`);
+                if (m === mode) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Show/Hide Carousel Controls
+            const carDiv = document.getElementById('carousel-controls');
+            if (mode === 'carousel') {
+                carDiv.classList.remove('hidden');
+            } else {
+                carDiv.classList.add('hidden');
+            }
+        }
+
+        function togglePlay() {
+            state.isPlaying = !state.isPlaying;
+        }
+
+        function clearPath() {
+            state.rawPath = [];
+            state.segments = [];
+        }
+
+        function resetView() {
+            state.zoom = 1.0;
+            // Center 0,0 world coord in canvas
+            state.panX = state.width / 2;
+            state.panY = state.height / 2;
+            // Reset probe to center if needed, or leave it
+            state.probe.x = 0;
+            state.probe.y = 0;
+        }
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            document.getElementById('lang-btn').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            const t = translations[state.lang];
+            
+            document.getElementById('app-title').innerText = t.appTitle;
+            document.getElementById('instructions').innerHTML = t.instructions;
+            document.getElementById('lbl-physics').innerText = t.lblPhysics;
+            document.getElementById('lbl-charge').innerText = t.lblCharge;
+            document.getElementById('lbl-scale').innerText = t.lblScale;
+            document.getElementById('lbl-segments').innerText = t.lblSegments;
+            document.getElementById('btn-law-sq').innerText = t.btnLawSq;
+            document.getElementById('btn-law-lin').innerText = t.btnLawLin;
+            document.getElementById('lbl-vis').innerText = t.lblVis;
+            document.getElementById('txt-all').innerText = t.txtAll;
+            document.getElementById('txt-sum').innerText = t.txtSum;
+            document.getElementById('txt-carousel').innerText = t.txtCarousel;
+            document.getElementById('lbl-piece').innerText = t.lblPiece;
+            document.getElementById('btn-clear').innerText = t.btnClear;
+            document.getElementById('leg-seg').innerText = t.legSeg;
+            document.getElementById('leg-cont').innerText = t.legCont;
+            document.getElementById('leg-sum').innerText = t.legSum;
+            
+            // Re-set formula to update text
+            setLaw(state.power);
+        }
+
+        // Init
+        // We defer init slightly to let canvas size
+        setTimeout(() => {
+            if (canvas.parentElement) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                state.width = canvas.width;
+                state.height = canvas.height;
+                resetView();
+            }
+            toggleLang(); // Set initial text
+            toggleLang(); // Toggle back to PL (default) or handle properly
+        }, 50);
+
+        requestAnimationFrame(loop);
+
+    </script>
+</body>
+</html>
