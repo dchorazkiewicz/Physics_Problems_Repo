@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Sprężyste w Sieci Krystalicznej</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        canvas { touch-action: none; cursor: crosshair; }
+        
+        /* Sliders */
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #38bdf8; margin-top: -6px; cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px;
+        }
+        
+        .panel-glass { background: rgba(30, 41, 59, 0.95); border-right: 1px solid #334155; }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-700 p-3 flex justify-between items-center z-20 shadow-md shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="bg-sky-900/50 p-2 rounded text-sky-400">
+                <!-- Icon: Wave -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5"/><path d="M17 12h5"/><path d="M7 12c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6"/></svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-wide text-sky-100" id="app-title">Fale Sprężyste (Model Atomowy)</h1>
+                <div class="text-xs text-slate-400 font-mono">Lattice Vibration Simulator</div>
+            </div>
+        </div>
+        
+        <button onclick="toggleLang()" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-xs font-bold transition-colors text-sky-300">
+            <span id="lang-btn">EN</span>
+        </button>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar -->
+        <aside class="w-80 panel-glass flex flex-col z-10 overflow-y-auto shrink-0 shadow-2xl p-5 space-y-6">
+            
+            <!-- Instructions -->
+            <div class="bg-slate-800/50 p-3 rounded border border-slate-700 text-xs text-slate-300 space-y-2 leading-relaxed">
+                <p id="inst-1">1. <b>Start/Stop:</b> Zatrzymaj symulację, aby edytować.</p>
+                <p id="inst-2">2. <b>Rysowanie (Mysz):</b> Gdy PAUZA, "maluj" myszką po ekranie, aby nadać kształt fali.</p>
+            </div>
+
+            <hr class="border-slate-700">
+
+            <!-- Wave Shapes -->
+            <div>
+                <label class="text-xs font-bold text-slate-400 uppercase mb-2 block" id="lbl-shapes">Inicjalizacja Fali</label>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="sim.applyPulse('gaussian')" class="py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-[10px] font-bold text-sky-300 transition-colors" id="btn-gauss">
+                        Gauss
+                    </button>
+                    <button onclick="sim.applyPulse('sine')" class="py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-[10px] font-bold text-sky-300 transition-colors" id="btn-sine">
+                        Sinus
+                    </button>
+                    <button onclick="sim.applyPulse('triangle')" class="py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-[10px] font-bold text-sky-300 transition-colors" id="btn-triangle">
+                        Trójkąt
+                    </button>
+                </div>
+            </div>
+
+            <hr class="border-slate-700">
+
+            <!-- Controls -->
+            <div class="space-y-5">
+                <!-- Atoms Count -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs font-bold text-slate-400 uppercase" id="lbl-atoms">Liczba Atomów (N)</label>
+                        <span id="val-atoms" class="text-xs font-mono text-sky-400">40</span>
+                    </div>
+                    <input type="range" min="10" max="200" step="1" value="40" class="w-full" oninput="updateAtoms(this.value)">
+                </div>
+
+                <!-- Spring Constant -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs font-bold text-slate-400 uppercase" id="lbl-k">Stała Sprężystości (k)</label>
+                        <span id="val-k" class="text-xs font-mono text-sky-400">0.050</span>
+                    </div>
+                    <input type="range" min="0.001" max="0.2" step="0.001" value="0.05" class="w-full" oninput="updateK(this.value)">
+                </div>
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-slate-700 space-y-2">
+                <button onclick="toggleSim()" id="btn-play" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded shadow transition-colors flex justify-center items-center gap-2">
+                    <span id="txt-play">START</span>
+                </button>
+                <button onclick="resetSim()" id="btn-reset" class="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-bold rounded border border-slate-600 transition-colors">
+                    Reset do Równowagi
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- Main Canvas -->
+        <main class="flex-1 relative bg-slate-950 overflow-hidden flex flex-col justify-center items-center">
+            <canvas id="sim-canvas" class="block"></canvas>
+            
+            <!-- Legend Overlay -->
+            <div class="absolute bottom-4 right-4 text-right pointer-events-none select-none text-[10px] text-slate-500 font-mono">
+                <div>Model: Coupled Oscillators</div>
+                <div>Mode: Transverse (Poprzeczna)</div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            pl: {
+                appTitle: "Fale Sprężyste (Model Atomowy)",
+                inst1: "1. <b>Start/Stop:</b> Zatrzymaj symulację, aby edytować.",
+                inst2: "2. <b>Rysowanie (Mysz):</b> Gdy PAUZA, 'maluj' myszką po ekranie, aby nadać kształt fali.",
+                lblShapes: "Inicjalizacja Fali",
+                btnGauss: "Gauss",
+                btnSine: "Sinus",
+                btnTriangle: "Trójkąt",
+                lblAtoms: "Liczba Atomów (N)",
+                lblK: "Stała Sprężystości (k)",
+                txtPlay: "START",
+                txtStop: "PAUZA",
+                btnReset: "Reset do Równowagi"
+            },
+            en: {
+                appTitle: "Elastic Waves (Atomic Model)",
+                inst1: "1. <b>Start/Stop:</b> Pause to edit geometry.",
+                inst2: "2. <b>Draw (Mouse):</b> When PAUSED, draw on screen to shape the wave.",
+                lblShapes: "Wave Initialization",
+                btnGauss: "Gauss",
+                btnSine: "Sine",
+                btnTriangle: "Triangle",
+                lblAtoms: "Atom Count (N)",
+                lblK: "Spring Constant (k)",
+                txtPlay: "START",
+                txtStop: "PAUSE",
+                btnReset: "Reset to Equilibrium"
+            }
+        };
+
+        // --- PHYSICS ENGINE ---
+
+        class Simulation {
+            constructor() {
+                this.atoms = [];
+                this.count = 40;
+                this.k = 0.05; 
+                this.isRunning = false;
+                
+                // Layout
+                this.spacing = 20; 
+                this.baseY = 0;
+                this.startX = 0;
+            }
+
+            init(width, height) {
+                this.atoms = [];
+                // Calculate spacing to fit screen
+                const margin = 50;
+                const availableWidth = width - 2 * margin;
+                this.spacing = availableWidth / (this.count - 1);
+                this.startX = margin;
+                this.baseY = height / 2;
+
+                for(let i=0; i<this.count; i++) {
+                    this.atoms.push({
+                        // Current pos
+                        x: this.startX + i * this.spacing,
+                        y: this.baseY,
+                        // Velocity
+                        vx: 0, 
+                        vy: 0,
+                        // Equilibrium pos
+                        eqX: this.startX + i * this.spacing,
+                        eqY: this.baseY,
+                        // Mass (constant for now)
+                        m: 1.0,
+                        // For interaction
+                        isFixed: (i === 0 || i === this.count - 1) // Fix ends
+                    });
+                }
+            }
+
+            applyPulse(type) {
+                if (this.isRunning) toggleSim();
+
+                const centerIndex = Math.floor(this.count / 2);
+                const width = this.count / 8; 
+                const amp = 100; // Amplitude
+
+                for(let i=1; i<this.count-1; i++) {
+                    const atom = this.atoms[i];
+                    const dx = i - centerIndex;
+                    let displacement = 0;
+
+                    if (type === 'gaussian') {
+                        displacement = amp * Math.exp(-(dx*dx) / (2*width*width));
+                    } else if (type === 'sine') {
+                        const k = 0.5; 
+                        displacement = amp * Math.sin(dx * k) * Math.exp(-(dx*dx) / (2*width*width));
+                    } else if (type === 'triangle') {
+                        // Triangle pulse
+                        const dist = Math.abs(dx);
+                        const triWidth = width * 2; // Wider base for triangle
+                        if (dist < triWidth) {
+                            displacement = amp * (1 - dist / triWidth);
+                        }
+                    }
+
+                    atom.vx = 0;
+                    atom.vy = 0;
+                    atom.y = atom.eqY - displacement;
+                }
+                render(); 
+            }
+
+            // Handle "Painting" the wave
+            drawWave(mx, my) {
+                // Find which atom corresponds to this X position
+                // x = startX + i * spacing  =>  i = (x - startX) / spacing
+                let i = Math.round((mx - this.startX) / this.spacing);
+                
+                // Clamp index to valid range (excluding fixed ends)
+                if (i >= 1 && i < this.count - 1) {
+                    const atom = this.atoms[i];
+                    atom.y = my;
+                    atom.vy = 0; // Reset velocity so it doesn't explode
+                }
+            }
+
+            update() {
+                if (!this.isRunning) return;
+
+                const steps = 4;
+                const dt = 1.0 / steps; 
+
+                for(let s=0; s<steps; s++) {
+                    // 1. Calculate Forces
+                    for(let i=0; i<this.count; i++) {
+                        const atom = this.atoms[i];
+                        if (atom.isFixed) {
+                            atom.fx = 0;
+                            atom.fy = 0;
+                            continue;
+                        }
+
+                        // Neighbors
+                        const left = this.atoms[i-1];
+                        const right = this.atoms[i+1];
+
+                        // Transverse only
+                        const fy_left = this.k * (left.y - atom.y);
+                        const fy_right = this.k * (right.y - atom.y);
+                        const fy_rest = -0.001 * (atom.y - atom.eqY); 
+
+                        atom.fx = 0;
+                        atom.fy = fy_left + fy_right + fy_rest; // No damping
+                    }
+
+                    // 2. Integration
+                    for(let i=0; i<this.count; i++) {
+                        const atom = this.atoms[i];
+                        if (!atom.isFixed) {
+                            atom.vx += atom.fx / atom.m * dt;
+                            atom.vy += atom.fy / atom.m * dt;
+                            atom.x += atom.vx * dt;
+                            atom.y += atom.vy * dt;
+                        }
+                    }
+                }
+            }
+        }
+
+        // --- APP STATE ---
+        
+        const sim = new Simulation();
+        const canvas = document.getElementById('sim-canvas');
+        const ctx = canvas.getContext('2d');
+        let isMousePressed = false;
+        
+        let state = {
+            lang: 'pl',
+            width: 0,
+            height: 0
+        };
+
+        // --- RENDERER ---
+
+        function render() {
+            // Resize logic
+            if (canvas.width !== canvas.parentElement.clientWidth || canvas.height !== canvas.parentElement.clientHeight) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                state.width = canvas.width;
+                state.height = canvas.height;
+                if (sim.atoms.length === 0) sim.init(state.width, state.height);
+            }
+
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, state.width, state.height);
+
+            // Draw Equilibrium Line
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(0, sim.baseY);
+            ctx.lineTo(state.width, sim.baseY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw Springs
+            for(let i=0; i<sim.count - 1; i++) {
+                const p1 = sim.atoms[i];
+                const p2 = sim.atoms[i+1];
+                
+                let color = '#475569'; // Default Slate
+                let width = 2;
+
+                const dy = Math.abs(p2.y - p1.y);
+                if (dy > 10) color = '#94a3b8';
+
+                ctx.strokeStyle = color;
+                ctx.lineWidth = width;
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+            }
+
+            // Draw Atoms
+            for(let i=0; i<sim.count; i++) {
+                const p = sim.atoms[i];
+                
+                ctx.beginPath();
+                const r = 6;
+                ctx.arc(p.x, p.y, r, 0, Math.PI*2);
+                
+                if (p.isFixed) ctx.fillStyle = '#ef4444'; // Fixed Red
+                else ctx.fillStyle = '#38bdf8'; // Normal Sky
+                
+                ctx.fill();
+                
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        // --- LOOP ---
+
+        function loop() {
+            sim.update();
+            render();
+            requestAnimationFrame(loop);
+        }
+
+        // --- INTERACTION ---
+
+        function applyDraw(e) {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            sim.drawWave(mx, my);
+            render(); // Instant feedback
+        }
+
+        canvas.addEventListener('mousedown', e => {
+            if (sim.isRunning) return; 
+            isMousePressed = true;
+            applyDraw(e);
+        });
+
+        canvas.addEventListener('mousemove', e => {
+            if (isMousePressed && !sim.isRunning) {
+                applyDraw(e);
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isMousePressed = false;
+        });
+        
+        // Touch support
+        canvas.addEventListener('touchstart', e => {
+            if (sim.isRunning) return;
+            e.preventDefault();
+            isMousePressed = true;
+            applyDraw(e.touches[0]);
+        });
+        
+        canvas.addEventListener('touchmove', e => {
+            if (isMousePressed && !sim.isRunning) {
+                e.preventDefault();
+                applyDraw(e.touches[0]);
+            }
+        });
+        
+        window.addEventListener('touchend', () => isMousePressed = false);
+
+
+        // --- CONTROLS ---
+
+        function updateAtoms(val) {
+            sim.count = parseInt(val);
+            document.getElementById('val-atoms').innerText = val;
+            sim.init(state.width, state.height);
+            sim.isRunning = false;
+            updatePlayBtn();
+        }
+
+        function updateK(val) {
+            sim.k = parseFloat(val);
+            document.getElementById('val-k').innerText = parseFloat(val).toFixed(3);
+        }
+
+        function toggleSim() {
+            sim.isRunning = !sim.isRunning;
+            updatePlayBtn();
+        }
+
+        function updatePlayBtn() {
+            const btn = document.getElementById('btn-play');
+            const txt = document.getElementById('txt-play');
+            const t = translations[state.lang];
+            
+            if (sim.isRunning) {
+                btn.classList.replace('bg-emerald-600', 'bg-rose-600');
+                btn.classList.replace('hover:bg-emerald-500', 'hover:bg-rose-500');
+                txt.innerText = t.txtStop;
+            } else {
+                btn.classList.replace('bg-rose-600', 'bg-emerald-600');
+                btn.classList.replace('hover:bg-rose-500', 'hover:bg-emerald-500');
+                txt.innerText = t.txtPlay;
+            }
+        }
+
+        function resetSim() {
+            sim.init(state.width, state.height);
+            sim.isRunning = false;
+            updatePlayBtn();
+        }
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            document.getElementById('lang-btn').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            const t = translations[state.lang];
+
+            document.getElementById('app-title').innerText = t.appTitle;
+            document.getElementById('inst-1').innerHTML = t.inst1;
+            document.getElementById('inst-2').innerHTML = t.inst2;
+            document.getElementById('lbl-shapes').innerText = t.lblShapes;
+            document.getElementById('btn-gauss').innerText = t.btnGauss;
+            document.getElementById('btn-sine').innerText = t.btnSine;
+            document.getElementById('btn-triangle').innerText = t.btnTriangle;
+            document.getElementById('lbl-atoms').innerText = t.lblAtoms;
+            document.getElementById('lbl-k').innerText = t.lblK;
+            document.getElementById('btn-reset').innerText = t.btnReset;
+            
+            updatePlayBtn(); 
+        }
+
+        // Init
+        setTimeout(() => {
+            sim.init(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+            loop();
+        }, 100);
+
+    </script>
+</body>
+</html>
