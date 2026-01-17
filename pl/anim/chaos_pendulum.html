@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Pendulum Chaos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar & Sliders */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+        
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #22c55e; /* Green-500 */
+            margin-top: -6px; cursor: pointer;
+            box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #374151; border-radius: 2px;
+        }
+        
+        .tab-btn.active { 
+            border-bottom: 2px solid #22c55e; 
+            color: #22c55e; 
+            background: rgba(34, 197, 94, 0.1); 
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-800 p-4 flex justify-between items-center shadow-lg z-10 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="bg-green-600/20 p-2 rounded text-green-500">
+                <!-- Icon: Chaos/Pendulum -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M12 22a9 9 0 0 0 0-18"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-wider text-gray-100">Deterministyczny Chaos</h1>
+                <p class="text-xs text-gray-500 font-mono">Wahadło Podwójne</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <!-- Tabs -->
+            <div class="flex bg-gray-950 p-1 rounded-lg border border-gray-800">
+                <button onclick="setMode('phase')" id="tab-phase" class="tab-btn active px-4 py-2 text-sm font-semibold rounded transition-all">Przestrzeń Fazowa</button>
+                <button onclick="setMode('chaos')" id="tab-chaos" class="tab-btn px-4 py-2 text-sm font-semibold rounded transition-all">Wrażliwość (Chaos)</button>
+            </div>
+
+            <!-- Lang -->
+            <button onclick="toggleLang()" class="px-3 py-1 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded text-xs font-bold text-gray-300 transition-colors">
+                <span id="lang-label">EN</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar -->
+        <aside class="w-80 bg-gray-900 border-r border-gray-800 flex flex-col z-20 shadow-2xl overflow-y-auto shrink-0 p-6 space-y-6">
+            
+            <!-- Description -->
+            <div class="bg-gray-800/50 p-4 rounded border border-gray-700 text-sm text-gray-400 leading-relaxed" id="desc-box">
+                Opis trybu...
+            </div>
+
+            <!-- Controls -->
+            <div id="controls-container" class="space-y-6">
+                <!-- Injected dynamically -->
+            </div>
+
+            <!-- Simulation Controls -->
+            <div class="pt-4 border-t border-gray-800 mt-auto">
+                <div class="flex gap-2">
+                    <button onclick="toggleSim()" id="btn-pause" class="flex-1 py-2 bg-green-600 hover:bg-green-500 text-white font-bold rounded shadow transition-colors">
+                        Start / Stop
+                    </button>
+                    <button onclick="resetSim()" id="btn-reset" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium rounded border border-gray-700 transition-colors">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Canvas Area -->
+        <main class="flex-1 relative bg-[#050505] flex items-center justify-center overflow-hidden">
+            <canvas id="sim-canvas" class="w-full h-full"></canvas>
+            
+            <!-- Overlay Info -->
+            <div class="absolute top-4 left-4 pointer-events-none">
+                <div id="overlay-stats" class="text-xs font-mono text-green-500/50"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            pl: {
+                phaseTab: "Przestrzeń Fazowa",
+                chaosTab: "Wrażliwość (Chaos)",
+                descPhase: "Analiza przestrzeni fazowej (Położenie vs Pęd). Wykres pokazuje zależność kąta (oś X) od prędkości kątowej (oś Y). Użyj suwaka 'Szybkość czasu', aby zwolnić symulację i sprawdzić, że przy zmianie kierunku ruchu (zatrzymaniu) punkt na wykresie przechodzi przez oś poziomą (prędkość = 0).",
+                descChaos: "Demonstracja 'Efektu Motyla'. Po lewej: ruch fizyczny wiązki wahadeł. Po prawej: chmura punktów w przestrzeni fazowej. Zobacz, jak początkowo skupiona grupa punktów rozciąga się i miesza w całej przestrzeni stanów.",
+                labels: {
+                    timeSpeed: "Szybkość czasu",
+                    mass1: "Masa 1 (kg)",
+                    mass2: "Masa 2 (kg)",
+                    len1: "Długość 1 (m)",
+                    len2: "Długość 2 (m)",
+                    gravity: "Grawitacja (g)",
+                    count: "Liczba wahadeł",
+                    divergence: "Rozbieżność (delta)",
+                    trace: "Długość śladu"
+                },
+                btnPause: "Start / Stop",
+                btnReset: "Reset",
+                phaseX: "Położenie (θ)",
+                phaseY: "Prędkość (ω)"
+            },
+            en: {
+                phaseTab: "Phase Space",
+                chaosTab: "Sensitivity (Chaos)",
+                descPhase: "Phase space analysis (Position vs Momentum). The plot shows Angle (X-axis) vs Angular Velocity (Y-axis). Use the 'Time Speed' slider to slow down simulation and verify that when direction changes (stop), the point crosses the horizontal axis (velocity = 0).",
+                descChaos: "Demonstration of the 'Butterfly Effect'. Left: physical motion of pendulum beam. Right: point cloud in phase space. Observe how the initially focused cluster of points stretches and mixes throughout the state space.",
+                labels: {
+                    timeSpeed: "Time Speed",
+                    mass1: "Mass 1 (kg)",
+                    mass2: "Mass 2 (kg)",
+                    len1: "Length 1 (m)",
+                    len2: "Length 2 (m)",
+                    gravity: "Gravity (g)",
+                    count: "Pendulum Count",
+                    divergence: "Divergence (delta)",
+                    trace: "Trace Length"
+                },
+                btnPause: "Start / Stop",
+                btnReset: "Reset",
+                phaseX: "Position (θ)",
+                phaseY: "Velocity (ω)"
+            }
+        };
+
+        // --- PHYSICS ENGINE ---
+        
+        class DoublePendulum {
+            constructor(o1, o2, m1, m2, l1, l2, g) {
+                // State: angles (theta) and angular velocities (omega)
+                this.a1 = o1;
+                this.a2 = o2;
+                this.v1 = 0;
+                this.v2 = 0;
+                
+                // Constants
+                this.m1 = m1; this.m2 = m2;
+                this.l1 = l1; this.l2 = l2;
+                this.g = g;
+                
+                // Visualization history
+                this.path = []; 
+                this.phasePath1 = []; // Stores {a, v} objects
+                this.phasePath2 = []; // Stores {a, v} objects
+            }
+
+            update(dt) {
+                // Equations of motion for Double Pendulum (Lagrangian derived)
+                const { a1, a2, v1, v2, m1, m2, l1, l2, g } = this;
+                
+                const num1 = -g * (2 * m1 + m2) * Math.sin(a1);
+                const num2 = -m2 * g * Math.sin(a1 - 2 * a2);
+                const num3 = -2 * Math.sin(a1 - a2) * m2;
+                const num4 = v2 * v2 * l2 + v1 * v1 * l1 * Math.cos(a1 - a2);
+                const den = l1 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
+                
+                const acc1 = (num1 + num2 + num3 * num4) / den;
+
+                const num5 = 2 * Math.sin(a1 - a2);
+                const num6 = (v1 * v1 * l1 * (m1 + m2));
+                const num7 = g * (m1 + m2) * Math.cos(a1);
+                const num8 = v2 * v2 * l2 * m2 * Math.cos(a1 - a2);
+                const den2 = l2 * (2 * m1 + m2 - m2 * Math.cos(2 * a1 - 2 * a2));
+                
+                const acc2 = (num5 * (num6 + num7 + num8)) / den2;
+
+                this.v1 += acc1 * dt;
+                this.v2 += acc2 * dt;
+                
+                // NO DAMPING
+                
+                this.a1 += this.v1 * dt;
+                this.a2 += this.v2 * dt;
+            }
+
+            getCoords() {
+                const x1 = this.l1 * Math.sin(this.a1);
+                const y1 = this.l1 * Math.cos(this.a1);
+                
+                const x2 = x1 + this.l2 * Math.sin(this.a2);
+                const y2 = y1 + this.l2 * Math.cos(this.a2);
+                
+                return { x1, y1, x2, y2 };
+            }
+        }
+
+        // --- APP STATE ---
+        
+        const state = {
+            lang: 'pl',
+            mode: 'phase', // 'phase' or 'chaos'
+            running: true,
+            
+            // Shared Physics Params
+            m1: 10, m2: 10,
+            l1: 150, l2: 150,
+            g: 1,
+            
+            // Chaos Mode Params
+            count: 50,
+            delta: 0.0001, // Initial difference
+            
+            // Simulation Control
+            timeScale: 1.0,
+            
+            // Dynamic Scaling for Phase Space
+            maxOmega: 0.3, // START SMALL
+            
+            // Instances
+            pendulums: [],
+            
+            // Rendering
+            traceLen: 200,
+            canvasW: 0, canvasH: 0
+        };
+
+        const canvas = document.getElementById('sim-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- INITIALIZATION ---
+
+        function initSimulation() {
+            state.pendulums = [];
+            state.maxOmega = 0.3; // Reset scale to tight zoom on restart
+            
+            if (state.mode === 'phase') {
+                const p = new DoublePendulum(Math.PI/2 + 0.1, Math.PI/2, state.m1, state.m2, state.l1, state.l2, state.g);
+                state.pendulums.push(p);
+            } else {
+                const startA1 = Math.PI / 2;
+                const startA2 = Math.PI / 2;
+                
+                for(let i=0; i<state.count; i++) {
+                    const offset = i * state.delta;
+                    const p = new DoublePendulum(startA1 + offset, startA2, state.m1, state.m2, state.l1, state.l2, state.g);
+                    state.pendulums.push(p);
+                }
+            }
+        }
+
+        // --- RENDERING ---
+
+        // Helper to draw axes and background for phase space
+        function drawPhaseAxes(splitX, w, h) {
+            const pcx = splitX + (w - splitX)/2;
+            const pcy = h / 2;
+            
+            // Scaling
+            const scaleX = (w - splitX) / (2.5 * Math.PI); 
+            const marginY = 0.9; 
+            const scaleY = (h / 2 * marginY) / state.maxOmega;
+
+            // Axes
+            ctx.strokeStyle = '#374151';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(splitX, pcy); ctx.lineTo(w, pcy); // X axis
+            ctx.moveTo(pcx, 0); ctx.lineTo(pcx, h); // Y axis
+            ctx.stroke();
+
+            // Labels
+            const t = translations[state.lang];
+            ctx.fillStyle = '#9ca3af';
+            ctx.font = '10px monospace';
+            ctx.fillText(t.phaseX, w - 80, pcy - 5);
+            ctx.fillText(t.phaseY, pcx + 5, 20);
+            
+            // Scale Indicator
+            ctx.textAlign = 'right';
+            ctx.fillText(`Scale Y: +/- ${state.maxOmega.toFixed(2)} rad/s`, w - 10, 20);
+            ctx.textAlign = 'left';
+
+            return { pcx, pcy, scaleX, scaleY };
+        }
+
+        function drawPhaseMode() {
+            const p = state.pendulums[0];
+            const coords = p.getCoords();
+            
+            // Update Dynamic Scale (Expand Only)
+            const currentMax = Math.max(Math.abs(p.v1), Math.abs(p.v2));
+            if (currentMax > state.maxOmega) {
+                state.maxOmega = currentMax;
+            }
+            
+            const w = state.canvasW;
+            const h = state.canvasH;
+            const splitX = w / 2;
+
+            // 1. Physical View (Left)
+            const cx = splitX / 2;
+            const cy = h / 3;
+
+            // Rods
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx + coords.x1, cy + coords.y1);
+            ctx.lineTo(cx + coords.x2, cy + coords.y2);
+            ctx.stroke();
+
+            // Masses
+            ctx.fillStyle = '#0ea5e9'; // Blue
+            ctx.beginPath(); ctx.arc(cx + coords.x1, cy + coords.y1, 8, 0, Math.PI*2); ctx.fill();
+            ctx.fillStyle = '#22c55e'; // Green
+            ctx.beginPath(); ctx.arc(cx + coords.x2, cy + coords.y2, 8, 0, Math.PI*2); ctx.fill();
+
+            // Trail
+            p.path.push({x: cx + coords.x2, y: cy + coords.y2});
+            if(p.path.length > state.traceLen) p.path.shift();
+
+            ctx.strokeStyle = 'rgba(34, 197, 94, 0.5)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            p.path.forEach((pt, i) => {
+                if(i===0) ctx.moveTo(pt.x, pt.y);
+                else ctx.lineTo(pt.x, pt.y);
+            });
+            ctx.stroke();
+
+            // 2. Phase Space View (Right)
+            const { pcx, pcy, scaleX, scaleY } = drawPhaseAxes(splitX, w, h);
+
+            // Function to plot a single trajectory
+            function plotTrajectory(angle, velocity, history, color) {
+                let normAngle = angle % (2 * Math.PI);
+                if (normAngle > Math.PI) normAngle -= 2*Math.PI;
+                else if (normAngle < -Math.PI) normAngle += 2*Math.PI;
+
+                history.push({a: normAngle, v: velocity});
+                if(history.length > 800) history.shift();
+
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                let first = true;
+                let prevPx = 0;
+                
+                for(let i=0; i<history.length; i++) {
+                    const pt = history[i];
+                    const px = pcx + pt.a * scaleX;
+                    const py = pcy - pt.v * scaleY;
+                    
+                    if (first) {
+                        ctx.moveTo(px, py);
+                        first = false;
+                    } else {
+                        const dist = Math.abs(px - prevPx);
+                        if (dist < 100) ctx.lineTo(px, py);
+                        else ctx.moveTo(px, py);
+                    }
+                    prevPx = px;
+                }
+                ctx.stroke();
+
+                const hx = pcx + normAngle * scaleX;
+                const hy = pcy - velocity * scaleY;
+                ctx.fillStyle = '#fff';
+                ctx.beginPath(); ctx.arc(hx, hy, 3, 0, Math.PI*2); ctx.fill();
+            }
+
+            // Plot BOTH Blue (1) and Green (2)
+            ctx.globalAlpha = 0.5;
+            plotTrajectory(p.a1, p.v1, p.phasePath1, '#0ea5e9');
+            
+            ctx.globalAlpha = 1.0;
+            plotTrajectory(p.a2, p.v2, p.phasePath2, '#22c55e');
+
+            // Legend
+            ctx.font = '12px sans-serif';
+            ctx.fillStyle = '#0ea5e9'; ctx.fillText("Wahadło 1 (Blue)", splitX + 10, h - 30);
+            ctx.fillStyle = '#22c55e'; ctx.fillText("Wahadło 2 (Green)", splitX + 10, h - 15);
+
+            // Separator
+            ctx.strokeStyle = '#1f2937';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(splitX, 0); ctx.lineTo(splitX, h); ctx.stroke();
+        }
+
+        function drawChaosMode() {
+            const w = state.canvasW;
+            const h = state.canvasH;
+            const splitX = w / 2;
+
+            // 1. Physical View (Left)
+            const cx = splitX / 2;
+            const cy = h / 3;
+
+            state.pendulums.forEach((p, i) => {
+                const coords = p.getCoords();
+                const hue = (i / state.count) * 360;
+                const color = `hsla(${hue}, 80%, 60%, 0.6)`;
+                
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + coords.x1, cy + coords.y1);
+                ctx.lineTo(cx + coords.x2, cy + coords.y2);
+                ctx.stroke();
+                
+                ctx.fillStyle = color;
+                ctx.beginPath(); ctx.arc(cx + coords.x2, cy + coords.y2, 3, 0, Math.PI*2); ctx.fill();
+            });
+            
+            // 2. Phase Space View (Right) - Points Only
+            // Update Max Scale from all pendulums
+            state.pendulums.forEach(p => {
+                const currentMax = Math.max(Math.abs(p.v1), Math.abs(p.v2));
+                if (currentMax > state.maxOmega) state.maxOmega = currentMax;
+            });
+
+            const { pcx, pcy, scaleX, scaleY } = drawPhaseAxes(splitX, w, h);
+
+            state.pendulums.forEach((p, idx) => {
+                const angle = p.a2; // Only Pendulum 2 for clarity in Chaos mode
+                const velocity = p.v2;
+
+                let normAngle = angle % (2 * Math.PI);
+                if (normAngle > Math.PI) normAngle -= 2*Math.PI;
+                else if (normAngle < -Math.PI) normAngle += 2*Math.PI;
+
+                const px = pcx + normAngle * scaleX;
+                const py = pcy - velocity * scaleY;
+
+                const hue = (idx / state.count) * 360;
+                const color = `hsla(${hue}, 80%, 60%, 0.8)`;
+
+                ctx.fillStyle = color;
+                ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI*2); ctx.fill();
+            });
+
+            // Separator
+            ctx.strokeStyle = '#1f2937';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(splitX, 0); ctx.lineTo(splitX, h); ctx.stroke();
+
+            // Info Overlay
+            const pFirst = state.pendulums[0].getCoords();
+            const pLast = state.pendulums[state.pendulums.length-1].getCoords();
+            const dx = pFirst.x2 - pLast.x2;
+            const dy = pFirst.y2 - pLast.y2;
+            const dist = Math.sqrt(dx*dx + dy*dy).toFixed(1);
+            document.getElementById('overlay-stats').innerText = `Divergence: ${dist} px`;
+        }
+
+        function loop() {
+            // Resize logic
+            const container = canvas.parentElement;
+            if (canvas.width !== container.clientWidth || canvas.height !== container.clientHeight) {
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                state.canvasW = canvas.width;
+                state.canvasH = canvas.height;
+            }
+
+            // Clear
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, state.canvasW, state.canvasH);
+
+            if (state.running) {
+                const subSteps = 5;
+                const dt = (0.2 * state.timeScale) / subSteps; 
+                
+                for(let s=0; s<subSteps; s++) {
+                    state.pendulums.forEach(p => p.update(dt));
+                }
+            }
+
+            if (state.mode === 'phase') {
+                drawPhaseMode();
+            } else {
+                drawChaosMode();
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        // --- UI MANAGERS ---
+
+        function setMode(mode) {
+            state.mode = mode;
+            document.getElementById('tab-phase').className = `tab-btn px-4 py-2 text-sm font-semibold rounded transition-all ${mode==='phase'?'active':''}`;
+            document.getElementById('tab-chaos').className = `tab-btn px-4 py-2 text-sm font-semibold rounded transition-all ${mode==='chaos'?'active':''}`;
+            updateText();
+            renderControls();
+            resetSim();
+        }
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            document.getElementById('lang-label').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            updateText();
+            renderControls();
+        }
+
+        function toggleSim() {
+            state.running = !state.running;
+        }
+
+        function resetSim() {
+            initSimulation();
+            state.running = true;
+        }
+
+        function updateText() {
+            const t = translations[state.lang];
+            document.getElementById('tab-phase').innerText = t.phaseTab;
+            document.getElementById('tab-chaos').innerText = t.chaosTab;
+            document.getElementById('desc-box').innerHTML = state.mode === 'phase' ? t.descPhase : t.descChaos;
+            document.getElementById('btn-pause').innerText = t.btnPause;
+            document.getElementById('btn-reset').innerText = t.btnReset;
+        }
+
+        function renderControls() {
+            const c = document.getElementById('controls-container');
+            const t = translations[state.lang].labels;
+            c.innerHTML = '';
+
+            c.appendChild(createSlider(t.timeSpeed, 0.1, 2.0, 0.1, state.timeScale, v => state.timeScale = parseFloat(v)));
+            c.appendChild(document.createElement('hr')).className = "border-gray-800";
+
+            c.appendChild(createSlider(t.mass1, 1, 50, 1, state.m1, v => state.m1 = parseInt(v)));
+            c.appendChild(createSlider(t.mass2, 1, 50, 1, state.m2, v => state.m2 = parseInt(v)));
+            c.appendChild(createSlider(t.len1, 50, 200, 10, state.l1, v => state.l1 = parseInt(v)));
+            c.appendChild(createSlider(t.len2, 50, 200, 10, state.l2, v => state.l2 = parseInt(v)));
+            c.appendChild(createSlider(t.gravity, 0.1, 5, 0.1, state.g, v => state.g = parseFloat(v)));
+
+            if (state.mode === 'chaos') {
+                c.appendChild(document.createElement('hr')).className = "border-gray-800";
+                c.appendChild(createSlider(t.count, 2, 200, 1, state.count, v => state.count = parseInt(v)));
+                c.appendChild(createSlider(t.divergence, 0.00001, 0.01, 0.00001, state.delta, v => state.delta = parseFloat(v), true));
+            }
+        }
+
+        function createSlider(label, min, max, step, val, onChange, isSmall = false) {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <div class="flex justify-between mb-2">
+                    <label class="text-xs font-bold text-gray-400 uppercase">${label}</label>
+                    <span class="text-xs font-mono text-green-500">${val}</span>
+                </div>
+                <input type="range" min="${min}" max="${max}" step="${step}" value="${val}" class="w-full">
+            `;
+            const input = div.querySelector('input');
+            const span = div.querySelector('span');
+            input.oninput = (e) => {
+                const v = e.target.value;
+                span.innerText = isSmall ? parseFloat(v).toFixed(6) : v;
+                onChange(v);
+                if (!state.running && state.mode !== 'chaos') { 
+                }
+            };
+            return div;
+        }
+
+        // Init
+        setMode('phase');
+        loop();
+
+    </script>
+</body>
+</html>
