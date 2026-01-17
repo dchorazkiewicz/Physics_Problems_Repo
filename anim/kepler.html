@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizualizacja Praw Keplera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #eab308; margin-top: -6px; cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #4b5563; border-radius: 2px;
+        }
+        .law-btn.active { border-bottom: 2px solid #eab308; color: #eab308; background: rgba(234, 179, 8, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-800 p-4 flex justify-between items-center shadow-lg z-10">
+        <div class="flex items-center space-x-3">
+            <div class="bg-yellow-600/20 p-2 rounded text-yellow-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <h1 class="text-xl font-bold tracking-wider text-gray-100 flex flex-col sm:flex-row sm:items-end gap-1">
+                <span id="app-title">Prawa Keplera</span> 
+                <span id="app-subtitle" class="text-xs font-normal text-gray-500 sm:ml-2">Edukacja Interaktywna</span>
+            </h1>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <!-- Tab Navigation -->
+            <div class="hidden md:flex bg-gray-950 p-1 rounded-lg border border-gray-800">
+                <button onclick="setLaw(1)" id="tab-1" class="law-btn active px-4 py-2 text-sm font-semibold rounded transition-all">I Prawo</button>
+                <button onclick="setLaw(2)" id="tab-2" class="law-btn px-4 py-2 text-sm font-semibold rounded transition-all">II Prawo</button>
+                <button onclick="setLaw(3)" id="tab-3" class="law-btn px-4 py-2 text-sm font-semibold rounded transition-all">III Prawo</button>
+            </div>
+
+            <!-- Lang Switch -->
+            <button onclick="toggleLang()" class="px-3 py-1 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded text-xs font-bold text-gray-300 transition-colors">
+                <span id="lang-label">EN</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Tab Nav (Visible on small screens) -->
+    <div class="md:hidden flex bg-gray-900 border-b border-gray-800 p-1 justify-around">
+        <button onclick="setLaw(1)" id="tab-m-1" class="law-btn active flex-1 py-2 text-xs font-semibold rounded transition-all">I Prawo</button>
+        <button onclick="setLaw(2)" id="tab-m-2" class="law-btn flex-1 py-2 text-xs font-semibold rounded transition-all">II Prawo</button>
+        <button onclick="setLaw(3)" id="tab-m-3" class="law-btn flex-1 py-2 text-xs font-semibold rounded transition-all">III Prawo</button>
+    </div>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar Controls -->
+        <aside class="w-80 bg-gray-900 border-r border-gray-800 flex flex-col z-20 shadow-2xl overflow-y-auto shrink-0">
+            <div class="p-6 space-y-6">
+                
+                <!-- Description Box -->
+                <div class="bg-gray-800/50 p-4 rounded border border-gray-700">
+                    <h2 class="text-yellow-500 font-bold mb-2 text-sm uppercase tracking-wide" id="law-title">I Prawo Keplera</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed" id="law-desc">
+                        Każda planeta obiega Słońce po orbicie eliptycznej...
+                    </p>
+                </div>
+
+                <!-- Controls Container -->
+                <div id="controls-area" class="space-y-6">
+                    <!-- Dynamic content -->
+                </div>
+
+                <!-- Simulation Control -->
+                <div class="pt-4 border-t border-gray-800">
+                    <button onclick="togglePause()" id="btn-pause" class="w-full py-2 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded shadow transition-colors flex items-center justify-center gap-2">
+                        <span id="txt-pause">Pauza / Start</span>
+                    </button>
+                    <button onclick="resetSim()" id="btn-reset" class="w-full mt-2 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium rounded border border-gray-700 transition-colors">
+                        Reset
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Stats Footer -->
+            <div class="mt-auto p-4 bg-gray-950 border-t border-gray-800 text-xs font-mono text-gray-500">
+                <div id="stats-display">FPS: 60</div>
+            </div>
+        </aside>
+
+        <!-- Main Visualization -->
+        <main class="flex-1 relative bg-[#050505] overflow-hidden flex items-center justify-center">
+            <!-- Grid Background -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none" 
+                 style="background-image: radial-gradient(#374151 1px, transparent 1px); background-size: 40px 40px;"></div>
+            
+            <canvas id="sim-canvas"></canvas>
+
+            <!-- Overlay Labels -->
+            <div class="absolute bottom-6 right-6 text-right pointer-events-none select-none">
+                <div class="text-3xl font-bold text-yellow-500/20">Kepler</div>
+                <div class="text-sm text-gray-600" id="sim-label">Symulacja Fizyczna</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            pl: {
+                appTitle: "Prawa Keplera",
+                appSubtitle: "Edukacja Interaktywna",
+                tabs: ["I Prawo (Elipsy)", "II Prawo (Pola)", "III Prawo (Okresy)"],
+                controls: {
+                    pause: "Pauza / Start",
+                    reset: "Reset",
+                    eccentricity: "Mimośród (e)",
+                    showGeom: "Pokaż Elementy Geometryczne",
+                    showRadii: "Pokaż Promienie (r1+r2)",
+                    planet2Radius: "Promień Planety 2 (a)",
+                    simSpeed: "Szybkość symulacji",
+                    on: "WŁ",
+                    off: "WYŁ"
+                },
+                canvas: {
+                    emptyFocus: "Puste Ognisko",
+                    center: "Środek",
+                    simLabel: "Symulacja Fizyczna"
+                },
+                laws: {
+                    1: {
+                        title: "I Prawo: Orbity Eliptyczne",
+                        desc: "Planety poruszają się po elipsach. Słońce znajduje się w ognisku elipsy, a nie w jej geometrycznym środku. Wraz ze wzrostem mimośrodu, orbita się wydłuża, a Słońce 'przesuwa się' ku krawędzi."
+                    },
+                    2: {
+                        title: "II Prawo: Prędkość Polowa",
+                        desc: "Linia łącząca planetę ze Słońcem zakreśla równe pola w równych odstępach czasu. Gdy planeta jest blisko Słońca (peryhelium), musi poruszać się szybciej.",
+                        info: "Symulacja rysuje 'trójkąty' co stały odstęp czasu. Pola tych trójkątów są równe.",
+                        areaLabel: "Pole ostatniego wycinka:",
+                        areaUnit: "j²"
+                    },
+                    3: {
+                        title: "III Prawo: Harmonia Sfer",
+                        desc: "Im dalej planeta jest od Słońca, tym wolniej krąży i tym dłuższą ma drogę. Zależność ta to T² ~ a³.",
+                        p1Label: "P1 (Niebieska):",
+                        p2Label: "P2 (Różowa):",
+                        period: "T",
+                        radius: "a",
+                        note: "Zauważ: Gdy promień rośnie, okres rośnie szybciej (potęga 3/2)."
+                    }
+                }
+            },
+            en: {
+                appTitle: "Kepler's Laws",
+                appSubtitle: "Interactive Education",
+                tabs: ["1st Law (Ellipses)", "2nd Law (Areas)", "3rd Law (Periods)"],
+                controls: {
+                    pause: "Pause / Start",
+                    reset: "Reset",
+                    eccentricity: "Eccentricity (e)",
+                    showGeom: "Show Geometric Elements",
+                    showRadii: "Show Radii (r1+r2)",
+                    planet2Radius: "Planet 2 Radius (a)",
+                    simSpeed: "Simulation Speed",
+                    on: "ON",
+                    off: "OFF"
+                },
+                canvas: {
+                    emptyFocus: "Empty Focus",
+                    center: "Center",
+                    simLabel: "Physical Simulation"
+                },
+                laws: {
+                    1: {
+                        title: "1st Law: Elliptical Orbits",
+                        desc: "Planets move in elliptical orbits with the Sun at one focus. As eccentricity increases, the orbit elongates and the Sun 'shifts' towards the edge."
+                    },
+                    2: {
+                        title: "2nd Law: Area Velocity",
+                        desc: "A line segment joining a planet and the Sun sweeps out equal areas during equal intervals of time. The planet moves faster near the Sun (perihelion).",
+                        info: "The simulation draws 'triangles' at constant time intervals. The areas of these triangles are equal.",
+                        areaLabel: "Last Sector Area:",
+                        areaUnit: "u²"
+                    },
+                    3: {
+                        title: "3rd Law: Harmony of the Spheres",
+                        desc: "The square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit (T² ~ a³).",
+                        p1Label: "P1 (Blue):",
+                        p2Label: "P2 (Pink):",
+                        period: "T",
+                        radius: "a",
+                        note: "Note: As radius increases, the period increases faster (power of 3/2)."
+                    }
+                }
+            }
+        };
+
+        // --- CONFIG & STATE ---
+        const canvas = document.getElementById('sim-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let state = {
+            lang: 'pl',
+            activeLaw: 1,
+            running: true,
+            t: 0,
+            
+            // Law 1 Params
+            eccentricity: 0.5,
+            showFoci: true,
+            showLines: false,
+
+            // Law 2 Params
+            sectors: [], 
+            lastSweepTime: 0,
+            simSpeed: 0.02, // Domyślna szybkość dla II prawa
+            
+            // Law 3 Params
+            planet1_a: 100, // Reference planet
+            planet2_a: 180, // Variable planet
+        };
+
+        // --- MATH HELPERS ---
+        
+        function solveKepler(M, e) {
+            let E = M; 
+            for(let i=0; i<6; i++) {
+                E = E - (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E));
+            }
+            return E;
+        }
+
+        function getPlanetPosRelSun(a, e, E) {
+            const b = a * Math.sqrt(1 - e*e);
+            return {
+                x: a * (Math.cos(E) - e),
+                y: b * Math.sin(E)
+            };
+        }
+
+        // Oblicza pole wielokąta metodą sznurowadła (vertices: [x,y, x,y, ...])
+        // Tutaj vertices to tablica obiektów {x, y}
+        function calculatePolygonArea(vertices) {
+            let area = 0;
+            for (let i = 0; i < vertices.length; i++) {
+                let j = (i + 1) % vertices.length;
+                area += vertices[i].x * vertices[j].y;
+                area -= vertices[j].x * vertices[i].y;
+            }
+            return Math.abs(area) / 2;
+        }
+
+        // --- UI MANAGERS ---
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            document.getElementById('lang-label').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            updateStaticText();
+            setLaw(state.activeLaw); // Refresh content
+        }
+
+        function updateStaticText() {
+            const t = translations[state.lang];
+            document.getElementById('app-title').innerText = t.appTitle;
+            document.getElementById('app-subtitle').innerText = t.appSubtitle;
+            
+            // Tabs
+            ['tab-1', 'tab-2', 'tab-3'].forEach((id, i) => document.getElementById(id).innerText = t.tabs[i]);
+            ['tab-m-1', 'tab-m-2', 'tab-m-3'].forEach((id, i) => document.getElementById(id).innerText = t.tabs[i]);
+
+            // Bottom controls
+            document.getElementById('txt-pause').innerText = t.controls.pause;
+            document.getElementById('btn-reset').innerText = t.controls.reset;
+            document.getElementById('sim-label').innerText = t.canvas.simLabel;
+        }
+
+        function setLaw(n) {
+            state.activeLaw = n;
+            state.t = 0;
+            state.sectors = []; 
+            state.lastSweepTime = 0;
+            // Reset default speed for law 2
+            if (n === 2) state.simSpeed = 0.02;
+            
+            // Update Active Tab Style
+            const tabIds = ['tab-1', 'tab-2', 'tab-3'];
+            const mobIds = ['tab-m-1', 'tab-m-2', 'tab-m-3'];
+            
+            [...tabIds, ...mobIds].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('active');
+            });
+            
+            document.getElementById(tabIds[n-1]).classList.add('active');
+            document.getElementById(mobIds[n-1]).classList.add('active');
+
+            // Update Description
+            const t = translations[state.lang].laws[n];
+            document.getElementById('law-title').innerText = t.title;
+            document.getElementById('law-desc').innerText = t.desc;
+
+            renderControls();
+        }
+
+        function renderControls() {
+            const area = document.getElementById('controls-area');
+            const t = translations[state.lang];
+            area.innerHTML = '';
+
+            if (state.activeLaw === 1) {
+                area.appendChild(createSlider(t.controls.eccentricity, 0, 0.75, 0.01, state.eccentricity, (v) => state.eccentricity = parseFloat(v)));
+                area.appendChild(createToggle(t.controls.showGeom, state.showFoci, () => state.showFoci = !state.showFoci));
+                area.appendChild(createToggle(t.controls.showRadii, state.showLines, () => state.showLines = !state.showLines));
+            } 
+            else if (state.activeLaw === 2) {
+                // Mimośród
+                area.appendChild(createSlider(t.controls.eccentricity, 0, 0.75, 0.01, state.eccentricity, (v) => {
+                    state.eccentricity = parseFloat(v);
+                    state.sectors = []; 
+                    state.t = 0;
+                }));
+                
+                // Szybkość symulacji
+                area.appendChild(createSlider(t.controls.simSpeed, 0.005, 0.08, 0.001, state.simSpeed, (v) => {
+                    state.simSpeed = parseFloat(v);
+                }));
+
+                const info = document.createElement('div');
+                info.className = "text-xs text-yellow-500 bg-yellow-900/20 p-2 rounded border border-yellow-700/50 space-y-2";
+                info.innerHTML = `
+                    <p>${t.laws[2].info}</p>
+                    <div class="mt-2 pt-2 border-t border-yellow-800 font-mono text-cyan-400">
+                        ${t.laws[2].areaLabel} <span id="area-display">--</span> ${t.laws[2].areaUnit}
+                    </div>
+                `;
+                area.appendChild(info);
+            }
+            else if (state.activeLaw === 3) {
+                area.appendChild(createSlider(t.controls.planet2Radius, 60, 250, 1, state.planet2_a, (v) => state.planet2_a = parseFloat(v)));
+                const res = document.createElement('div');
+                res.id = "law3-results";
+                res.className = "mt-4 text-xs font-mono space-y-2 text-green-400";
+                area.appendChild(res);
+            }
+        }
+
+        function createSlider(label, min, max, step, val, onChange) {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <div class="flex justify-between mb-2">
+                    <label class="text-xs font-bold text-gray-300 uppercase">${label}</label>
+                    <span class="text-xs font-mono text-yellow-500">${val}</span>
+                </div>
+                <input type="range" min="${min}" max="${max}" step="${step}" value="${val}" class="w-full">
+            `;
+            const input = div.querySelector('input');
+            const span = div.querySelector('span');
+            input.oninput = (e) => {
+                const v = parseFloat(e.target.value);
+                // Ładne formatowanie dla małych liczb (speed)
+                span.innerText = step < 0.01 ? v.toFixed(3) : v;
+                onChange(v);
+            };
+            return div;
+        }
+
+        function createToggle(label, active, onToggle) {
+            const t = translations[state.lang];
+            const btn = document.createElement('button');
+            btn.className = `w-full py-2 px-3 rounded border text-xs font-bold transition-all flex justify-between items-center ${active ? 'bg-gray-700 border-gray-500 text-white' : 'bg-gray-800 border-gray-700 text-gray-500'}`;
+            btn.innerHTML = `<span>${label}</span> <span>${active ? t.controls.on : t.controls.off}</span>`;
+            btn.onclick = () => {
+                onToggle();
+                renderControls(); 
+            };
+            return btn;
+        }
+
+        function togglePause() { state.running = !state.running; }
+        function resetSim() { 
+            state.t = 0; 
+            state.sectors = []; 
+            state.lastSweepTime = 0;
+        }
+
+        // --- DRAWING LOGIC ---
+
+        function drawSun(cx, cy) {
+            const grad = ctx.createRadialGradient(cx, cy, 4, cx, cy, 20);
+            grad.addColorStop(0, '#facc15');
+            grad.addColorStop(0.4, 'rgba(234, 179, 8, 0.8)');
+            grad.addColorStop(1, 'rgba(234, 179, 8, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath(); ctx.arc(cx, cy, 20, 0, Math.PI*2); ctx.fill();
+            
+            ctx.fillStyle = '#fffbeb';
+            ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI*2); ctx.fill();
+        }
+
+        function drawPlanet(x, y, color = '#22d3ee', r=6) {
+            ctx.fillStyle = color;
+            ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.stroke();
+        }
+
+        function drawOrbitPath(cx, cy, a, e) {
+            const c = a * e;
+            const centerX = cx - c;
+            const b = a * Math.sqrt(1 - e*e);
+
+            ctx.strokeStyle = '#4b5563';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5,5]);
+            ctx.beginPath();
+            ctx.ellipse(centerX, cy, a, b, 0, 0, Math.PI*2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            return { centerX, centerY: cy };
+        }
+
+        function updateLaw1(w, h, cx, cy) {
+            const a = 180;
+            const e = state.eccentricity;
+            const txt = translations[state.lang].canvas;
+            
+            // Rysuj orbitę i słońce
+            const geom = drawOrbitPath(cx, cy, a, e);
+            drawSun(cx, cy);
+
+            // Oblicz pozycję planety
+            const speed = 0.04;
+            const M = state.t * speed;
+            const E = solveKepler(M, e);
+            const pos = getPlanetPosRelSun(a, e, E);
+            
+            const px = cx + pos.x;
+            const py = cy + pos.y;
+
+            if (state.showFoci) {
+                const c = a * e;
+                const emptyX = cx - 2*c;
+                
+                // Puste ognisko
+                ctx.fillStyle = '#ef4444';
+                ctx.beginPath(); ctx.arc(emptyX, cy, 4, 0, Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#9ca3af'; ctx.font = '10px sans-serif'; 
+                ctx.fillText(txt.emptyFocus, emptyX - 30, cy - 10);
+
+                // Środek geometryczny
+                ctx.fillStyle = '#fff';
+                ctx.beginPath(); ctx.rect(geom.centerX-1.5, cy-1.5, 3, 3); ctx.fill();
+                ctx.fillText(txt.center, geom.centerX - 15, cy - 10);
+            }
+
+            if (state.showLines) {
+                const c = a * e;
+                const emptyX = cx - 2*c;
+                
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = '#eab308'; 
+                ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(cx, cy); ctx.stroke();
+                
+                ctx.strokeStyle = '#ef4444';
+                ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(emptyX, cy); ctx.stroke();
+                
+                const r1 = Math.sqrt((px-cx)**2 + (py-cy)**2);
+                const r2 = Math.sqrt((px-emptyX)**2 + (py-cy)**2);
+                ctx.fillStyle = '#fff'; ctx.font = '12px monospace';
+                ctx.fillText(`r1 + r2 = ${(r1+r2).toFixed(0)} ≈ 2a`, cx - 60, h - 50);
+            }
+
+            drawPlanet(px, py);
+        }
+
+        function updateLaw2(w, h, cx, cy) {
+            const a = 180;
+            const e = state.eccentricity;
+            
+            drawOrbitPath(cx, cy, a, e);
+            
+            const period = 2 * Math.PI;
+            const sectorsCount = 12; 
+            const sectorTime = period / sectorsCount;
+            
+            const speed = state.simSpeed;
+            const M_total = state.t * speed;
+            
+            // Jeśli minął czas na nowy sektor
+            if (M_total - state.lastSweepTime > sectorTime) {
+                const startM = state.lastSweepTime;
+                const endM = startM + sectorTime;
+                
+                // Obliczamy pole właśnie zamkniętego sektora
+                // Generujemy punkty wielokąta dla obliczeń
+                const polyPoints = [{x: 0, y: 0}]; // Słońce (względne 0,0)
+                const steps = 20; // Dokładność całkowania
+                for(let s=0; s<=steps; s++) {
+                    const mM = startM + (endM - startM) * (s/steps);
+                    const eE = solveKepler(mM, e);
+                    const pos = getPlanetPosRelSun(a, e, eE);
+                    polyPoints.push(pos);
+                }
+                const area = calculatePolygonArea(polyPoints);
+                
+                // Zapisujemy sektor
+                state.sectors.push({startM, endM, area});
+                state.lastSweepTime = startM + sectorTime;
+
+                // Aktualizacja UI z polem
+                const areaDisp = document.getElementById('area-display');
+                if (areaDisp) areaDisp.innerText = area.toFixed(0);
+            }
+
+            if (M_total > 2 * Math.PI + 0.1) {
+                state.t = 0; state.lastSweepTime = 0; state.sectors = [];
+            }
+
+            // Rysowanie zapisanych sektorów
+            state.sectors.forEach((sec, idx) => {
+                ctx.fillStyle = idx % 2 === 0 ? 'rgba(34, 211, 238, 0.2)' : 'rgba(34, 211, 238, 0.4)';
+                ctx.beginPath();
+                ctx.moveTo(cx, cy); 
+                
+                const steps = 15;
+                for(let s=0; s<=steps; s++) {
+                    const mM = sec.startM + (sec.endM - sec.startM) * (s/steps);
+                    const eE = solveKepler(mM, e);
+                    const pos = getPlanetPosRelSun(a, e, eE);
+                    ctx.lineTo(cx + pos.x, cy + pos.y);
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(34, 211, 238, 0.3)'; ctx.stroke();
+            });
+
+            // Rysowanie aktualnie tworzonego sektora
+            if (state.running) {
+                ctx.fillStyle = 'rgba(234, 179, 8, 0.3)';
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                const steps = 15;
+                for(let s=0; s<=steps; s++) {
+                    const mM = state.lastSweepTime + (M_total - state.lastSweepTime) * (s/steps);
+                    const eE = solveKepler(mM, e);
+                    const pos = getPlanetPosRelSun(a, e, eE);
+                    ctx.lineTo(cx + pos.x, cy + pos.y);
+                }
+                ctx.lineTo(cx + getPlanetPosRelSun(a,e, solveKepler(M_total,e)).x, cy + getPlanetPosRelSun(a,e, solveKepler(M_total,e)).y);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            drawSun(cx, cy);
+            
+            const E = solveKepler(M_total, e);
+            const pos = getPlanetPosRelSun(a, e, E);
+            drawPlanet(cx + pos.x, cy + pos.y);
+        }
+
+        function updateLaw3(w, h, cx, cy) {
+            const t = translations[state.lang].laws[3];
+            const a1 = 100; 
+            const a2 = state.planet2_a;
+            
+            const T1_frames = 300; 
+            const T2_frames = T1_frames * Math.pow(a2/a1, 1.5);
+            
+            const ang1 = (state.t * (2*Math.PI / T1_frames)) % (2*Math.PI);
+            const ang2 = (state.t * (2*Math.PI / T2_frames)) % (2*Math.PI);
+
+            ctx.strokeStyle = '#4b5563'; ctx.setLineDash([2,4]);
+            ctx.beginPath(); ctx.arc(cx, cy, a1, 0, Math.PI*2); ctx.stroke();
+            ctx.beginPath(); ctx.arc(cx, cy, a2, 0, Math.PI*2); ctx.stroke();
+            ctx.setLineDash([]);
+
+            drawSun(cx, cy);
+
+            const p1x = cx + a1 * Math.cos(ang1);
+            const p1y = cy + a1 * Math.sin(ang1);
+            drawPlanet(p1x, p1y, '#22d3ee', 6);
+            ctx.fillStyle = '#22d3ee'; ctx.font = '10px monospace'; ctx.fillText("P1", p1x+8, p1y-8);
+
+            const p2x = cx + a2 * Math.cos(ang2);
+            const p2y = cy + a2 * Math.sin(ang2);
+            drawPlanet(p2x, p2y, '#f472b6', 8);
+            ctx.fillStyle = '#f472b6'; ctx.fillText("P2", p2x+10, p2y-10);
+
+            ctx.strokeStyle = '#fff'; ctx.globalAlpha = 0.2;
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + 300, cy); ctx.stroke();
+            ctx.globalAlpha = 1.0;
+
+            const resDiv = document.getElementById('law3-results');
+            if(resDiv) {
+                const ratioT = (T2_frames/T1_frames).toFixed(2);
+                const ratioA = (a2/a1).toFixed(2);
+                
+                resDiv.innerHTML = `
+                    <div class="flex justify-between border-b border-gray-700 pb-1">
+                        <span>${t.p1Label}</span> <span>${t.radius}=1.0, ${t.period}=1.0</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-700 pb-1 pt-1">
+                        <span class="text-pink-400">${t.p2Label}</span> 
+                        <span class="text-pink-400">${t.radius}=${ratioA}, ${t.period}=${ratioT}</span>
+                    </div>
+                    <div class="mt-2 text-[10px] text-gray-500">
+                        ${t.note}
+                    </div>
+                `;
+            }
+        }
+
+        // --- MAIN LOOP ---
+
+        function loop() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = w/2;
+            const cy = h/2;
+
+            ctx.clearRect(0, 0, w, h);
+
+            if (state.running) {
+                state.t += 1;
+            }
+
+            if (state.activeLaw === 1) updateLaw1(w, h, cx, cy);
+            else if (state.activeLaw === 2) updateLaw2(w, h, cx, cy);
+            else if (state.activeLaw === 3) updateLaw3(w, h, cx, cy);
+
+            requestAnimationFrame(loop);
+        }
+
+        // Init
+        updateStaticText();
+        setLaw(1);
+        loop();
+
+    </script>
+</body>
+</html>
