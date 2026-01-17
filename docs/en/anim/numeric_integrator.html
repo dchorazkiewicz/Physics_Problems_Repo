@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektant Ruchu (Kinematyka)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        canvas { touch-action: none; cursor: crosshair; }
+        
+        /* Cursor for main canvas when draggable */
+        #canvas-main { cursor: grab; }
+        #canvas-main:active { cursor: grabbing; }
+
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #38bdf8; margin-top: -6px; cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px;
+        }
+
+        .panel-glass { background: rgba(30, 41, 59, 0.95); border-left: 1px solid #334155; }
+        .graph-container { position: relative; border: 1px solid #475569; background: #020617; border-radius: 0.5rem; overflow: hidden; }
+        .graph-label { position: absolute; top: 4px; left: 8px; font-size: 10px; font-weight: bold; color: #94a3b8; pointer-events: none; }
+        
+        .mode-btn.active { background-color: #0ea5e9; color: white; border-color: #0ea5e9; }
+    </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row">
+
+    <!-- Lewa strona: Wynik (2D Trajectory) -->
+    <main class="flex-1 flex flex-col relative bg-slate-950 border-r border-slate-800">
+        
+        <!-- Header -->
+        <div class="absolute top-0 left-0 p-4 z-10 pointer-events-none flex justify-between w-full pr-32">
+            <div>
+                <h1 class="text-2xl font-bold text-sky-500 tracking-wider" id="app-title">Projektant Ruchu</h1>
+                <p class="text-sm text-slate-400" id="app-subtitle">Narysuj wykresy, zobacz ruch 2D</p>
+            </div>
+        </div>
+
+        <div class="absolute top-4 right-4 z-10 flex gap-2 pointer-events-auto">
+             <button onclick="toggleLang()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-xs font-bold transition-colors text-sky-300">
+                <span id="lang-btn">EN</span>
+            </button>
+             <button onclick="togglePlay()" id="btn-play" class="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded shadow transition-colors">
+                START
+            </button>
+            <button onclick="resetAll()" id="btn-clear" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold rounded border border-slate-600 transition-colors">
+                Wyczyść
+            </button>
+        </div>
+
+        <!-- Main Canvas -->
+        <div class="flex-1 relative w-full h-full" id="main-container">
+            <canvas id="canvas-main" class="block w-full h-full"></canvas>
+            
+            <!-- Legend -->
+            <div class="absolute bottom-4 left-4 pointer-events-none text-xs font-mono space-y-1 bg-slate-900/80 p-2 rounded border border-slate-700 select-none">
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-white rounded-full"></div> <span id="leg-body">Ciało</span></div>
+                <div class="flex items-center gap-2"><div class="w-8 h-0.5 bg-green-500"></div> <span id="leg-vel">Prędkość (v)</span></div>
+                <div class="flex items-center gap-2"><div class="w-8 h-0.5 bg-red-500"></div> <span id="leg-acc">Przyspieszenie (a)</span></div>
+                <div class="mt-2 text-slate-500 pt-2 border-t border-slate-700" id="leg-inst">
+                    LPM: Przesuwanie | Rolka: Zoom
+                </div>
+            </div>
+            
+            <!-- Reset View Button -->
+            <button onclick="resetView()" class="absolute bottom-16 right-4 p-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 shadow-lg transition-colors z-20" title="Resetuj Widok">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+            </button>
+
+            <!-- Time Display -->
+            <div class="absolute bottom-4 right-4 pointer-events-none text-xl font-mono font-bold text-slate-500 select-none">
+                t = <span id="time-display" class="text-slate-200">0.00</span> s
+            </div>
+        </div>
+    </main>
+
+    <!-- Prawa strona: Edytor Wykresów -->
+    <aside class="w-full md:w-[400px] panel-glass flex flex-col z-20 shadow-2xl h-1/2 md:h-full">
+        <div class="p-4 flex flex-col h-full gap-4">
+
+            <!-- Mode Selector -->
+            <div>
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2" id="lbl-side-title">Tryb Rysowania (Dane Wejściowe)</label>
+                <div class="grid grid-cols-3 gap-1">
+                    <button onclick="setMode('pos')" id="btn-mode-pos" class="mode-btn px-2 py-2 rounded border border-slate-600 text-xs font-bold transition-colors text-slate-300">Położenie r(t)</button>
+                    <button onclick="setMode('vel')" id="btn-mode-vel" class="mode-btn active px-2 py-2 rounded border border-slate-600 text-xs font-bold transition-colors text-slate-300">Prędkość v(t)</button>
+                    <button onclick="setMode('acc')" id="btn-mode-acc" class="mode-btn px-2 py-2 rounded border border-slate-600 text-xs font-bold transition-colors text-slate-300">Przysp. a(t)</button>
+                </div>
+                <p class="text-[10px] text-slate-500 mt-2 italic" id="mode-desc">
+                    Rysujesz prędkość. Program policzy drogę (całkowanie) i przyspieszenie (różniczkowanie).
+                </p>
+            </div>
+
+            <!-- Graph X -->
+            <div class="flex-1 graph-container relative group">
+                <div class="graph-label text-sky-400" id="lbl-graph-x">Składowa X: Prędkość Vx(t)</div>
+                <canvas id="canvas-x" class="w-full h-full cursor-crosshair"></canvas>
+                <!-- Zero line indicator helper -->
+                <div class="absolute left-0 w-full border-t border-slate-700 border-dashed pointer-events-none" style="top: 50%;"></div>
+            </div>
+
+            <!-- Graph Y -->
+            <div class="flex-1 graph-container relative group">
+                <div class="graph-label text-orange-400" id="lbl-graph-y">Składowa Y: Prędkość Vy(t)</div>
+                <canvas id="canvas-y" class="w-full h-full cursor-crosshair"></canvas>
+                <div class="absolute left-0 w-full border-t border-slate-700 border-dashed pointer-events-none" style="top: 50%;"></div>
+            </div>
+
+            <!-- Hint -->
+            <div class="text-center text-[10px] text-slate-500 select-none" id="lbl-hint">
+                Narysuj wykresy myszką. Oś pozioma to czas (0-10s).
+            </div>
+
+        </div>
+    </aside>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            pl: {
+                title: "Projektant Ruchu",
+                subtitle: "Narysuj wykresy, zobacz ruch 2D",
+                btnStart: "START",
+                btnPause: "PAUZA",
+                btnClear: "Wyczyść",
+                legBody: "Ciało",
+                legVel: "Prędkość (v)",
+                legAcc: "Przyspieszenie (a)",
+                legInst: "LPM: Przesuwanie | Rolka: Zoom",
+                sideTitle: "Tryb Rysowania (Dane Wejściowe)",
+                btnPos: "Położenie r(t)",
+                btnVel: "Prędkość v(t)",
+                btnAcc: "Przysp. a(t)",
+                descPos: "Rysujesz położenie. Program policzy prędkość (pochodna) i przyspieszenie (druga pochodna).",
+                descVel: "Rysujesz prędkość. Program policzy drogę (całkowanie) i przyspieszenie (pochodna).",
+                descAcc: "Rysujesz przyspieszenie. Program policzy prędkość i drogę (podwójna całka).",
+                lblX: "Składowa X: ",
+                lblY: "Składowa Y: ",
+                hint: "Narysuj wykresy myszką. Oś pozioma to czas (0-10s)."
+            },
+            en: {
+                title: "Motion Designer",
+                subtitle: "Draw graphs, see 2D motion",
+                btnStart: "START",
+                btnPause: "PAUSE",
+                btnClear: "Clear",
+                legBody: "Body",
+                legVel: "Velocity (v)",
+                legAcc: "Acceleration (a)",
+                legInst: "LMB: Pan | Wheel: Zoom",
+                sideTitle: "Drawing Mode (Input Data)",
+                btnPos: "Position r(t)",
+                btnVel: "Velocity v(t)",
+                btnAcc: "Accel. a(t)",
+                descPos: "Drawing position. App calculates velocity (derivative) and acceleration (2nd derivative).",
+                descVel: "Drawing velocity. App calculates position (integral) and acceleration (derivative).",
+                descAcc: "Drawing acceleration. App calculates velocity and position (double integral).",
+                lblX: "Component X: ",
+                lblY: "Component Y: ",
+                hint: "Draw graphs with mouse. Horizontal axis is time (0-10s)."
+            }
+        };
+
+        // --- CONFIG ---
+        const DURATION = 10; // seconds
+        const SAMPLES = 500; // Resolution of the arrays
+        
+        const state = {
+            lang: 'pl',
+            mode: 'vel', // 'pos', 'vel', 'acc'
+            running: false,
+            time: 0,
+            
+            // View / Camera State
+            view: {
+                zoom: 1.0,
+                panX: 0, // will init to center
+                panY: 0,
+                isDragging: false,
+                lastMouseX: 0,
+                lastMouseY: 0
+            },
+
+            // Data arrays (length = SAMPLES)
+            data: [],
+            
+            // Raw drawing data (normalized -1 to 1)
+            rawX: new Array(SAMPLES).fill(0),
+            rawY: new Array(SAMPLES).fill(0),
+            
+            lastDrawX: -1
+        };
+
+        // --- DOM ELEMENTS ---
+        const cvMain = document.getElementById('canvas-main');
+        const ctxMain = cvMain.getContext('2d');
+        
+        const cvX = document.getElementById('canvas-x');
+        const ctxX = cvX.getContext('2d');
+        
+        const cvY = document.getElementById('canvas-y');
+        const ctxY = cvY.getContext('2d');
+
+        // --- RESIZING ---
+        function resize() {
+            // Main Canvas Resize
+            if (cvMain.parentElement) {
+                cvMain.width = cvMain.parentElement.clientWidth;
+                cvMain.height = cvMain.parentElement.clientHeight;
+                
+                // If pan wasn't initialized (0,0), set to center
+                if (state.view.panX === 0 && state.view.panY === 0) {
+                    resetView();
+                }
+            }
+
+            // Graphs Resize
+            [cvX, cvY].forEach(c => {
+                if (c.parentElement) {
+                    c.width = c.parentElement.clientWidth;
+                    c.height = c.parentElement.clientHeight;
+                }
+            });
+
+            recalcPhysics(); 
+            drawGraphs();
+            drawMain();
+        }
+        window.addEventListener('resize', resize);
+
+        // --- PHYSICS CORE ---
+
+        function smoothArray(arr, windowSize = 10) {
+            const res = [];
+            for (let i = 0; i < arr.length; i++) {
+                let sum = 0;
+                let count = 0;
+                for (let w = -windowSize; w <= windowSize; w++) {
+                    if (i + w >= 0 && i + w < arr.length) {
+                        sum += arr[i+w];
+                        count++;
+                    }
+                }
+                res.push(sum / count);
+            }
+            return res;
+        }
+
+        function integrate(arr, dt, initial = 0) {
+            const res = [initial];
+            for (let i = 1; i < arr.length; i++) {
+                const val = res[i-1] + (arr[i-1] + arr[i]) / 2 * dt;
+                res.push(val);
+            }
+            return res;
+        }
+
+        function differentiate(arr, dt) {
+            const res = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (i === 0) res.push((arr[1] - arr[0]) / dt);
+                else if (i === arr.length - 1) res.push((arr[i] - arr[i-1]) / dt);
+                else res.push((arr[i+1] - arr[i-1]) / (2 * dt));
+            }
+            return res;
+        }
+
+        function recalcPhysics() {
+            const dt = DURATION / SAMPLES;
+            const smoothX = smoothArray(state.rawX, 5);
+            const smoothY = smoothArray(state.rawY, 5);
+
+            state.data = [];
+
+            const POS_SCALE = 10; 
+            const VEL_SCALE = 10; 
+            const ACC_SCALE = 10; 
+
+            let xArr, yArr, vxArr, vyArr, axArr, ayArr;
+
+            if (state.mode === 'pos') {
+                xArr = smoothX.map(v => v * POS_SCALE);
+                yArr = smoothY.map(v => v * POS_SCALE);
+                vxArr = differentiate(xArr, dt);
+                vyArr = differentiate(yArr, dt);
+                // Extra smooth intermediate derivatives
+                vxArr = smoothArray(vxArr, 10);
+                vyArr = smoothArray(vyArr, 10);
+                axArr = differentiate(vxArr, dt);
+                ayArr = differentiate(vyArr, dt);
+            } else if (state.mode === 'vel') {
+                vxArr = smoothX.map(v => v * VEL_SCALE);
+                vyArr = smoothY.map(v => v * VEL_SCALE);
+                xArr = integrate(vxArr, dt, 0); 
+                yArr = integrate(vyArr, dt, 0);
+                axArr = differentiate(vxArr, dt);
+                ayArr = differentiate(vyArr, dt);
+            } else if (state.mode === 'acc') {
+                axArr = smoothX.map(v => v * ACC_SCALE);
+                ayArr = smoothY.map(v => v * ACC_SCALE);
+                vxArr = integrate(axArr, dt, 0);
+                vyArr = integrate(ayArr, dt, 0);
+                xArr = integrate(vxArr, dt, 0);
+                yArr = integrate(vyArr, dt, 0);
+            }
+
+            for(let i=0; i<SAMPLES; i++) {
+                state.data.push({
+                    x: xArr[i], y: yArr[i],
+                    vx: vxArr[i], vy: vyArr[i],
+                    ax: axArr[i], ay: ayArr[i]
+                });
+            }
+        }
+
+        // --- DRAWING GRAPHS (INPUT) ---
+
+        function setupGraphInput(canvas, axis) {
+            let isDrawing = false;
+
+            const updateBuffer = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                
+                let idx = Math.floor((mx / rect.width) * SAMPLES);
+                idx = Math.max(0, Math.min(SAMPLES - 1, idx));
+                
+                const val = 1 - 2 * (my / rect.height);
+                
+                if (state.lastDrawX !== -1 && Math.abs(idx - state.lastDrawX) < 50) {
+                    const start = Math.min(state.lastDrawX, idx);
+                    const end = Math.max(state.lastDrawX, idx);
+                    const startVal = axis === 'x' ? state.rawX[state.lastDrawX] : state.rawY[state.lastDrawX];
+                    
+                    for(let i=start; i<=end; i++) {
+                        const t = (i - start) / (end - start || 1);
+                        const v = startVal + (val - startVal) * t;
+                        if (axis === 'x') state.rawX[i] = v;
+                        else state.rawY[i] = v;
+                    }
+                } else {
+                    if (axis === 'x') state.rawX[idx] = val;
+                    else state.rawY[idx] = val;
+                }
+                
+                state.lastDrawX = idx;
+                
+                recalcPhysics();
+                drawGraphs();
+                drawMain();
+            };
+
+            canvas.addEventListener('mousedown', e => { isDrawing = true; state.lastDrawX = -1; updateBuffer(e); });
+            window.addEventListener('mousemove', e => { if(isDrawing && e.target === canvas) updateBuffer(e); });
+            window.addEventListener('mouseup', () => { isDrawing = false; state.lastDrawX = -1; });
+            
+            canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; state.lastDrawX = -1; updateBuffer(e.touches[0]); });
+            canvas.addEventListener('touchmove', e => { e.preventDefault(); if(isDrawing) updateBuffer(e.touches[0]); });
+            window.addEventListener('touchend', () => isDrawing = false);
+        }
+
+        setupGraphInput(cvX, 'x');
+        setupGraphInput(cvY, 'y');
+
+        function drawSingleGraph(ctx, dataArr, color) {
+            const w = ctx.canvas.width;
+            const h = ctx.canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, h/2); ctx.lineTo(w, h/2);
+            for(let i=0; i<=10; i++) {
+                const x = (i/10)*w;
+                ctx.moveTo(x, 0); ctx.lineTo(x, h);
+            }
+            ctx.stroke();
+
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            for(let i=0; i<SAMPLES; i++) {
+                const x = (i / SAMPLES) * w;
+                const y = (1 - dataArr[i]) / 2 * h;
+                
+                if (i===0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            const playX = (state.time / DURATION) * w;
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([2, 2]);
+            ctx.beginPath(); ctx.moveTo(playX, 0); ctx.lineTo(playX, h); ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawGraphs() {
+            const colorX = state.mode === 'pos' ? '#38bdf8' : (state.mode === 'vel' ? '#22c55e' : '#ef4444');
+            const colorY = state.mode === 'pos' ? '#fb923c' : (state.mode === 'vel' ? '#22c55e' : '#ef4444');
+            
+            drawSingleGraph(ctxX, state.rawX, colorX);
+            drawSingleGraph(ctxY, state.rawY, colorY);
+        }
+
+        // --- DRAWING MAIN (2D TRAJECTORY WITH PAN/ZOOM) ---
+
+        function drawMain() {
+            const w = cvMain.width;
+            const h = cvMain.height;
+
+            ctxMain.clearRect(0, 0, w, h);
+
+            // Save context for View Transform
+            ctxMain.save();
+            // Apply View Transform: 
+            // 1. Move to Pan Position (Origin on screen)
+            // 2. Scale
+            ctxMain.translate(state.view.panX, state.view.panY);
+            ctxMain.scale(state.view.zoom, state.view.zoom);
+
+            // --- Draw Infinite Grid ---
+            // Calculate visible world bounds to draw grid efficiently
+            // Screen coords (0,0) -> World ( (0-panX)/zoom, (0-panY)/zoom )
+            const topLeftX = (0 - state.view.panX) / state.view.zoom;
+            const topLeftY = (0 - state.view.panY) / state.view.zoom;
+            const bottomRightX = (w - state.view.panX) / state.view.zoom;
+            const bottomRightY = (h - state.view.panY) / state.view.zoom;
+
+            const gridSize = 50;
+            const startX = Math.floor(topLeftX / gridSize) * gridSize;
+            const endX = Math.ceil(bottomRightX / gridSize) * gridSize;
+            const startY = Math.floor(topLeftY / gridSize) * gridSize;
+            const endY = Math.ceil(bottomRightY / gridSize) * gridSize;
+
+            ctxMain.strokeStyle = '#1e293b';
+            ctxMain.lineWidth = 1 / state.view.zoom; // Keep grid thin visual width
+            ctxMain.beginPath();
+            
+            for(let x = startX; x <= endX; x+=gridSize) { 
+                ctxMain.moveTo(x, startY); ctxMain.lineTo(x, endY); 
+            }
+            for(let y = startY; y <= endY; y+=gridSize) { 
+                ctxMain.moveTo(startX, y); ctxMain.lineTo(endX, y); 
+            }
+            ctxMain.stroke();
+
+            // Draw World Axes (0,0)
+            ctxMain.strokeStyle = '#334155';
+            ctxMain.lineWidth = 2 / state.view.zoom;
+            ctxMain.beginPath();
+            ctxMain.moveTo(startX, 0); ctxMain.lineTo(endX, 0);
+            ctxMain.moveTo(0, startY); ctxMain.lineTo(0, endY);
+            ctxMain.stroke();
+
+            if (state.data.length > 0) {
+                const P_SCALE = 15; // pixels per meter
+
+                // Draw Trajectory Path
+                ctxMain.strokeStyle = '#475569';
+                ctxMain.lineWidth = 2 / state.view.zoom;
+                ctxMain.setLineDash([5 / state.view.zoom, 5 / state.view.zoom]);
+                ctxMain.beginPath();
+                
+                for(let i=0; i<SAMPLES; i++) {
+                    const px = state.data[i].x * P_SCALE;
+                    const py = -state.data[i].y * P_SCALE; // Canvas Y inverted for world math
+                    if (i===0) ctxMain.moveTo(px, py);
+                    else ctxMain.lineTo(px, py);
+                }
+                ctxMain.stroke();
+                ctxMain.setLineDash([]);
+
+                // Current State
+                const idx = Math.floor((state.time / DURATION) * (SAMPLES - 1));
+                const current = state.data[idx];
+
+                const curX = current.x * P_SCALE;
+                const curY = -current.y * P_SCALE;
+
+                // Velocity Vector (Green)
+                const vScale = 4;
+                drawArrow(ctxMain, curX, curY, current.vx * vScale, -current.vy * vScale, '#22c55e');
+
+                // Acceleration Vector (Red)
+                const aScale = 8;
+                drawArrow(ctxMain, curX, curY, current.ax * aScale, -current.ay * aScale, '#ef4444');
+
+                // Particle
+                ctxMain.fillStyle = '#fff';
+                ctxMain.beginPath(); 
+                ctxMain.arc(curX, curY, 6 / state.view.zoom, 0, Math.PI*2); 
+                ctxMain.fill();
+                
+                // Info text near particle
+                if (state.running || true) {
+                    ctxMain.fillStyle = '#94a3b8';
+                    const fontSize = Math.max(10, 10 / state.view.zoom);
+                    ctxMain.font = `${fontSize}px monospace`;
+                    const vMag = Math.sqrt(current.vx**2 + current.vy**2).toFixed(1);
+                    const aMag = Math.sqrt(current.ax**2 + current.ay**2).toFixed(1);
+                    ctxMain.fillText(`v: ${vMag} | a: ${aMag}`, curX + 10/state.view.zoom, curY - 10/state.view.zoom);
+                }
+            }
+
+            ctxMain.restore();
+        }
+
+        function drawArrow(ctx, x, y, dx, dy, color) {
+            const len = Math.sqrt(dx*dx + dy*dy);
+            if (len < 2 / state.view.zoom) return;
+
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = 2 / state.view.zoom;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + dx, y + dy);
+            ctx.stroke();
+
+            const angle = Math.atan2(dy, dx);
+            const head = 8 / state.view.zoom;
+            ctx.beginPath();
+            ctx.moveTo(x + dx, y + dy);
+            ctx.lineTo(x + dx - head * Math.cos(angle - Math.PI/6), y + dy - head * Math.sin(angle - Math.PI/6));
+            ctx.lineTo(x + dx - head * Math.cos(angle + Math.PI/6), y + dy - head * Math.sin(angle + Math.PI/6));
+            ctx.fill();
+        }
+
+        // --- MAIN CANVAS INTERACTION (Pan & Zoom) ---
+
+        function handleMainWheel(e) {
+            e.preventDefault();
+            const zoomIntensity = 0.1;
+            const delta = -Math.sign(e.deltaY);
+            const scale = 1 + delta * zoomIntensity;
+
+            // Mouse relative to canvas
+            const rect = cvMain.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+
+            // World coords under mouse before zoom
+            const wx = (mx - state.view.panX) / state.view.zoom;
+            const wy = (my - state.view.panY) / state.view.zoom;
+
+            // Apply Zoom
+            let newZoom = state.view.zoom * scale;
+            newZoom = Math.max(0.1, Math.min(10.0, newZoom));
+
+            // Adjust Pan so world point stays under mouse
+            // mx = wx * newZoom + newPan  =>  newPan = mx - wx * newZoom
+            state.view.panX = mx - wx * newZoom;
+            state.view.panY = my - wy * newZoom;
+            state.view.zoom = newZoom;
+
+            drawMain();
+        }
+
+        function handleMainMouseDown(e) {
+            state.view.isDragging = true;
+            state.view.lastX = e.clientX;
+            state.view.lastY = e.clientY;
+        }
+
+        function handleMainMouseMove(e) {
+            if (!state.view.isDragging) return;
+            const dx = e.clientX - state.view.lastX;
+            const dy = e.clientY - state.view.lastY;
+            state.view.panX += dx;
+            state.view.panY += dy;
+            state.view.lastX = e.clientX;
+            state.view.lastY = e.clientY;
+            drawMain();
+        }
+
+        function handleMainMouseUp() {
+            state.view.isDragging = false;
+        }
+
+        function resetView() {
+            state.view.zoom = 1.0;
+            state.view.panX = cvMain.width / 2;
+            state.view.panY = cvMain.height / 2;
+            drawMain();
+        }
+
+        // Add Listeners
+        cvMain.addEventListener('wheel', handleMainWheel, { passive: false });
+        cvMain.addEventListener('mousedown', handleMainMouseDown);
+        window.addEventListener('mousemove', handleMainMouseMove);
+        window.addEventListener('mouseup', handleMainMouseUp);
+
+        // --- ANIMATION LOOP ---
+        let lastFrame = 0;
+        function loop(timestamp) {
+            const dt = (timestamp - lastFrame) / 1000;
+            lastFrame = timestamp;
+
+            if (state.running) {
+                state.time += dt;
+                if (state.time > DURATION) {
+                    state.time = 0; // Loop
+                }
+                
+                document.getElementById('time-display').innerText = state.time.toFixed(2);
+                drawGraphs(); 
+                drawMain();   
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        // --- UI CONTROLS ---
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            document.getElementById('lang-btn').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            updateTexts();
+        }
+
+        function updateTexts() {
+            const t = translations[state.lang];
+            
+            document.getElementById('app-title').innerText = t.title;
+            document.getElementById('app-subtitle').innerText = t.subtitle;
+            document.getElementById('btn-play').innerText = state.running ? t.btnPause : t.btnStart;
+            document.getElementById('btn-clear').innerText = t.btnClear;
+            
+            // Legend
+            document.getElementById('leg-body').innerText = t.legBody;
+            document.getElementById('leg-vel').innerText = t.legVel;
+            document.getElementById('leg-acc').innerText = t.legAcc;
+            document.getElementById('leg-inst').innerText = t.legInst;
+
+            // Sidebar
+            document.getElementById('lbl-side-title').innerText = t.sideTitle;
+            document.getElementById('btn-mode-pos').innerText = t.btnPos;
+            document.getElementById('btn-mode-vel').innerText = t.btnVel;
+            document.getElementById('btn-mode-acc').innerText = t.btnAcc;
+            document.getElementById('lbl-hint').innerText = t.hint;
+
+            // Update Dynamic Labels based on mode
+            setMode(state.mode); // This will refresh graph labels and descriptions
+        }
+
+        function togglePlay() {
+            state.running = !state.running;
+            const t = translations[state.lang];
+            const btn = document.getElementById('btn-play');
+            btn.innerText = state.running ? t.btnPause : t.btnStart;
+            btn.className = state.running 
+                ? "px-6 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded shadow transition-colors"
+                : "px-6 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded shadow transition-colors";
+        }
+
+        function resetAll() {
+            state.running = false;
+            state.time = 0;
+            state.rawX.fill(0);
+            state.rawY.fill(0);
+            
+            const t = translations[state.lang];
+            document.getElementById('btn-play').innerText = t.btnStart;
+            document.getElementById('btn-play').className = "px-6 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded shadow transition-colors";
+            
+            recalcPhysics();
+            drawGraphs();
+            drawMain();
+        }
+
+        function setMode(mode) {
+            state.mode = mode;
+            const t = translations[state.lang];
+            
+            // Update buttons
+            ['pos', 'vel', 'acc'].forEach(m => {
+                const btn = document.getElementById(`btn-mode-${m}`);
+                if (m === mode) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Update Labels
+            const lblX = document.getElementById('lbl-graph-x');
+            const lblY = document.getElementById('lbl-graph-y');
+            const desc = document.getElementById('mode-desc');
+
+            if (mode === 'pos') {
+                lblX.innerText = t.lblX + t.btnPos; lblX.className = "graph-label text-sky-400";
+                lblY.innerText = t.lblY + t.btnPos; lblY.className = "graph-label text-orange-400";
+                desc.innerText = t.descPos;
+            } else if (mode === 'vel') {
+                lblX.innerText = t.lblX + t.btnVel; lblX.className = "graph-label text-green-400";
+                lblY.innerText = t.lblY + t.btnVel; lblY.className = "graph-label text-green-400";
+                desc.innerText = t.descVel;
+            } else {
+                lblX.innerText = t.lblX + t.btnAcc; lblX.className = "graph-label text-red-400";
+                lblY.innerText = t.lblY + t.btnAcc; lblY.className = "graph-label text-red-400";
+                desc.innerText = t.descAcc;
+            }
+
+            // Reset data on mode change to avoid confusion (optional, but cleaner)
+            // resetAll(); // Can be confusing if user just wants to switch labels, but typically mode change means new input
+            // Let's NOT reset all data, just re-interpret raw input. 
+            // Wait, raw input is normalized 0-1. Interpreting "Position" vs "Accel" from same drawing is weird physics-wise but fun visually.
+            // Let's keep data.
+            recalcPhysics();
+            drawGraphs();
+            drawMain();
+        }
+
+        // Init
+        setTimeout(() => {
+            resize(); // This will also init pan to center
+            recalcPhysics();
+            drawGraphs();
+            drawMain();
+            requestAnimationFrame(loop);
+        }, 100);
+
+    </script>
+</body>
+</html>
