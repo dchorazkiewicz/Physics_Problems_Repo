@@ -67,6 +67,7 @@ plugins:
               - 'Strumień': 'anim/flux.html'
               - 'Całkowanie Pola Elektrycznego': 'anim/electric_field_integration.html'
               - 'Fale - atomy': 'anim/wave_atoms.html'
+              - 'Pomiar Przyspieszenia Grawitacyjnego': 'anim/grav_acc_measure.html'
         - locale: en
           name: English
           default: true
@@ -102,6 +103,7 @@ plugins:
               - 'Flux': 'anim/flux.html'
               - 'Electric Field Integration': 'anim/electric_field_integration.html'
               - 'Atom waves': 'anim/wave_atoms.html'
+              - 'Gravitational Acceleration Measurement': 'anim/grav_acc_measure.html'
             - Extra:
               - Problem 1:
                 - 'Formulation': 'extra/problem_1/problem_1_formulation.md'

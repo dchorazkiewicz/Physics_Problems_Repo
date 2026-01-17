@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorium Fizyczne: Pomiar g</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax do wzorów matematycznych -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        canvas { border-bottom: 1px solid #334155; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #f59e0b; margin-top: -6px; cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #334155; border-radius: 2px;
+        }
+
+        .panel-glass { background: rgba(30, 41, 59, 0.95); border-left: 1px solid #334155; }
+        
+        /* Animacja kliknięcia */
+        @keyframes flash {
+            0% { background-color: rgba(34, 197, 94, 0.5); }
+            100% { background-color: transparent; }
+        }
+        .flash-effect { animation: flash 0.3s ease-out; }
+    </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row">
+
+    <!-- Lewa strona: Symulacja -->
+    <main class="flex-1 flex flex-col relative bg-slate-950" id="sim-container">
+        
+        <!-- Header -->
+        <div class="absolute top-0 left-0 p-4 w-full flex justify-between items-start z-10 pointer-events-none">
+            <div>
+                <h1 class="text-2xl font-bold text-amber-500 tracking-wider">Laboratorium Fizyczne</h1>
+                <p class="text-sm text-slate-400">Pomiar przyspieszenia ziemskiego (g)</p>
+            </div>
+            <div class="bg-slate-900/80 backdrop-blur px-4 py-2 rounded border border-slate-700 text-right pointer-events-auto">
+                <div class="text-xs text-slate-500 uppercase">Stan eksperymentu</div>
+                <div id="status-text" class="text-lg font-bold text-slate-200">Gotowy</div>
+                <div id="click-counter" class="text-sm text-amber-400 font-mono mt-1">Kliknięcia: 0/0</div>
+            </div>
+        </div>
+
+        <!-- Canvas -->
+        <canvas id="pendulum-canvas" class="flex-1 w-full"></canvas>
+
+        <!-- Overlay Instrukcji/Feedbacku -->
+        <div id="feedback-overlay" class="absolute inset-0 pointer-events-none flex items-center justify-center">
+            <!-- Tutaj będą pojawiać się komunikaty typu "+1.98s" -->
+        </div>
+
+        <!-- Przycisk Mobilny / Info -->
+        <div class="p-4 bg-slate-900 border-t border-slate-800 flex justify-center items-center gap-4 z-20">
+            <div class="text-xs text-slate-400 hidden md:block">
+                Naciśnij <kbd class="px-2 py-1 bg-slate-700 rounded text-slate-200 font-mono">SPACJA</kbd> w najniższym punkcie
+            </div>
+            <button id="btn-measure" class="md:hidden px-8 py-4 bg-amber-600 active:bg-amber-700 text-white font-bold rounded shadow-lg transition-transform active:scale-95 w-full">
+                POMIAR (KLIKNIJ TU)
+            </button>
+        </div>
+    </main>
+
+    <!-- Prawa strona: Dane i Obliczenia -->
+    <aside class="w-full md:w-[450px] panel-glass flex flex-col overflow-y-auto z-30 shadow-2xl">
+        <div class="p-6 space-y-6">
+
+            <!-- Konfiguracja -->
+            <div class="space-y-4 border-b border-slate-700 pb-6">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Konfiguracja</h2>
+                
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-sm text-slate-300">Liczba okresów do zmierzenia (N)</label>
+                        <span id="val-count" class="text-sm font-mono text-amber-400">5</span>
+                    </div>
+                    <input type="range" id="inp-count" min="3" max="20" step="1" value="5" class="w-full" oninput="updateSettings()">
+                    <p class="text-[10px] text-slate-500 mt-1">Wymaga N+1 kliknięć (Start + N razy Stop).</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-800/50 p-2 rounded border border-slate-700">
+                        <div class="text-[10px] text-slate-500">Długość (L)</div>
+                        <div class="font-mono text-slate-200">1.000 m</div>
+                        <div class="text-[10px] text-slate-600">±0.001 m</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-2 rounded border border-slate-700">
+                        <div class="text-[10px] text-slate-500">Masa (m)</div>
+                        <div class="font-mono text-slate-200">1.00 kg</div>
+                        <div class="text-[10px] text-slate-600">nieistotna</div>
+                    </div>
+                </div>
+
+                <button onclick="resetExperiment()" class="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold rounded border border-slate-600 transition-colors text-sm">
+                    Resetuj Eksperyment
+                </button>
+            </div>
+
+            <!-- Tabela Pomiarowa -->
+            <div id="results-section" class="space-y-4 opacity-50 pointer-events-none transition-opacity duration-500">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Dziennik Pomiarowy</h2>
+                
+                <div class="bg-slate-900 rounded border border-slate-700 overflow-hidden">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-800 text-slate-400 text-xs uppercase">
+                            <tr>
+                                <th class="px-4 py-2">#</th>
+                                <th class="px-4 py-2">Czas $t_i$ [s]</th>
+                                <th class="px-4 py-2 text-right">Okres $T_i$ [s]</th>
+                            </tr>
+                        </thead>
+                        <tbody id="measurement-table" class="font-mono text-slate-300 divide-y divide-slate-800">
+                            <!-- Rows injected via JS -->
+                            <tr><td colspan="3" class="px-4 py-2 text-center text-slate-600 italic">Oczekiwanie na dane...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Raport -->
+            <div id="report-section" class="hidden space-y-4 border-t border-slate-700 pt-6">
+                <h2 class="text-xs font-bold text-green-400 uppercase tracking-wider">Analiza Niepewności</h2>
+                
+                <div class="text-xs text-slate-300 space-y-4 font-serif leading-relaxed">
+                    
+                    <!-- Krok 1 -->
+                    <div>
+                        <p class="font-bold text-slate-400 mb-1">1. Średnia arytmetyczna okresu:</p>
+                        <div id="math-mean" class="bg-slate-800/50 p-2 rounded"></div>
+                    </div>
+
+                    <!-- Krok 2 -->
+                    <div>
+                        <p class="font-bold text-slate-400 mb-1">2. Odchylenie standardowe średniej ($\Delta T$):</p>
+                        <div id="math-std" class="bg-slate-800/50 p-2 rounded"></div>
+                        <p class="text-slate-500 mt-1">Przyjęto jako niepewność pomiaru czasu.</p>
+                    </div>
+
+                    <!-- Krok 3 -->
+                    <div>
+                        <p class="font-bold text-slate-400 mb-1">3. Przyspieszenie ziemskie ($g$):</p>
+                        <p>Ze wzoru na okres wahadła matematycznego:</p>
+                        <div class="py-2">$$ g = \frac{4\pi^2 L}{\bar{T}^2} $$</div>
+                        <div id="math-g-calc" class="bg-slate-800/50 p-2 rounded"></div>
+                    </div>
+
+                    <!-- Krok 4 -->
+                    <div>
+                        <p class="font-bold text-amber-400 mb-1">4. Niepewność pomiarowa ($\Delta g$):</p>
+                        <p>Stosujemy metodę różniczki zupełnej (przenoszenie błędu):</p>
+                        <div class="py-2">$$ |\Delta g| = \left| \frac{\partial g}{\partial L} \right| \Delta L + \left| \frac{\partial g}{\partial T} \right| \Delta T $$</div>
+                        <p>Po obliczeniu pochodnych cząstkowych:</p>
+                        <div class="py-2">$$ \Delta g = g \left( \frac{\Delta L}{L} + \frac{2 \Delta T}{\bar{T}} \right) $$</div>
+                        <p>Podstawienie wartości:</p>
+                        <div id="math-error-calc" class="bg-slate-800/50 p-2 rounded border border-amber-900/30"></div>
+                    </div>
+
+                    <!-- Wynik -->
+                    <div class="pt-2">
+                        <p class="font-bold text-slate-200">Wynik końcowy:</p>
+                        <div id="final-result" class="text-xl text-green-400 font-mono font-bold mt-1"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <script>
+        // --- KONFIGURACJA ---
+        const config = {
+            L: 1.0,       // Długość wahadła [m]
+            dL: 0.001,    // Niepewność długości [m]
+            g_real: 9.81, // Rzeczywiste g (do symulacji)
+            targetN: 5    // Ilość pomiarów do wykonania
+        };
+
+        const state = {
+            status: 'IDLE', // IDLE, MEASURING, FINISHED
+            clicks: [],     // Tablica timestampów [ms]
+            periods: [],    // Tablica obliczonych okresów [s]
+            startTime: 0,
+            simTime: 0,
+            animationId: null
+        };
+
+        const canvas = document.getElementById('pendulum-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- SYMULACJA FIZYKI ---
+
+        // Równanie ruchu wahadła: theta(t) = theta_max * cos(omega * t)
+        // Omega = sqrt(g/L)
+        // T_theoretical = 2 * PI * sqrt(L/g)
+        
+        function getPendulumState(timeMs) {
+            const t = timeMs / 1000; // sekundy
+            const omega = Math.sqrt(config.g_real / config.L);
+            const amplitude = Math.PI / 6; // 30 stopni
+            
+            const theta = amplitude * Math.cos(omega * t);
+            
+            // Konwersja na współrzędne ekranowe
+            const centerX = canvas.width / 2;
+            const centerY = 50; // Punkt zawieszenia
+            const scale = canvas.height * 0.8; // Długość sznurka w pikselach
+            
+            const bobX = centerX + Math.sin(theta) * scale;
+            const bobY = centerY + Math.cos(theta) * scale;
+            
+            return { x: bobX, y: bobY, theta: theta, scale: scale, centerX: centerX, centerY: centerY };
+        }
+
+        // --- RENDEROWANIE ---
+
+        function draw() {
+            // Resize if needed
+            if (canvas.width !== canvas.parentElement.clientWidth || canvas.height !== canvas.parentElement.clientHeight) {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Czas symulacji
+            // Używamy performance.now() dla płynności, ale offsetujemy start
+            const now = performance.now();
+            const p = getPendulumState(now);
+
+            // Rysowanie "sufitu"
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(p.centerX - 50, p.centerY);
+            ctx.lineTo(p.centerX + 50, p.centerY);
+            ctx.stroke();
+
+            // Rysowanie Linii Równowagi (celownik)
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(p.centerX, p.centerY);
+            ctx.lineTo(p.centerX, canvas.height);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Sznurek
+            ctx.strokeStyle = '#94a3b8'; // Slate-400
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(p.centerX, p.centerY);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+
+            // Ciężarek
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 20, 0, Math.PI * 2);
+            ctx.fillStyle = '#f59e0b'; // Amber-500
+            ctx.fill();
+            
+            // "Odbłysk" na ciężarku
+            ctx.beginPath();
+            ctx.arc(p.x - 6, p.y - 6, 6, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.fill();
+
+            // Znacznik środka ciężarka (pomoc celownicza)
+            ctx.fillStyle = '#78350f';
+            ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+
+            requestAnimationFrame(draw);
+        }
+
+        // --- LOGIKA POMIAROWA ---
+
+        function handleInput() {
+            if (state.status === 'FINISHED') return;
+
+            const now = performance.now();
+            
+            // Wizualny feedback (flash ekranu)
+            const main = document.getElementById('sim-container');
+            main.classList.remove('flash-effect');
+            void main.offsetWidth; // trigger reflow
+            main.classList.add('flash-effect');
+
+            if (state.status === 'IDLE') {
+                // Pierwsze kliknięcie (Start)
+                state.status = 'MEASURING';
+                state.clicks.push(now);
+                
+                document.getElementById('status-text').innerText = "Pomiar w toku...";
+                document.getElementById('status-text').className = "text-lg font-bold text-amber-400 animate-pulse";
+                document.getElementById('results-section').classList.remove('opacity-50', 'pointer-events-none');
+                
+                updateTable();
+                
+            } else if (state.status === 'MEASURING') {
+                // Kolejne kliknięcia
+                const lastClick = state.clicks[state.clicks.length - 1];
+                const deltaT = (now - lastClick) / 1000; // w sekundach
+                
+                // Zabezpieczenie przed double-clickiem (np. min 0.5s)
+                // Teoretyczny okres to ~2s, więc kliknięcie szybciej niż 1.5s to błąd usera
+                if (deltaT < 0.5) return; 
+
+                state.clicks.push(now);
+                state.periods.push(deltaT);
+                
+                // Pokaż dymek z czasem
+                showFloatingText(`+${deltaT.toFixed(3)}s`);
+
+                updateTable();
+
+                // Sprawdź czy koniec
+                if (state.periods.length >= config.targetN) {
+                    finishExperiment();
+                }
+            }
+            
+            updateCounter();
+        }
+
+        function finishExperiment() {
+            state.status = 'FINISHED';
+            document.getElementById('status-text').innerText = "Pomiar Zakończony";
+            document.getElementById('status-text').className = "text-lg font-bold text-green-500";
+            document.getElementById('report-section').classList.remove('hidden');
+            
+            calculateAndDisplayResults();
+        }
+
+        function calculateAndDisplayResults() {
+            // 1. Średnia
+            const sumT = state.periods.reduce((a, b) => a + b, 0);
+            const meanT = sumT / state.periods.length;
+
+            // 2. Odchylenie standardowe próbki
+            let sumSqDiff = 0;
+            state.periods.forEach(t => sumSqDiff += (t - meanT) ** 2);
+            // Odchylenie standardowe pojedynczego pomiaru
+            const stdDev = Math.sqrt(sumSqDiff / (state.periods.length - 1));
+            // Odchylenie standardowe średniej (niepewność typu A)
+            const stdErrMean = stdDev / Math.sqrt(state.periods.length);
+
+            // Przyjmujemy Delta T jako błąd standardowy średniej
+            // (Można by tu dodać błąd systematyczny stopera/reakcji, ale trzymajmy się statystyki z pomiarów)
+            const deltaT = stdErrMean;
+
+            // 3. Obliczenie g
+            const g_calc = (4 * Math.PI * Math.PI * config.L) / (meanT * meanT);
+
+            // 4. Różniczka (Niepewność g)
+            // dg = g * (dL/L + 2*dT/T)
+            const termL = config.dL / config.L;
+            const termT = (2 * deltaT) / meanT;
+            const relativeError = termL + termT;
+            const deltaG = g_calc * relativeError;
+
+            // Renderowanie HTML z MathJax
+            
+            // Krok 1: Średnia
+            const latexMean = `$$ \\bar{T} = \\frac{1}{${config.targetN}} \\sum T_i = \\mathbf{${meanT.toFixed(4)}\\,s} $$`;
+            document.getElementById('math-mean').innerHTML = latexMean;
+
+            // Krok 2: Odchylenie
+            const latexStd = `$$ \\Delta T = \\frac{S_T}{\\sqrt{N}} = \\mathbf{${deltaT.toFixed(4)}\\,s} $$`;
+            document.getElementById('math-std').innerHTML = latexStd;
+
+            // Krok 3: g
+            const latexG = `$$ g = \\frac{4\\pi^2 \\cdot ${config.L.toFixed(3)}}{(${meanT.toFixed(3)})^2} \\approx \\mathbf{${g_calc.toFixed(3)}\\,m/s^2} $$`;
+            document.getElementById('math-g-calc').innerHTML = latexG;
+
+            // Krok 4: Błąd
+            const latexErr = `
+                $$ \\begin{aligned} 
+                \\Delta g &= ${g_calc.toFixed(2)} \\cdot \\left( \\frac{${config.dL}}{${config.L}} + \\frac{2 \\cdot ${deltaT.toFixed(3)}}{${meanT.toFixed(3)}} \\right) \\\\
+                \\Delta g &= ${g_calc.toFixed(2)} \\cdot (${termL.toFixed(4)} + ${termT.toFixed(4)}) \\\\
+                \\Delta g &\\approx \\mathbf{${deltaG.toFixed(3)}\\,m/s^2}
+                \\end{aligned} $$
+            `;
+            document.getElementById('math-error-calc').innerHTML = latexErr;
+
+            // Wynik końcowy
+            document.getElementById('final-result').innerText = `${g_calc.toFixed(2)} ± ${deltaG.toFixed(2)} m/s²`;
+
+            // Odśwież MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // --- UI HELPERS ---
+
+        function updateSettings() {
+            config.targetN = parseInt(document.getElementById('inp-count').value);
+            document.getElementById('val-count').innerText = config.targetN;
+            resetExperiment();
+        }
+
+        function updateCounter() {
+            const clicksNeeded = config.targetN + 1;
+            const currentClicks = state.clicks.length;
+            document.getElementById('click-counter').innerText = 
+                `Kliknięcia: ${currentClicks}/${clicksNeeded}`;
+        }
+
+        function updateTable() {
+            const tbody = document.getElementById('measurement-table');
+            tbody.innerHTML = '';
+
+            // Pierwszy wiersz (Start)
+            if (state.clicks.length > 0) {
+                const row = document.createElement('tr');
+                row.className = "border-b border-slate-800 text-slate-500";
+                row.innerHTML = `<td class="px-4 py-2">Start</td><td class="px-4 py-2">0.000</td><td class="px-4 py-2 text-right">-</td>`;
+                tbody.appendChild(row);
+            }
+
+            // Pomiary
+            state.periods.forEach((t, i) => {
+                const row = document.createElement('tr');
+                row.className = "border-b border-slate-800 hover:bg-slate-800/30 transition-colors";
+                // Czas całkowity od startu
+                const totalTime = (state.clicks[i+1] - state.clicks[0]) / 1000;
+                
+                row.innerHTML = `
+                    <td class="px-4 py-2 text-amber-500 font-bold">${i+1}</td>
+                    <td class="px-4 py-2">${totalTime.toFixed(3)}</td>
+                    <td class="px-4 py-2 text-right font-bold text-slate-200">${t.toFixed(3)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function resetExperiment() {
+            state.status = 'IDLE';
+            state.clicks = [];
+            state.periods = [];
+            document.getElementById('status-text').innerText = "Gotowy";
+            document.getElementById('status-text').className = "text-lg font-bold text-slate-200";
+            document.getElementById('results-section').classList.add('opacity-50', 'pointer-events-none');
+            document.getElementById('report-section').classList.add('hidden');
+            
+            // Wyczyść tabelę
+            document.getElementById('measurement-table').innerHTML = `<tr><td colspan="3" class="px-4 py-2 text-center text-slate-600 italic">Oczekiwanie na dane...</td></tr>`;
+            
+            updateCounter();
+        }
+
+        function showFloatingText(text) {
+            const overlay = document.getElementById('feedback-overlay');
+            const el = document.createElement('div');
+            el.className = "absolute text-2xl font-bold text-amber-400 transition-all duration-1000 ease-out pointer-events-none";
+            el.style.top = "40%";
+            el.style.opacity = "1";
+            el.innerText = text;
+            overlay.appendChild(el);
+
+            // Animacja
+            requestAnimationFrame(() => {
+                el.style.top = "20%";
+                el.style.opacity = "0";
+            });
+
+            setTimeout(() => {
+                el.remove();
+            }, 1000);
+        }
+
+        // --- INITIALIZATION ---
+
+        // Input
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault(); // Stop scroll
+                handleInput();
+            }
+        });
+
+        document.getElementById('btn-measure').addEventListener('click', (e) => {
+            e.preventDefault();
+            handleInput();
+        });
+
+        // Start animation loop
+        draw();
+        updateSettings();
+
+    </script>
+</body>
+</html>
