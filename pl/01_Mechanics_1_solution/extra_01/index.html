@@ -1,0 +1,1598 @@
+
+<!doctype html>
+<html lang="pl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dchorazkiewicz.github.io/Physics_Problems_Repo/pl/01_Mechanics_1_solution/extra_01/">
+      
+      
+        <link rel="prev" href="../../01_Mechanics_1/">
+      
+      
+        <link rel="next" href="../extra_02/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="pl">
+        
+          <link rel="alternate" href="../../../01_Mechanics_1_solution/extra_01/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Notatka 01 - Physics Problems</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#analiza-kinematyczna-i-dynamiczna-rzutu-ukosnego-z-dowolnej-wysokosci" class="md-skip">
+          Przejdź do treści
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Nagłówek">
+    <a href="../../" title="Physics Problems" class="md-header__button md-logo" aria-label="Physics Problems" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Physics Problems
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Notatka 01
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Wybierz język">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="pl" class="md-select__link">
+              Polski
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../01_Mechanics_1_solution/extra_01/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Szukaj" placeholder="Szukaj" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Szukaj">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Wyczyść" aria-label="Wyczyść" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicjowanie wyszukiwania
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Nawigacja" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Physics Problems" class="md-nav__button md-logo" aria-label="Physics Problems" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Physics Problems
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00_Intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wprowadzenie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanika 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Mechanika 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Mechanics_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sekcja 1: Mechanika I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notatki Dodatkowe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notatki Dodatkowe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notatka 01
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notatka 01
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Spis treści">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Spis treści
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-wstep-definicja-problemu-i-model-fizyczny" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Wstęp: Definicja problemu i model fizyczny
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ukad-wsporzednych-i-warunki-poczatkowe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Układ współrzędnych i warunki początkowe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dynamika-rownania-rozniczkowe-ruchu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dynamika: Równania różniczkowe ruchu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-kinematyka-cakowanie-rownan-ruchu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Kinematyka: Całkowanie równań ruchu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Kinematyka: Całkowanie równań ruchu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-predkosc-chwilowa-vecvt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Prędkość chwilowa \(\vec{v}(t)\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-poozenie-vecrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Położenie \(\vec{r}(t)\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rownanie-toru-ruchu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Równanie toru ruchu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-maksymalna-wysokosc-i-czas-wznoszenia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Maksymalna wysokość i czas wznoszenia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cakowity-czas-lotu-t_c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Całkowity czas lotu (\(t_c\))
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-zasieg-rzutu-z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Zasięg rzutu (\(Z\))
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-predkosc-koncowa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Prędkość końcowa
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extra_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notatka 02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extra_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notatka 03
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Mechanics_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanika 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Waves/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Electromagnetism_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elektromagnetyzm 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Electromagnetism_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elektromagnetyzm 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Circuits_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Obwody 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_Circuits_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Obwody 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_Measurements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pomiary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09_Cosmos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kosmos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10_Astronomy_and_Astrophysics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Astronomia i Astrofizyka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11_Cosmology_and_Relativity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kosmologia i Względność
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12_Modern_Physics_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fizyka Współczesna 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13_Modern_Physics_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fizyka Współczesna 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animacje
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Animacje
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/projectile_motion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rzut Ukośny
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/pendulum.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wahadło
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/conics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stożkowe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Spis treści">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Spis treści
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-wstep-definicja-problemu-i-model-fizyczny" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Wstęp: Definicja problemu i model fizyczny
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ukad-wsporzednych-i-warunki-poczatkowe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Układ współrzędnych i warunki początkowe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dynamika-rownania-rozniczkowe-ruchu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dynamika: Równania różniczkowe ruchu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-kinematyka-cakowanie-rownan-ruchu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Kinematyka: Całkowanie równań ruchu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Kinematyka: Całkowanie równań ruchu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-predkosc-chwilowa-vecvt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Prędkość chwilowa \(\vec{v}(t)\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-poozenie-vecrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Położenie \(\vec{r}(t)\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rownanie-toru-ruchu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Równanie toru ruchu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-maksymalna-wysokosc-i-czas-wznoszenia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Maksymalna wysokość i czas wznoszenia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cakowity-czas-lotu-t_c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Całkowity czas lotu (\(t_c\))
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-zasieg-rzutu-z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Zasięg rzutu (\(Z\))
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-predkosc-koncowa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Prędkość końcowa
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="analiza-kinematyczna-i-dynamiczna-rzutu-ukosnego-z-dowolnej-wysokosci">Analiza kinematyczna i dynamiczna rzutu ukośnego z dowolnej wysokości</h1>
+<h2 id="1-wstep-definicja-problemu-i-model-fizyczny">1. Wstęp: Definicja problemu i model fizyczny</h2>
+<p>Poniższa analiza przedstawia pełne wyprowadzenie równań opisujących ruch ciała punktowego w jednorodnym polu grawitacyjnym. Rozważamy przypadek ogólny, w którym ciało zostaje wystrzelone z pewnej wysokości początkowej <span class="arithmatex">\(h\)</span>.</p>
+<p><strong>Założenia modelu:</strong></p>
+<ul>
+<li><strong>Obiekt:</strong> Punkt materialny o masie <span class="arithmatex">\(m\)</span> (zaniedbujemy wymiary ciała i jego rotację).</li>
+<li><strong>Siły:</strong> Jedyną siłą działającą na ciało jest siła grawitacji <span class="arithmatex">\(\vec{F}_g = m\vec{g}\)</span>. Pomijamy opory ruchu (np. opór powietrza).</li>
+<li><strong>Pole:</strong> Przyspieszenie ziemskie <span class="arithmatex">\(\vec{g}\)</span> jest stałe (co do wartości, kierunku i zwrotu).</li>
+<li><strong>Przestrzeń:</strong> Płaska, dwuwymiarowa płaszczyzna <span class="arithmatex">\(Oxy\)</span>.</li>
+</ul>
+<h2 id="2-ukad-wsporzednych-i-warunki-poczatkowe">2. Układ współrzędnych i warunki początkowe</h2>
+<p>Definiujemy kartezjański układ współrzędnych:</p>
+<ul>
+<li>Oś <span class="arithmatex">\(Ox\)</span>: pozioma, na poziomie gruntu (<span class="arithmatex">\(y=0\)</span>).</li>
+<li>Oś <span class="arithmatex">\(Oy\)</span>: pionowa, skierowana w górę.</li>
+<li>Wektor przyspieszenia ziemskiego: <span class="arithmatex">\(\vec{g} = [0, -g]\)</span>.</li>
+</ul>
+<p><strong>Warunki początkowe w chwili <span class="arithmatex">\(t_0 = 0\)</span>:</strong></p>
+<ol>
+<li><strong>Położenie początkowe:</strong>
+    Ciało znajduje się na wysokości <span class="arithmatex">\(h\)</span> nad początkiem układu współrzędnych (na osi <span class="arithmatex">\(Oy\)</span>).</li>
+</ol>
+<div class="arithmatex">\[
+\vec{r}_0 = [x_0, y_0] = [0, h] \quad \text{gdzie } h \ge 0
+\]</div>
+<ol>
+<li><strong>Prędkość początkowa:</strong>
+    Ciało zostaje wyrzucone z prędkością o wartości <span class="arithmatex">\(v_0\)</span> pod kątem <span class="arithmatex">\(\alpha\)</span> do poziomu (<span class="arithmatex">\(\alpha \in (0, \pi/2)\)</span>). Dokonujemy dekompozycji wektora prędkości na składowe:</li>
+</ol>
+<div class="arithmatex">\[
+\vec{v}_0 = [v_{0x}, v_{0y}] = [v_0 \cos(\alpha), v_0 \sin(\alpha)]
+\]</div>
+<h2 id="3-dynamika-rownania-rozniczkowe-ruchu">3. Dynamika: Równania różniczkowe ruchu</h2>
+<p>Punktem wyjścia jest II zasada dynamiki Newtona.</p>
+<div class="arithmatex">\[
+\vec{F} = m\vec{a}
+\]</div>
+<p>Ponieważ jedyną siłą jest ciężar <span class="arithmatex">\(\vec{F}_g = m\vec{g}\)</span>:</p>
+<div class="arithmatex">\[
+m\vec{a} = m\vec{g}
+\]</div>
+<p>Po podzieleniu przez masę <span class="arithmatex">\(m\)</span>, otrzymujemy wektor przyspieszenia, który jest stały w czasie:</p>
+<div class="arithmatex">\[
+\vec{a}(t) = [a_x, a_y] = [0, -g]
+\]</div>
+<p>Z definicji przyspieszenia jako drugiej pochodnej położenia po czasie (<span class="arithmatex">\(\vec{a} = \frac{d^2\vec{r}}{dt^2}\)</span>), problem sprowadza się do rozwiązania układu równań różniczkowych drugiego rzędu.</p>
+<h2 id="4-kinematyka-cakowanie-rownan-ruchu">4. Kinematyka: Całkowanie równań ruchu</h2>
+<p>Aby uzyskać prędkość i położenie, musimy dwukrotnie scałkować wektor przyspieszenia względem czasu, uwzględniając stałe całkowania wynikające z warunków początkowych.</p>
+<h3 id="41-predkosc-chwilowa-vecvt">4.1. Prędkość chwilowa <span class="arithmatex">\(\vec{v}(t)\)</span></h3>
+<p>Prędkość jest funkcją pierwotną przyspieszenia: <span class="arithmatex">\(\vec{v}(t) = \int \vec{a}(t) \, dt\)</span>.</p>
+<p><strong>Składowa pozioma (<span class="arithmatex">\(x\)</span>):</strong></p>
+<div class="arithmatex">\[
+v_x(t) = \int a_x \, dt = \int 0 \, dt = C_1
+\]</div>
+<p>Stałą <span class="arithmatex">\(C_1\)</span> wyznaczamy dla <span class="arithmatex">\(t=0\)</span>. Wiemy, że <span class="arithmatex">\(v_x(0) = v_0 \cos(\alpha)\)</span>, zatem:</p>
+<div class="arithmatex">\[
+v_x(t) = v_0 \cos(\alpha)
+\]</div>
+<p>Wniosek: Składowa pozioma prędkości jest stała (ruch jednostajny).</p>
+<p><strong>Składowa pionowa (<span class="arithmatex">\(y\)</span>):</strong></p>
+<div class="arithmatex">\[
+v_y(t) = \int a_y \, dt = \int -g \, dt = -gt + C_2
+\]</div>
+<p>Stałą <span class="arithmatex">\(C_2\)</span> wyznaczamy dla <span class="arithmatex">\(t=0\)</span>. Wiemy, że <span class="arithmatex">\(v_y(0) = v_0 \sin(\alpha)\)</span>, zatem:</p>
+<div class="arithmatex">\[
+v_y(t) = v_0 \sin(\alpha) - gt
+\]</div>
+<p>Wniosek: Składowa pionowa zmienia się liniowo w czasie (ruch jednostajnie zmienny).</p>
+<h3 id="42-poozenie-vecrt">4.2. Położenie <span class="arithmatex">\(\vec{r}(t)\)</span></h3>
+<p>Położenie jest funkcją pierwotną prędkości: <span class="arithmatex">\(\vec{r}(t) = \int \vec{v}(t) \, dt\)</span>.</p>
+<p><strong>Współrzędna pozioma (<span class="arithmatex">\(x\)</span>):</strong></p>
+<div class="arithmatex">\[
+x(t) = \int v_x(t) \, dt = \int v_0 \cos(\alpha) \, dt = v_0 t \cos(\alpha) + C_3
+\]</div>
+<p>Dla <span class="arithmatex">\(t=0\)</span>, mamy <span class="arithmatex">\(x(0) = 0\)</span>, więc <span class="arithmatex">\(C_3 = 0\)</span>.</p>
+<div class="arithmatex">\[
+x(t) = v_0 t \cos(\alpha)
+\]</div>
+<p><strong>Współrzędna pionowa (<span class="arithmatex">\(y\)</span>):</strong></p>
+<div class="arithmatex">\[
+y(t) = \int v_y(t) \, dt = \int (v_0 \sin(\alpha) - gt) \, dt
+\]</div>
+<div class="arithmatex">\[
+y(t) = v_0 t \sin(\alpha) - \frac{1}{2}gt^2 + C_4
+\]</div>
+<p>To jest kluczowy moment dla uwzględnienia wysokości początkowej. Dla <span class="arithmatex">\(t=0\)</span>, ciało znajduje się na wysokości <span class="arithmatex">\(h\)</span>, czyli <span class="arithmatex">\(y(0) = h\)</span>. Podstawiając to do równania:</p>
+<div class="arithmatex">\[
+0 - 0 + C_4 = h \implies C_4 = h
+\]</div>
+<p>Ostateczne równanie współrzędnej pionowej:</p>
+<div class="arithmatex">\[
+y(t) = h + v_0 t \sin(\alpha) - \frac{1}{2}gt^2
+\]</div>
+<h2 id="5-rownanie-toru-ruchu">5. Równanie toru ruchu</h2>
+<p>Aby wyznaczyć geometryczny kształt toru, eliminujemy parametr czasu <span class="arithmatex">\(t\)</span> z układu równań położenia.</p>
+<p>Z równania na <span class="arithmatex">\(x(t)\)</span> wyznaczamy <span class="arithmatex">\(t\)</span>:</p>
+<div class="arithmatex">\[
+t = \frac{x}{v_0 \cos(\alpha)}
+\]</div>
+<p>Podstawiamy to wyrażenie do równania na <span class="arithmatex">\(y(t)\)</span>:</p>
+<div class="arithmatex">\[
+y(x) = h + v_0 \sin(\alpha) \left( \frac{x}{v_0 \cos(\alpha)} \right) - \frac{1}{2}g \left( \frac{x}{v_0 \cos(\alpha)} \right)^2
+\]</div>
+<p>Po uproszczeniu otrzymujemy jawną postać funkcji <span class="arithmatex">\(y(x)\)</span>:</p>
+<div class="arithmatex">\[
+y(x) = h + x \tan(\alpha) - \frac{g}{2 v_0^2 \cos^2(\alpha)} x^2
+\]</div>
+<p>Jest to równanie wielomianowe drugiego stopnia względem <span class="arithmatex">\(x\)</span> (<span class="arithmatex">\(y = Ax^2 + Bx + C\)</span>), co dowodzi, że torem ruchu w jednorodnym polu grawitacyjnym jest <strong>parabola</strong> o ramionach skierowanych w dół.</p>
+<h2 id="6-maksymalna-wysokosc-i-czas-wznoszenia">6. Maksymalna wysokość i czas wznoszenia</h2>
+<p>Maksymalna wysokość (<span class="arithmatex">\(H_{max}\)</span>) odpowiada lokalnemu ekstremum funkcji <span class="arithmatex">\(y(t)\)</span>. Z rachunku różniczkowego wiemy, że warunkiem koniecznym istnienia ekstremum jest zerowanie się pierwszej pochodnej.</p>
+<div class="arithmatex">\[
+\frac{dy}{dt} = v_y(t) = 0
+\]</div>
+<p>Fizycznie oznacza to moment, w którym ciało przestaje się wznosić, a zaczyna opadać.</p>
+<div class="arithmatex">\[
+v_0 \sin(\alpha) - gt_{wzn} = 0
+\]</div>
+<p>Stąd wyznaczamy <strong>czas wznoszenia (<span class="arithmatex">\(t_{wzn}\)</span>)</strong>:</p>
+<div class="arithmatex">\[
+t_{wzn} = \frac{v_0 \sin(\alpha)}{g}
+\]</div>
+<p>Aby obliczyć <strong>maksymalną wysokość</strong>, podstawiamy <span class="arithmatex">\(t_{wzn}\)</span> do równania położenia <span class="arithmatex">\(y(t)\)</span>:</p>
+<div class="arithmatex">\[
+H_{max} = y(t_{wzn}) = h + v_0 \left( \frac{v_0 \sin(\alpha)}{g} \right) \sin(\alpha) - \frac{1}{2}g \left( \frac{v_0 \sin(\alpha)}{g} \right)^2
+\]</div>
+<div class="arithmatex">\[
+H_{max} = h + \frac{v_0^2 \sin^2(\alpha)}{g} - \frac{v_0^2 \sin^2(\alpha)}{2g}
+\]</div>
+<div class="arithmatex">\[
+H_{max} = h + \frac{v_0^2 \sin^2(\alpha)}{2g}
+\]</div>
+<h2 id="7-cakowity-czas-lotu-t_c">7. Całkowity czas lotu (<span class="arithmatex">\(t_c\)</span>)</h2>
+<p>Czas lotu to czas, po którym ciało uderza w ziemię, czyli osiąga współrzędną <span class="arithmatex">\(y = 0\)</span>.</p>
+<div class="arithmatex">\[
+y(t_c) = 0
+\]</div>
+<p>Podstawiając równanie ruchu:</p>
+<div class="arithmatex">\[
+h + v_0 t_c \sin(\alpha) - \frac{1}{2}gt_c^2 = 0
+\]</div>
+<p>Otrzymujemy równanie kwadratowe ze względu na <span class="arithmatex">\(t_c\)</span>. Dla przejrzystości pomnóżmy je przez <span class="arithmatex">\(-2\)</span>, aby uporządkować współczynniki:</p>
+<div class="arithmatex">\[
+g t_c^2 - 2v_0 \sin(\alpha) t_c - 2h = 0
+\]</div>
+<p>Rozwiązujemy je, licząc wyróżnik trójmianu (<span class="arithmatex">\(\Delta\)</span>):</p>
+<div class="arithmatex">\[
+\Delta = b^2 - 4ac = (-2v_0 \sin(\alpha))^2 - 4(g)(-2h)
+\]</div>
+<div class="arithmatex">\[
+\Delta = 4v_0^2 \sin^2(\alpha) + 8gh
+\]</div>
+<p>Ponieważ <span class="arithmatex">\(v_0^2, \sin^2(\alpha), g, h\)</span> są nieujemne, to <span class="arithmatex">\(\Delta &gt; 0\)</span>, co oznacza istnienie dwóch rozwiązań rzeczywistych:</p>
+<div class="arithmatex">\[
+t_{1,2} = \frac{-b \mp \sqrt{\Delta}}{2a} = \frac{2v_0 \sin(\alpha) \mp \sqrt{4v_0^2 \sin^2(\alpha) + 8gh}}{2g}
+\]</div>
+<p>Po wyciągnięciu czynnika przed pierwiastek i uproszczeniu przez 2:</p>
+<div class="arithmatex">\[
+t_{1,2} = \frac{v_0 \sin(\alpha) \mp \sqrt{v_0^2 \sin^2(\alpha) + 2gh}}{g}
+\]</div>
+<p><strong>Interpretacja fizyczna rozwiązań:</strong></p>
+<ol>
+<li><strong>Rozwiązanie z "minusem":</strong>
+    Wartość <span class="arithmatex">\(\sqrt{v_0^2 \sin^2(\alpha) + 2gh}\)</span> jest większa od <span class="arithmatex">\(v_0 \sin(\alpha)\)</span> (dla <span class="arithmatex">\(h &gt; 0\)</span>). Oznacza to, że licznik jest ujemny, a więc <span class="arithmatex">\(t &lt; 0\)</span>. Jest to rozwiązanie "nieistniejące" w rozpatrywanym procesie fizycznym (odpowiadałoby czasowi wystrzelenia z poziomu ziemi tak, aby w czasie <span class="arithmatex">\(t=0\)</span> ciało znalazło się w punkcie <span class="arithmatex">\((0,h)\)</span>). Odrzucamy je.</li>
+<li><strong>Rozwiązanie z "plusem":</strong>
+    Licznik jest dodatni. To jest szukany czas całkowity.</li>
+</ol>
+<p>Zatem <strong>całkowity czas lotu</strong> wynosi:</p>
+<div class="arithmatex">\[
+t_c = \frac{v_0 \sin(\alpha) + \sqrt{v_0^2 \sin^2(\alpha) + 2gh}}{g}
+\]</div>
+<h2 id="8-zasieg-rzutu-z">8. Zasięg rzutu (<span class="arithmatex">\(Z\)</span>)</h2>
+<p>Zasięg definiujemy jako odległość poziomą przebytą do momentu upadku: <span class="arithmatex">\(Z = x(t_c)\)</span>.
+Podstawiamy wyznaczony wcześniej czas <span class="arithmatex">\(t_c\)</span> do równania na <span class="arithmatex">\(x(t)\)</span>:</p>
+<div class="arithmatex">\[
+Z = v_0 \cos(\alpha) \cdot t_c
+\]</div>
+<div class="arithmatex">\[
+Z = \frac{v_0 \cos(\alpha)}{g} \left( v_0 \sin(\alpha) + \sqrt{v_0^2 \sin^2(\alpha) + 2gh} \right)
+\]</div>
+<p>Jest to pełne, analityczne wyrażenie na zasięg rzutu dla dowolnego <span class="arithmatex">\(h \ge 0\)</span>.</p>
+<h2 id="9-predkosc-koncowa">9. Prędkość końcowa</h2>
+<p>Aby znaleźć wektor prędkości w momencie uderzenia w ziemię, podstawiamy <span class="arithmatex">\(t_c\)</span> do równań na <span class="arithmatex">\(v_x(t)\)</span> i <span class="arithmatex">\(v_y(t)\)</span>. Wartość tej prędkości (szybkość) obliczamy z twierdzenia Pitagorasa:</p>
+<div class="arithmatex">\[
+v_{konc} = \sqrt{v_x(t_c)^2 + v_y(t_c)^2}
+\]</div>
+<p>Można również skorzystać z zasady zachowania energii mechanicznej, co stanowiłoby doskonałą weryfikację poprawności obliczeń kinematycznych:</p>
+<div class="arithmatex">\[
+\frac{m v_0^2}{2} + mgh = \frac{m v_{konc}^2}{2}
+\]</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Skopiowano do schowka", "clipboard.copy": "Kopiuj do schowka", "search.result.more.one": "1 wi\u0119cej na tej stronie", "search.result.more.other": "# wi\u0119cej na tej stronie", "search.result.none": "Brak wynik\u00f3w wyszukiwania", "search.result.one": "Wyniki wyszukiwania: 1", "search.result.other": "Wyniki wyszukiwania: #", "search.result.placeholder": "Zacznij pisa\u0107, aby szuka\u0107", "search.result.term.missing": "Brak", "select.version": "Wybierz wersj\u0119"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

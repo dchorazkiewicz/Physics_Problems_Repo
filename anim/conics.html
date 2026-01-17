@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krzywe Stożkowe - Grawitacja</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Style suwaków */
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: #22d3ee; margin-top: -6px; cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #4b5563; border-radius: 2px;
+        }
+        input[type=range]:focus { outline: none; }
+        aside::-webkit-scrollbar { width: 6px; }
+        aside::-webkit-scrollbar-track { background: #1f2937; }
+        aside::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+        
+        .tab-btn.active { border-bottom: 2px solid #22d3ee; color: #22d3ee; background-color: rgba(34, 211, 238, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans h-screen flex flex-col overflow-hidden">
+
+    <!-- Nagłówek -->
+    <header class="flex items-center justify-between px-6 py-4 bg-gray-800 border-b border-gray-700 shadow-md z-10 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="bg-cyan-600 p-2 rounded-lg">
+                <!-- Icon: Orbit/Atom -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .4 2l2.6 2.6a3 3 0 0 1-4.2 4.2l-2.6-2.6a1.8 1.8 0 0 0-2-.4"/><path d="M2 2l4.6 4.6a1.8 1.8 0 0 0 2 .4"/><path d="M15 19.4a1.8 1.8 0 0 0-2-.4"/><path d="M19.4 4.6a1.8 1.8 0 0 0-.4 2L16.4 9.2a3 3 0 0 1-4.2-4.2l2.6-2.6a1.8 1.8 0 0 0 .4-2"/></svg>
+            </div>
+            <h1 id="app-title" class="text-xl font-bold tracking-wide">Dynamika Krzywych Stożkowych</h1>
+        </div>
+
+        <!-- Zakładki Typów Krzywych -->
+        <div class="flex space-x-2 bg-gray-900 p-1 rounded-lg border border-gray-700">
+            <button class="tab-btn active px-4 py-1.5 rounded text-sm font-medium transition-colors hover:text-cyan-300" onclick="setMode('ellipse')" id="btn-ellipse">Elipsa / Okrąg</button>
+            <button class="tab-btn px-4 py-1.5 rounded text-sm font-medium transition-colors hover:text-cyan-300" onclick="setMode('parabola')" id="btn-parabola">Parabola</button>
+            <button class="tab-btn px-4 py-1.5 rounded text-sm font-medium transition-colors hover:text-cyan-300" onclick="setMode('hyperbola')" id="btn-hyperbola">Hiperbola</button>
+        </div>
+        
+        <button id="btn-lang" class="flex items-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm font-bold transition-colors border border-gray-600" onclick="toggleLang()">
+            <span id="lang-label">EN</span>
+        </button>
+    </header>
+
+    <!-- Główny Kontener -->
+    <div class="flex flex-1 overflow-hidden relative">
+
+        <!-- PANEL BOCZNY -->
+        <aside class="w-80 bg-gray-800 p-6 flex flex-col gap-5 overflow-y-auto border-r border-gray-700 shadow-xl z-20 shrink-0">
+            
+            <!-- Sterowanie Symulacją -->
+            <div class="space-y-4 border-b border-gray-700 pb-4">
+                <h2 id="hdr-control" class="text-xs uppercase text-gray-500 font-bold tracking-wider">Sterowanie</h2>
+                
+                <!-- Przyciski Play/Reset -->
+                <div class="flex items-center space-x-2">
+                    <button id="btn-play" class="flex-1 flex items-center justify-center py-2 rounded font-semibold transition-all shadow-lg bg-green-500 text-white hover:bg-green-600" onclick="togglePlay()">
+                        <span id="txt-play">Start</span>
+                    </button>
+                    <button class="p-2 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 border border-gray-600" onclick="resetSim()" title="Reset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                    </button>
+                </div>
+
+                <!-- Czas (Slider) -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-time">Czas</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-time">0.00</span>
+                    </div>
+                    <input type="range" min="0" max="100" step="0.1" value="0" class="w-full accent-cyan-500" id="inp-time" oninput="manualTime(this.value)">
+                </div>
+
+                <!-- Zoom (Slider) -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-zoom">Skala (Zoom)</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-zoom">1.0x</span>
+                    </div>
+                    <input type="range" min="0.1" max="2.0" step="0.1" value="1.0" class="w-full accent-cyan-500" id="inp-zoom" oninput="updateZoom(this.value)">
+                </div>
+
+                <!-- Prędkość Animacji (Slider) -->
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-speed">Szybkość animacji</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-speed">1.0x</span>
+                    </div>
+                    <input type="range" min="0.1" max="3.0" step="0.1" value="1.0" class="w-full accent-cyan-500" id="inp-speed" oninput="updateAnimSpeed(this.value)">
+                </div>
+            </div>
+
+            <!-- Parametry Krzywej -->
+            <div class="space-y-4" id="params-container">
+                <h2 id="hdr-params" class="text-xs uppercase text-gray-500 font-bold tracking-wider">Parametry Geometryczne</h2>
+                <!-- Generowane dynamicznie -->
+            </div>
+            
+            <!-- Legenda i Statystyki -->
+            <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700 space-y-2 mt-auto text-xs font-mono">
+                <div class="font-bold text-gray-400 mb-1 border-b border-gray-700 pb-1" id="hdr-legend">Wektory:</div>
+                <div class="flex items-center gap-2 text-cyan-400">
+                    <div class="w-3 h-3 bg-cyan-500 rounded-full"></div> <span id="leg-pos">Położenie (r)</span>
+                </div>
+                <div class="flex items-center gap-2 text-green-400">
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div> <span id="leg-vel">Prędkość (v)</span>
+                </div>
+                <div class="flex items-center gap-2 text-red-400">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div> <span id="leg-acc">Przyspieszenie (a)</span>
+                </div>
+                <hr class="border-gray-700 my-2">
+                <div id="stats-output" class="space-y-1 text-gray-300">
+                    <!-- Statsy -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- CANVAS -->
+        <main class="flex-1 relative bg-gray-950 flex flex-col items-center justify-center overflow-hidden">
+            <canvas id="main-canvas" class="cursor-crosshair w-full h-full block"></canvas>
+            
+            <!-- Overlay Ogniska -->
+            <div class="absolute top-4 right-4 bg-gray-800/80 backdrop-blur border border-gray-600 p-3 rounded text-xs font-mono text-gray-300 pointer-events-none">
+                <div class="mb-1 text-yellow-500 font-bold">★ Ognisko (0,0)</div>
+                <div id="debug-info"></div>
+            </div>
+            
+            <div class="absolute bottom-4 left-6 text-xs text-gray-600 font-mono pointer-events-none select-none">
+                <p>System: Kartezjański</p>
+                <p>Siła: Centralna (Grawitacyjna)</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- KONFIGURACJA I STAN ---
+        const state = {
+            mode: 'ellipse', // ellipse, parabola, hyperbola
+            lang: 'pl',
+            playing: false,
+            t: 0,            // Czas symulacji (Mean Anomaly)
+            
+            baseSpeed: 0.02, // Zmniejszona bazowa szybkość (było 0.05)
+            simSpeedMult: 1.0, // Mnożnik suwaka
+            zoom: 1.0,       // Skala widoku
+
+            // Zakresy czasu dla torów otwartych (do pętli)
+            limits: { parabola: 5.0, hyperbola: 5.0 },
+            
+            // Parametry fizyczne
+            params: {
+                a: 150,      // Półoś wielka (lub parametr skalujący)
+                e: 0.6,      // Mimośród (0 <= e < 1 dla elipsy, >1 hiperbola)
+                p: 100       // Parametr paraboli (2p = semi-latus rectum)
+            },
+
+            // Wartości chwilowe (do wyświetlania)
+            curr: { r: 0, v: 0, a: 0, x: 0, y: 0 }
+        };
+
+        const translations = {
+            pl: {
+                title: 'Dynamika Krzywych Stożkowych',
+                modes: { ellipse: 'Elipsa / Okrąg', parabola: 'Parabola', hyperbola: 'Hiperbola' },
+                start: 'Start', stop: 'Stop',
+                headers: { control: 'Sterowanie', params: 'Parametry Geometryczne', legend: 'Wektory:' },
+                labels: {
+                    time: 'Anomalia Średnia (Czas)',
+                    zoom: 'Skala (Zoom)',
+                    speed: 'Szybkość animacji',
+                    eccentricity: 'Mimośród (e)',
+                    semimajor: 'Półoś wielka (a)',
+                    paramP: 'Parametr (p)',
+                    pos: 'Wektor Wodzący (r)',
+                    vel: 'Prędkość (v)',
+                    acc: 'Przyspieszenie (a)'
+                },
+                stats: { dist: 'Odległość r:', speed: 'Szybkość v:', acc: 'Przysp. a:' }
+            },
+            en: {
+                title: 'Conic Section Dynamics',
+                modes: { ellipse: 'Ellipse / Circle', parabola: 'Parabola', hyperbola: 'Hyperbola' },
+                start: 'Start', stop: 'Stop',
+                headers: { control: 'Controls', params: 'Geometric Parameters', legend: 'Vectors:' },
+                labels: {
+                    time: 'Mean Anomaly (Time)',
+                    zoom: 'Scale (Zoom)',
+                    speed: 'Animation Speed',
+                    eccentricity: 'Eccentricity (e)',
+                    semimajor: 'Semi-major axis (a)',
+                    paramP: 'Parameter (p)',
+                    pos: 'Position Vector (r)',
+                    vel: 'Velocity (v)',
+                    acc: 'Acceleration (a)'
+                },
+                stats: { dist: 'Distance r:', speed: 'Speed v:', acc: 'Accel a:' }
+            }
+        };
+
+        // --- SILNIK MATEMATYCZNY (SOLVERY) ---
+
+        function solveKeplerEllipse(M, e) {
+            M = M % (2 * Math.PI);
+            if (M < 0) M += 2 * Math.PI;
+            let E = M;
+            for (let i = 0; i < 10; i++) {
+                let f = E - e * Math.sin(E) - M;
+                let df = 1 - e * Math.cos(E);
+                E = E - f / df;
+            }
+            return E;
+        }
+
+        function solveKeplerHyperbola(M, e) {
+            let H = M / (e - 1);
+            if (M > 30) H = Math.log(2*M/e);
+            for (let i = 0; i < 10; i++) {
+                let f = e * Math.sinh(H) - H - M;
+                let df = e * Math.cosh(H) - 1;
+                H = H - f / df;
+            }
+            return H;
+        }
+
+        function solveBarker(M) {
+            let a = 3; 
+            let b = -6 * M;
+            let temp = Math.sqrt(b*b/4 + a*a*a/27);
+            let B = Math.cbrt(-b/2 + temp) + Math.cbrt(-b/2 - temp);
+            return 2 * Math.atan(B);
+        }
+
+        // --- FIZYKA I KINEMATYKA ---
+
+        function calculateState() {
+            const { a, e, p } = state.params;
+            const mu = 50000; 
+
+            let rVec = {x:0, y:0};
+            let vVec = {x:0, y:0};
+            let aVec = {x:0, y:0};
+            let rMag = 0;
+
+            if (state.mode === 'ellipse') {
+                const M = state.t;
+                const E = solveKeplerEllipse(M, e);
+                const b = a * Math.sqrt(1 - e*e);
+                rVec.x = a * (Math.cos(E) - e);
+                rVec.y = b * Math.sin(E);
+                
+                rMag = Math.sqrt(rVec.x*rVec.x + rVec.y*rVec.y);
+
+                const vScale = Math.sqrt(mu / a) / rMag; 
+                vVec.x = -a * Math.sin(E) * vScale;
+                vVec.y = b * Math.cos(E) * vScale;
+
+            } else if (state.mode === 'parabola') {
+                const scaledM = state.t * 0.5;
+                const nu = solveBarker(scaledM);
+                
+                const rVal = state.params.p / (1 + Math.cos(nu));
+                
+                rVec.x = rVal * Math.cos(nu);
+                rVec.y = rVal * Math.sin(nu);
+                
+                rMag = rVal;
+
+                const k = Math.sqrt(mu / state.params.p);
+                const vr = k * Math.sin(nu);
+                const vt = k * (1 + Math.cos(nu));
+                
+                vVec.x = vr * Math.cos(nu) - vt * Math.sin(nu);
+                vVec.y = vr * Math.sin(nu) + vt * Math.cos(nu);
+
+            } else if (state.mode === 'hyperbola') {
+                let M = state.t;
+                // Brak hard clampingu tutaj, zapętlenie robimy w loop()
+                
+                const H = solveKeplerHyperbola(M, e);
+                const b = a * Math.sqrt(e*e - 1);
+                
+                rVec.x = a * (e - Math.cosh(H));
+                rVec.y = b * Math.sinh(H);
+                
+                rMag = Math.sqrt(rVec.x*rVec.x + rVec.y*rVec.y);
+
+                const n = Math.sqrt(mu / (a*a*a)); 
+                const dHdt = Math.sqrt(mu/a) / rMag;
+
+                vVec.x = -a * Math.sinh(H) * dHdt;
+                vVec.y = b * Math.cosh(H) * dHdt;
+            }
+
+            const accMag = mu / (rMag * rMag * rMag);
+            aVec.x = -rVec.x * accMag;
+            aVec.y = -rVec.y * accMag;
+
+            state.curr.x = rVec.x;
+            state.curr.y = rVec.y;
+            state.curr.r = rMag;
+            state.curr.vx = vVec.x;
+            state.curr.vy = vVec.y;
+            state.curr.v = Math.sqrt(vVec.x**2 + vVec.y**2);
+            state.curr.ax = aVec.x;
+            state.curr.ay = aVec.y;
+            state.curr.a = Math.sqrt(aVec.x**2 + aVec.y**2);
+        }
+
+        // --- RENDERING (CANVAS) ---
+        function draw() {
+            const canvas = document.getElementById('main-canvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            const scale = state.zoom; // Zoom factor
+
+            // Wyczyść
+            ctx.fillStyle = '#030712'; // gray-950
+            ctx.fillRect(0, 0, w, h);
+
+            const originX = w / 2;
+            const originY = h / 2;
+
+            // Siatka
+            drawGrid(ctx, w, h, originX, originY);
+
+            // Rysowanie Ogniska (0,0)
+            ctx.beginPath();
+            ctx.arc(originX, originY, 6, 0, Math.PI * 2);
+            ctx.fillStyle = '#eab308'; // yellow-500
+            ctx.fill();
+            ctx.shadowBlur = 10; ctx.shadowColor = '#eab308'; ctx.stroke(); ctx.shadowBlur = 0;
+
+            // Rysowanie Trajektorii (Ślad statyczny)
+            ctx.strokeStyle = '#4b5563'; // Jaśniejszy szary dla lepszej widoczności
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            
+            if (state.mode === 'ellipse') {
+                const { a, e } = state.params;
+                const b = a * Math.sqrt(1 - e*e);
+                for (let ang = 0; ang <= 2*Math.PI; ang += 0.05) {
+                    const tx = (a * (Math.cos(ang) - e)) * scale;
+                    const ty = (b * Math.sin(ang)) * scale;
+                    if (ang===0) ctx.moveTo(originX + tx, originY - ty);
+                    else ctx.lineTo(originX + tx, originY - ty);
+                }
+                ctx.closePath();
+            } else if (state.mode === 'parabola') {
+                const p = state.params.p;
+                // Zwiększony zakres rysowania dla paraboli
+                for (let nu = -2.8; nu <= 2.8; nu += 0.05) {
+                    const r = p / (1 + Math.cos(nu));
+                    const tx = (r * Math.cos(nu)) * scale;
+                    const ty = (r * Math.sin(nu)) * scale;
+                    if (nu===-2.8) ctx.moveTo(originX + tx, originY - ty);
+                    else ctx.lineTo(originX + tx, originY - ty);
+                }
+            } else if (state.mode === 'hyperbola') {
+                const { a, e } = state.params;
+                const b = a * Math.sqrt(e*e - 1);
+                // Zwiększony zakres rysowania dla hiperboli
+                for (let H = -3.5; H <= 3.5; H += 0.05) {
+                    const tx = (a * (e - Math.cosh(H))) * scale;
+                    const ty = (b * Math.sinh(H)) * scale;
+                    if (H===-3.5) ctx.moveTo(originX + tx, originY - ty);
+                    else ctx.lineTo(originX + tx, originY - ty);
+                }
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Ciało niebieskie (skalowane pozycje)
+            const bodyX = originX + state.curr.x * scale;
+            const bodyY = originY - state.curr.y * scale; 
+
+            // Wektor Wodzący (r) - Cyan
+            drawArrow(ctx, originX, originY, bodyX, bodyY, '#06b6d4');
+
+            // Ciało
+            ctx.beginPath();
+            ctx.arc(bodyX, bodyY, 8, 0, Math.PI * 2);
+            ctx.fillStyle = '#22d3ee'; // cyan-400
+            ctx.fill();
+            ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+            // Wektory V i A nie są skalowane przez zoom geometrii (są w przestrzeni ekranu/fizycznej skali)
+            // ale zaczynają się od przeskalowanej pozycji ciała.
+            
+            // Wektor Prędkości (v) - Green
+            const vScale = 4; // Stała wizualna
+            drawArrow(ctx, bodyX, bodyY, bodyX + state.curr.vx * vScale, bodyY - state.curr.vy * vScale, '#4ade80');
+
+            // Wektor Przyspieszenia (a) - Red
+            const aScale = 400; 
+            drawArrow(ctx, bodyX, bodyY, bodyX + state.curr.ax * aScale, bodyY - state.curr.ay * aScale, '#f87171');
+        }
+
+        function drawGrid(ctx, w, h, ox, oy) {
+            ctx.strokeStyle = '#1f2937'; // gray-800
+            ctx.lineWidth = 1;
+            const step = 50 * state.zoom; // Siatka skaluje się razem z zoomem
+            
+            // Unikamy zbyt gęstej siatki przy małym zoomie
+            if (step < 10) return;
+
+            ctx.beginPath();
+            // Pionowe (wychodzące od środka)
+            for(let x = ox; x < w; x += step) { ctx.moveTo(x, 0); ctx.lineTo(x, h); }
+            for(let x = ox; x > 0; x -= step) { ctx.moveTo(x, 0); ctx.lineTo(x, h); }
+            // Poziome
+            for(let y = oy; y < h; y += step) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
+            for(let y = oy; y > 0; y -= step) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
+            ctx.stroke();
+
+            // Osie Główne
+            ctx.strokeStyle = '#374151';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, oy); ctx.lineTo(w, oy);
+            ctx.moveTo(ox, 0); ctx.lineTo(ox, h);
+            ctx.stroke();
+        }
+
+        function drawArrow(ctx, fromX, fromY, toX, toY, color) {
+            const headlen = 10;
+            const dx = toX - fromX;
+            const dy = toY - fromY;
+            const angle = Math.atan2(dy, dx);
+            const len = Math.sqrt(dx*dx + dy*dy);
+            
+            if (len < 2) return; 
+
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = 2;
+            
+            ctx.beginPath();
+            ctx.moveTo(fromX, fromY);
+            ctx.lineTo(toX, toY);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(toX, toY);
+            ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+            ctx.fill();
+        }
+
+        // --- UI & LOGIKA ---
+
+        function setMode(mode) {
+            state.mode = mode;
+            state.playing = false;
+            
+            // Reset czasu do początku zakresu dla danego trybu
+            if (mode === 'ellipse') state.t = 0;
+            else state.t = -state.limits[mode];
+
+            // Ustawienie mimośrodu przy zmianie trybu
+            if (mode === 'hyperbola') state.params.e = 2.0;
+            else if (mode === 'ellipse' && state.params.e >= 1) state.params.e = 0.6;
+
+            updateTabStyles();
+            renderParams();
+            updateSim();
+            updateUI(); // Odśwież play button
+        }
+
+        function updateTabStyles() {
+            ['ellipse', 'parabola', 'hyperbola'].forEach(m => {
+                const btn = document.getElementById(`btn-${m}`);
+                if (m === state.mode) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        function toggleLang() {
+            state.lang = state.lang === 'pl' ? 'en' : 'pl';
+            renderParams();
+            updateUI();
+        }
+
+        function renderParams() {
+            const container = document.getElementById('params-container');
+            container.innerHTML = `<h2 class="text-xs uppercase text-gray-500 font-bold tracking-wider">${translations[state.lang].headers.params}</h2>`;
+            const txt = translations[state.lang].labels;
+
+            if (state.mode === 'ellipse' || state.mode === 'hyperbola') {
+                addSlider(container, 'a', txt.semimajor, 50, 300, 10, state.params.a);
+                const minE = state.mode === 'ellipse' ? 0 : 1.25; // Zmiana minE na 1.25 dla hiperboli
+                const maxE = state.mode === 'ellipse' ? 0.95 : 3.0;
+                addSlider(container, 'e', txt.eccentricity, minE, maxE, 0.01, state.params.e);
+            } else {
+                addSlider(container, 'p', txt.paramP, 50, 300, 10, state.params.p);
+            }
+        }
+
+        function addSlider(parent, key, label, min, max, step, val) {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <div class="flex justify-between mb-1">
+                    <label class="text-sm text-cyan-400">${label}</label>
+                    <span class="text-sm font-mono text-white" id="val-${key}">${val}</span>
+                </div>
+                <input type="range" min="${min}" max="${max}" step="${step}" value="${val}" class="w-full accent-cyan-500" oninput="updateParam('${key}', this.value)">
+            `;
+            parent.appendChild(div);
+        }
+
+        function updateParam(key, val) {
+            state.params[key] = parseFloat(val);
+            document.getElementById(`val-${key}`).innerText = val;
+            updateSim();
+        }
+
+        function updateZoom(val) {
+            state.zoom = parseFloat(val);
+            document.getElementById('val-zoom').innerText = state.zoom.toFixed(1) + 'x';
+            updateSim();
+        }
+
+        function updateAnimSpeed(val) {
+            state.simSpeedMult = parseFloat(val);
+            document.getElementById('val-speed').innerText = state.simSpeedMult.toFixed(1) + 'x';
+        }
+
+        function manualTime(val) {
+            if (state.playing) togglePlay();
+            
+            if (state.mode === 'ellipse') {
+                state.t = (val / 100) * 2 * Math.PI;
+            } else {
+                // Mapuj 0-100 na zakres -limit do +limit
+                const limit = state.limits[state.mode];
+                state.t = ((val - 50) / 50) * limit;
+            }
+            updateSim();
+        }
+
+        function togglePlay() {
+            state.playing = !state.playing;
+            updateUI();
+            if (state.playing) loop();
+        }
+
+        function resetSim() {
+            state.playing = false;
+            // Reset czasu
+            if (state.mode === 'ellipse') state.t = 0;
+            else state.t = -state.limits[state.mode];
+            
+            // Reset suwaka zoomu i prędkości do domyślnych (opcjonalne, ale wygodne)
+            state.zoom = 1.0; document.getElementById('inp-zoom').value = 1.0; document.getElementById('val-zoom').innerText = '1.0x';
+            state.simSpeedMult = 1.0; document.getElementById('inp-speed').value = 1.0; document.getElementById('val-speed').innerText = '1.0x';
+            
+            updateUI();
+            updateSim();
+        }
+
+        function updateSim() {
+            calculateState();
+            draw();
+            updateStatsUI();
+        }
+
+        function updateStatsUI() {
+            const out = document.getElementById('stats-output');
+            const t = translations[state.lang].stats;
+            out.innerHTML = `
+                <div class="flex justify-between"><span>${t.dist}</span> <span class="text-white font-bold">${state.curr.r.toFixed(1)}</span></div>
+                <div class="flex justify-between"><span>${t.speed}</span> <span class="text-white font-bold">${state.curr.v.toFixed(1)}</span></div>
+                <div class="flex justify-between"><span>${t.acc}</span> <span class="text-white font-bold">${(state.curr.a * 100).toFixed(2)}e-2</span></div>
+            `;
+            
+            if (state.playing) {
+                const slider = document.getElementById('inp-time');
+                let val = 0;
+                if (state.mode === 'ellipse') {
+                    val = (state.t % (2*Math.PI)) / (2*Math.PI) * 100;
+                } else {
+                    const limit = state.limits[state.mode];
+                    val = ((state.t / limit) * 50) + 50;
+                }
+                slider.value = val;
+            }
+            document.getElementById('val-time').innerText = state.t.toFixed(2);
+        }
+        
+        function updateUI() {
+            const t = translations[state.lang];
+            document.getElementById('app-title').innerText = t.title;
+            document.getElementById('btn-ellipse').innerText = t.modes.ellipse;
+            document.getElementById('btn-parabola').innerText = t.modes.parabola;
+            document.getElementById('btn-hyperbola').innerText = t.modes.hyperbola;
+            document.getElementById('lang-label').innerText = state.lang === 'pl' ? 'EN' : 'PL';
+            
+            document.getElementById('hdr-control').innerText = t.headers.control;
+            document.getElementById('hdr-legend').innerText = t.headers.legend;
+            
+            const btnPlay = document.getElementById('btn-play');
+            const txtPlay = document.getElementById('txt-play');
+            
+            if (state.playing) {
+                btnPlay.classList.replace('bg-green-500', 'bg-red-500');
+                btnPlay.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
+                txtPlay.innerText = t.stop;
+            } else {
+                btnPlay.classList.replace('bg-red-500', 'bg-green-500');
+                btnPlay.classList.replace('hover:bg-red-600', 'hover:bg-green-600');
+                txtPlay.innerText = t.start;
+            }
+            
+            document.getElementById('lbl-time').innerText = t.labels.time;
+            document.getElementById('lbl-zoom').innerText = t.labels.zoom;
+            document.getElementById('lbl-speed').innerText = t.labels.speed;
+            
+            document.getElementById('leg-pos').innerText = t.labels.pos;
+            document.getElementById('leg-vel').innerText = t.labels.vel;
+            document.getElementById('leg-acc').innerText = t.labels.acc;
+            
+            updateStatsUI();
+        }
+
+        // --- PĘTLA ANIMACJI ---
+        function loop() {
+            if (!state.playing) return;
+            
+            // Krok czasowy uwzględniający bazową prędkość i mnożnik użytkownika
+            state.t += state.baseSpeed * state.simSpeedMult;
+
+            // Zapętlanie (Looping logic)
+            if (state.mode === 'ellipse') {
+                if (state.t > 2 * Math.PI) {
+                    state.t -= 2 * Math.PI;
+                }
+            } else {
+                // Dla otwartych (parabola/hiperbola)
+                const limit = state.limits[state.mode];
+                if (state.t > limit) {
+                    state.t = -limit; // Skok na początek
+                }
+            }
+
+            updateSim();
+            requestAnimationFrame(loop);
+        }
+
+        // Init
+        window.addEventListener('resize', () => {
+            const c = document.getElementById('main-canvas');
+            if(c && c.parentElement) {
+                c.width = c.parentElement.clientWidth;
+                c.height = c.parentElement.clientHeight;
+                draw();
+            }
+        });
+        
+        setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
+        setMode('ellipse');
+        // Initial defaults update labels
+        document.getElementById('val-zoom').innerText = '1.0x';
+        document.getElementById('val-speed').innerText = '1.0x';
+        renderParams();
+        updateUI();
+
+    </script>
+</body>
+</html>
