@@ -1,19 +1,3 @@
-# Zbiór Zadań z Fizyki
-
-## Spis treści
-
-1. [Wstęp](#wstęp)
-2. [Kinematyka Nierelatywistyczna](#kinematyka-nierelatywistyczna)
-
----
-
-## Wstęp
-
-Tutaj będziemy gromadzić zadania z fizyki. Dokument będzie aktualizowany o kolejne pozycje.
-
----
-
-## Kinematyka Nierelatywistyczna
 
 ### Zadanie 1.2
 
