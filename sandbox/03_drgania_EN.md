@@ -27,3 +27,37 @@ Two balls of mass $m$ move without friction along a single horizontal rod $AA'$.
 The balls are connected by springs in the following linear order: left wall – spring – first ball – spring – second ball – spring – right wall.
 
 All springs have the same spring constant $k$. In the harmonic approximation, find the frequencies and normal modes of (longitudinal) oscillations of the system. Compare the obtained result with the result of problem II.4.
+
+
+## 15. Wave Animation
+
+Write an HTML animation in which it is possible to place dots that will serve as sources of waves described by the equation:
+
+$$
+u(\vec{r},t) = \frac{A}{|\vec{r}-\vec{r_0}|^\alpha} \sin(k |\vec{r} - \vec{r_0}| - \omega t)
+$$
+
+where $\vec{r_0}$ is the position of the dot, and $\alpha$ is a parameter that can be set within the range $[0, 2]$. The animation should show the superposition of waves from all dots.
+
+
+## 16. Two-Slit Interference
+
+Write an HTML animation simulating Young's experiment, in which two slits act as point sources of coherent waves. The displacement of the resultant wave is the sum of partial waves described by the formula:
+
+$$
+u(\vec{r},t) = \frac{A}{|\vec{r}-\vec{r_1}|} \sin(k |\vec{r} - \vec{r_1}| - \omega t) + \frac{A}{|\vec{r}-\vec{r_2}|} \sin(k |\vec{r} - \vec{r_2}| - \omega t)
+$$
+
+where $\vec{r_1}$ and $\vec{r_2}$ are the position vectors of the slits. The user should be able to change the distance between the slits $d = |\vec{r_1} - \vec{r_2}|$ and the wavelength $\lambda$. The animation should visualize the resulting interference pattern in real time.
+
+## 17. Huygens' Principle Simulation
+
+Create an interactive HTML/JavaScript animation visualizing wave propagation in a discrete medium. The workspace should be filled with a grid of points ("atoms") that can transmit vibrations to their neighbors.
+
+Implement a mechanism where each excited point becomes a source of a new elementary (secondary) wave. The animation should allow for:
+
+* **Point excitation:** clicking on a single atom triggers a propagating spherical wave.
+* **Linear excitation:** simultaneously activating a row of atoms to observe how the summation of many elementary waves creates a plane wave front (envelope).
+* **Grid density regulation:** a slider allowing the user to change the density of atoms to verify how it affects the continuity and quality of the visible wave front.
+
+The goal is to visually demonstrate how the superposition of partial waves forms a macroscopic wave front.

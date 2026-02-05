@@ -30,3 +30,35 @@ Kulki połączone są sprężynami w następującej kolejności liniowej: lewa �
 Wszystkie sprężyny mają jednakową stałą sprężystości $k$. W przybliżeniu harmonicznym znaleźć częstości oraz postacie drgań normalnych (wzdłużnych) układu. Porównać otrzymany rezultat z wynikiem zadania II.4.
 
 
+## 15. Animacja fal
+
+Napisz animację HTML umożliwiającą dodawanie punktów, które będą źródłami fal opisanych równaniem:
+
+$$
+u(\vec{r},t) = \frac{A}{|\vec{r}-\vec{r_0}|^\alpha} \sin(k |\vec{r} - \vec{r_0}| - \omega t)
+$$
+
+gdzie $\vec{r_0}$ oznacza położenie źródła, a $\alpha$ jest parametrem, który można ustawić w zakresie $[0, 2]$. Animacja powinna przedstawiać superpozycję fal pochodzących ze wszystkich źródeł.
+
+
+## 16. Interferencja na dwóch szczelinach
+
+Napisz animację HTML symulującą doświadczenie Younga, w której dwie szczeliny działają jak punktowe źródła fal koherentnych. Wychylenie fali wypadkowej jest sumą fal cząstkowych opisaną wzorem:
+
+$$
+u(\vec{r},t) = \frac{A}{|\vec{r}-\vec{r_1}|} \sin(k |\vec{r} - \vec{r_1}| - \omega t) + \frac{A}{|\vec{r}-\vec{r_2}|} \sin(k |\vec{r} - \vec{r_2}| - \omega t)
+$$
+
+gdzie $\vec{r_1}$ i $\vec{r_2}$ to wektory położenia szczelin. Użytkownik powinien mieć możliwość zmiany odległości między szczelinami $d = |\vec{r_1} - \vec{r_2}|$ oraz długości fali $\lambda$. Animacja powinna wizualizować powstający obraz interferencyjny w czasie rzeczywistym.
+
+## 17. Symulacja zasady Huygensa
+
+Stwórz interaktywną animację HTML/JavaScript wizualizującą propagację fal w ośrodku dyskretnym. Obszar roboczy powinien być wypełniony siatką punktów („atomów”), które mogą przekazywać drgania sąsiadom.
+
+Zaimplementuj mechanizm, w którym każdy pobudzony punkt staje się źródłem nowej fali elementarnej (wtórnej). Animacja powinna umożliwiać:
+
+* **Wzbudzenie punktowe:** kliknięcie w pojedynczy atom wywołuje rozchodzącą się falę kulistą.
+* **Wzbudzenie liniowe:** jednoczesne aktywowanie rzędu atomów, co pozwoli zaobserwować, jak z sumowania się wielu fal elementarnych powstaje czoło fali płaskiej (obwiednia).
+* **Regulację gęstości siatki:** suwak pozwalający zmieniać zagęszczenie atomów, aby sprawdzić, jak wpływa to na ciągłość i jakość widocznego czoła fali.
+
+Celem jest wizualne przedstawienie, jak z superpozycji fal cząstkowych formuje się makroskopowe czoło fali.
