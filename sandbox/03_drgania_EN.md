@@ -1,32 +1,29 @@
-## 11. Układy złożone
+## 11. Complex Systems
 
-Klocek o masie $m$ znajduje się pomiędzy dwiema sztywnymi ścianami, których odległość od siebie wynosi $L$. Klocek połączony jest z lewą ścianą sprężyną o stałej sprężystości $k_1$, a z prawą ścianą sprężyną o stałej $k_2$. Obie sprężyny leżą na jednej osi, mają taką samą długość swobodną $l_0$, a warunek $L > 2l_0$ oznacza, że są one wstępnie napięte. Szerokość klocka jest zaniedbywalnie mała.
+A block of mass $m$ is located between two rigid walls, the distance between which is $L$. The block is connected to the left wall by a spring with a spring constant $k_1$, and to the right wall by a spring with a constant $k_2$. Both springs lie on the same axis, have the same natural length $l_0$, and the condition $L > 2l_0$ means that they are pre-tensioned. The width of the block is negligible.
 
-W pewnej chwili spoczywającemu klockowi nadano prędkość $v$. Znaleźć zależność położenia klocka od czasu, jeżeli porusza się on bez tarcia wzdłuż osi łączącej ściany.
+At a certain moment, the resting block was given a velocity $v$. Find the dependence of the block's position on time if it moves without friction along the axis connecting the walls.
 
-## 12. Układy złożone
+## 12. Complex Systems
 
-Kulka o masie $m$ porusza się bez tarcia po pionowym pręcie $AA'$. Do kulki przymocowane są dwie identyczne sprężyny o długości swobodnej $l_0$ i stałej sprężystości $k$. Drugie końce sprężyn zakotwiczone są w nieruchomych punktach znajdujących się symetrycznie po przeciwległych stronach pręta (na tej samej wysokości).
+A small ball of mass $m$ moves without friction along a vertical rod $AA'$. Two identical springs with a natural length $l_0$ and spring constant $k$ are attached to the ball. The other ends of the springs are anchored at fixed points located symmetrically on opposite sides of the rod (at the same height).
 
-Odległość pręta od każdego z punktów zaczepienia sprężyn wynosi $a$ (gdzie $a > l_0$). Pomijając oddziaływanie grawitacyjne, w przybliżeniu harmonicznym, znaleźć częstość drgań kulki wzdłuż pręta.
+The distance of the rod from each of the spring attachment points is $a$ (where $a > l_0$). Neglecting gravitational interaction, in the harmonic approximation, find the frequency of the ball's oscillations along the rod.
 
+## 13. Complex Systems
 
-## 13. Układy złożone
+Two balls of mass $m$ move without friction along two parallel vertical rods $AA'$ and $BB'$. These balls are connected in series by springs to two fixed vertical walls and to each other.
 
-Dwie kulki o masach $m$ poruszają się bez tarcia wzdłuż dwóch równoległych, pionowych prętów $AA'$ i $BB'$. Kulki te są połączone szeregowo sprężynami z dwiema nieruchomymi, pionowymi ścianami oraz ze sobą nawzajem.
+The system looks horizontally as follows: wall – spring – rod $AA'$ (with ball) – spring – rod $BB'$ (with ball) – spring – wall.
 
-Układ w poziomie wygląda następująco: ściana – sprężyna – pręt $AA'$ (z kulką) – sprężyna – pręt $BB'$ (z kulką) – sprężyna – ściana.
+All three springs are identical: they have a spring constant $k$ and a natural length $l_0$. The distance between the wall and the rod, as well as between the rods themselves, is $a$, with the springs being pre-tensioned ($a > l_0$).
 
-Wszystkie trzy sprężyny są identyczne: mają stałą sprężystości $k$ i długość swobodną $l_0$. Odległość między ścianą a prętem oraz między samymi prętami wynosi $a$, przy czym sprężyny są wstępnie naciągnięte ($a > l_0$).
+In the harmonic approximation, find the frequency and normal modes of (vertical) oscillations of this system.
 
-W przybliżeniu harmonicznym znaleźć częstość oraz postacie drgań normalnych (pionowych) tego układu.
+## 14. Complex Systems
 
-## 14. Układy złożone
+Two balls of mass $m$ move without friction along a single horizontal rod $AA'$. The system is bounded on both sides by fixed walls.
 
-Dwie kulki o masach $m$ poruszają się bez tarcia wzdłuż jednego, poziomego pręta $AA'$. Układ jest ograniczony z obu stron nieruchomymi ścianami.
+The balls are connected by springs in the following linear order: left wall – spring – first ball – spring – second ball – spring – right wall.
 
-Kulki połączone są sprężynami w następującej kolejności liniowej: lewa ściana – sprężyna – pierwsza kulka – sprężyna – druga kulka – sprężyna – prawa ściana.
-
-Wszystkie sprężyny mają jednakową stałą sprężystości $k$. W przybliżeniu harmonicznym znaleźć częstości oraz postacie drgań normalnych (wzdłużnych) układu. Porównać otrzymany rezultat z wynikiem zadania II.4.
-
-
+All springs have the same spring constant $k$. In the harmonic approximation, find the frequencies and normal modes of (longitudinal) oscillations of the system. Compare the obtained result with the result of problem II.4.
