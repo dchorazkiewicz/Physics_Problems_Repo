@@ -90,7 +90,7 @@ Find the equation of motion of the ball, the time of flight to the highest point
 
 ## 22. Dynamics
 
-Solve the problem of projectile motion (oblique projection) in a gravitational field when a resistance force proportional to velocity acts on the moving body. Find the equations of motion, the maximum height, and the time to reach it. Discuss the case when the resistance force is much smaller than the body's weight.
+Solve the problem of projectile motion in a gravitational field when a resistance force proportional to velocity acts on the moving body. Find the equations of motion, the maximum height, and the time to reach it. Discuss the case when the resistance force is much smaller than the body's weight.
 
 ## 23. Dynamics
 
