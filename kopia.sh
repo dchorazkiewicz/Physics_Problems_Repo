@@ -33,6 +33,11 @@ find "$SRC_DIR" -type f -name "*.md" -print0 | while IFS= read -r -d '' filepath
     
     # 4. Wyciągamy samą nazwę pliku
     filename=$(basename "$filepath")
+
+    # Warunek pomijający pliki z rozwiązaniami "sol_prob_"
+    if [[ "$filename" == *"sol_prob_"* ]]; then
+        continue  # Pomiń resztę pętli dla tego pliku
+    fi
     
     # 5. Określamy TEMAT (który będzie nazwą folderu w kopii)
     # Sprawdzamy, czy plik jest głęboko zagnieżdżony (czyli czy jest rozwiązaniem w folderze)
