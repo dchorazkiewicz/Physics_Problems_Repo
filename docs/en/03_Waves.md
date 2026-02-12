@@ -53,3 +53,68 @@ c) $y(x,t) = A \log(x+vt)$
 ## 10. Resonance
 
 Determine the frequency of a standing wave with two antinodes on a guitar string, given the wave velocity is 1500 m/s and the string length is 1.0 m.
+
+
+## 11. Complex Systems
+
+A block of mass $m$ is located between two rigid walls, the distance between which is $L$. The block is connected to the left wall by a spring with a spring constant $k_1$, and to the right wall by a spring with a constant $k_2$. Both springs lie on the same axis, have the same natural length $l_0$, and the condition $L > 2l_0$ means that they are pre-tensioned. The width of the block is negligible.
+
+At a certain moment, the resting block was given a velocity $v$. Find the dependence of the block's position on time if it moves without friction along the axis connecting the walls.
+
+## 12. Complex Systems
+
+A small ball of mass $m$ moves without friction along a vertical rod $AA'$. Two identical springs with a natural length $l_0$ and spring constant $k$ are attached to the ball. The other ends of the springs are anchored at fixed points located symmetrically on opposite sides of the rod (at the same height).
+
+The distance of the rod from each of the spring attachment points is $a$ (where $a > l_0$). Neglecting gravitational interaction, in the harmonic approximation, find the frequency of the ball's oscillations along the rod.
+
+## 13. Complex Systems
+
+Two balls of mass $m$ move without friction along two parallel vertical rods $AA'$ and $BB'$. These balls are connected in series by springs to two fixed vertical walls and to each other.
+
+The system looks horizontally as follows: wall – spring – rod $AA'$ (with ball) – spring – rod $BB'$ (with ball) – spring – wall.
+
+All three springs are identical: they have a spring constant $k$ and a natural length $l_0$. The distance between the wall and the rod, as well as between the rods themselves, is $a$, with the springs being pre-tensioned ($a > l_0$).
+
+In the harmonic approximation, find the frequency and normal modes of (vertical) oscillations of this system.
+
+## 14. Complex Systems
+
+Two balls of mass $m$ move without friction along a single horizontal rod $AA'$. The system is bounded on both sides by fixed walls.
+
+The balls are connected by springs in the following linear order: left wall – spring – first ball – spring – second ball – spring – right wall.
+
+All springs have the same spring constant $k$. In the harmonic approximation, find the frequencies and normal modes of (longitudinal) oscillations of the system. Compare the obtained result with the result of problem II.4.
+
+
+## 15. Wave Animation
+
+Write an HTML animation in which it is possible to place dots that will serve as sources of waves described by the equation:
+
+$$
+u(\vec{r},t) = \frac{A}{|\vec{r}-\vec{r_0}|^\alpha} \sin(k |\vec{r} - \vec{r_0}| - \omega t)
+$$
+
+where $\vec{r_0}$ is the position of the dot, and $\alpha$ is a parameter that can be set within the range $[0, 2]$. The animation should show the superposition of waves from all dots.
+
+
+## 16. Two-Slit Interference
+
+Write an HTML animation simulating Young's experiment, in which two slits act as point sources of coherent waves. The displacement of the resultant wave is the sum of partial waves described by the formula:
+
+$$
+u(\vec{r},t) = \frac{A}{|\vec{r}-\vec{r_1}|} \sin(k |\vec{r} - \vec{r_1}| - \omega t) + \frac{A}{|\vec{r}-\vec{r_2}|} \sin(k |\vec{r} - \vec{r_2}| - \omega t)
+$$
+
+where $\vec{r_1}$ and $\vec{r_2}$ are the position vectors of the slits. The user should be able to change the distance between the slits $d = |\vec{r_1} - \vec{r_2}|$ and the wavelength $\lambda$. The animation should visualize the resulting interference pattern in real time.
+
+## 17. Huygens' Principle Simulation
+
+Create an interactive HTML/JavaScript animation visualizing wave propagation in a discrete medium. The workspace should be filled with a grid of points ("atoms") that can transmit vibrations to their neighbors.
+
+Implement a mechanism where each excited point becomes a source of a new elementary (secondary) wave. The animation should allow for:
+
+* **Point excitation:** clicking on a single atom triggers a propagating spherical wave.
+* **Linear excitation:** simultaneously activating a row of atoms to observe how the summation of many elementary waves creates a plane wave front (envelope).
+* **Grid density regulation:** a slider allowing the user to change the density of atoms to verify how it affects the continuity and quality of the visible wave front.
+
+The goal is to visually demonstrate how the superposition of partial waves forms a macroscopic wave front.
