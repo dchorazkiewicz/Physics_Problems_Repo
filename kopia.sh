@@ -34,8 +34,8 @@ find "$SRC_DIR" -type f -name "*.md" -print0 | while IFS= read -r -d '' filepath
     # 4. Wyciągamy samą nazwę pliku
     filename=$(basename "$filepath")
 
-    # Warunek pomijający pliki z rozwiązaniami "sol_prob_"
-    if [[ "$filename" == *"sol_prob_"* ]]; then
+    # Warunek pomijający pliki z rozwiązaniami "sol_prob_" oraz pliki "extra_*"
+    if [[ "$filename" == *"sol_prob_"* ]] || [[ "$filename" == "extra_"* ]]; then
         continue  # Pomiń resztę pętli dla tego pliku
     fi
     
@@ -49,25 +49,31 @@ find "$SRC_DIR" -type f -name "*.md" -print0 | while IFS= read -r -d '' filepath
         # Usuwamy sufiks "_solution", aby uzyskać czystą nazwę tematu (np. "01_Mechanics_1")
         # Dzięki temu folder rozwiązania trafi do tego samego miejsca co lista zadań.
         topic="${parent_folder%_solution}"
+        # Dla uniknięcia kolizji nazw przy spłaszczaniu do jednego folderu
+        # (np. wiele plików "solutions.md"), dokładamy nazwę pliku do tematu.
+        file_base="${topic}__${filename%.md}"
     else
         # PRZYPADEK: LISTA ZADAŃ (leży bezpośrednio w pl/ lub en/)
         # Tematem jest nazwa pliku bez rozszerzenia .md
         topic="${filename%.md}"
+        file_base="${topic}"
     fi
 
-    # 6. Tworzymy ścieżkę docelową: kopie/Temat
-    target_dir="$DEST_DIR/$topic"
-    
-    # 7. Tworzymy nową nazwę pliku z prefiksem języka
-    # np. en_01_Mechanics_1.md LUB pl_solutions.md
-    new_filename="${lang}_${filename}"
+    # Spłaszczanie nazwy: żadnych separatorów katalogów w nazwie pliku
+    file_base="${file_base//\//__}"
+
+    # 6. Wszystkie pliki kopiujemy do jednego folderu (bez podziału na topiki)
+    target_dir="$DEST_DIR"
+
+    # 7. Nowa nazwa pliku: język + temat + (opcjonalnie) rola pliku (np. solutions)
+    # np. en_01_Mechanics_1.md albo en_01_Mechanics_1__solutions.md
+    new_filename="${lang}_${file_base}.md"
 
     # Wykonanie kopiowania
-    mkdir -p "$target_dir"
     cp "$filepath" "$target_dir/$new_filename"
 
 done
 
 echo "---"
 echo "Gotowe. Struktura utworzona w folderze '$DEST_DIR'."
-echo "Każdy podkatalog zawiera teraz pary plików PL i EN dla list i rozwiązań."
+echo "Wszystkie pliki trafiają bezpośrednio do '$DEST_DIR' (bez podkatalogów tematycznych)."
