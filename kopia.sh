@@ -34,6 +34,11 @@ find "$SRC_DIR" -type f -name "*.md" -print0 | while IFS= read -r -d '' filepath
     # 4. Wyciągamy samą nazwę pliku
     filename=$(basename "$filepath")
 
+    # Pomijamy cały dział "extra" (np. docs/en/extra/*, docs/pl/extra/*)
+    if [[ "$relative_path" =~ (^|/)extra(/|$) ]]; then
+        continue
+    fi
+
     # Warunek pomijający pliki z rozwiązaniami "sol_prob_" oraz pliki "extra_*"
     if [[ "$filename" == *"sol_prob_"* ]] || [[ "$filename" == "extra_"* ]]; then
         continue  # Pomiń resztę pętli dla tego pliku
