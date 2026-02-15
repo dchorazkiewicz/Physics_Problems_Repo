@@ -14,7 +14,7 @@ Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zg
 2.  **Klonowanie**: Pobierz repozytorium na swój komputer lokalny.
 3.  **Tworzenie Dokumentacji**:
     * Listy zadań znajdują się w odpowiednich działach w menu.
-    * Do każdego pliku z zadaniami (np. `01_macierze.md`) przypisany jest dedykowany katalog na rozwiązania (np. `solution_01_macierze/`).
+    * Do każdego pliku z zadaniami (np. `problem_set_01_mathematical_foundations.md`) przypisany jest dedykowany katalog na rozwiązania (np. `problem_set_01_mathematical_foundations_solution/`).
     * Katalogi te są Twoją **przestrzenią roboczą**. Należy w nich tworzyć pliki Markdown zawierające rozwiązania, dowody oraz notatki teoretyczne.
 4.  **Utrwalanie zmian**: Regularnie przesyłaj swoje rozwiązania na serwer (Commit & Push).
 

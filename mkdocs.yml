@@ -38,25 +38,43 @@ plugins:
           build: true
           nav:
             - Home: 'index.md'
-            - Wprowadzenie: '00_Intro.md'
-            - Mechanika 1:
-              - '01_Mechanics_1.md'
-              - Notatki Dodatkowe:
-                - Notatka 01: '01_Mechanics_1_solution/extra_01.md'
-                - Notatka 02: '01_Mechanics_1_solution/extra_02.md'
-                - Notatka 03: '01_Mechanics_1_solution/extra_03.md'
-            - Mechanika 2: '02_Mechanics_2.md'
-            - Fale: '03_Waves.md'
-            - Elektromagnetyzm 1: '04_Electromagnetism_1.md'
-            - Elektromagnetyzm 2: '05_Electromagnetism_2.md'
-            - Obwody 1: '06_Circuits_1.md'
-            - Obwody 2: '07_Circuits_2.md'
-            - Pomiary: '08_Measurements.md'
-            - Kosmos: '09_Cosmos.md'
-            - Astronomia i Astrofizyka: '10_Astronomy_and_Astrophysics.md'
-            - Kosmologia i Względność: '11_Cosmology_and_Relativity.md'
-            - Fizyka Współczesna 1: '12_Modern_Physics_1.md'
-            - Fizyka Współczesna 2: '13_Modern_Physics_2.md'
+            # Uwaga: nie pokazujemy osobnej strony "00_Intro" w menu.
+            - Listy zadań:
+              # Rozwiązania są celowo ukryte w nawigacji. Student może je odhashować
+              # (usunąć znaki #) po zrobieniu forka, jeśli chce publikować rozwiązania.
+              - Lista 01:
+                - Zadania: 'problem_set_01_mathematical_foundations.md'
+                # - Rozwiązania: 'problem_set_01_mathematical_foundations_solution/index.md'
+              - Lista 02:
+                - Zadania: 'problem_set_02_mechanics_and_kinematics.md'
+                # - Rozwiązania: 'problem_set_02_mechanics_and_kinematics_solution/index.md'
+              - Lista 03:
+                - Zadania: 'problem_set_03_mechanics_ii_dynamics.md'
+                # - Rozwiązania: 'problem_set_03_mechanics_ii_dynamics_solution/index.md'
+              - Lista 04:
+                - Zadania: 'problem_set_04_oscillations_and_waves.md'
+                # - Rozwiązania: 'problem_set_04_oscillations_and_waves_solution/index.md'
+              - Lista 05:
+                - Zadania: 'problem_set_05_electromagnetism_i.md'
+                # - Rozwiązania: 'problem_set_05_electromagnetism_i_solution/index.md'
+              - Lista 06:
+                - Zadania: 'problem_set_06_electromagnetism_ii.md'
+                # - Rozwiązania: 'problem_set_06_electromagnetism_ii_solution/index.md'
+              - Lista 07:
+                - Zadania: 'problem_set_07_circuits_resistors_and_kirchhoff.md'
+                # - Rozwiązania: 'problem_set_07_circuits_resistors_and_kirchhoff_solution/index.md'
+              - Lista 08:
+                - Zadania: 'problem_set_08_statistics_and_measurements.md'
+                # - Rozwiązania: 'problem_set_08_statistics_and_measurements_solution/index.md'
+              - Lista 09:
+                - Zadania: 'problem_set_09_model_cosmology.md'
+                # - Rozwiązania: 'problem_set_09_model_cosmology_solution/index.md'
+              - Lista 10:
+                - Zadania: 'problem_set_10_relativity_spacetime_models.md'
+                # - Rozwiązania: 'problem_set_10_relativity_spacetime_models_solution/index.md'
+              - Lista 11:
+                - Zadania: 'problem_set_11_modern_physics_quantum_and_nuclear_model.md'
+                # - Rozwiązania: 'problem_set_11_modern_physics_quantum_and_nuclear_model_solution/index.md'
             - Animacje:
               - 'Rzut Ukośny': 'anim/projectile_motion.html'
               - 'Wahadło': 'anim/pendulum.html'
@@ -75,25 +93,43 @@ plugins:
           build: true
           nav:
             - Home: 'index.md'
-            - Introduction: '00_Intro.md'
-            - 'Mechanics 1':
-              - '01_Mechanics_1.md'
-              - Extra Notes:
-                - Extra 01: '01_Mechanics_1_solution/extra_01.md'
-                - Extra 02: '01_Mechanics_1_solution/extra_02.md'
-                - Extra 03: '01_Mechanics_1_solution/extra_03.md'
-            - 'Mechanics 2': '02_Mechanics_2.md'
-            - Waves: '03_Waves.md'
-            - 'Electromagnetism 1': '04_Electromagnetism_1.md'
-            - 'Electromagnetism 2': '05_Electromagnetism_2.md'
-            - 'Circuits 1': '06_Circuits_1.md'
-            - 'Circuits 2': '07_Circuits_2.md'
-            - Measurements: '08_Measurements.md'
-            - Cosmos: '09_Cosmos.md'
-            - 'Astronomy and Astrophysics': '10_Astronomy_and_Astrophysics.md'
-            - 'Cosmology and Relativity': '11_Cosmology_and_Relativity.md'
-            - 'Modern Physics 1': '12_Modern_Physics_1.md'
-            - 'Modern Physics 2': '13_Modern_Physics_2.md'
+            # Note: we do not show a separate "00_Intro" page in the menu.
+            - Problem Sets:
+              # Solutions are intentionally hidden from navigation. Students can uncomment
+              # the lines (remove the leading #) after forking if they want to publish them.
+              - Problem Set 01:
+                - Problems: 'problem_set_01_mathematical_foundations.md'
+                # - Solutions: 'problem_set_01_mathematical_foundations_solution/index.md'
+              - Problem Set 02:
+                - Problems: 'problem_set_02_mechanics_and_kinematics.md'
+                # - Solutions: 'problem_set_02_mechanics_and_kinematics_solution/index.md'
+              - Problem Set 03:
+                - Problems: 'problem_set_03_mechanics_ii_dynamics.md'
+                # - Solutions: 'problem_set_03_mechanics_ii_dynamics_solution/index.md'
+              - Problem Set 04:
+                - Problems: 'problem_set_04_oscillations_and_waves.md'
+                # - Solutions: 'problem_set_04_oscillations_and_waves_solution/index.md'
+              - Problem Set 05:
+                - Problems: 'problem_set_05_electromagnetism_i.md'
+                # - Solutions: 'problem_set_05_electromagnetism_i_solution/index.md'
+              - Problem Set 06:
+                - Problems: 'problem_set_06_electromagnetism_ii.md'
+                # - Solutions: 'problem_set_06_electromagnetism_ii_solution/index.md'
+              - Problem Set 07:
+                - Problems: 'problem_set_07_circuits_resistors_and_kirchhoff.md'
+                # - Solutions: 'problem_set_07_circuits_resistors_and_kirchhoff_solution/index.md'
+              - Problem Set 08:
+                - Problems: 'problem_set_08_statistics_and_measurements.md'
+                # - Solutions: 'problem_set_08_statistics_and_measurements_solution/index.md'
+              - Problem Set 09:
+                - Problems: 'problem_set_09_model_cosmology.md'
+                # - Solutions: 'problem_set_09_model_cosmology_solution/index.md'
+              - Problem Set 10:
+                - Problems: 'problem_set_10_relativity_spacetime_models.md'
+                # - Solutions: 'problem_set_10_relativity_spacetime_models_solution/index.md'
+              - Problem Set 11:
+                - Problems: 'problem_set_11_modern_physics_quantum_and_nuclear_model.md'
+                # - Solutions: 'problem_set_11_modern_physics_quantum_and_nuclear_model_solution/index.md'
             - Animations:
               - 'Projectile Motion': 'anim/projectile_motion.html'
               - 'Pendulum': 'anim/pendulum.html'

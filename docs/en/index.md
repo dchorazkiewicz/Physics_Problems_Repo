@@ -14,7 +14,7 @@ To utilize this material effectively, follow the standard procedure:
 2.  **Clone Locally**: Download the repository to your local machine.
 3.  **Document Solutions**:
     * Navigate through the problem lists (e.g., Algebra, Analysis).
-    * For every problem file (e.g., `01_vectors.md`), a corresponding empty directory has been provisioned (e.g., `solution_01_vectors/`).
+    * For every problem file (e.g., `problem_set_01_mathematical_foundations.md`), a corresponding empty directory has been provisioned (e.g., `problem_set_01_mathematical_foundations_solution/`).
     * These directories are your **workspaces**. Create Markdown files within them to store your solutions, proofs, and theoretical notes.
 4.  **Version Control**: Regularly commit and push your work to your GitHub repository to ensure data persistence.
 
