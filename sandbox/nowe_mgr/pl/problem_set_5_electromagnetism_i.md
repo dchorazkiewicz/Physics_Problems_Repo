@@ -10,16 +10,16 @@
 
 Dane:
 
-q₁ = 3 μC  
-q₂ = −5 μC
+$q_1 = 3 , \mu \mathrm{C}$
+$q_2 = -5 , \mu \mathrm{C}$
 
-r₁ = (0,0)  
-r₂ = (0.4, 0.3) m
+$r_1 = (0,0)$
+$r_2 = (0.4, 0.3) , \mathrm{m}$
 
-1. Wyznacz wektor siły działającej na q₂.
+1. Wyznacz wektor siły działającej na $q_2$.
 2. Oblicz jej wartość.
 3. Wyznacz energię potencjalną układu.
-4. Oblicz pracę potrzebną do rozdzielenia ładunków na odległość 2 m.
+4. Oblicz pracę potrzebną do rozdzielenia ładunków na odległość $2 , \mathrm{m}$.
 5. Sprawdź zależność skalowania siły przy podwojeniu odległości.
 
 ---
@@ -28,14 +28,14 @@ r₂ = (0.4, 0.3) m
 
 Ładunki:
 
-+q w punkcie (−a, 0)  
-+2q w punkcie (a, 0)
+$+q$ w punkcie $(-a, 0)$
+$+2q$ w punkcie $(a, 0)$
 
-1. Wyznacz wektor pola E(0, y).
-2. Wyznacz warunek, dla którego składowa Eₓ = 0.
-3. Oblicz pole dla: a = 0.2 m, y = 0.3 m, q = 2 μC.
-4. Zbadaj granicę y » a.
-5. Czy istnieje punkt zerowego pola na osi y?
+1. Wyznacz wektor pola $E(0, y)$.
+2. Wyznacz warunek, dla którego składowa $E_x = 0$.
+3. Oblicz pole dla: $a = 0.2 , \mathrm{m}$, $y = 0.3 , \mathrm{m}$, $q = 2 , \mu \mathrm{C}$.
+4. Zbadaj granicę $y \gg a$.
+5. Czy istnieje punkt zerowego pola na osi $y$?
 
 ---
 
@@ -43,17 +43,22 @@ r₂ = (0.4, 0.3) m
 
 Dane:
 
-m = 0.02 kg  
-q = 1 mC  
-E = (0, 1000) N/C
+$m = 0.02 , \mathrm{kg}$
+$q = 1 , \mathrm{mC}$
 
-v(0) = (200, 0) m/s
+$$
+\vec E = (0, 1000) , \mathrm{N/C}
+$$
+
+$$
+\vec v(0) = (200, 0) , \mathrm{m/s}
+$$
 
 1. Wyznacz przyspieszenie.
 2. Wyznacz tor ruchu.
-3. Oblicz czas osiągnięcia prędkości pionowej 50 m/s.
-4. Oblicz energię kinetyczną po t = 0.05 s.
-5. Sprawdź zgodność z bilansem energii qEd.
+3. Oblicz czas osiągnięcia prędkości pionowej $50 , \mathrm{m/s}$.
+4. Oblicz energię kinetyczną po $t = 0.05 , \mathrm{s}$.
+5. Sprawdź zgodność z bilansem energii $qEd$.
 
 ---
 
@@ -61,11 +66,11 @@ v(0) = (200, 0) m/s
 
 Ładunek:
 
-q = 4 μC
+$q = 4 , \mu \mathrm{C}$
 
-1. Oblicz potencjał w r = 0.3 m.
-2. Oblicz różnicę potencjałów między 0.3 m i 0.6 m.
-3. Oblicz pracę przeniesienia ładunku próbnego q₀ = 2 μC.
+1. Oblicz potencjał w $r = 0.3 , \mathrm{m}$.
+2. Oblicz różnicę potencjałów między $0.3 , \mathrm{m}$ i $0.6 , \mathrm{m}$.
+3. Oblicz pracę przeniesienia ładunku próbnego $q_0 = 2 , \mu \mathrm{C}$.
 4. Oblicz natężenie pola z pochodnej potencjału.
 5. Porównaj z prawem Coulomba.
 
@@ -75,9 +80,9 @@ q = 4 μC
 
 Kondensator płaski:
 
-S = 0.02 m²  
-d = 5 mm  
-U = 500 V
+$S = 0.02 , \mathrm{m^2}$
+$d = 5 , \mathrm{mm}$
+$U = 500 , \mathrm{V}$
 
 1. Oblicz pojemność.
 2. Oblicz energię zgromadzoną w kondensatorze.
@@ -95,7 +100,7 @@ U = 500 V
 
 Układ: trzy dowolne ładunki w płaszczyźnie.
 
-1. Zaimplementuj funkcję obliczającą wektor pola E(x, y).
+1. Zaimplementuj funkcję obliczającą wektor pola $E(x, y)$.
 2. Wygeneruj mapę wektorową pola.
 3. Znajdź numerycznie punkt równowagi.
 4. Zbadaj stabilność punktu równowagi (małe przesunięcie).
@@ -109,7 +114,9 @@ Wymaganie: wizualizacja HTML z możliwością zmiany położenia ładunków.
 
 Pole:
 
-E(r) = k Q / r²  r̂
+$$
+E(r) = k \frac{Q}{r^2} \hat r
+$$
 
 1. Zapisz równanie ruchu cząstki.
 2. Rozważ przypadek ruchu radialnego.
@@ -133,9 +140,14 @@ Wymaganie: animacja toru ruchu.
 
 ## Zadanie 9 – Dipol w zewnętrznym polu
 
-Dipol w jednorodnym polu E₀.
+Dipol w jednorodnym polu $E_0$.
 
-1. Wyprowadź moment siły M = p × E.
+1. Wyprowadź moment siły:
+
+$$
+\vec M = \vec p \times \vec E
+$$
+
 2. Oblicz energię potencjalną dipola.
 3. Wyznacz równanie ruchu kątowego.
 4. Zlinearyzuj równanie dla małych wychyleń.

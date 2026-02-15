@@ -1,4 +1,5 @@
-# Lista 6 – Elektromagnetyzm II  
+# Lista 6 – Elektromagnetyzm II
+
 ## Magnetyzm, indukcja i dynamika pola elektromagnetycznego
 
 ---
@@ -11,38 +12,59 @@
 
 Dane:
 
-\[
-\vec B = (0,0,1)\,\text{T}
-\]
-\[
-\vec v = (2,3,0)\,\text{m/s}
-\]
-\[
-q = 1\,\text{mC}
-\]
+$$
+\vec B = (0,0,1) , \mathrm{T}
+$$
 
-1. Wyznacz \(\vec F = q \vec v \times \vec B\).
-2. Oblicz wartość siły.
+$$
+\vec v = (2,3,0) , \mathrm{m/s}
+$$
+
+$q = 1 , \mathrm{mC}$
+
+Siła Lorentza:
+
+$$
+\vec F = q \vec v \times \vec B
+$$
+
+1. Wyznacz $\vec F$.
+2. Oblicz wartość $|\vec F|$.
 3. Czy siła magnetyczna wykonuje pracę?
-4. Wyznacz promień toru dla m = 0.01 kg.
-5. Jak zmieni się promień po podwojeniu B?
+4. Wyznacz promień toru dla $m = 0.01 , \mathrm{kg}$:
+
+$$
+q v B = \frac{m v^2}{r}
+$$
+
+5. Jak zmieni się $r$, gdy $B$ zostanie podwojone?
 
 ---
 
 ## Zadanie 2 – Selekcja prędkości (pola skrzyżowane)
 
-\[
+$$
 \vec E = (0,E,0)
-\]
-\[
-\vec B = (0,0,B)
-\]
+$$
 
-1. Zapisz warunek ruchu prostoliniowego.
-2. Wyprowadź \(v_d = E/B\).
-3. Oblicz \(v_d\) dla E = 400 V/m, B = 0.8 T.
-4. Czy energia kinetyczna zmienia się w ruchu ustalonym?
-5. Zinterpretuj zasadę działania selektora prędkości.
+$$
+\vec B = (0,0,B)
+$$
+
+Warunek ruchu prostoliniowego:
+
+$$
+q E = q v B
+$$
+
+$$
+v_d = \frac{E}{B}
+$$
+
+1. Wyprowadź $v_d$.
+2. Oblicz $v_d$ dla $E = 400 , \mathrm{V/m}$, $B = 0.8 , \mathrm{T}$.
+3. Czy energia kinetyczna zmienia się w ruchu ustalonym?
+4. Zinterpretuj zasadę działania selektora prędkości.
 
 ---
 
@@ -50,56 +72,96 @@ q = 1\,\text{mC}
 
 Ramka:
 
-N = 40  
-S = 0.015 m²  
-I = 2 A  
+$N = 40$
+$S = 0.015 , \mathrm{m^2}$
+$I = 2 , \mathrm{A}$
 
 Pole:
-\[
-B = 0.3\,\text{T}
-\]
 
-1. Wyznacz moment magnetyczny \(\vec m = N I S \hat n\).
-2. Wyznacz moment siły \(\vec M = \vec m \times \vec B\).
+$$
+B = 0.3 , \mathrm{T}
+$$
+
+Moment magnetyczny:
+
+$$
+\vec m = N I S \hat n
+$$
+
+Moment siły:
+
+$$
+\vec M = \vec m \times \vec B
+$$
+
+Energia potencjalna:
+
+$$
+U = - \vec m \cdot \vec B
+$$
+
+1. Wyznacz $\vec m$.
+2. Wyznacz $\vec M$.
 3. Dla jakiego kąta moment jest maksymalny?
-4. Wyznacz energię potencjalną \(U = -\vec m \cdot \vec B\).
+4. Wyznacz $U$.
 5. Wskaż położenia stabilne i niestabilne.
 
 ---
 
 ## Zadanie 4 – Obracająca się ramka (indukcja)
 
-\[
-B = 0.4\,\text{T}
-\]
-\[
-\omega = 80\,\text{rad/s}
-\]
-\[
-S = 0.02\,\text{m}^2
-\]
-\[
-N = 100
-\]
+$$
+B = 0.4 , \mathrm{T}
+$$
 
-1. Wyznacz strumień \(\Phi(t)\).
-2. Wyznacz SEM indukcji \(\mathcal{E}(t)\).
-3. Oblicz amplitudę SEM.
-4. Jak zależy amplituda od \(\omega\)?
-5. Zinterpretuj fizycznie mechanizm powstawania SEM.
+$$
+\omega = 80 , \mathrm{rad/s}
+$$
+
+$$
+S = 0.02 , \mathrm{m^2}
+$$
+
+$$
+N = 100
+$$
+
+Strumień:
+
+$$
+\Phi(t) = N B S \cos(\omega t)
+$$
+
+Prawo indukcji Faradaya:
+
+$$
+\mathcal{E}(t) = - \frac{d \Phi}{dt}
+$$
+
+1. Wyznacz $\Phi(t)$.
+2. Wyznacz $\mathcal{E}(t)$.
+3. Oblicz amplitudę $\mathcal{E}_0$.
+4. Jak zależy amplituda od $\omega$?
+5. Zinterpretuj mechanizm powstawania SEM.
 
 ---
 
 ## Zadanie 5 – Indukcja w poruszającym się pręcie
 
-L = 0.25 m  
-v = 4 m/s  
-B = 0.6 T  
+$L = 0.25 , \mathrm{m}$
+$v = 4 , \mathrm{m/s}$
+$B = 0.6 , \mathrm{T}$
 
-1. Wyznacz SEM indukcji.
+SEM ruchowa:
+
+$$
+\mathcal{E} = B L v
+$$
+
+1. Wyznacz $\mathcal{E}$.
 2. Wyznacz różnicę potencjałów między końcami.
-3. Co stanie się, jeśli ruch nie będzie prostopadły do B?
-4. Jak zależy SEM od długości pręta?
+3. Co stanie się, jeśli ruch nie będzie prostopadły do $\vec B$?
+4. Jak zależy $\mathcal{E}$ od $L$?
 5. Skąd pochodzi energia pola elektrycznego w pręcie?
 
 ---
@@ -110,63 +172,129 @@ B = 0.6 T
 
 ## Zadanie 6 – Magnetyzm jako siła dośrodkowa (model cyklotronu)
 
-1. Wyprowadź zależność:
-\[
-qvB = \frac{mv^2}{r}
-\]
-2. Wyznacz promień jako funkcję energii kinetycznej.
-3. Wyznacz częstość cyklotronową.
-4. Czy częstość zależy od energii?
-5. Jak zmieni się tor przy zmianie znaku ładunku?
+Warunek ruchu po okręgu:
+
+$$
+q v B = \frac{m v^2}{r}
+$$
+
+Promień:
+
+$$
+r = \frac{m v}{q B}
+$$
+
+Częstość cyklotronowa:
+
+$$
+\omega_c = \frac{q B}{m}
+$$
+
+1. Wyprowadź zależności.
+2. Czy $\omega_c$ zależy od energii?
+3. Jak zmieni się tor przy zmianie znaku $q$?
 
 ---
 
-## Zadanie 7 – Transport energii przez falę EM
+## Zadanie 7 – Transport energii przez falę elektromagnetyczną
 
-\[
-E = E_0 \cos(kx-\omega t)
-\]
+Pole elektryczne:
 
-1. Wyznacz odpowiadające pole magnetyczne.
-2. Wyznacz chwilową gęstość energii pola.
-3. Wyznacz średnią wartość energii.
-4. Wyznacz średnią wartość wektora Poyntinga.
-5. Oblicz natężenie dla \(E_0 = 500\,\text{V/m}\).
+$$
+E = E_0 \cos(kx - \omega t)
+$$
+
+Pole magnetyczne:
+
+$$
+B = \frac{E_0}{c} \cos(kx - \omega t)
+$$
+
+Gęstość energii:
+
+$$
+u = \frac{1}{2} \varepsilon_0 E^2 + \frac{1}{2 \mu_0} B^2
+$$
+
+Wektor Poyntinga:
+
+$$
+\vec S = \frac{1}{\mu_0} \vec E \times \vec B
+$$
+
+1. Wyznacz średnią wartość $\langle \vec S \rangle$.
+2. Oblicz natężenie dla $E_0 = 500 , \mathrm{V/m}$.
 
 ---
 
 ## Zadanie 8 – Ciśnienie promieniowania
 
-1. Wyprowadź zależność między natężeniem fali a ciśnieniem.
-2. Oblicz ciśnienie dla I = 800 W/m².
-3. Porównaj przypadek absorpcji i odbicia.
-4. Oblicz siłę na powierzchni 1.5 m².
-5. Zinterpretuj fizycznie.
+Zależność między natężeniem a ciśnieniem:
+
+$$
+p = \frac{I}{c}
+$$
+
+(dla absorpcji)
+
+$$
+p = \frac{2I}{c}
+$$
+
+(dla odbicia)
+
+1. Oblicz $p$ dla $I = 800 , \mathrm{W/m^2}$.
+2. Oblicz siłę na powierzchni $A = 1.5 , \mathrm{m^2}$:
+
+$$
+F = p A
+$$
+
+3. Zinterpretuj fizycznie.
 
 ---
 
 ## Zadanie 9 – Ruch cząstki w fali elektromagnetycznej
 
-\[
-\vec E = E_0 \cos(kx-\omega t)\hat y
-\]
+$$
+\vec E = E_0 \cos(kx - \omega t) \hat y
+$$
 
-1. Zapisz pełną siłę Lorentza.
+Siła Lorentza:
+
+$$
+\vec F = q(\vec E + \vec v \times \vec B)
+$$
+
+1. Zapisz pełne równanie ruchu.
 2. Zbadaj ruch dla małych prędkości.
-3. Dlaczego pole magnetyczne samo nie wykonuje pracy?
-4. Pokaż, że energia przekazywana jest przez pole elektryczne.
-5. Zaproponuj schemat symulacji numerycznej.
+3. Wyjaśnij, dlaczego pole magnetyczne samo nie wykonuje pracy.
+4. Zaproponuj schemat symulacji numerycznej.
 
 ---
 
 ## Zadanie 10 – Prądy wirowe (hamowanie magnetyczne)
 
-Metalowa płytka o masie \(m\) porusza się z prędkością \(v\) i wjeżdża w obszar jednorodnego pola magnetycznego \(B\).
+Model siły oporu:
+
+$$
+F = - \gamma v
+$$
+
+Równanie ruchu:
+
+$$
+m \frac{dv}{dt} = - \gamma v
+$$
+
+Rozwiązanie:
+
+$$
+v(t) = v_0 e^{-\frac{\gamma}{m} t}
+$$
 
 1. Wyjaśnij mechanizm powstawania prądów wirowych.
-2. Wyjaśnij, dlaczego zgodnie z prawem Lenza ruch jest hamowany.
-3. Przyjmij model siły oporu:
-\[
-F = -\gamma v
-\]
-i zapisz rów
+2. Wyjaśnij prawo Lenza.
+3. Zinterpretuj zanikanie prędkości.
+4. Zbadaj granicę $t \to \infty$.
+
