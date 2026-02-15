@@ -2003,8 +2003,8 @@
 <div class="arithmatex">\[
 A =
 \begin{pmatrix}
-2 &amp; 1 &amp; 0 \
-0 &amp; 1 &amp; -1 \
+2 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; -1 \\
 1 &amp; 0 &amp; 1
 \end{pmatrix}
 \]</div>
@@ -2017,7 +2017,7 @@ A =
 <h2 id="zadanie-2-tor-parametryczny-predkosc-i-przyspieszenie">Zadanie 2 – Tor parametryczny, prędkość i przyspieszenie</h2>
 <p>Dany tor:</p>
 <div class="arithmatex">\[
-\vec r(t) = \big(t^2,; \sin t,; e^{-t}\big)
+\vec r(t) = \bigl(t^2,\sin t,e^{-t}\bigr)
 \]</div>
 <ol>
 <li>Wyznacz prędkość
@@ -2037,20 +2037,20 @@ A =
 <h3 id="a">A)</h3>
 <p>Dana prędkość:</p>
 <div class="arithmatex">\[
-\vec v(t) = \big(2t,; 3,; -e^{-t}\big), \qquad
+\vec v(t) = \bigl(2t,3,-e^{-t}\bigr), \qquad
 \vec r(0) = (0,1,2)
 \]</div>
 <ol>
 <li>Wyznacz
    $$
-   \vec r(t) = \vec r(0) + \int_0^t \vec v(\tau) , d\tau
+   \vec r(t) = \vec r(0) + \int_0^t \vec v(\tau)\, d\tau
    $$</li>
 <li>Wyznacz przyspieszenie <span class="arithmatex">\(\vec a(t)\)</span>.</li>
 </ol>
 <h3 id="b">B)</h3>
 <p>Dane przyspieszenie:</p>
 <div class="arithmatex">\[
-\vec a(t) = \big(4,; -\sin t,; 0\big),
+\vec a(t) = \bigl(4,-\sin t,0\bigr),
 \qquad
 \vec v(0) = (1,0,2),
 \qquad
@@ -2059,11 +2059,11 @@ A =
 <ol>
 <li>Wyznacz
    $$
-   \vec v(t) = \vec v(0) + \int_0^t \vec a(\tau) , d\tau
+   \vec v(t) = \vec v(0) + \int_0^t \vec a(\tau)\, d\tau
    $$</li>
 <li>Wyznacz
    $$
-   \vec r(t) = \int_0^t \vec v(\tau) , d\tau
+   \vec r(t) = \int_0^t \vec v(\tau)\, d\tau
    $$</li>
 </ol>
 <hr />
@@ -2125,7 +2125,7 @@ x = t, \qquad y = t^2, \qquad t \in [0,1]
 <h2 id="zadanie-7-caka-jako-pole">Zadanie 7 – Całka jako pole</h2>
 <p>Oblicz:</p>
 <div class="arithmatex">\[
-\int_0^{\pi} \sin x , dx
+\int_0^{\pi} \sin x\, dx
 \]</div>
 <ol>
 <li>Aproksymuj metodą prostokątów.</li>
