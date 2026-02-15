@@ -115,11 +115,11 @@ Ziemia i Mars poruszają się po okręgach wokół Słońca w tym samym kierunku
 Przyjmij model (układ heliocentryczny):
 
 $$
-\vec r_Z(t) = R_Z,\big(\cos(\omega_Z t),; \sin(\omega_Z t)\big)
+\vec r_Z(t) = R_Z\,\bigl(\cos(\omega_Z t),\sin(\omega_Z t)\bigr)
 $$
 
 $$
-\vec r_M(t) = R_M,\big(\cos(\omega_M t),; \sin(\omega_M t)\big)
+\vec r_M(t) = R_M\,\bigl(\cos(\omega_M t),\sin(\omega_M t)\bigr)
 $$
 
 1. Narysuj oba ruchy w układzie heliocentrycznym (Słońce w środku).

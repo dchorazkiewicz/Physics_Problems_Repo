@@ -12,7 +12,7 @@ $$
 
 1. Wyznacz okres $T$ oraz częstotliwość $f$.
 2. Wyznacz maksymalną prędkość oraz maksymalne przyspieszenie.
-3. Dla $A = 0.2 , \mathrm{m}$, $f = 2 , \mathrm{Hz}$:
+3. Dla $A = 0.2\,\mathrm{m}$, $f = 2\,\mathrm{Hz}$:
 
    * oblicz $\omega$,
    * oblicz $v_{\max}$,
@@ -26,11 +26,11 @@ Odpowiedzi: liczbowe.
 
 Dany układ:
 
-$m = 1 , \mathrm{kg}$
-$k = 100 , \mathrm{N/m}$
+$m = 1\,\mathrm{kg}$
+$k = 100\,\mathrm{N/m}$
 
 1. Wyznacz częstość własną.
-2. Oblicz energię całkowitą dla amplitudy $A = 0.1 , \mathrm{m}$.
+2. Oblicz energię całkowitą dla amplitudy $A = 0.1\,\mathrm{m}$.
 3. Dla jakiego wychylenia energia kinetyczna stanowi $50%$ energii całkowitej?
 
 Odpowiedzi: liczba / wzór.

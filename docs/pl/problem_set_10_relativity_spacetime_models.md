@@ -11,10 +11,14 @@
 
 Statek kosmiczny porusza się z prędkością:
 
-$$ v = 0.8c $$
+$$
+v = 0.8c
+$$
 
 1. Oblicz czynnik Lorentza:
-   $$ \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}} $$
+   $$
+   \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
+   $$
 2. Ile czasu upłynie na Ziemi, jeśli na statku minie 5 lat?
 3. Jaki procentowo jest efekt dylatacji?
 4. Co dzieje się w granicy $v \to c$?
@@ -26,12 +30,16 @@ $$ v = 0.8c $$
 
 Rakieta o długości własnej:
 
-$$ L_0 = 120\,\mathrm{m} $$
+$$
+L_0 = 120\,\mathrm{m}
+$$
 
 porusza się z prędkością $0.6c$.
 
 1. Oblicz długość obserwowaną przez nieruchomego obserwatora:
-   $$ L = \frac{L_0}{\gamma} $$
+   $$
+   L = \frac{L_0}{\gamma}
+   $$
 2. Jaki jest procent skrócenia?
 3. Czy obserwator w rakiecie widzi skrócenie?
 4. Co jest wielkością niezmienniczą?
@@ -43,18 +51,28 @@ porusza się z prędkością $0.6c$.
 
 Dane zdarzenia w układzie $S$:
 
-$$ x_1 = 0, \quad t_1 = 0 $$
-$$ x_2 = 900\,\mathrm{m}, \quad t_2 = 4\,\mu s $$
+$$
+x_1 = 0, \quad t_1 = 0
+$$
+$$
+x_2 = 900\,\mathrm{m}, \quad t_2 = 4\,\mu\mathrm{s}
+$$
 
 Układ $S'$ porusza się z prędkością $v=0.6c$.
 
 1. Zastosuj transformację:
-   $$ x' = \gamma (x - vt) $$
-   $$ t' = \gamma \left(t - \frac{vx}{c^2}\right) $$
+   $$
+   x' = \gamma (x - vt)
+   $$
+   $$
+   t' = \gamma \left(t - \frac{vx}{c^2}\right)
+   $$
 2. Oblicz współrzędne drugiego zdarzenia w $S'$.
 3. Czy kolejność zdarzeń może się zmienić?
 4. Oblicz interwał czasoprzestrzenny:
-   $$ s^2 = c^2 t^2 - x^2 $$
+   $$
+   s^2 = c^2 t^2 - x^2
+   $$
 5. Sprawdź jego niezmienniczość.
 
 ---
@@ -78,15 +96,21 @@ Muony powstają na wysokości 10 km.
 
 Czas życia własny:
 
-$$ \tau_0 = 2.2\,\mu s $$
+$$
+\tau_0 = 2.2\,\mu\mathrm{s}
+$$
 
 Prędkość:
 
-$$ v = 0.995c $$
+$$
+v = 0.995c
+$$
 
 1. Oblicz czynnik Lorentza.
 2. Oblicz średni czas życia w układzie Ziemi:
-   $$ \tau = \gamma \tau_0 $$
+   $$
+   \tau = \gamma \tau_0
+   $$
 3. Jaką drogę średnio przebywa muon?
 4. Czy bez relatywistyki dotarłby do powierzchni?
 5. Zinterpretuj wynik eksperymentalnie.
@@ -110,16 +134,24 @@ $$ v = 0.995c $$
 
 ## Zadanie 7 – Relatywistyczna energia i pęd
 
-$$ E = \gamma mc^2 $$
-$$ p = \gamma mv $$
+$$
+E = \gamma mc^2
+$$
+$$
+p = \gamma mv
+$$
 
 1. Oblicz energię całkowitą elektronu dla $v=0.95c$.
 2. Oblicz energię kinetyczną:
-   $$ E_k = (\gamma-1)mc^2 $$
+   $$
+   E_k = (\gamma-1)mc^2
+   $$
 3. Porównaj z wynikiem klasycznym $\frac12 mv^2$.
 4. Zbadaj granicę $v \ll c$.
 5. Zinterpretuj relację:
-   $$ E^2 = p^2 c^2 + m^2 c^4 $$
+   $$
+   E^2 = p^2 c^2 + m^2 c^4
+   $$
 
 ---
 
@@ -127,7 +159,9 @@ $$ p = \gamma mv $$
 
 Przybliżenie (słabe pole):
 
-$$ \frac{\Delta f}{f} \approx \frac{\Delta \Phi}{c^2} $$
+$$
+\frac{\Delta f}{f} \approx \frac{\Delta \Phi}{c^2}
+$$
 
 1. Wyprowadź przesunięcie dla powierzchni Ziemi.
 2. Oblicz względną zmianę częstotliwości.
@@ -139,7 +173,9 @@ $$ \frac{\Delta f}{f} \approx \frac{\Delta \Phi}{c^2} $$
 
 ## Zadanie 9 – Promień Schwarzschilda
 
-$$ r_s = \frac{2GM}{c^2} $$
+$$
+r_s = \frac{2GM}{c^2}
+$$
 
 1. Oblicz $r_s$ dla masy Słońca.
 2. Oblicz $r_s$ dla Ziemi.
@@ -153,11 +189,12 @@ $$ r_s = \frac{2GM}{c^2} $$
 
 Relatywistyczne równanie ruchu:
 
-$$ \frac{d}{dt}(\gamma m v)=F $$
+$$
+\frac{d}{dt}(\gamma m v) = F
+$$
 
 1. Zaimplementuj metodę RK4.
 2. Porównaj ruch przy stałej sile w modelu klasycznym i relatywistycznym.
 3. Zbadaj asymptotyczne zbliżanie się do $c$.
 4. Wykonaj wykres $v(t)$ i $x(t)$ dla obu modeli.
 5. Oceń różnice energetyczne między modelami.
-

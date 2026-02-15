@@ -10,16 +10,16 @@
 
 Dane:
 
-$q_1 = 3 , \mu \mathrm{C}$
-$q_2 = -5 , \mu \mathrm{C}$
+$q_1 = 3\,\mu\mathrm{C}$
+$q_2 = -5\,\mu\mathrm{C}$
 
 $r_1 = (0,0)$
-$r_2 = (0.4, 0.3) , \mathrm{m}$
+$r_2 = (0.4, 0.3)\,\mathrm{m}$
 
 1. Wyznacz wektor siły działającej na $q_2$.
 2. Oblicz jej wartość.
 3. Wyznacz energię potencjalną układu.
-4. Oblicz pracę potrzebną do rozdzielenia ładunków na odległość $2 , \mathrm{m}$.
+4. Oblicz pracę potrzebną do rozdzielenia ładunków na odległość $2\,\mathrm{m}$.
 5. Sprawdź zależność skalowania siły przy podwojeniu odległości.
 
 ---
@@ -33,7 +33,7 @@ $+2q$ w punkcie $(a, 0)$
 
 1. Wyznacz wektor pola $E(0, y)$.
 2. Wyznacz warunek, dla którego składowa $E_x = 0$.
-3. Oblicz pole dla: $a = 0.2 , \mathrm{m}$, $y = 0.3 , \mathrm{m}$, $q = 2 , \mu \mathrm{C}$.
+3. Oblicz pole dla: $a = 0.2\,\mathrm{m}$, $y = 0.3\,\mathrm{m}$, $q = 2\,\mu\mathrm{C}$.
 4. Zbadaj granicę $y \gg a$.
 5. Czy istnieje punkt zerowego pola na osi $y$?
 
@@ -43,21 +43,21 @@ $+2q$ w punkcie $(a, 0)$
 
 Dane:
 
-$m = 0.02 , \mathrm{kg}$
-$q = 1 , \mathrm{mC}$
+$m = 0.02\,\mathrm{kg}$
+$q = 1\,\mathrm{mC}$
 
 $$
-\vec E = (0, 1000) , \mathrm{N/C}
+\vec E = (0, 1000)\,\mathrm{N/C}
 $$
 
 $$
-\vec v(0) = (200, 0) , \mathrm{m/s}
+\vec v(0) = (200, 0)\,\mathrm{m/s}
 $$
 
 1. Wyznacz przyspieszenie.
 2. Wyznacz tor ruchu.
-3. Oblicz czas osiągnięcia prędkości pionowej $50 , \mathrm{m/s}$.
-4. Oblicz energię kinetyczną po $t = 0.05 , \mathrm{s}$.
+3. Oblicz czas osiągnięcia prędkości pionowej $50\,\mathrm{m/s}$.
+4. Oblicz energię kinetyczną po $t = 0.05\,\mathrm{s}$.
 5. Sprawdź zgodność z bilansem energii $qEd$.
 
 ---
@@ -66,11 +66,11 @@ $$
 
 Ładunek:
 
-$q = 4 , \mu \mathrm{C}$
+$q = 4\,\mu\mathrm{C}$
 
-1. Oblicz potencjał w $r = 0.3 , \mathrm{m}$.
-2. Oblicz różnicę potencjałów między $0.3 , \mathrm{m}$ i $0.6 , \mathrm{m}$.
-3. Oblicz pracę przeniesienia ładunku próbnego $q_0 = 2 , \mu \mathrm{C}$.
+1. Oblicz potencjał w $r = 0.3\,\mathrm{m}$.
+2. Oblicz różnicę potencjałów między $0.3\,\mathrm{m}$ i $0.6\,\mathrm{m}$.
+3. Oblicz pracę przeniesienia ładunku próbnego $q_0 = 2\,\mu\mathrm{C}$.
 4. Oblicz natężenie pola z pochodnej potencjału.
 5. Porównaj z prawem Coulomba.
 
@@ -80,9 +80,9 @@ $q = 4 , \mu \mathrm{C}$
 
 Kondensator płaski:
 
-$S = 0.02 , \mathrm{m^2}$
-$d = 5 , \mathrm{mm}$
-$U = 500 , \mathrm{V}$
+$S = 0.02\,\mathrm{m^2}$
+$d = 5\,\mathrm{mm}$
+$U = 500\,\mathrm{V}$
 
 1. Oblicz pojemność.
 2. Oblicz energię zgromadzoną w kondensatorze.
@@ -162,4 +162,3 @@ $$
 3. Zaimplementuj dyskretną aproksymację strumienia.
 4. Zbadaj zależność od liczby punktów siatki.
 5. Porównaj z wynikiem analitycznym.
-

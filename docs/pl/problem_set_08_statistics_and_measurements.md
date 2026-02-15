@@ -211,7 +211,7 @@ $$
    - okresy $T_i$,
    - średni okres $\bar{T}$,
    - $s_T$,
-   - $$u(T) = \frac{s_T}{\sqrt{n}}$$
+   - $u(T) = \frac{s_T}{\sqrt{n}}$
 5. Wyznacz częstotliwość:
    $$
    f = \frac{1}{\bar{T}}
@@ -236,4 +236,3 @@ $$
    oraz procentowe wkłady niepewności od $m$ i od $T$.
 
 Do oddania: plik HTML + raport z min. 15 okresów + komentarz dotyczący zależności $u(T) \sim 1/\sqrt{n}$.
-
