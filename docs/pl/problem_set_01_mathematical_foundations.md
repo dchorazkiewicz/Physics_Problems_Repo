@@ -21,8 +21,8 @@ Dana macierz:
 $$
 A =
 \begin{pmatrix}
-2 & 1 & 0 \
-0 & 1 & -1 \
+2 & 1 & 0 \\
+0 & 1 & -1 \\
 1 & 0 & 1
 \end{pmatrix}
 $$
@@ -38,7 +38,7 @@ $$
 Dany tor:
 
 $$
-\vec r(t) = \big(t^2,; \sin t,; e^{-t}\big)
+\vec r(t) = \bigl(t^2,\sin t,e^{-t}\bigr)
 $$
 
 1. Wyznacz prędkość
@@ -62,13 +62,13 @@ $$
 Dana prędkość:
 
 $$
-\vec v(t) = \big(2t,; 3,; -e^{-t}\big), \qquad
+\vec v(t) = \bigl(2t,3,-e^{-t}\bigr), \qquad
 \vec r(0) = (0,1,2)
 $$
 
 1. Wyznacz
    $$
-   \vec r(t) = \vec r(0) + \int_0^t \vec v(\tau) , d\tau
+   \vec r(t) = \vec r(0) + \int_0^t \vec v(\tau)\, d\tau
    $$
 2. Wyznacz przyspieszenie $\vec a(t)$.
 
@@ -77,7 +77,7 @@ $$
 Dane przyspieszenie:
 
 $$
-\vec a(t) = \big(4,; -\sin t,; 0\big),
+\vec a(t) = \bigl(4,-\sin t,0\bigr),
 \qquad
 \vec v(0) = (1,0,2),
 \qquad
@@ -86,11 +86,11 @@ $$
 
 1. Wyznacz
    $$
-   \vec v(t) = \vec v(0) + \int_0^t \vec a(\tau) , d\tau
+   \vec v(t) = \vec v(0) + \int_0^t \vec a(\tau)\, d\tau
    $$
 2. Wyznacz
    $$
-   \vec r(t) = \int_0^t \vec v(\tau) , d\tau
+   \vec r(t) = \int_0^t \vec v(\tau)\, d\tau
    $$
 
 ---
@@ -174,7 +174,7 @@ $$
 Oblicz:
 
 $$
-\int_0^{\pi} \sin x , dx
+\int_0^{\pi} \sin x\, dx
 $$
 
 1. Aproksymuj metodą prostokątów.
@@ -215,4 +215,3 @@ $$
 1. Wyznacz prędkość $\vec v(t)$ i przyspieszenie $\vec a(t)$.
 2. Pokaż, że przyspieszenie jest skierowane do środka okręgu.
 3. Oblicz $\vec r(t) \times \vec v(t)$ i zinterpretuj wynik.
-
