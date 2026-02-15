@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krzywe Stożkowe - Grawitacja</title>
-    <!-- Tailwind CSS -->
+    <title>Rzut ukośny — animacja</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Style suwaków */
         input[type=range] { -webkit-appearance: none; background: transparent; }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
@@ -20,658 +18,806 @@
         aside::-webkit-scrollbar { width: 6px; }
         aside::-webkit-scrollbar-track { background: #1f2937; }
         aside::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
-        
-        .tab-btn.active { border-bottom: 2px solid #22d3ee; color: #22d3ee; background-color: rgba(34, 211, 238, 0.1); }
+        .tab-btn.active { border-bottom: 2px solid #22d3ee; color: #22d3ee; }
+        .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans h-screen flex flex-col overflow-hidden">
 
-    <!-- Nagłówek -->
-    <header class="flex items-center justify-between px-6 py-4 bg-gray-800 border-b border-gray-700 shadow-md z-10 shrink-0">
+    <header class="flex items-center justify-between px-6 py-4 bg-gray-800 border-b border-gray-700 shadow-md shrink-0 z-20">
         <div class="flex items-center space-x-3">
             <div class="bg-cyan-600 p-2 rounded-lg">
-                <!-- Icon: Orbit/Atom -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .4 2l2.6 2.6a3 3 0 0 1-4.2 4.2l-2.6-2.6a1.8 1.8 0 0 0-2-.4"/><path d="M2 2l4.6 4.6a1.8 1.8 0 0 0 2 .4"/><path d="M15 19.4a1.8 1.8 0 0 0-2-.4"/><path d="M19.4 4.6a1.8 1.8 0 0 0-.4 2L16.4 9.2a3 3 0 0 1-4.2-4.2l2.6-2.6a1.8 1.8 0 0 0 .4-2"/></svg>
+                <!-- Icon: trajectory -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                    <path d="M3 19c6-10 12-10 18 0" />
+                    <path d="M7 16l-3 3" />
+                    <path d="M20 19h-4" />
+                    <path d="M16 8a2 2 0 1 0 0.01 0" />
+                </svg>
             </div>
-            <h1 id="app-title" class="text-xl font-bold tracking-wide">Dynamika Krzywych Stożkowych</h1>
+            <div class="flex flex-col leading-tight">
+                <h1 id="app-title" class="text-xl font-bold tracking-wide">Laboratorium rzutu ukośnego</h1>
+                <div id="app-subtitle" class="text-xs text-gray-400">bez oporu powietrza (opcjonalnie: opór liniowy)</div>
+            </div>
         </div>
 
-        <!-- Zakładki Typów Krzywych -->
-        <div class="flex space-x-2 bg-gray-900 p-1 rounded-lg border border-gray-700">
-            <button class="tab-btn active px-4 py-1.5 rounded text-sm font-medium transition-colors hover:text-cyan-300" onclick="setMode('ellipse')" id="btn-ellipse">Elipsa / Okrąg</button>
-            <button class="tab-btn px-4 py-1.5 rounded text-sm font-medium transition-colors hover:text-cyan-300" onclick="setMode('parabola')" id="btn-parabola">Parabola</button>
-            <button class="tab-btn px-4 py-1.5 rounded text-sm font-medium transition-colors hover:text-cyan-300" onclick="setMode('hyperbola')" id="btn-hyperbola">Hiperbola</button>
+        <div class="hidden md:flex items-center gap-4 text-xs text-gray-400">
+            <div><span class="kbd bg-gray-700 border border-gray-600 px-2 py-1 rounded">Space</span> <span id="hint-space">Start/Stop</span></div>
+            <div><span class="kbd bg-gray-700 border border-gray-600 px-2 py-1 rounded">R</span> <span id="hint-r">Reset</span></div>
         </div>
-        
+
         <button id="btn-lang" class="flex items-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm font-bold transition-colors border border-gray-600" onclick="toggleLang()">
             <span id="lang-label">EN</span>
         </button>
     </header>
 
-    <!-- Główny Kontener -->
     <div class="flex flex-1 overflow-hidden relative">
 
-        <!-- PANEL BOCZNY -->
-        <aside class="w-80 bg-gray-800 p-6 flex flex-col gap-5 overflow-y-auto border-r border-gray-700 shadow-xl z-20 shrink-0">
-            
-            <!-- Sterowanie Symulacją -->
+        <aside class="w-80 bg-gray-800 p-6 flex flex-col gap-5 overflow-y-auto border-r border-gray-700 shadow-xl z-10 shrink-0">
             <div class="space-y-4 border-b border-gray-700 pb-4">
-                <h2 id="hdr-control" class="text-xs uppercase text-gray-500 font-bold tracking-wider">Sterowanie</h2>
-                
-                <!-- Przyciski Play/Reset -->
                 <div class="flex items-center space-x-2">
                     <button id="btn-play" class="flex-1 flex items-center justify-center py-2 rounded font-semibold transition-all shadow-lg bg-green-500 text-white hover:bg-green-600" onclick="togglePlay()">
                         <span id="txt-play">Start</span>
                     </button>
-                    <button class="p-2 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 border border-gray-600" onclick="resetSim()" title="Reset">
+                    <button class="p-2 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 border border-gray-600" onclick="resetSim(true)" title="Reset">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
                     </button>
                 </div>
 
-                <!-- Czas (Slider) -->
                 <div>
                     <div class="flex justify-between mb-1">
-                        <label class="text-xs text-gray-400 font-bold" id="lbl-time">Czas</label>
-                        <span class="text-xs font-mono text-cyan-400" id="val-time">0.00</span>
-                    </div>
-                    <input type="range" min="0" max="100" step="0.1" value="0" class="w-full accent-cyan-500" id="inp-time" oninput="manualTime(this.value)">
-                </div>
-
-                <!-- Zoom (Slider) -->
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label class="text-xs text-gray-400 font-bold" id="lbl-zoom">Skala (Zoom)</label>
-                        <span class="text-xs font-mono text-cyan-400" id="val-zoom">1.0x</span>
-                    </div>
-                    <input type="range" min="0.1" max="2.0" step="0.1" value="1.0" class="w-full accent-cyan-500" id="inp-zoom" oninput="updateZoom(this.value)">
-                </div>
-
-                <!-- Prędkość Animacji (Slider) -->
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label class="text-xs text-gray-400 font-bold" id="lbl-speed">Szybkość animacji</label>
+                        <label class="text-xs text-gray-400 uppercase font-bold" id="lbl-speed">Szybkość symulacji</label>
                         <span class="text-xs font-mono text-cyan-400" id="val-speed">1.0x</span>
                     </div>
-                    <input type="range" min="0.1" max="3.0" step="0.1" value="1.0" class="w-full accent-cyan-500" id="inp-speed" oninput="updateAnimSpeed(this.value)">
+                    <input type="range" min="0.1" max="3.0" step="0.1" value="1.0" class="w-full accent-cyan-500" id="inp-speed" oninput="updateSpeed(this.value)">
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 uppercase font-bold" id="lbl-time">Czas</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-time">0.00 s</span>
+                    </div>
+                    <input type="range" min="0" max="1" step="0.001" value="0" class="w-full accent-cyan-500" id="inp-time" oninput="scrubTime(this.value)">
+                    <div class="flex justify-between mt-2 text-[11px] text-gray-400">
+                        <button class="px-2 py-1 rounded bg-gray-700 hover:bg-gray-600 border border-gray-600" onclick="stepTime(-1)" id="btn-step-back">- Δt</button>
+                        <button class="px-2 py-1 rounded bg-gray-700 hover:bg-gray-600 border border-gray-600" onclick="stepTime(1)" id="btn-step-fwd">+ Δt</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Parametry Krzywej -->
-            <div class="space-y-4" id="params-container">
-                <h2 id="hdr-params" class="text-xs uppercase text-gray-500 font-bold tracking-wider">Parametry Geometryczne</h2>
-                <!-- Generowane dynamicznie -->
+            <div class="space-y-4 border-b border-gray-700 pb-4">
+                <h2 id="hdr-params" class="text-xs uppercase text-gray-500 font-bold tracking-wider">Parametry</h2>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-v0">Prędkość początkowa</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-v0">25.0 m/s</span>
+                    </div>
+                    <input type="range" min="0" max="80" step="0.1" value="25" class="w-full accent-cyan-500" id="inp-v0" oninput="updateParam('v0', this.value)">
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-theta">Kąt wyrzutu</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-theta">45.0°</span>
+                    </div>
+                    <input type="range" min="0" max="90" step="0.1" value="45" class="w-full accent-cyan-500" id="inp-theta" oninput="updateParam('thetaDeg', this.value)">
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-g">Grawitacja</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-g">9.81 m/s²</span>
+                    </div>
+                    <input type="range" min="1" max="20" step="0.01" value="9.81" class="w-full accent-cyan-500" id="inp-g" oninput="updateParam('g', this.value)">
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-h0">Wysokość startu</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-h0">0.0 m</span>
+                    </div>
+                    <input type="range" min="0" max="50" step="0.1" value="0" class="w-full accent-cyan-500" id="inp-h0" oninput="updateParam('h0', this.value)">
+                </div>
+
+                <div class="bg-gray-900/40 border border-gray-700 rounded-lg p-3 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs text-gray-300 font-semibold" id="lbl-drag">Opór liniowy</label>
+                        <input id="inp-drag" type="checkbox" class="accent-cyan-500" onchange="toggleDrag(this.checked)">
+                    </div>
+                    <div id="drag-controls" class="space-y-2 opacity-50 pointer-events-none">
+                        <div class="flex justify-between">
+                            <label class="text-xs text-gray-400 font-bold" id="lbl-k">Współczynnik k</label>
+                            <span class="text-xs font-mono text-cyan-400" id="val-k">0.20 1/s</span>
+                        </div>
+                        <input type="range" min="0.01" max="2.0" step="0.01" value="0.2" class="w-full accent-cyan-500" id="inp-k" oninput="updateParam('k', this.value)">
+                        <div class="text-[11px] text-gray-400" id="txt-drag-note">Model: a = -g ŷ - k v</div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Legenda i Statystyki -->
+
+            <div class="space-y-3">
+                <h2 id="hdr-view" class="text-xs uppercase text-gray-500 font-bold tracking-wider">Widok</h2>
+
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <label class="flex items-center gap-2 bg-gray-700/50 border border-gray-600 rounded px-2 py-2 cursor-pointer select-none">
+                        <input id="inp-trace" type="checkbox" class="accent-cyan-500" checked onchange="toggleOption('showTrace', this.checked)">
+                        <span id="lbl-trace">Ślad</span>
+                    </label>
+                    <label class="flex items-center gap-2 bg-gray-700/50 border border-gray-600 rounded px-2 py-2 cursor-pointer select-none">
+                        <input id="inp-grid" type="checkbox" class="accent-cyan-500" checked onchange="toggleOption('showGrid', this.checked)">
+                        <span id="lbl-grid">Siatka</span>
+                    </label>
+                    <label class="flex items-center gap-2 bg-gray-700/50 border border-gray-600 rounded px-2 py-2 cursor-pointer select-none">
+                        <input id="inp-vec" type="checkbox" class="accent-cyan-500" checked onchange="toggleOption('showVectors', this.checked)">
+                        <span id="lbl-vec">Wektory</span>
+                    </label>
+                    <button class="bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded px-2 py-2 text-xs font-semibold" onclick="fitView()" id="btn-fit">Dopasuj</button>
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <label class="text-xs text-gray-400 font-bold" id="lbl-zoom">Zoom</label>
+                        <span class="text-xs font-mono text-cyan-400" id="val-zoom">1.00x</span>
+                    </div>
+                    <input type="range" min="0.5" max="2.0" step="0.01" value="1.0" class="w-full accent-cyan-500" id="inp-zoom" oninput="updateZoom(this.value)">
+                </div>
+            </div>
+
             <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700 space-y-2 mt-auto text-xs font-mono">
-                <div class="font-bold text-gray-400 mb-1 border-b border-gray-700 pb-1" id="hdr-legend">Wektory:</div>
-                <div class="flex items-center gap-2 text-cyan-400">
-                    <div class="w-3 h-3 bg-cyan-500 rounded-full"></div> <span id="leg-pos">Położenie (r)</span>
-                </div>
-                <div class="flex items-center gap-2 text-green-400">
-                    <div class="w-3 h-3 bg-green-500 rounded-full"></div> <span id="leg-vel">Prędkość (v)</span>
-                </div>
-                <div class="flex items-center gap-2 text-red-400">
-                    <div class="w-3 h-3 bg-red-500 rounded-full"></div> <span id="leg-acc">Przyspieszenie (a)</span>
-                </div>
+                <div class="font-bold text-gray-400 mb-1 border-b border-gray-700 pb-1" id="hdr-stats">Wyniki</div>
+                <div id="stats-output" class="space-y-1 text-gray-300"></div>
                 <hr class="border-gray-700 my-2">
-                <div id="stats-output" class="space-y-1 text-gray-300">
-                    <!-- Statsy -->
+                <div class="text-[11px] text-gray-400" id="txt-tip">
+                    Wskazówka: dla h₀ = 0 zasięg maksymalny jest przy 45° (bez oporu).
                 </div>
             </div>
         </aside>
 
-        <!-- CANVAS -->
         <main class="flex-1 relative bg-gray-950 flex flex-col items-center justify-center overflow-hidden">
-            <canvas id="main-canvas" class="cursor-crosshair w-full h-full block"></canvas>
-            
-            <!-- Overlay Ogniska -->
-            <div class="absolute top-4 right-4 bg-gray-800/80 backdrop-blur border border-gray-600 p-3 rounded text-xs font-mono text-gray-300 pointer-events-none">
-                <div class="mb-1 text-yellow-500 font-bold">★ Ognisko (0,0)</div>
-                <div id="debug-info"></div>
-            </div>
-            
-            <div class="absolute bottom-4 left-6 text-xs text-gray-600 font-mono pointer-events-none select-none">
-                <p>System: Kartezjański</p>
-                <p>Siła: Centralna (Grawitacyjna)</p>
+            <canvas id="main-canvas" class="w-full h-full block"></canvas>
+            <div class="absolute top-4 right-4 bg-gray-800/70 backdrop-blur border border-gray-600 p-3 rounded text-xs font-mono text-gray-200 pointer-events-none">
+                <div class="text-cyan-300 font-bold mb-1" id="ovr-title">Status</div>
+                <div id="overlay-output"></div>
             </div>
         </main>
     </div>
 
     <script>
-        // --- KONFIGURACJA I STAN ---
         const state = {
-            mode: 'ellipse', // ellipse, parabola, hyperbola
             lang: 'pl',
             playing: false,
-            t: 0,            // Czas symulacji (Mean Anomaly)
-            
-            baseSpeed: 0.02, // Zmniejszona bazowa szybkość (było 0.05)
-            simSpeedMult: 1.0, // Mnożnik suwaka
-            zoom: 1.0,       // Skala widoku
-
-            // Zakresy czasu dla torów otwartych (do pętli)
-            // Zmiana: hyperbola z 5.0 na 3.0
-            limits: { parabola: 5.0, hyperbola: 3.0 },
-            
-            // Parametry fizyczne
+            speedMult: 1.0,
+            zoom: 1.0,
+            showTrace: true,
+            showGrid: true,
+            showVectors: true,
+            dragEnabled: false,
             params: {
-                a: 150,      // Półoś wielka (lub parametr skalujący)
-                e: 0.6,      // Mimośród (0 <= e < 1 dla elipsy, >1 hiperbola)
-                p: 100       // Parametr paraboli (2p = semi-latus rectum)
+                v0: 25.0,
+                thetaDeg: 45.0,
+                g: 9.81,
+                h0: 0.0,
+                k: 0.20 // 1/s, linear drag
             },
-
-            // Wartości chwilowe (do wyświetlania)
-            curr: { r: 0, v: 0, a: 0, x: 0, y: 0 }
+            t: 0,
+            tf: 1,
+            dtStep: 0.05,
+            trace: [],
+            lastTs: null,
+            fit: { scale: 30, padL: 50, padR: 30, padT: 30, padB: 50 }
         };
 
-        const translations = {
+        const T = {
             pl: {
-                title: 'Dynamika Krzywych Stożkowych',
-                modes: { ellipse: 'Elipsa / Okrąg', parabola: 'Parabola', hyperbola: 'Hiperbola' },
-                start: 'Start', stop: 'Stop',
-                headers: { control: 'Sterowanie', params: 'Parametry Geometryczne', legend: 'Wektory:' },
-                labels: {
-                    time: 'Anomalia Średnia (Czas)',
-                    zoom: 'Skala (Zoom)',
-                    speed: 'Szybkość animacji',
-                    eccentricity: 'Mimośród (e)',
-                    semimajor: 'Półoś wielka (a)',
-                    paramP: 'Parametr (p)',
-                    pos: 'Wektor Wodzący (r)',
-                    vel: 'Prędkość (v)',
-                    acc: 'Przyspieszenie (a)'
-                },
-                stats: { dist: 'Odległość r:', speed: 'Szybkość v:', acc: 'Przysp. a:' }
+                title: 'Laboratorium rzutu ukośnego',
+                subtitle: 'bez oporu powietrza (opcjonalnie: opór liniowy)',
+                start: 'Start',
+                stop: 'Stop',
+                speed: 'Szybkość symulacji',
+                time: 'Czas',
+                params: 'Parametry',
+                v0: 'Prędkość początkowa',
+                theta: 'Kąt wyrzutu',
+                g: 'Grawitacja',
+                h0: 'Wysokość startu',
+                drag: 'Opór liniowy',
+                k: 'Współczynnik k',
+                dragNote: 'Model: a = -g ŷ - k v',
+                view: 'Widok',
+                trace: 'Ślad',
+                grid: 'Siatka',
+                vec: 'Wektory',
+                fit: 'Dopasuj',
+                zoom: 'Zoom',
+                results: 'Wyniki',
+                tip: 'Wskazówka: dla h₀ = 0 zasięg maksymalny jest przy 45° (bez oporu).',
+                overlayTitle: 'Status',
+                hintSpace: 'Start/Stop',
+                hintR: 'Reset',
+                stepBack: '- Δt',
+                stepFwd: '+ Δt',
+                overlayReady: 'Gotowe',
+                overlayFlight: 'Lot…',
+                overlayDone: 'Koniec lotu',
+                overlayScrub: 'Tryb podglądu (suwak czasu)',
+                stats: {
+                    tf: 'Czas lotu',
+                    R: 'Zasięg',
+                    H: 'Maks. wysokość',
+                    x: 'x',
+                    y: 'y',
+                    vx: 'vₓ',
+                    vy: 'vᵧ',
+                    v: '|v|'
+                }
             },
             en: {
-                title: 'Conic Section Dynamics',
-                modes: { ellipse: 'Ellipse / Circle', parabola: 'Parabola', hyperbola: 'Hyperbola' },
-                start: 'Start', stop: 'Stop',
-                headers: { control: 'Controls', params: 'Geometric Parameters', legend: 'Vectors:' },
-                labels: {
-                    time: 'Mean Anomaly (Time)',
-                    zoom: 'Scale (Zoom)',
-                    speed: 'Animation Speed',
-                    eccentricity: 'Eccentricity (e)',
-                    semimajor: 'Semi-major axis (a)',
-                    paramP: 'Parameter (p)',
-                    pos: 'Position Vector (r)',
-                    vel: 'Velocity (v)',
-                    acc: 'Acceleration (a)'
-                },
-                stats: { dist: 'Distance r:', speed: 'Speed v:', acc: 'Accel a:' }
+                title: 'Projectile Motion Lab',
+                subtitle: 'no air resistance (optional: linear drag)',
+                start: 'Start',
+                stop: 'Stop',
+                speed: 'Simulation speed',
+                time: 'Time',
+                params: 'Parameters',
+                v0: 'Initial speed',
+                theta: 'Launch angle',
+                g: 'Gravity',
+                h0: 'Launch height',
+                drag: 'Linear drag',
+                k: 'Coefficient k',
+                dragNote: 'Model: a = -g ŷ - k v',
+                view: 'View',
+                trace: 'Trace',
+                grid: 'Grid',
+                vec: 'Vectors',
+                fit: 'Fit',
+                zoom: 'Zoom',
+                results: 'Results',
+                tip: 'Tip: for h₀ = 0 the maximum range is at 45° (no drag).',
+                overlayTitle: 'Status',
+                hintSpace: 'Start/Stop',
+                hintR: 'Reset',
+                stepBack: '- Δt',
+                stepFwd: '+ Δt',
+                overlayReady: 'Ready',
+                overlayFlight: 'Flying…',
+                overlayDone: 'Flight complete',
+                overlayScrub: 'Preview mode (time slider)',
+                stats: {
+                    tf: 'Flight time',
+                    R: 'Range',
+                    H: 'Max height',
+                    x: 'x',
+                    y: 'y',
+                    vx: 'vₓ',
+                    vy: 'vᵧ',
+                    v: '|v|'
+                }
             }
         };
 
-        // --- SILNIK MATEMATYCZNY (SOLVERY) ---
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
 
-        function solveKeplerEllipse(M, e) {
-            M = M % (2 * Math.PI);
-            if (M < 0) M += 2 * Math.PI;
-            let E = M;
-            for (let i = 0; i < 10; i++) {
-                let f = E - e * Math.sin(E) - M;
-                let df = 1 - e * Math.cos(E);
-                E = E - f / df;
-            }
-            return E;
+        function rad(deg) { return deg * Math.PI / 180; }
+        function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+
+        function resizeCanvas() {
+            const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+            canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            fitView();
         }
 
-        function solveKeplerHyperbola(M, e) {
-            let H = M / (e - 1);
-            if (M > 30) H = Math.log(2*M/e);
-            for (let i = 0; i < 10; i++) {
-                let f = e * Math.sinh(H) - H - M;
-                let df = e * Math.cosh(H) - 1;
-                H = H - f / df;
-            }
-            return H;
+        function solveBallistic() {
+            const { v0, thetaDeg, g, h0 } = state.params;
+            const th = rad(thetaDeg);
+            const vx0 = v0 * Math.cos(th);
+            const vy0 = v0 * Math.sin(th);
+            const disc = vy0 * vy0 + 2 * g * h0;
+            const tf = (vy0 + Math.sqrt(Math.max(0, disc))) / g;
+            state.tf = Math.max(0.001, tf);
+
+            const tPeak = vy0 / g;
+            const yMax = h0 + (vy0 * vy0) / (2 * g);
+            const range = vx0 * state.tf;
+
+            const scaleHint = Math.max(1e-6, Math.max(range, yMax));
+            state.dtStep = clamp(scaleHint / 800, 0.01, 0.2);
+
+            return { vx0, vy0, tf: state.tf, tPeak, yMax, range };
         }
 
-        function solveBarker(M) {
-            let a = 3; 
-            let b = -6 * M;
-            let temp = Math.sqrt(b*b/4 + a*a*a/27);
-            let B = Math.cbrt(-b/2 + temp) + Math.cbrt(-b/2 - temp);
-            return 2 * Math.atan(B);
-        }
+        function fitView() {
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width, h = rect.height;
+            const padL = 60, padR = 30, padT = 30, padB = 60;
 
-        // --- FIZYKA I KINEMATYKA ---
-
-        function calculateState() {
-            const { a, e, p } = state.params;
-            const mu = 50000; 
-
-            let rVec = {x:0, y:0};
-            let vVec = {x:0, y:0};
-            let aVec = {x:0, y:0};
-            let rMag = 0;
-
-            if (state.mode === 'ellipse') {
-                const M = state.t;
-                const E = solveKeplerEllipse(M, e);
-                const b = a * Math.sqrt(1 - e*e);
-                rVec.x = a * (Math.cos(E) - e);
-                rVec.y = b * Math.sin(E);
-                
-                rMag = Math.sqrt(rVec.x*rVec.x + rVec.y*rVec.y);
-
-                const vScale = Math.sqrt(mu / a) / rMag; 
-                vVec.x = -a * Math.sin(E) * vScale;
-                vVec.y = b * Math.cos(E) * vScale;
-
-            } else if (state.mode === 'parabola') {
-                const scaledM = state.t * 0.5;
-                const nu = solveBarker(scaledM);
-                
-                const rVal = state.params.p / (1 + Math.cos(nu));
-                
-                rVec.x = rVal * Math.cos(nu);
-                rVec.y = rVal * Math.sin(nu);
-                
-                rMag = rVal;
-
-                const k = Math.sqrt(mu / state.params.p);
-                const vr = k * Math.sin(nu);
-                const vt = k * (1 + Math.cos(nu));
-                
-                vVec.x = vr * Math.cos(nu) - vt * Math.sin(nu);
-                vVec.y = vr * Math.sin(nu) + vt * Math.cos(nu);
-
-            } else if (state.mode === 'hyperbola') {
-                let M = state.t;
-                // Brak hard clampingu tutaj, zapętlenie robimy w loop()
-                
-                const H = solveKeplerHyperbola(M, e);
-                const b = a * Math.sqrt(e*e - 1);
-                
-                rVec.x = a * (e - Math.cosh(H));
-                rVec.y = b * Math.sinh(H);
-                
-                rMag = Math.sqrt(rVec.x*rVec.x + rVec.y*rVec.y);
-
-                const n = Math.sqrt(mu / (a*a*a)); 
-                const dHdt = Math.sqrt(mu/a) / rMag;
-
-                vVec.x = -a * Math.sinh(H) * dHdt;
-                vVec.y = b * Math.cosh(H) * dHdt;
-            }
-
-            const accMag = mu / (rMag * rMag * rMag);
-            aVec.x = -rVec.x * accMag;
-            aVec.y = -rVec.y * accMag;
-
-            state.curr.x = rVec.x;
-            state.curr.y = rVec.y;
-            state.curr.r = rMag;
-            state.curr.vx = vVec.x;
-            state.curr.vy = vVec.y;
-            state.curr.v = Math.sqrt(vVec.x**2 + vVec.y**2);
-            state.curr.ax = aVec.x;
-            state.curr.ay = aVec.y;
-            state.curr.a = Math.sqrt(aVec.x**2 + aVec.y**2);
-        }
-
-        // --- RENDERING (CANVAS) ---
-        function draw() {
-            const canvas = document.getElementById('main-canvas');
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width;
-            const h = canvas.height;
-            const scale = state.zoom; // Zoom factor
-
-            // Wyczyść
-            ctx.fillStyle = '#030712'; // gray-950
-            ctx.fillRect(0, 0, w, h);
-
-            const originX = w / 2;
-            const originY = h / 2;
-
-            // Siatka
-            drawGrid(ctx, w, h, originX, originY);
-
-            // Rysowanie Ogniska (0,0)
-            ctx.beginPath();
-            ctx.arc(originX, originY, 6, 0, Math.PI * 2);
-            ctx.fillStyle = '#eab308'; // yellow-500
-            ctx.fill();
-            ctx.shadowBlur = 10; ctx.shadowColor = '#eab308'; ctx.stroke(); ctx.shadowBlur = 0;
-
-            // Rysowanie Trajektorii (Ślad statyczny)
-            ctx.strokeStyle = '#4b5563'; // Jaśniejszy szary dla lepszej widoczności
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([5, 5]);
-            ctx.beginPath();
-            
-            if (state.mode === 'ellipse') {
-                const { a, e } = state.params;
-                const b = a * Math.sqrt(1 - e*e);
-                for (let ang = 0; ang <= 2*Math.PI; ang += 0.05) {
-                    const tx = (a * (Math.cos(ang) - e)) * scale;
-                    const ty = (b * Math.sin(ang)) * scale;
-                    if (ang===0) ctx.moveTo(originX + tx, originY - ty);
-                    else ctx.lineTo(originX + tx, originY - ty);
-                }
-                ctx.closePath();
-            } else if (state.mode === 'parabola') {
-                const p = state.params.p;
-                // Zwiększony zakres rysowania dla paraboli
-                for (let nu = -2.8; nu <= 2.8; nu += 0.05) {
-                    const r = p / (1 + Math.cos(nu));
-                    const tx = (r * Math.cos(nu)) * scale;
-                    const ty = (r * Math.sin(nu)) * scale;
-                    if (nu===-2.8) ctx.moveTo(originX + tx, originY - ty);
-                    else ctx.lineTo(originX + tx, originY - ty);
-                }
-            } else if (state.mode === 'hyperbola') {
-                const { a, e } = state.params;
-                const b = a * Math.sqrt(e*e - 1);
-                // Zwiększony zakres rysowania dla hiperboli
-                for (let H = -3.5; H <= 3.5; H += 0.05) {
-                    const tx = (a * (e - Math.cosh(H))) * scale;
-                    const ty = (b * Math.sinh(H)) * scale;
-                    if (H===-3.5) ctx.moveTo(originX + tx, originY - ty);
-                    else ctx.lineTo(originX + tx, originY - ty);
+            let xMax = 30, yMax = 15;
+            if (!state.dragEnabled) {
+                const s = solveBallistic();
+                xMax = Math.max(5, s.range);
+                yMax = Math.max(3, s.yMax);
+            } else {
+                // For drag, estimate extents by sampling quickly with the current params
+                const samples = simulateDragPreview(0.02, 8.0);
+                for (const p of samples) {
+                    xMax = Math.max(xMax, p.x);
+                    yMax = Math.max(yMax, p.y);
                 }
             }
-            ctx.stroke();
-            ctx.setLineDash([]);
 
-            // Ciało niebieskie (skalowane pozycje)
-            const bodyX = originX + state.curr.x * scale;
-            const bodyY = originY - state.curr.y * scale; 
+            xMax *= 1.10;
+            yMax *= 1.10;
 
-            // Wektor Wodzący (r) - Cyan
-            drawArrow(ctx, originX, originY, bodyX, bodyY, '#06b6d4');
+            const scaleX = (w - padL - padR) / Math.max(1e-6, xMax);
+            const scaleY = (h - padT - padB) / Math.max(1e-6, yMax);
+            const scale = Math.max(5, Math.min(scaleX, scaleY)) * state.zoom;
 
-            // Ciało
-            ctx.beginPath();
-            ctx.arc(bodyX, bodyY, 8, 0, Math.PI * 2);
-            ctx.fillStyle = '#22d3ee'; // cyan-400
-            ctx.fill();
-            ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
-
-            // Wektory V i A nie są skalowane przez zoom geometrii (są w przestrzeni ekranu/fizycznej skali)
-            // ale zaczynają się od przeskalowanej pozycji ciała.
-            
-            // Wektor Prędkości (v) - Green
-            const vScale = 4; // Stała wizualna
-            drawArrow(ctx, bodyX, bodyY, bodyX + state.curr.vx * vScale, bodyY - state.curr.vy * vScale, '#4ade80');
-
-            // Wektor Przyspieszenia (a) - Red
-            const aScale = 400; 
-            drawArrow(ctx, bodyX, bodyY, bodyX + state.curr.ax * aScale, bodyY - state.curr.ay * aScale, '#f87171');
+            state.fit = { scale, padL, padR, padT, padB };
+            draw();
         }
 
-        function drawGrid(ctx, w, h, ox, oy) {
-            ctx.strokeStyle = '#1f2937'; // gray-800
+        function worldToScreen(x, y) {
+            const rect = canvas.getBoundingClientRect();
+            const h = rect.height;
+            const { scale, padL, padB } = state.fit;
+            return {
+                sx: padL + x * scale,
+                sy: h - padB - y * scale
+            };
+        }
+
+        function drawGrid() {
+            if (!state.showGrid) return;
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width, h = rect.height;
+            const { scale, padL, padB, padT, padR } = state.fit;
+            const xMax = (w - padL - padR) / scale;
+            const yMax = (h - padT - padB) / scale;
+
+            const targetPx = 90;
+            const meters = targetPx / scale;
+            const pow10 = Math.pow(10, Math.floor(Math.log10(meters)));
+            const candidates = [1, 2, 5, 10].map(m => m * pow10);
+            let step = candidates[0];
+            for (const c of candidates) {
+                if (Math.abs(c - meters) < Math.abs(step - meters)) step = c;
+            }
+
+            ctx.save();
             ctx.lineWidth = 1;
-            const step = 50 * state.zoom; // Siatka skaluje się razem z zoomem
-            
-            // Unikamy zbyt gęstej siatki przy małym zoomie
-            if (step < 10) return;
+            ctx.strokeStyle = 'rgba(148,163,184,0.15)';
+            ctx.fillStyle = 'rgba(148,163,184,0.55)';
+            ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 
-            ctx.beginPath();
-            // Pionowe (wychodzące od środka)
-            for(let x = ox; x < w; x += step) { ctx.moveTo(x, 0); ctx.lineTo(x, h); }
-            for(let x = ox; x > 0; x -= step) { ctx.moveTo(x, 0); ctx.lineTo(x, h); }
-            // Poziome
-            for(let y = oy; y < h; y += step) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
-            for(let y = oy; y > 0; y -= step) { ctx.moveTo(0, y); ctx.lineTo(w, y); }
-            ctx.stroke();
+            // vertical lines
+            for (let x = 0; x <= xMax + 1e-6; x += step) {
+                const p0 = worldToScreen(x, 0);
+                const p1 = worldToScreen(x, yMax);
+                ctx.beginPath();
+                ctx.moveTo(p0.sx, p0.sy);
+                ctx.lineTo(p1.sx, p1.sy);
+                ctx.stroke();
+                if (x > 0) ctx.fillText(`${x.toFixed(x < 10 ? 1 : 0)} m`, p0.sx + 4, p0.sy + 14);
+            }
 
-            // Osie Główne
-            ctx.strokeStyle = '#374151';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(0, oy); ctx.lineTo(w, oy);
-            ctx.moveTo(ox, 0); ctx.lineTo(ox, h);
-            ctx.stroke();
+            // horizontal lines
+            for (let y = 0; y <= yMax + 1e-6; y += step) {
+                const p0 = worldToScreen(0, y);
+                const p1 = worldToScreen(xMax, y);
+                ctx.beginPath();
+                ctx.moveTo(p0.sx, p0.sy);
+                ctx.lineTo(p1.sx, p1.sy);
+                ctx.stroke();
+                if (y > 0) ctx.fillText(`${y.toFixed(y < 10 ? 1 : 0)} m`, p0.sx + 4, p0.sy - 4);
+            }
+            ctx.restore();
         }
 
-        function drawArrow(ctx, fromX, fromY, toX, toY, color) {
-            const headlen = 10;
-            const dx = toX - fromX;
-            const dy = toY - fromY;
-            const angle = Math.atan2(dy, dx);
-            const len = Math.sqrt(dx*dx + dy*dy);
-            
-            if (len < 2) return; 
+        function drawAxes() {
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width, h = rect.height;
+            const { padL, padB } = state.fit;
+            ctx.save();
+            ctx.strokeStyle = 'rgba(148,163,184,0.35)';
+            ctx.lineWidth = 2;
+            // x-axis (ground)
+            ctx.beginPath();
+            ctx.moveTo(padL, h - padB);
+            ctx.lineTo(w - 20, h - padB);
+            ctx.stroke();
+            // y-axis
+            ctx.beginPath();
+            ctx.moveTo(padL, h - padB);
+            ctx.lineTo(padL, 20);
+            ctx.stroke();
+            ctx.restore();
+        }
 
+        function arrow(sx0, sy0, sx1, sy1, color) {
+            const dx = sx1 - sx0, dy = sy1 - sy0;
+            const L = Math.hypot(dx, dy);
+            if (L < 1e-6) return;
+            const ux = dx / L, uy = dy / L;
+            const head = 10;
+            const wing = 6;
+
+            ctx.save();
             ctx.strokeStyle = color;
             ctx.fillStyle = color;
             ctx.lineWidth = 2;
-            
             ctx.beginPath();
-            ctx.moveTo(fromX, fromY);
-            ctx.lineTo(toX, toY);
+            ctx.moveTo(sx0, sy0);
+            ctx.lineTo(sx1, sy1);
             ctx.stroke();
-            
+
+            const hx = sx1 - ux * head;
+            const hy = sy1 - uy * head;
+            const px = -uy, py = ux;
             ctx.beginPath();
-            ctx.moveTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
-            ctx.lineTo(toX, toY);
-            ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+            ctx.moveTo(sx1, sy1);
+            ctx.lineTo(hx + px * wing, hy + py * wing);
+            ctx.lineTo(hx - px * wing, hy - py * wing);
+            ctx.closePath();
             ctx.fill();
+            ctx.restore();
         }
 
-        // --- UI & LOGIKA ---
-
-        function setMode(mode) {
-            state.mode = mode;
-            state.playing = false;
-            
-            // Reset czasu do początku zakresu dla danego trybu
-            if (mode === 'ellipse') state.t = 0;
-            else state.t = -state.limits[mode];
-
-            // Ustawienie mimośrodu przy zmianie trybu
-            if (mode === 'hyperbola') state.params.e = 2.0;
-            else if (mode === 'ellipse' && state.params.e >= 1) state.params.e = 0.6;
-
-            updateTabStyles();
-            renderParams();
-            updateSim();
-            updateUI(); // Odśwież play button
+        function ballisticAt(t) {
+            const { v0, thetaDeg, g, h0 } = state.params;
+            const th = rad(thetaDeg);
+            const vx0 = v0 * Math.cos(th);
+            const vy0 = v0 * Math.sin(th);
+            const x = vx0 * t;
+            const y = h0 + vy0 * t - 0.5 * g * t * t;
+            const vx = vx0;
+            const vy = vy0 - g * t;
+            return { x, y: Math.max(0, y), vx, vy, ax: 0, ay: -g };
         }
 
-        function updateTabStyles() {
-            ['ellipse', 'parabola', 'hyperbola'].forEach(m => {
-                const btn = document.getElementById(`btn-${m}`);
-                if (m === state.mode) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
+        function simulateDragPreview(dt, tMax) {
+            const { v0, thetaDeg, g, h0, k } = state.params;
+            const th = rad(thetaDeg);
+            let x = 0, y = h0;
+            let vx = v0 * Math.cos(th);
+            let vy = v0 * Math.sin(th);
+            const out = [];
+            for (let t = 0; t <= tMax + 1e-6; t += dt) {
+                out.push({ x, y: Math.max(0, y), vx, vy });
+                if (y <= 0 && t > 0) break;
+                const ax = -k * vx;
+                const ay = -g - k * vy;
+                // Semi-implicit Euler (stable enough for teaching UI)
+                vx += ax * dt;
+                vy += ay * dt;
+                x += vx * dt;
+                y += vy * dt;
+            }
+            return out;
         }
 
-        function toggleLang() {
-            state.lang = state.lang === 'pl' ? 'en' : 'pl';
-            renderParams();
-            updateUI();
+        function dragTrajectory() {
+            const dt = 0.005;
+            const points = simulateDragPreview(dt, 30.0);
+            const last = points[points.length - 1];
+            const tf = Math.max(0.001, dt * (points.length - 1));
+            state.tf = tf;
+            return { points, tf, range: last.x, yMax: points.reduce((m,p)=>Math.max(m,p.y), 0) };
         }
 
-        function renderParams() {
-            const container = document.getElementById('params-container');
-            container.innerHTML = `<h2 class="text-xs uppercase text-gray-500 font-bold tracking-wider">${translations[state.lang].headers.params}</h2>`;
-            const txt = translations[state.lang].labels;
+        function computeAt(t) {
+            if (!state.dragEnabled) return ballisticAt(t);
+            const { points, tf } = dragTrajectoryCached();
+            const u = clamp(t / tf, 0, 1);
+            const idx = u * (points.length - 1);
+            const i0 = Math.floor(idx);
+            const i1 = Math.min(points.length - 1, i0 + 1);
+            const a = idx - i0;
+            const p0 = points[i0], p1 = points[i1];
+            const x = p0.x + (p1.x - p0.x) * a;
+            const y = p0.y + (p1.y - p0.y) * a;
+            const vx = p0.vx + (p1.vx - p0.vx) * a;
+            const vy = p0.vy + (p1.vy - p0.vy) * a;
+            const ax = -state.params.k * vx;
+            const ay = -state.params.g - state.params.k * vy;
+            return { x, y, vx, vy, ax, ay };
+        }
 
-            if (state.mode === 'ellipse' || state.mode === 'hyperbola') {
-                addSlider(container, 'a', txt.semimajor, 50, 300, 10, state.params.a);
-                const minE = state.mode === 'ellipse' ? 0 : 1.25; // Zmiana minE na 1.25 dla hiperboli
-                const maxE = state.mode === 'ellipse' ? 0.95 : 3.0;
-                addSlider(container, 'e', txt.eccentricity, minE, maxE, 0.01, state.params.e);
-            } else {
-                addSlider(container, 'p', txt.paramP, 50, 300, 10, state.params.p);
+        let cachedDrag = null;
+        function dragTrajectoryCached() {
+            const key = `${state.params.v0}|${state.params.thetaDeg}|${state.params.g}|${state.params.h0}|${state.params.k}`;
+            if (cachedDrag && cachedDrag.key === key) return cachedDrag.value;
+            cachedDrag = { key, value: dragTrajectory() };
+            return cachedDrag.value;
+        }
+
+        function rebuildTrace() {
+            state.trace = [];
+            const tf = state.tf;
+            const dt = Math.max(0.01, Math.min(0.05, tf / 300));
+            for (let t = 0; t <= tf + 1e-9; t += dt) {
+                const p = computeAt(t);
+                state.trace.push({ x: p.x, y: p.y });
             }
         }
 
-        function addSlider(parent, key, label, min, max, step, val) {
-            const div = document.createElement('div');
-            div.innerHTML = `
-                <div class="flex justify-between mb-1">
-                    <label class="text-sm text-cyan-400">${label}</label>
-                    <span class="text-sm font-mono text-white" id="val-${key}">${val}</span>
-                </div>
-                <input type="range" min="${min}" max="${max}" step="${step}" value="${val}" class="w-full accent-cyan-500" oninput="updateParam('${key}', this.value)">
+        function drawTrace() {
+            if (!state.showTrace || state.trace.length < 2) return;
+            ctx.save();
+            ctx.strokeStyle = 'rgba(34,211,238,0.9)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            const p0 = worldToScreen(state.trace[0].x, state.trace[0].y);
+            ctx.moveTo(p0.sx, p0.sy);
+            for (let i = 1; i < state.trace.length; i++) {
+                const p = worldToScreen(state.trace[i].x, state.trace[i].y);
+                ctx.lineTo(p.sx, p.sy);
+            }
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function drawProjectile(p) {
+            const { sx, sy } = worldToScreen(p.x, p.y);
+            ctx.save();
+            // glow
+            ctx.fillStyle = 'rgba(34,211,238,0.15)';
+            ctx.beginPath();
+            ctx.arc(sx, sy, 14, 0, Math.PI * 2);
+            ctx.fill();
+            // core
+            ctx.fillStyle = 'rgba(34,211,238,0.95)';
+            ctx.beginPath();
+            ctx.arc(sx, sy, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            if (!state.showVectors) return;
+            const scaleV = 0.6; // meters per (m/s) visual scaling (world units)
+            const scaleA = 0.10; // meters per (m/s^2)
+            const vEnd = worldToScreen(p.x + p.vx * scaleV, p.y + p.vy * scaleV);
+            arrow(sx, sy, vEnd.sx, vEnd.sy, 'rgba(34,197,94,0.95)'); // green
+            const aEnd = worldToScreen(p.x + p.ax * scaleA, p.y + p.ay * scaleA);
+            arrow(sx, sy, aEnd.sx, aEnd.sy, 'rgba(248,113,113,0.95)'); // red
+        }
+
+        function clearCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            ctx.clearRect(0, 0, rect.width, rect.height);
+            // subtle background gradient
+            const g = ctx.createLinearGradient(0, 0, 0, rect.height);
+            g.addColorStop(0, 'rgba(2,6,23,1)');
+            g.addColorStop(1, 'rgba(3,7,18,1)');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, rect.width, rect.height);
+        }
+
+        function draw() {
+            clearCanvas();
+            drawGrid();
+            drawAxes();
+
+            if (state.trace.length === 0) rebuildTrace();
+            drawTrace();
+
+            const p = computeAt(state.t);
+            drawProjectile(p);
+            updateHUD(p);
+        }
+
+        function fmt(x, d=2) { return Number.isFinite(x) ? x.toFixed(d) : '—'; }
+
+        function updateHUD(p) {
+            const tr = T[state.lang];
+            const v = Math.hypot(p.vx, p.vy);
+            const stats = document.getElementById('stats-output');
+
+            let range = 0, yMax = 0;
+            if (!state.dragEnabled) {
+                const s = solveBallistic();
+                range = s.range;
+                yMax = s.yMax;
+            } else {
+                const s = dragTrajectoryCached();
+                range = s.range;
+                yMax = s.yMax;
+            }
+
+            stats.innerHTML = `
+                <div class="flex justify-between"><span>${tr.stats.tf}:</span><span class="text-cyan-300">${fmt(state.tf,2)} s</span></div>
+                <div class="flex justify-between"><span>${tr.stats.R}:</span><span class="text-cyan-300">${fmt(range,2)} m</span></div>
+                <div class="flex justify-between"><span>${tr.stats.H}:</span><span class="text-cyan-300">${fmt(yMax,2)} m</span></div>
+                <hr class="border-gray-700 my-2">
+                <div class="flex justify-between"><span>${tr.stats.x}:</span><span>${fmt(p.x,2)} m</span></div>
+                <div class="flex justify-between"><span>${tr.stats.y}:</span><span>${fmt(p.y,2)} m</span></div>
+                <div class="flex justify-between"><span>${tr.stats.vx}:</span><span>${fmt(p.vx,2)} m/s</span></div>
+                <div class="flex justify-between"><span>${tr.stats.vy}:</span><span>${fmt(p.vy,2)} m/s</span></div>
+                <div class="flex justify-between"><span>${tr.stats.v}:</span><span>${fmt(v,2)} m/s</span></div>
             `;
-            parent.appendChild(div);
+
+            const overlay = document.getElementById('overlay-output');
+            const u = clamp(state.t / state.tf, 0, 1);
+            const status =
+                (state.t <= 1e-6) ? tr.overlayReady :
+                (state.t >= state.tf - 1e-6) ? tr.overlayDone :
+                (state.playing) ? tr.overlayFlight :
+                tr.overlayScrub;
+            overlay.innerHTML = `
+                <div class="flex justify-between gap-4"><span>${status}</span><span class="text-cyan-300">${(u*100).toFixed(1)}%</span></div>
+                <div class="text-gray-300 mt-1">t = <span class="text-cyan-300">${fmt(state.t,2)} s</span></div>
+            `;
+
+            document.getElementById('val-time').textContent = `${fmt(state.t,2)} s`;
         }
 
-        function updateParam(key, val) {
-            state.params[key] = parseFloat(val);
-            document.getElementById(`val-${key}`).innerText = val;
-            updateSim();
+        function updateParam(key, value) {
+            state.params[key] = Number(value);
+            cachedDrag = null;
+            resetSim(false);
+            syncUI();
+            fitView();
         }
 
-        function updateZoom(val) {
-            state.zoom = parseFloat(val);
-            document.getElementById('val-zoom').innerText = state.zoom.toFixed(1) + 'x';
-            updateSim();
+        function updateSpeed(value) {
+            state.speedMult = Number(value);
+            document.getElementById('val-speed').textContent = `${state.speedMult.toFixed(1)}x`;
         }
 
-        function updateAnimSpeed(val) {
-            state.simSpeedMult = parseFloat(val);
-            document.getElementById('val-speed').innerText = state.simSpeedMult.toFixed(1) + 'x';
+        function updateZoom(value) {
+            state.zoom = Number(value);
+            document.getElementById('val-zoom').textContent = `${state.zoom.toFixed(2)}x`;
+            fitView();
         }
 
-        function manualTime(val) {
-            if (state.playing) togglePlay();
-            
-            if (state.mode === 'ellipse') {
-                state.t = (val / 100) * 2 * Math.PI;
-            } else {
-                // Mapuj 0-100 na zakres -limit do +limit
-                const limit = state.limits[state.mode];
-                state.t = ((val - 50) / 50) * limit;
-            }
-            updateSim();
+        function toggleOption(key, checked) {
+            state[key] = checked;
+            draw();
+        }
+
+        function toggleDrag(checked) {
+            state.dragEnabled = checked;
+            const box = document.getElementById('drag-controls');
+            box.classList.toggle('opacity-50', !checked);
+            box.classList.toggle('pointer-events-none', !checked);
+            cachedDrag = null;
+            resetSim(false);
+            syncUI();
+            fitView();
+        }
+
+        function scrubTime(u) {
+            state.playing = false;
+            setPlayUI();
+            state.t = clamp(Number(u), 0, 1) * state.tf;
+            draw();
+        }
+
+        function stepTime(dir) {
+            state.playing = false;
+            setPlayUI();
+            state.t = clamp(state.t + dir * state.dtStep, 0, state.tf);
+            document.getElementById('inp-time').value = (state.t / state.tf).toString();
+            draw();
         }
 
         function togglePlay() {
             state.playing = !state.playing;
-            updateUI();
-            if (state.playing) loop();
+            setPlayUI();
+            state.lastTs = null;
+            requestAnimationFrame(tick);
         }
 
-        function resetSim() {
-            state.playing = false;
-            // Reset czasu
-            if (state.mode === 'ellipse') state.t = 0;
-            else state.t = -state.limits[state.mode];
-            
-            // Reset suwaka zoomu i prędkości do domyślnych (opcjonalne, ale wygodne)
-            state.zoom = 1.0; document.getElementById('inp-zoom').value = 1.0; document.getElementById('val-zoom').innerText = '1.0x';
-            state.simSpeedMult = 1.0; document.getElementById('inp-speed').value = 1.0; document.getElementById('val-speed').innerText = '1.0x';
-            
-            updateUI();
-            updateSim();
+        function setPlayUI() {
+            const tr = T[state.lang];
+            const btn = document.getElementById('btn-play');
+            const txt = document.getElementById('txt-play');
+            if (state.playing) {
+                txt.textContent = tr.stop;
+                btn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                btn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+            } else {
+                txt.textContent = tr.start;
+                btn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+                btn.classList.add('bg-green-500', 'hover:bg-green-600');
+            }
         }
 
-        function updateSim() {
-            calculateState();
+        function resetSim(hard) {
+            if (hard) state.playing = false;
+            setPlayUI();
+            state.t = 0;
+            if (!state.dragEnabled) solveBallistic(); else dragTrajectoryCached();
+            rebuildTrace();
+            document.getElementById('inp-time').value = "0";
             draw();
-            updateStatsUI();
         }
 
-        function updateStatsUI() {
-            const out = document.getElementById('stats-output');
-            const t = translations[state.lang].stats;
-            out.innerHTML = `
-                <div class="flex justify-between"><span>${t.dist}</span> <span class="text-white font-bold">${state.curr.r.toFixed(1)}</span></div>
-                <div class="flex justify-between"><span>${t.speed}</span> <span class="text-white font-bold">${state.curr.v.toFixed(1)}</span></div>
-                <div class="flex justify-between"><span>${t.acc}</span> <span class="text-white font-bold">${(state.curr.a * 100).toFixed(2)}e-2</span></div>
-            `;
-            
-            if (state.playing) {
-                const slider = document.getElementById('inp-time');
-                let val = 0;
-                if (state.mode === 'ellipse') {
-                    val = (state.t % (2*Math.PI)) / (2*Math.PI) * 100;
-                } else {
-                    const limit = state.limits[state.mode];
-                    val = ((state.t / limit) * 50) + 50;
-                }
-                slider.value = val;
-            }
-            document.getElementById('val-time').innerText = state.t.toFixed(2);
-        }
-        
-        function updateUI() {
-            const t = translations[state.lang];
-            document.getElementById('app-title').innerText = t.title;
-            document.getElementById('btn-ellipse').innerText = t.modes.ellipse;
-            document.getElementById('btn-parabola').innerText = t.modes.parabola;
-            document.getElementById('btn-hyperbola').innerText = t.modes.hyperbola;
-            document.getElementById('lang-label').innerText = state.lang === 'pl' ? 'EN' : 'PL';
-            
-            document.getElementById('hdr-control').innerText = t.headers.control;
-            document.getElementById('hdr-legend').innerText = t.headers.legend;
-            
-            const btnPlay = document.getElementById('btn-play');
-            const txtPlay = document.getElementById('txt-play');
-            
-            if (state.playing) {
-                btnPlay.classList.replace('bg-green-500', 'bg-red-500');
-                btnPlay.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
-                txtPlay.innerText = t.stop;
-            } else {
-                btnPlay.classList.replace('bg-red-500', 'bg-green-500');
-                btnPlay.classList.replace('hover:bg-red-600', 'hover:bg-green-600');
-                txtPlay.innerText = t.start;
-            }
-            
-            document.getElementById('lbl-time').innerText = t.labels.time;
-            document.getElementById('lbl-zoom').innerText = t.labels.zoom;
-            document.getElementById('lbl-speed').innerText = t.labels.speed;
-            
-            document.getElementById('leg-pos').innerText = t.labels.pos;
-            document.getElementById('leg-vel').innerText = t.labels.vel;
-            document.getElementById('leg-acc').innerText = t.labels.acc;
-            
-            updateStatsUI();
-        }
-
-        // --- PĘTLA ANIMACJI ---
-        function loop() {
+        function tick(ts) {
             if (!state.playing) return;
-            
-            // Krok czasowy uwzględniający bazową prędkość i mnożnik użytkownika
-            state.t += state.baseSpeed * state.simSpeedMult;
+            if (state.lastTs == null) state.lastTs = ts;
+            const dt = clamp((ts - state.lastTs) / 1000, 0, 0.05);
+            state.lastTs = ts;
 
-            // Zapętlanie (Looping logic)
-            if (state.mode === 'ellipse') {
-                if (state.t > 2 * Math.PI) {
-                    state.t -= 2 * Math.PI;
-                }
-            } else {
-                // Dla otwartych (parabola/hiperbola)
-                const limit = state.limits[state.mode];
-                if (state.t > limit) {
-                    state.t = -limit; // Skok na początek
-                }
+            state.t += dt * state.speedMult;
+            if (state.t >= state.tf) {
+                state.t = state.tf;
+                state.playing = false;
+                setPlayUI();
             }
-
-            updateSim();
-            requestAnimationFrame(loop);
+            document.getElementById('inp-time').value = (state.t / state.tf).toString();
+            draw();
+            if (state.playing) requestAnimationFrame(tick);
         }
 
-        // Init
-        window.addEventListener('resize', () => {
-            const c = document.getElementById('main-canvas');
-            if(c && c.parentElement) {
-                c.width = c.parentElement.clientWidth;
-                c.height = c.parentElement.clientHeight;
-                draw();
-            }
-        });
-        
-        setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
-        setMode('ellipse');
-        // Initial defaults update labels
-        document.getElementById('val-zoom').innerText = '1.0x';
-        document.getElementById('val-speed').innerText = '1.0x';
-        renderParams();
-        updateUI();
+        function syncUI() {
+            document.getElementById('val-v0').textContent = `${state.params.v0.toFixed(1)} m/s`;
+            document.getElementById('val-theta').textContent = `${state.params.thetaDeg.toFixed(1)}°`;
+            document.getElementById('val-g').textContent = `${state.params.g.toFixed(2)} m/s²`;
+            document.getElementById('val-h0').textContent = `${state.params.h0.toFixed(1)} m`;
+            document.getElementById('val-k').textContent = `${state.params.k.toFixed(2)} 1/s`;
+            document.getElementById('val-speed').textContent = `${state.speedMult.toFixed(1)}x`;
+            document.getElementById('val-zoom').textContent = `${state.zoom.toFixed(2)}x`;
+        }
 
+        function applyLang() {
+            const tr = T[state.lang];
+            document.getElementById('app-title').textContent = tr.title;
+            document.getElementById('app-subtitle').textContent = tr.subtitle;
+            document.getElementById('lbl-speed').textContent = tr.speed;
+            document.getElementById('lbl-time').textContent = tr.time;
+            document.getElementById('hdr-params').textContent = tr.params;
+            document.getElementById('lbl-v0').textContent = tr.v0;
+            document.getElementById('lbl-theta').textContent = tr.theta;
+            document.getElementById('lbl-g').textContent = tr.g;
+            document.getElementById('lbl-h0').textContent = tr.h0;
+            document.getElementById('lbl-drag').textContent = tr.drag;
+            document.getElementById('lbl-k').textContent = tr.k;
+            document.getElementById('txt-drag-note').textContent = tr.dragNote;
+            document.getElementById('hdr-view').textContent = tr.view;
+            document.getElementById('lbl-trace').textContent = tr.trace;
+            document.getElementById('lbl-grid').textContent = tr.grid;
+            document.getElementById('lbl-vec').textContent = tr.vec;
+            document.getElementById('btn-fit').textContent = tr.fit;
+            document.getElementById('lbl-zoom').textContent = tr.zoom;
+            document.getElementById('hdr-stats').textContent = tr.results;
+            document.getElementById('txt-tip').textContent = tr.tip;
+            document.getElementById('ovr-title').textContent = tr.overlayTitle;
+            document.getElementById('hint-space').textContent = tr.hintSpace;
+            document.getElementById('hint-r').textContent = tr.hintR;
+            document.getElementById('btn-step-back').textContent = tr.stepBack;
+            document.getElementById('btn-step-fwd').textContent = tr.stepFwd;
+            setPlayUI();
+            draw();
+        }
+
+        function toggleLang() {
+            state.lang = (state.lang === 'pl') ? 'en' : 'pl';
+            document.getElementById('lang-label').textContent = (state.lang === 'pl') ? 'EN' : 'PL';
+            document.documentElement.lang = state.lang;
+            applyLang();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+            if (e.key === 'r' || e.key === 'R') { e.preventDefault(); resetSim(true); }
+        });
+
+        function init() {
+            resizeCanvas();
+            syncUI();
+            solveBallistic();
+            rebuildTrace();
+            applyLang();
+            resetSim(true);
+        }
+
+        init();
     </script>
 </body>
 </html>
+
