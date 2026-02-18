@@ -7,7 +7,7 @@
 Na ciało o masie $m = 2,\mathrm{kg}$ działa stała siła
 
 $$
-\vec F = (6,, 2),\mathrm{N}
+\vec F = (6, 2),\mathrm{N}
 $$
 
 Ciało startuje z prędkością początkową
