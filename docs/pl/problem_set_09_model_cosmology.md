@@ -194,9 +194,10 @@ $$
 ## Zadanie 9 – Układ trzech ciał (symulacja numeryczna)
 
 1. Zapisz równania ruchu dla trzech mas:
-   $$
-   m_i \ddot{\vec r}_i = \sum_{j \ne i} -G \frac{m_i m_j}{|\vec r_i - \vec r_j|^3} (\vec r_i - \vec r_j)
-   $$
+
+$$
+m_i \ddot{\vec r}_i = \sum_{j \ne i} -G \frac{m_i m_j}{|\vec r_i - \vec r_j|^3} (\vec r_i - \vec r_j)
+$$
 
 2. Zaimplementuj metodę numeryczną (np. RK4).
 3. Zbadaj stabilność konfiguracji.
@@ -218,4 +219,3 @@ $$
 2. Oceń stabilność metody numerycznej.
 3. Porównaj różne kroki czasowe $\Delta t$.
 4. Zbadaj wpływ schematu całkowania na zachowanie orbit.
-
