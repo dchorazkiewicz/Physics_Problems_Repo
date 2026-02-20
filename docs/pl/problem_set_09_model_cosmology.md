@@ -22,6 +22,7 @@
 4. Określ momenty zmiany kierunku ruchu w projekcji kątowej.
 
 **HTML (obowiązkowo):**
+
 - suwaki: $R$, $r$, $\omega$, $\Omega$,
 - ślad toru,
 - wykres długości ekliptycznej $\varphi(t)$.
@@ -49,6 +50,7 @@
 4. Porównaj tor względny z modelem epicyklicznym.
 
 **HTML:**
+
 - widok heliocentryczny,
 - widok geocentryczny,
 - przełącznik układu odniesienia.
@@ -82,6 +84,7 @@
 4. Zweryfikuj prawo równych pól.
 
 **HTML:**
+
 - wizualizacja ogniska,
 - rysowanie wycinków pola,
 - dynamiczne porównanie pól.
@@ -134,6 +137,7 @@
 4. Zbadaj zależność toru od stosunku mas $m/M$.
 
 **HTML:**
+
 - trajektorie obu ciał,
 - zaznaczone barycentrum,
 - suwak zmiany stosunku mas.
@@ -161,6 +165,7 @@ $$
 2. Określ warunki początkowe prowadzące do różnych typów orbit.
 
 **HTML:**
+
 - zmiana prędkości początkowej,
 - wykres energii w czasie,
 - klasyfikacja toru.
@@ -180,6 +185,7 @@ $$
 3. Zbadaj wpływ parametru $\alpha$.
 
 **HTML:**
+
 - animacja dryfu osi elipsy,
 - pomiar kąta precesji.
 
@@ -188,7 +194,6 @@ $$
 ## Zadanie 9 – Układ trzech ciał (symulacja numeryczna)
 
 1. Zapisz równania ruchu dla trzech mas:
-
    $$
    m_i \ddot{\vec r}_i = \sum_{j \ne i} -G \frac{m_i m_j}{|\vec r_i - \vec r_j|^3} (\vec r_i - \vec r_j)
    $$
@@ -197,6 +202,7 @@ $$
 3. Zbadaj stabilność konfiguracji.
 
 **HTML:**
+
 - animacja ruchu trzech ciał,
 - możliwość zmiany mas i warunków początkowych.
 
