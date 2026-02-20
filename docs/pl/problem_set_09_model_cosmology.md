@@ -211,7 +211,7 @@ $$
 
 ## Zadanie 10 – Analiza stabilności i wielkości zachowanych
 
-1. Monitoruj:
+1. Monitoruj dla układu trzech ciał:
    - energię całkowitą $E(t)$,
    - moment pędu $\vec L = \vec r \times m \vec v$,
    - położenie środka masy.
