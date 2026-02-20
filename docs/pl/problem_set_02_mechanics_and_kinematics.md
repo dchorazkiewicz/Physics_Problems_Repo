@@ -13,8 +13,9 @@ $$
 1. Wyznacz prędkość $v(t)$ i przyspieszenie $a(t)$.
 2. Dla danych parametrów $x_0=0$, $v_0=5,\text{m/s}$, $a=-2,\text{m/s}^2$:
 
-   * oblicz czas zatrzymania,
-   * oblicz maksymalne przemieszczenie.
+    * oblicz czas zatrzymania,
+    * oblicz maksymalne przemieszczenie.
+
 3. Zwizualizuj $x(t)$, $v(t)$, $a(t)$.
 
 ---
@@ -124,17 +125,16 @@ $$
 
 1. Narysuj oba ruchy w układzie heliocentrycznym (Słońce w środku).
 2. Wyznacz położenie Marsa względem Ziemi (układ geocentryczny):
-
-$$
-\vec r_{M/Z}(t)=\vec r_M(t)-\vec r_Z(t)
-$$
+      $$
+      \vec r_{M/Z}(t)=\vec r_M(t)-\vec r_Z(t)
+      $$
 
 3. Zapisz jawnie składowe $x_{M/Z}(t)$, $y_{M/Z}(t)$.
 4. Zbadaj jakościowo, jak zmienia się tor $\vec r_{M/Z}(t)$ przy zmianie stosunku $\omega_M/\omega_Z$ (np. $0.5$, $0.8$, $1.2$).
 5. (HTML) Zrób animację z dwoma panelami:
 
-   * panel A: ruch heliocentryczny (Ziemia i Mars na okręgach),
-   * panel B: tor Marsa widziany z Ziemi (ślad $\vec r_{M/Z}(t)$).
+    * panel A: ruch heliocentryczny (Ziemia i Mars na okręgach),
+    * panel B: tor Marsa widziany z Ziemi (ślad $\vec r_{M/Z}(t)$).
 
 ---
 
