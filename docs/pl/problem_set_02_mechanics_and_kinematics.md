@@ -25,8 +25,8 @@ $$
 Dane:
 
 $$
-x(t)=v_0 \cos\alpha , t, \qquad
-y(t)=v_0 \sin\alpha , t - \frac{1}{2} g t^2
+x(t)=v_0 \cos\alpha \cdot t, \qquad
+y(t)=v_0 \sin\alpha \cdot t - \frac{1}{2} g t^2
 $$
 
 1. Wyznacz czas lotu.
