@@ -90,7 +90,7 @@ $$
    $$
 2. Wyznacz
    $$
-   \vec r(t) = \int_0^t \vec v(\tau)\, d\tau
+   \vec r(t) = \int_0^t \vec v(\tau)\, d\tau+ \vec r(0)
    $$
 
 ---
