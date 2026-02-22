@@ -182,7 +182,7 @@ $$
 
 1. Znajdź rozwiązanie ogólne.
 2. Rozwiąż dla zadanych warunków początkowych.
-3. Zwizualizuj (aplikacja html): $y(t)$, $y'(t)$, $y''(t)$ dla wybranych parametrów i warunków początkowych.
+3. Zwizualizuj (aplikacja html): $x(t)$, $x'(t)$, $x''(t)$ dla wybranych parametrów i warunków początkowych.
 
 
 ---
