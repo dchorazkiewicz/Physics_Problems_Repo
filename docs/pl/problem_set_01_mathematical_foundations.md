@@ -4,19 +4,21 @@
 
 ## Zadanie 1 – Wektory i przekształcenia liniowe
 
-Dane:
+Proszę wypisać wszystkie kroki obliczeń a nie same wyniki.
+
+**Dane są dwa wektory w przestrzeni trójwymiarowej:**
 
 $$
 \vec a = (2,-1,3), \qquad
 \vec b = (1,4,-2)
 $$
 
-1. Oblicz długości wektorów $|\vec a|$, $|\vec b|$.
-2. Wyznacz wektor znormalizowany $\hat a = \frac{\vec a}{|\vec a|}$.
-3. Oblicz iloczyn skalarny $\vec a \cdot \vec b$ oraz kąt między wektorami.
-4. Oblicz iloczyn wektorowy $\vec a \times \vec b$ i pole równoległoboku rozpiętego na tych wektorach.
+* Oblicz długości wektorów $|\vec a|$, $|\vec b|$.
+* Wyznacz wektor znormalizowany $\hat a = \frac{\vec a}{|\vec a|}$.
+* Oblicz iloczyn skalarny $\vec a \cdot \vec b$ oraz kąt między wektorami.
+* Oblicz iloczyn wektorowy $\vec a \times \vec b$ i pole równoległoboku rozpiętego na tych wektorach.
 
-Dana macierz:
+**Dla macierzy:**
 
 $$
 A =
@@ -27,39 +29,39 @@ A =
 \end{pmatrix}
 $$
 
-5. Oblicz $A\vec a$.
-6. Oblicz $\det A$.
-7. Oceń, czy przekształcenie zachowuje orientację przestrzeni.
+* Oblicz $A\vec a$.
+* Oblicz $\det A$.
+* Oceń, czy przekształcenie zachowuje orientację przestrzeni.
 
 ---
 
 ## Zadanie 2 – Tor parametryczny, prędkość i przyspieszenie
 
-Dany tor:
+Proszę wypisać wszystkie kroki obliczeń a nie same wyniki. Proszę narysować wykres toru i wektorów prędkości oraz przyspieszenia w wybranych punktach.
+
+Dany jest tor parametryczny:
 
 $$
 \vec r(t) = \bigl(t^2,\sin t,e^{-t}\bigr)
 $$
 
-1. Wyznacz prędkość
+* Wyznacz prędkość
    $$
    \vec v(t) = \frac{d\vec r}{dt}
    $$
-2. Wyznacz przyspieszenie
+* Wyznacz przyspieszenie
    $$
    \vec a(t) = \frac{d^2 \vec r}{dt^2}
    $$
-3. Oblicz $|\vec v(1)|$.
-4. Oblicz $\vec v \cdot \vec a$.
-5. Oblicz $\vec v \times \vec a$.
+* Oblicz $|\vec v(1)|$.
+* Oblicz $\vec v \cdot \vec a$.
+* Oblicz $\vec v \times \vec a$.
 
 ---
 
 ## Zadanie 3 – Całkowanie ruchu
 
-### A)
-
-Dana prędkość:
+### A) Dla danej prędkości:
 
 $$
 \vec v(t) = \bigl(2t,3,-e^{-t}\bigr), \qquad
@@ -72,9 +74,7 @@ $$
    $$
 2. Wyznacz przyspieszenie $\vec a(t)$.
 
-### B)
-
-Dane przyspieszenie:
+### B) Dla danego przyspieszenia:
 
 $$
 \vec a(t) = \bigl(4,-\sin t,0\bigr),
@@ -99,37 +99,20 @@ $$
 
 Zbadaj następujące krzywe:
 
-A)
+A) $x = R\cos t,  y = R\sin t$
 
-$$
-x = R\cos t, \qquad y = R\sin t
-$$
+B) $x = a\cos t, y = b\sin t$
 
-B)
+C) $x = t, y = t^2$
 
-$$
-x = a\cos t, \qquad y = b\sin t
-$$
-
-C)
-
-$$
-x = t, \qquad y = t^2
-$$
-
-D)
-
-$$
-x = \cosh t, \qquad y = \sinh t
-$$
+D) $x = \cosh t, y = \sinh t$
 
 Dla każdej krzywej:
 
 1. Wyeliminuj parametr (jeśli możliwe).
 2. Określ typ krzywej.
-3. Wyznacz prędkość $\vec v(t)$.
-4. Sprawdź, czy prędkość ma stałą wartość.
-
+3. Wyznacz prędkość $\vec v(t)$ i przyspieszenie $\vec a(t)$.
+4. Sprawdź, czy prędkość/przyspieszenie ma stałą wartość ($|\vec v| = const$ lub $|\vec a| = const$).
 ---
 
 ## Zadanie 5 – Krzywizna toru
@@ -146,9 +129,21 @@ $$
 
 ---
 
-## Zadanie 6 – Aproksymacja pracy (intuicja całki krzywoliniowej)
+## Zadanie 6 – Całka jako pole
+Oblicz:
 
-Dana siła:
+$$
+\int_0^{\pi} \sin x\, dx
+$$
+
+1. Oblicz analitycznie.
+2. Zaimplementuj metodę trapezów (aplikacja html/js) i porównaj wynik z obliczeniem analitycznym.
+
+---
+
+## Zadanie 7 – Praca siły wzdłuż toru
+
+Dana siła: 
 
 $$
 \vec F(x,y) = (y, 2x)
@@ -160,26 +155,12 @@ $$
 x = t, \qquad y = t^2, \qquad t \in [0,1]
 $$
 
-1. Podziel przedział na $N$ części.
-2. Oblicz przybliżenie pracy:
-   $$
-   W_N \approx \sum_{i=1}^{N} \vec F(\vec r(t_i)) \cdot \Delta \vec r
-   $$
-3. Zbadaj granicę dla $N \to \infty$.
-
----
-
-## Zadanie 7 – Całka jako pole
-
-Oblicz:
-
+1. Wyznacz wektor prędkości $\vec v(t)$.
+2. Oblicz pracę wykonana przez siłę $\vec F$ wzdłuż toru, czyli całkę krzywoliniową:
 $$
-\int_0^{\pi} \sin x\, dx
+W = \int_C \vec F \cdot d\vec r
 $$
-
-1. Aproksymuj metodą prostokątów.
-2. Aproksymuj metodą trapezów.
-3. Porównaj z wynikiem analitycznym.
+3. Zapisz całkę jako granicę sumy Riemanna i oblicz jej wartość.
 
 ---
 
@@ -190,8 +171,7 @@ $$
 $$
 
 1. Rozwiąż równanie.
-2. Zbadaj stabilność rozwiązania dla $k>0$ i $k<0$.
-
+2. Zwizualizuj rozwiązanie w aplikacji html/js dla różnych wartości parametru $k$ i różnych warunków początkowych $y(0)$.
 ---
 
 ## Zadanie 9 – Oscylator harmoniczny
@@ -202,10 +182,14 @@ $$
 
 1. Znajdź rozwiązanie ogólne.
 2. Rozwiąż dla zadanych warunków początkowych.
+3. Zwizualizuj (aplikacja html): $y(t)$, $y'(t)$, $y''(t)$ dla wybranych parametrów i warunków początkowych.
+
 
 ---
 
 ## Zadanie 10 – Ruch po okręgu jako model syntetyczny
+
+Wykorzystując równanie parametryczne ruchu po okręgu:
 
 $$
 x(t) = R\cos(\omega t), \qquad

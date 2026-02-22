@@ -34,6 +34,26 @@ find "$SRC_DIR" -type f -name "*.md" -print0 | while IFS= read -r -d '' filepath
     # 4. Wyciągamy samą nazwę pliku
     filename=$(basename "$filepath")
 
+    # Interesują nas TYLKO pliki: docs/(pl|en)/problem_set_XX_*.md (bez podkatalogów)
+    if [[ ! "$relative_path" =~ ^(pl|en)/problem_set_[0-9][0-9]_[^/]+\.md$ ]]; then
+        continue
+    fi
+
+    # Pomijamy pliki, które mają w nazwie "task" (np. *task*.md)
+    if [[ "${filename,,}" == *"task"* ]]; then
+        continue
+    fi
+
+    # Pomijamy cały dział "_old" (np. docs/en/_old/*, docs/pl/_old/*, lub głębiej)
+    if [[ "$relative_path" =~ (^|/)_old(/|$) ]]; then
+        continue
+    fi
+
+    # Pomijamy TYLKO foldery o nazwie "problem_set" (ale NIE pliki, np. problem_set.md ma się kopiować)
+    if [[ "$relative_path" =~ (^|/)problem_set/ ]]; then
+        continue
+    fi
+
     # Pomijamy cały dział "extra" (np. docs/en/extra/*, docs/pl/extra/*)
     if [[ "$relative_path" =~ (^|/)extra(/|$) ]]; then
         continue
@@ -44,35 +64,19 @@ find "$SRC_DIR" -type f -name "*.md" -print0 | while IFS= read -r -d '' filepath
         continue  # Pomiń resztę pętli dla tego pliku
     fi
     
-    # 5. Określamy TEMAT (który będzie nazwą folderu w kopii)
-    # Sprawdzamy, czy plik jest głęboko zagnieżdżony (czyli czy jest rozwiązaniem w folderze)
-    if [[ "$rest_path" == *"/"* ]]; then
-        # PRZYPADEK: ROZWIĄZANIA (są w folderach z końcówką _solution)
-        # Pobieramy nazwę folderu rodzica, np. "01_Mechanics_1_solution"
-        parent_folder=$(dirname "$rest_path")
-        
-        # Usuwamy sufiks "_solution", aby uzyskać czystą nazwę tematu (np. "01_Mechanics_1")
-        # Dzięki temu folder rozwiązania trafi do tego samego miejsca co lista zadań.
-        topic="${parent_folder%_solution}"
-        # Dla uniknięcia kolizji nazw przy spłaszczaniu do jednego folderu
-        # (np. wiele plików "solutions.md"), dokładamy nazwę pliku do tematu.
-        file_base="${topic}__${filename%.md}"
+    # 5. Docelowy podkatalog: zachowujemy strukturę po języku (bez "en/" / "pl/")
+    # Np. docs/en/Mechanics/01.md -> kopie/Mechanics/01_en.md
+    target_subdir="$(dirname "$rest_path")"
+    if [[ "$target_subdir" == "." ]]; then
+        target_dir="$DEST_DIR"
     else
-        # PRZYPADEK: LISTA ZADAŃ (leży bezpośrednio w pl/ lub en/)
-        # Tematem jest nazwa pliku bez rozszerzenia .md
-        topic="${filename%.md}"
-        file_base="${topic}"
+        target_dir="$DEST_DIR/$target_subdir"
     fi
+    mkdir -p "$target_dir"
 
-    # Spłaszczanie nazwy: żadnych separatorów katalogów w nazwie pliku
-    file_base="${file_base//\//__}"
-
-    # 6. Wszystkie pliki kopiujemy do jednego folderu (bez podziału na topiki)
-    target_dir="$DEST_DIR"
-
-    # 7. Nowa nazwa pliku: język + temat + (opcjonalnie) rola pliku (np. solutions)
-    # np. en_01_Mechanics_1.md albo en_01_Mechanics_1__solutions.md
-    new_filename="${lang}_${file_base}.md"
+    # 6. Nowa nazwa pliku: oryginalna nazwa + sufiks języka (bez zmian treści pliku)
+    # np. 01_Mechanics_1_en.md
+    new_filename="${filename%.md}_${lang}.md"
 
     # Wykonanie kopiowania
     cp "$filepath" "$target_dir/$new_filename"
