@@ -111,7 +111,21 @@ $$
 
 ---
 
-## Zadanie 8 – Potencjał i pole zachowawcze
+## Zadanie 8 – Oscylator harmoniczny (formalnie dynamicznie)
+
+$$
+m\ddot x + kx = 0
+$$
+
+* Rozwiąż równanie.
+* Wyznacz częstość własną.
+* Zapisz energię jako funkcję czasu.
+* Pokaż, że energia jest zachowana.
+* Zinterpretuj ruch w przestrzeni fazowej.
+
+---
+
+## Zadanie 9 – Potencjał i pole zachowawcze
 
 Dana energia potencjalna:
 
@@ -124,20 +138,6 @@ $$
 * Określ typ ruchu.
 * Wyznacz całkowitą energię.
 * Zinterpretuj geometrycznie tor ruchu.
-
----
-
-## Zadanie 9 – Oscylator harmoniczny (formalnie dynamicznie)
-
-$$
-m\ddot x + kx = 0
-$$
-
-* Rozwiąż równanie.
-* Wyznacz częstość własną.
-* Zapisz energię jako funkcję czasu.
-* Pokaż, że energia jest zachowana.
-* Zinterpretuj ruch w przestrzeni fazowej.
 
 ---
 
