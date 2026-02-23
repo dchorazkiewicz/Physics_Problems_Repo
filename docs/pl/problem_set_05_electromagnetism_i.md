@@ -6,15 +6,27 @@
 
 ---
 
-## Zadanie 1 – Siła Coulomba (wektorowo)
+## Zadanie 1 – Potencjał i energia
 
-Dane:
+Dla ładunku punktowego $q = 4\,\mu\mathrm{C}$
 
-$q_1 = 3\,\mu\mathrm{C}$
-$q_2 = -5\,\mu\mathrm{C}$
+1. Oblicz potencjał w $r = 0.3\,\mathrm{m}$.
+2. Oblicz różnicę potencjałów między $0.3\,\mathrm{m}$ i $0.6\,\mathrm{m}$.
+3. Oblicz pracę przeniesienia ładunku próbnego $q_0 = 2\,\mu\mathrm{C}$.
+4. Oblicz natężenie pola z pochodnej potencjału.
+5. Porównaj z prawem Coulomba.
 
-$r_1 = (0,0)$
-$r_2 = (0.4, 0.3)\,\mathrm{m}$
+---
+
+## Zadanie 2 – Siła Coulomba (wektorowo)
+
+Dane są dwa ładunki punktowe:
+
+$$q_1 = 3\,\mu\mathrm{C}, \quad q_2 = -5\,\mu\mathrm{C}$$
+
+zlokalizowane w punktach:
+
+$$r_1 = (0,0), \quad r_2 = (0.4, 0.3)\,\mathrm{m}$$
 
 1. Wyznacz wektor siły działającej na $q_2$.
 2. Oblicz jej wartość.
@@ -24,55 +36,38 @@ $r_2 = (0.4, 0.3)\,\mathrm{m}$
 
 ---
 
-## Zadanie 2 – Pole w punkcie od układu ładunków
+## Zadanie 3 – Pole w punkcie od układu ładunków
 
-Ładunki:
+Dane są dwa ładunki punktowe:
 
-$+q$ w punkcie $(-a, 0)$
-$+2q$ w punkcie $(a, 0)$
+$$+q\  \text{w punkcie}\  (-a, 0)$$
+$$+2q\  \text{w punkcie}\  (a, 0)$$
 
-1. Wyznacz wektor pola $E(0, y)$.
-2. Wyznacz warunek, dla którego składowa $E_x = 0$.
+1. Wyznacz wektor pola $\vec E(0, y)$, $\vec E(x, 0)$ oraz ogólnie $\vec E(x, y)$.
+2. Wyznacz warunek, dla którego składowe $E_x = 0$, $E_y = 0$ oraz zero pola $\vec E = 0$.
 3. Oblicz pole dla: $a = 0.2\,\mathrm{m}$, $y = 0.3\,\mathrm{m}$, $q = 2\,\mu\mathrm{C}$.
 4. Zbadaj granicę $y \gg a$.
 5. Czy istnieje punkt zerowego pola na osi $y$?
 
 ---
 
-## Zadanie 3 – Ruch cząstki w jednorodnym polu
+## Zadanie 4 – Ruch cząstki w jednorodnym polu
 
-Dane:
+Dane są następujące warunki początkowe
 
-$m = 0.02\,\mathrm{kg}$
-$q = 1\,\mathrm{mC}$
+* $m = 0.02\ \mathrm{kg}$
+* $q = 1\ \mathrm{mC}$
+* $\vec E = (30, 100)\,\mathrm{N/C}$
+* $\vec v(0) = (20, 0)\,\mathrm{m/s}$
+* $\vec r(0) = (0, 0)$
 
-$$
-\vec E = (0, 1000)\,\mathrm{N/C}
-$$
-
-$$
-\vec v(0) = (200, 0)\,\mathrm{m/s}
-$$
+Dla nich 
 
 1. Wyznacz przyspieszenie.
 2. Wyznacz tor ruchu.
 3. Oblicz czas osiągnięcia prędkości pionowej $50\,\mathrm{m/s}$.
 4. Oblicz energię kinetyczną po $t = 0.05\,\mathrm{s}$.
 5. Sprawdź zgodność z bilansem energii $qEd$.
-
----
-
-## Zadanie 4 – Potencjał i energia
-
-Ładunek:
-
-$q = 4\,\mu\mathrm{C}$
-
-1. Oblicz potencjał w $r = 0.3\,\mathrm{m}$.
-2. Oblicz różnicę potencjałów między $0.3\,\mathrm{m}$ i $0.6\,\mathrm{m}$.
-3. Oblicz pracę przeniesienia ładunku próbnego $q_0 = 2\,\mu\mathrm{C}$.
-4. Oblicz natężenie pola z pochodnej potencjału.
-5. Porównaj z prawem Coulomba.
 
 ---
 
