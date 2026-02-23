@@ -172,7 +172,7 @@ $$
 
 ---
 
-## Zadanie 8 – Perturbacja i precesja orbity
+## Zadanie 8 – Perturbacja i precesja orbity (rozszerzenie newtonowskie)
 
 Zmodyfikowany potencjał:
 
@@ -191,7 +191,7 @@ $$
 
 ---
 
-## Zadanie 9 – Układ trzech ciał (symulacja numeryczna)
+## Zadanie 9 – Układ trzech ciał (problem klasyczny)
 
 1. Zapisz równania ruchu dla trzech mas:
 

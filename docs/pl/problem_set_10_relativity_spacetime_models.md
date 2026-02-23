@@ -156,7 +156,7 @@ $$
 
 ---
 
-## Zadanie 8 – Grawitacyjne przesunięcie ku czerwieni
+## Zadanie 8 – Grawitacyjne przesunięcie ku czerwieni (most do ogólnej relatywistyki)
 
 Przybliżenie (słabe pole):
 
@@ -172,7 +172,7 @@ $$
 
 ---
 
-## Zadanie 9 – Promień Schwarzschilda
+## Zadanie 9 – Promień Schwarzschilda (element ogólnej relatywistyki)
 
 $$
 r_s = \frac{2GM}{c^2}

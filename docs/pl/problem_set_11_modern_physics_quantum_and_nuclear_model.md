@@ -95,7 +95,7 @@ Cząstka: $E = 3 \, \mathrm{eV}$
 
 ---
 
-## Zadanie 6 – Ewolucja pakietu falowego (1D)
+## Zadanie 6 – Ewolucja pakietu falowego (symulacja ilustracyjna)
 
 1. Zbuduj pakiet Gaussowski:
 
@@ -110,7 +110,7 @@ Wymaganie: animacja $|\psi(x,t)|^2$.
 
 ---
 
-## Zadanie 7 – Kwantowy oscylator harmoniczny
+## Zadanie 7 – Kwantowy oscylator harmoniczny (wizualizacja poziomów)
 
 1. Zapisz poziomy energii:
 
@@ -153,7 +153,7 @@ Wymaganie: wykres symulacji i rozwiązania ciągłego.
 
 ---
 
-## Zadanie 10 – Numeryczne rozwiązanie równania Schrödingera
+## Zadanie 10 – Numeryczne rozwiązanie równania Schrödingera (eksperyment numeryczny)
 
 1. Zastosuj dyskretyzację (metoda różnic skończonych).
 2. Zbuduj macierz Hamiltonianu.
@@ -162,4 +162,3 @@ Wymaganie: wykres symulacji i rozwiązania ciągłego.
 5. Zbadaj wpływ kroku siatki na dokładność.
 
 Wymaganie: interaktywny wybór liczby punktów siatki oraz wykres poziomów energii.
-
