@@ -129,15 +129,33 @@ $$
 
 ---
 
-## Zadanie 6 – Całka jako pole
-Oblicz:
+## Zadanie 6 – Długość krzywej i całkowanie numeryczne (most do fizyki)
+
+Dany jest tor parametryczny w 2D:
 
 $$
-\int_0^{\pi} \sin x\, dx
+x(t) = t,\qquad y(t)=t^2,\qquad t\in[0,1]
 $$
 
-1. Oblicz analitycznie.
-2. Zaimplementuj metodę trapezów (aplikacja html/js) i porównaj wynik z obliczeniem analitycznym.
+1. Wyznacz wektor prędkości:
+$$
+\vec v(t)=\frac{d\vec r}{dt}
+$$
+
+2. Wyznacz wartość prędkości $|\vec v(t)|$.
+
+3. Zapisz długość łuku toru jako całkę:
+$$
+s = \int_0^1 |\vec v(t)|\,dt
+$$
+
+4. Oblicz tę całkę analitycznie (jeśli możliwe) lub sprowadź ją do postaci wymagającej metody numerycznej.
+
+5. Zaimplementuj metodę trapezów w HTML/JS do obliczenia $s$:
+   - sprawdź zbieżność wyniku przy rosnącej liczbie podziałów $N$,
+   - wykonaj wykres błędu w funkcji $N$.
+
+Wymaganie: wizualizacja toru oraz możliwość zmiany $N$ w aplikacji.
 
 ---
 
@@ -187,15 +205,30 @@ $$
 
 ---
 
-## Zadanie 10 – Ruch po okręgu jako model syntetyczny
+## Zadanie 10 – Moment pędu w ruchu po okręgu (wektory + interpretacja fizyczna)
 
-Wykorzystując równanie parametryczne ruchu po okręgu:
+Rozważ ruch po okręgu w płaszczyźnie $xy$:
 
 $$
-x(t) = R\cos(\omega t), \qquad
-y(t) = R\sin(\omega t)
+\vec r(t)=\bigl(R\cos(\omega t),\,R\sin(\omega t),\,0\bigr)
 $$
 
-1. Wyznacz prędkość $\vec v(t)$ i przyspieszenie $\vec a(t)$.
-2. Pokaż, że przyspieszenie jest skierowane do środka okręgu.
-3. Oblicz $\vec r(t) \times \vec v(t)$ i zinterpretuj wynik.
+1. Wyznacz prędkość:
+$$
+\vec v(t)=\dot{\vec r}(t)
+$$
+
+2. Oblicz moment pędu względem początku układu:
+$$
+\vec L(t)=m\,\vec r(t)\times \vec v(t)
+$$
+
+3. Pokaż, że $|\vec L|=mR^2\omega$ jest stałe, a wektor $\vec L$ jest prostopadły do płaszczyzny ruchu.
+
+4. Zinterpretuj zwrot $\vec L$ (reguła prawej dłoni).
+
+5. (Opcjonalnie) Dodaj stałą siłę dośrodkową i policz moment siły:
+$$
+\vec \tau = \vec r \times \vec F
+$$
+Sprawdź zależność $\vec \tau = \frac{d\vec L}{dt}$ dla ruchu jednostajnego po okręgu.

@@ -76,23 +76,36 @@ Odpowiedzi: relacja algebraiczna.
 
 ---
 
-## Zadanie 5 – Superpozycja fal
+## Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa (intuicyjny most)
 
-Dane są dwie fale:
-
-$$
-y_1 = A \sin(kx - \omega t)
-$$
+Dane są dwie fale harmoniczne:
 
 $$
-y_2 = A \sin(kx - \omega t + \pi)
+y_1(x,t)=A\sin(kx-\omega t)
 $$
 
-1. Wyznacz falę wypadkową.
-2. Zinterpretuj fizycznie wynik.
-3. Rozważ przypadek przesunięcia fazowego $\Delta \varphi = \pi/2$.
+$$
+y_2(x,t)=A\sin(kx-(\omega+\Delta\omega)t)
+$$
 
-Odpowiedzi: algebraiczne + interpretacja.
+1. Wyznacz falę wypadkową $y=y_1+y_2$ i sprowadź ją do postaci iloczynu (nośna × obwiednia).
+
+2. Zidentyfikuj częstość dudnień oraz okres dudnień w punkcie $x=0$.
+
+3. Zinterpretuj fizycznie: co opisuje obwiednia, a co fala nośna?
+
+4. (Pakiet falowy) Załóż dodatkowo, że drugą falę różni również liczba falowa:
+$$
+k_2 = k+\Delta k
+$$
+Powtórz redukcję i pokaż, że obwiednia porusza się z prędkością grupową:
+$$
+v_g \approx \frac{\Delta\omega}{\Delta k}
+$$
+
+5. Porównaj $v_g$ z prędkością fazową $v_f=\frac{\omega}{k}$ i omów, kiedy $v_g\neq v_f$.
+
+Odpowiedzi: algebra + interpretacja.
 
 ---
 

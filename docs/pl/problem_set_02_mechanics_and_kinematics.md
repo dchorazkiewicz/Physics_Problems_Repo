@@ -75,17 +75,28 @@ $$
 
 ---
 
-## Zadanie 6 – Ruch harmoniczny w 1D
+## Zadanie 6 – Cykloida: tor punktu na toczącym się kole (kinematyka + animacja)
 
-Dane jest równanie ruchu harmonicznego:
+Koło o promieniu $R$ toczy się bez poślizgu po osi $x$. Punkt na obręczy koła tworzy cykloidę:
 
 $$
-x(t)=A\cos(\omega t + \varphi)
+x(t)=R(\omega t-\sin(\omega t)),\qquad
+y(t)=R(1-\cos(\omega t))
 $$
 
-* Wyznacz $v(t)$ i $a(t)$.
-* Znajdź zależność między $a$ i $x$.
-* Wyznacz okres ruchu.
+1. Wyznacz wektor prędkości $\vec v(t)$ oraz przyspieszenie $\vec a(t)$.
+
+2. Oblicz $|\vec v(t)|$ i wskaż chwile, w których punkt chwilowo „zatrzymuje się” względem podłoża.
+
+3. Wyznacz wartości maksymalne $|\vec v|$ oraz $|\vec a|$.
+
+4. Zrób animację w HTML:
+   - koło toczące się po osi,
+   - punkt na obręczy,
+   - ślad cykloidy,
+   - opcjonalnie wektory $\vec v$ i $\vec a$ w wybranej chwili.
+
+5. (Opcjonalnie) Porównaj cykloidę z ruchem po okręgu w układzie związanym z kołem.
 
 ---
 
