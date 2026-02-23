@@ -134,6 +134,61 @@ $$
 
 ---
 
+## Zadanie meta – Błędy systematyczne vs statystyczne (analiza epistemiczna)
+
+Trzy grupy studentów mierzy długość tego samego pręta.
+
+Otrzymano wyniki:
+
+Grupa A:
+$$
+x = [10.01,\ 9.99,\ 10.02,\ 9.98,\ 10.00]
+$$
+
+Grupa B:
+$$
+x = [10.42,\ 10.40,\ 10.41,\ 10.43,\ 10.39]
+$$
+
+Grupa C:
+$$
+x = [9.6,\ 10.5,\ 10.2,\ 9.8,\ 10.4]
+$$
+
+1. Dla każdej grupy oblicz:
+   - średnią,
+   - odchylenie standardowe,
+   - niepewność średniej.
+
+2. Załóż, że prawdziwa wartość wynosi:
+   $$
+   x_{\mathrm{true}} = 10.00
+   $$
+
+   Porównaj wyniki grup z wartością prawdziwą.
+
+3. Określ dla każdej grupy:
+   - czy dominuje błąd statystyczny,
+   - czy występuje błąd systematyczny.
+
+4. Zaproponuj możliwe przyczyny błędu systematycznego (min. 2).
+
+5. Wyjaśnij, dlaczego zwiększenie liczby pomiarów nie usuwa błędu systematycznego.
+
+6. (Refleksja) Czy wynik:
+   $$
+   x = 10.41 \pm 0.01
+   $$
+   jest „lepszy” niż:
+   $$
+   x = 10.00 \pm 0.20
+   $$
+   Uzasadnij.
+
+Odpowiedź: obliczenia + interpretacja.
+
+---
+
 # CZĘŚĆ II – Aplikacje HTML
 
 ---
