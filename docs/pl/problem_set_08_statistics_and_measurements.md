@@ -22,6 +22,11 @@ $$
    x = \bar{x} \pm u(\bar{x})
    $$
 5. Wyjaśnij różnicę między odchyleniem standardowym $s$ a niepewnością średniej $u(\bar{x})$.
+6. Zakładając rozkład normalny, oblicz przedziały:
+   - $\bar{x} \pm s$
+   - $\bar{x} \pm 2s$
+   - $\bar{x} \pm 3s$
+   i zinterpretuj je jako poziomy ufności (68–95–99).
 
 ---
 
@@ -100,7 +105,7 @@ $$
 
 ---
 
-## Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego
+## Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego (estymacja parametru)
 
 Model swobodnego spadku:
 
