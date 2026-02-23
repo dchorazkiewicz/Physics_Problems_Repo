@@ -4,6 +4,16 @@ Witaj w repozytorium **Math Problems**. Projekt ten służy jako szablon cyfrowe
 
 Repozytorium jest dwujęzyczne i zaprojektowane w sposób umożliwiający budowę własnej bazy wiedzy w oparciu o system kontroli wersji.
 
+> ## Manifest pracy w kursie
+>
+> Ten kurs nie polega na rozwiązywaniu list zadań, lecz na budowaniu własnego rozumienia fizyki poprzez systematyczną pracę z problemami.
+>
+> Repozytorium, które tworzysz, jest Twoim osobistym podręcznikiem — zapisem sposobu, w jaki analizujesz modele fizyczne, interpretujesz wyniki i organizujesz wiedzę.
+>
+> Zadania pełnią rolę narzędzi myślenia: ich celem nie jest uzyskanie liczby, lecz rozwinięcie procesu rozumowania, który będziesz w stanie samodzielnie odtworzyć bez wsparcia technologii.
+>
+> W trakcie semestru wykorzystujesz narzędzia cyfrowe i AI do pogłębiania zrozumienia, natomiast egzamin końcowy weryfikuje transfer tej wiedzy do pamięci i umiejętność samodzielnej rekonstrukcji rozwiązań.
+
 ## Metodyka pracy
 
 Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zgodnie z poniższą procedurą:
@@ -60,3 +70,28 @@ Studenci zainteresowani technologią mogą opublikować swoje notatki w formie s
 * **Metody Probabilistyczne**: Rachunek prawdopodobieństwa, statystyka, estymacja.
 
 _Wybierz dział z menu po lewej stronie, aby rozpocząć._
+
+
+---
+
+## Jak korzystać ze sztucznej inteligencji w tym kursie
+
+Sztuczna inteligencja jest narzędziem wspierającym Twoje rozumienie fizyki, a nie zastępującym proces myślenia. Aby pomoc AI była zgodna z założeniami kursu, konieczne jest przekazanie jej odpowiedniego kontekstu.
+
+Na początku pracy z AI:
+
+1. Udostępnij jej ten dokument (`index.md`).
+2. Wyjaśnij, że repozytorium pełni rolę osobistego podręcznika i notatnika rozumowania.
+3. Poinformuj, że zadania mają rozwijać proces analizy, a nie jedynie prowadzić do wyniku liczbowego.
+4. Podkreśl, że egzamin odbywa się bez wsparcia technologii, więc celem pracy jest możliwość samodzielnego odtworzenia rozwiązań.
+
+Dopiero po przekazaniu tego kontekstu rozpoczynaj pracę nad zadaniami.
+
+Podczas pracy z AI:
+
+- proś o wyjaśnienia kroków, a nie tylko o rozwiązanie,
+- zadawaj pytania pogłębiające zrozumienie,
+- zapisuj w repozytorium własne interpretacje i komentarze,
+- traktuj AI jako rozmówcę i tutora, a nie kalkulator.
+
+Celem korzystania z AI jest rozwijanie zdolności samodzielnego myślenia fizycznego oraz budowanie spójnego, osobistego zapisu wiedzy.
