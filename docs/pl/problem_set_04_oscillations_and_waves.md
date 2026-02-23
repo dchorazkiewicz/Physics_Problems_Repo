@@ -4,7 +4,7 @@
 
 ## Zadanie 1 – Ruch harmoniczny: parametry ruchu
 
-Dana funkcja:
+Dana jest funkcja opisująca ruch harmoniczny:
 
 $$
 x(t) = A \cos(\omega t + \varphi)
@@ -18,28 +18,30 @@ $$
    * oblicz $v_{\max}$,
    * oblicz $a_{\max}$.
 
-Odpowiedzi: liczbowe.
+Odpowiedzi: pełne wypracowanie + interpretacja.
 
 ---
 
 ## Zadanie 2 – Energia oscylatora harmonicznego
 
-Dany układ:
+Dany jest układ o parametrach początkowych:
 
-$m = 1\,\mathrm{kg}$
-$k = 100\,\mathrm{N/m}$
+* $m = 1\,\mathrm{kg}$
+* $k = 100\,\mathrm{N/m}$
+* $x(0) = 2\,\mathrm{m}$
+* $v(0) = 1\,\mathrm{m/s}$
 
 1. Wyznacz częstość własną.
-2. Oblicz energię całkowitą dla amplitudy $A = 0.1\,\mathrm{m}$.
+2. Oblicz energię całkowitą układu.
 3. Dla jakiego wychylenia energia kinetyczna stanowi $50%$ energii całkowitej?
 
-Odpowiedzi: liczba / wzór.
+Odpowiedzi: pełne wypracowanie + interpretacja.
 
 ---
 
 ## Zadanie 3 – Fala harmoniczna
 
-Dane równanie fali:
+Dane jest równanie fali:
 
 $$
 y(x,t) = A \sin(kx - \omega t)
@@ -50,13 +52,13 @@ $$
 3. Oblicz $v$ dla $k = 4\pi$, $\omega = 20\pi$.
 4. Czy punkt $x = \lambda$ drga w fazie z punktem $x = 0$?
 
-Odpowiedzi: liczby + prawda/fałsz.
+Odpowiedzi: pełne wypracowanie + interpretacja.
 
 ---
 
 ## Zadanie 4 – Równanie falowe
 
-Dana funkcja:
+Dana jest funkcja:
 
 $$
 y(x,t) = A \cos(kx - \omega t)
@@ -76,7 +78,7 @@ Odpowiedzi: relacja algebraiczna.
 
 ## Zadanie 5 – Superpozycja fal
 
-Dane:
+Dane są dwie fale:
 
 $$
 y_1 = A \sin(kx - \omega t)
@@ -170,4 +172,4 @@ $$
 4. Porównaj przypadki stabilny / niestabilny.
 5. Zaimplementuj animację propagacji fali.
 
-To zadanie stanowi kulminację listy – pełny model numeryczny propagacji fali.
+Wymaganie HTML: animacja całego łańcucha.
