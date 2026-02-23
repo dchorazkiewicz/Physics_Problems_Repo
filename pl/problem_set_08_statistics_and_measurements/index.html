@@ -1076,10 +1076,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-4-regresja-liniowa-i-wyznaczenie-przyspieszenia-ziemskiego" class="md-nav__link">
+  <a href="#zadanie-4-regresja-liniowa-i-wyznaczenie-przyspieszenia-ziemskiego-estymacja-parametru" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego
+        Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego (estymacja parametru)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zadanie-meta-bedy-systematyczne-vs-statystyczne-analiza-epistemiczna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zadanie meta – Błędy systematyczne vs statystyczne (analiza epistemiczna)
       
     </span>
   </a>
@@ -1792,10 +1803,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-4-regresja-liniowa-i-wyznaczenie-przyspieszenia-ziemskiego" class="md-nav__link">
+  <a href="#zadanie-4-regresja-liniowa-i-wyznaczenie-przyspieszenia-ziemskiego-estymacja-parametru" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego
+        Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego (estymacja parametru)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zadanie-meta-bedy-systematyczne-vs-statystyczne-analiza-epistemiczna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zadanie meta – Błędy systematyczne vs statystyczne (analiza epistemiczna)
       
     </span>
   </a>
@@ -1839,6 +1861,11 @@ x = [12.10,\ 12.08,\ 12.12,\ 12.11,\ 12.09,\ 12.13,\ 12.07,\ 12.10]
    x = \bar{x} \pm u(\bar{x})
    $$</li>
 <li>Wyjaśnij różnicę między odchyleniem standardowym <span class="arithmatex">\(s\)</span> a niepewnością średniej <span class="arithmatex">\(u(\bar{x})\)</span>.</li>
+<li>Zakładając rozkład normalny, oblicz przedziały:</li>
+<li><span class="arithmatex">\(\bar{x} \pm s\)</span></li>
+<li><span class="arithmatex">\(\bar{x} \pm 2s\)</span></li>
+<li><span class="arithmatex">\(\bar{x} \pm 3s\)</span>
+   i zinterpretuj je jako poziomy ufności (68–95–99).</li>
 </ol>
 <hr />
 <h2 id="zadanie-2-propagacja-niepewnosci-metoda-rozniczki-zupenej-opor-z-prawa-ohma">Zadanie 2 – Propagacja niepewności metodą różniczki zupełnej (opór z prawa Ohma)</h2>
@@ -1902,7 +1929,7 @@ c = 1.50 \pm 0.01\ \mathrm{cm}
 <li>Wskaż, który pomiar daje największy wkład do niepewności.</li>
 </ol>
 <hr />
-<h2 id="zadanie-4-regresja-liniowa-i-wyznaczenie-przyspieszenia-ziemskiego">Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego</h2>
+<h2 id="zadanie-4-regresja-liniowa-i-wyznaczenie-przyspieszenia-ziemskiego-estymacja-parametru">Zadanie 4 – Regresja liniowa i wyznaczenie przyspieszenia ziemskiego (estymacja parametru)</h2>
 <p>Model swobodnego spadku:</p>
 <div class="arithmatex">\[
 h = \frac{1}{2} g t^2
@@ -1924,6 +1951,62 @@ t\ [\mathrm{s}] = [0.202,\ 0.287,\ 0.351,\ 0.404,\ 0.452]
 <li>Oszacuj niepewność <span class="arithmatex">\(u(g)\)</span> z niepewności nachylenia.</li>
 <li>Oceń jakość dopasowania (analiza reszt lub współczynnik determinacji <span class="arithmatex">\(R^2\)</span>).</li>
 </ol>
+<hr />
+<h2 id="zadanie-meta-bedy-systematyczne-vs-statystyczne-analiza-epistemiczna">Zadanie meta – Błędy systematyczne vs statystyczne (analiza epistemiczna)</h2>
+<p>Trzy grupy studentów mierzy długość tego samego pręta.</p>
+<p>Otrzymano wyniki:</p>
+<p>Grupa A:
+$$
+x = [10.01,\ 9.99,\ 10.02,\ 9.98,\ 10.00]
+$$</p>
+<p>Grupa B:
+$$
+x = [10.42,\ 10.40,\ 10.41,\ 10.43,\ 10.39]
+$$</p>
+<p>Grupa C:
+$$
+x = [9.6,\ 10.5,\ 10.2,\ 9.8,\ 10.4]
+$$</p>
+<ol>
+<li>Dla każdej grupy oblicz:</li>
+<li>średnią,</li>
+<li>odchylenie standardowe,</li>
+<li>
+<p>niepewność średniej.</p>
+</li>
+<li>
+<p>Załóż, że prawdziwa wartość wynosi:
+   $$
+   x_{\mathrm{true}} = 10.00
+   $$</p>
+</li>
+</ol>
+<p>Porównaj wyniki grup z wartością prawdziwą.</p>
+<ol>
+<li>Określ dla każdej grupy:</li>
+<li>czy dominuje błąd statystyczny,</li>
+<li>
+<p>czy występuje błąd systematyczny.</p>
+</li>
+<li>
+<p>Zaproponuj możliwe przyczyny błędu systematycznego (min. 2).</p>
+</li>
+<li>
+<p>Wyjaśnij, dlaczego zwiększenie liczby pomiarów nie usuwa błędu systematycznego.</p>
+</li>
+<li>
+<p>(Refleksja) Czy wynik:
+   $$
+   x = 10.41 \pm 0.01
+   $$
+   jest „lepszy” niż:
+   $$
+   x = 10.00 \pm 0.20
+   $$
+   Uzasadnij.</p>
+</li>
+</ol>
+<p>Odpowiedź: obliczenia + interpretacja.</p>
 <hr />
 <h1 id="czesc-ii-aplikacje-html">CZĘŚĆ II – Aplikacje HTML</h1>
 <hr />

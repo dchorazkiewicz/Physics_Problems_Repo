@@ -1859,81 +1859,78 @@ N = 100
 <hr />
 <h1 id="czesc-ii-analiza-i-modelowanie-610">CZĘŚĆ II – Analiza i modelowanie (6–10)</h1>
 <hr />
-<h2 id="zadanie-6-magnetyzm-jako-sia-dosrodkowa-model-cyklotronu">Zadanie 6 – Magnetyzm jako siła dośrodkowa (model cyklotronu)</h2>
-<p>Warunek ruchu po okręgu:</p>
-<div class="arithmatex">\[
-q v B = \frac{m v^2}{r}
-\]</div>
-<p>Promień:</p>
-<div class="arithmatex">\[
-r = \frac{m v}{q B}
-\]</div>
-<p>Częstość cyklotronowa:</p>
-<div class="arithmatex">\[
-\omega_c = \frac{q B}{m}
-\]</div>
+<h2 id="zadanie-6-pret-na-metalowej-rowni-szyny-w-polu-vec-b-predkosc-graniczna-lenz-lorentz-bilans-mocy">Zadanie 6 – Pręt na metalowej równi (szyny) w polu <span class="arithmatex">\(\vec B\)</span>: prędkość graniczna (Lenz + Lorentz + bilans mocy)</h2>
+<p>Model: dwa przewodzące, równoległe szyny oddalone o <span class="arithmatex">\(L\)</span>, po nich bez tarcia zsuwa się przewodzący pręt (zamyka obwód). Całość ma opór elektryczny <span class="arithmatex">\(R\)</span> (szyny+pręt+styki). Jednorodne pole magnetyczne <span class="arithmatex">\(\vec B\)</span> jest prostopadłe do płaszczyzny szyn.</p>
+<p>Dane:</p>
+<p><span class="arithmatex">\(m=0.20\,\mathrm{kg}\)</span>, <span class="arithmatex">\(L=0.30\,\mathrm{m}\)</span>, <span class="arithmatex">\(B=0.80\,\mathrm{T}\)</span>, <span class="arithmatex">\(R=0.50\,\Omega\)</span>, <span class="arithmatex">\(\alpha=25^\circ\)</span>, <span class="arithmatex">\(g=9.81\,\mathrm{m/s^2}\)</span>.</p>
 <ol>
-<li>Wyprowadź zależności.</li>
-<li>Czy <span class="arithmatex">\(\omega_c\)</span> zależy od energii?</li>
-<li>Jak zmieni się tor przy zmianie znaku <span class="arithmatex">\(q\)</span>?</li>
+<li>Wyznacz SEM ruchową <span class="arithmatex">\(\mathcal{E}=BLv\)</span> i prąd <span class="arithmatex">\(I(v)\)</span>.</li>
+<li>Pokaż, że na pręt działa siła magnetyczna hamująca wzdłuż szyn:</li>
+</ol>
+<div class="arithmatex">\[
+F_B = BLI
+\]</div>
+<p>Podaj jej zwrot z prawa Lenza.
+3. Napisz równanie ruchu wzdłuż równi:</p>
+<div class="arithmatex">\[
+m\frac{dv}{dt}=mg\sin\alpha - F_B(v)
+\]</div>
+<p>i sprowadź je do postaci z „tłumieniem proporcjonalnym do <span class="arithmatex">\(v\)</span>”.
+4. Wyznacz prędkość graniczną <span class="arithmatex">\(v_\infty\)</span> (dla „dowolnie długiej” równi).
+5. Przyjmując <span class="arithmatex">\(v(0)=0\)</span>, wyznacz <span class="arithmatex">\(v(t)\)</span> oraz stałą czasową <span class="arithmatex">\(\tau\)</span>.
+6. Zrób bilans mocy i pokaż, że w stanie ustalonym:</p>
+<div class="arithmatex">\[
+mg\sin\alpha\cdot v = I^2R
+\]</div>
+<p>(energia grawitacyjna zamienia się w ciepło Joule’a).</p>
+<hr />
+<h2 id="zadanie-7-petla-wciagana-do-obszaru-pola-b-sia-prad-praca-indukcja-na-wejsciuwyjsciu">Zadanie 7 – Pętla wciągana do obszaru pola <span class="arithmatex">\(B\)</span>: siła, prąd, praca (indukcja „na wejściu/wyjściu”)</h2>
+<p>Prostokątna pętla przewodząca o oporze <span class="arithmatex">\(R\)</span> ma wymiary <span class="arithmatex">\(a\times b\)</span>. Jest wciągana ze stałą prędkością <span class="arithmatex">\(v\)</span> w obszar jednorodnego pola <span class="arithmatex">\(B\)</span> prostopadłego do pętli (pole istnieje tylko w pewnym obszarze przestrzeni).</p>
+<p>Dane:</p>
+<p><span class="arithmatex">\(a=0.20\,\mathrm{m}\)</span>, <span class="arithmatex">\(b=0.10\,\mathrm{m}\)</span>, <span class="arithmatex">\(B=0.60\,\mathrm{T}\)</span>, <span class="arithmatex">\(R=0.40\,\Omega\)</span>, <span class="arithmatex">\(v=1.5\,\mathrm{m/s}\)</span>.</p>
+<ol>
+<li>Rozpisz strumień <span class="arithmatex">\(\Phi(t)\)</span> w fazie wjeżdżania (gdy część pętli jest już w polu, ale jeszcze nie cała).</li>
+<li>Wyznacz <span class="arithmatex">\(\mathcal{E}\)</span> i <span class="arithmatex">\(I\)</span> w tej fazie.</li>
+<li>Wyznacz siłę hamującą <span class="arithmatex">\(F(v)\)</span> działającą na pętlę (wystarczy policzyć wkład od odcinka znajdującego się w polu).</li>
+<li>Oblicz moc mechaniczną potrzebną do utrzymania stałego <span class="arithmatex">\(v\)</span> i pokaż, że równa się mocy cieplnej <span class="arithmatex">\(I^2R\)</span>.</li>
+<li>Co dzieje się z prądem, gdy pętla jest w całości w jednorodnym polu?</li>
 </ol>
 <hr />
-<h2 id="zadanie-7-transport-energii-przez-fale-elektromagnetyczna">Zadanie 7 – Transport energii przez falę elektromagnetyczną</h2>
-<p>Pole elektryczne:</p>
+<h2 id="zadanie-8-indukcja-wasna-cewka-opor-wyaczanie-pradu-energia-pola">Zadanie 8 – Indukcja własna: cewka + opór, wyłączanie prądu, energia pola</h2>
+<p>Obwód RL: cewka o indukcyjności <span class="arithmatex">\(L\)</span> i oporze <span class="arithmatex">\(R\)</span> jest zasilana napięciem stałym <span class="arithmatex">\(U\)</span>. Po długim czasie obwód jest w stanie ustalonym, potem w chwili <span class="arithmatex">\(t=0\)</span> zasilanie zostaje odłączone i pozostaje obwód <span class="arithmatex">\(L\)</span>–<span class="arithmatex">\(R\)</span> bez źródła.</p>
+<p>Dane:</p>
+<p><span class="arithmatex">\(L=0.20\,\mathrm{H}\)</span>, <span class="arithmatex">\(R=5.0\,\Omega\)</span>, <span class="arithmatex">\(U=12\,\mathrm{V}\)</span>.</p>
+<ol>
+<li>Wyznacz prąd ustalony <span class="arithmatex">\(I_0\)</span>.</li>
+<li>Po odłączeniu: wyprowadź <span class="arithmatex">\(I(t)\)</span>, stałą czasową <span class="arithmatex">\(\tau\)</span> i napięcie na cewce <span class="arithmatex">\(U_L(t)\)</span>.</li>
+<li>Oblicz energię zgromadzoną w polu magnetycznym cewki tuż przed odłączeniem:</li>
+</ol>
 <div class="arithmatex">\[
-E = E_0 \cos(kx - \omega t)
-\]</div>
-<p>Pole magnetyczne:</p>
-<div class="arithmatex">\[
-B = \frac{E_0}{c} \cos(kx - \omega t)
-\]</div>
-<p>Gęstość energii:</p>
-<div class="arithmatex">\[
-u = \frac{1}{2} \varepsilon_0 E^2 + \frac{1}{2 \mu_0} B^2
-\]</div>
-<p>Wektor Poyntinga:</p>
-<div class="arithmatex">\[
-\vec S = \frac{1}{\mu_0} \vec E \times \vec B
+W=\frac12 LI_0^2
 \]</div>
 <ol>
-<li>Wyznacz średnią wartość <span class="arithmatex">\(\langle \vec S \rangle\)</span>.</li>
-<li>Oblicz natężenie dla <span class="arithmatex">\(E_0 = 500 , \mathrm{V/m}\)</span>.</li>
+<li>Pokaż, że ta energia zamienia się w ciepło Joule’a w oporze (całka z <span class="arithmatex">\(I^2R\)</span> po czasie).</li>
+<li>(Krótko jakościowo) Dlaczego pojawia się przepięcie przy rozłączaniu prądu?</li>
 </ol>
 <hr />
-<h2 id="zadanie-8-cisnienie-promieniowania">Zadanie 8 – Ciśnienie promieniowania</h2>
-<p>Zależność między natężeniem a ciśnieniem:</p>
+<h2 id="zadanie-9-transformator-idealny-vs-rzeczywisty-skad-bierze-sie-napiecie-wtorne-faraday">Zadanie 9 – Transformator idealny vs rzeczywisty: skąd bierze się napięcie wtórne (Faraday)</h2>
+<p>Rdzeń transformatora ma strumień magnetyczny:</p>
 <div class="arithmatex">\[
-p = \frac{I}{c}
+\Phi(t)=\Phi_0\sin(\omega t)
 \]</div>
-<p>(dla absorpcji)</p>
-<div class="arithmatex">\[
-p = \frac{2I}{c}
-\]</div>
-<p>(dla odbicia)</p>
+<p>Uzwojenia mają odpowiednio <span class="arithmatex">\(N_1\)</span> i <span class="arithmatex">\(N_2\)</span> zwojów.</p>
+<p>Dane:</p>
+<p><span class="arithmatex">\(N_1=500\)</span>, <span class="arithmatex">\(N_2=50\)</span>, <span class="arithmatex">\(\Phi_0=2.0\times10^{-4}\,\mathrm{Wb}\)</span>, <span class="arithmatex">\(f=50\,\mathrm{Hz}\)</span>.</p>
 <ol>
-<li>Oblicz <span class="arithmatex">\(p\)</span> dla <span class="arithmatex">\(I = 800 , \mathrm{W/m^2}\)</span>.</li>
-<li>Oblicz siłę na powierzchni <span class="arithmatex">\(A = 1.5 , \mathrm{m^2}\)</span>:</li>
+<li>Wyznacz wartość skuteczną SEM na uzwojeniu pierwotnym i wtórnym, korzystając z:</li>
 </ol>
 <div class="arithmatex">\[
-F = p A
+\mathcal{E}(t)=-N\frac{d\Phi}{dt}
 \]</div>
 <ol>
-<li>Zinterpretuj fizycznie.</li>
-</ol>
-<hr />
-<h2 id="zadanie-9-ruch-czastki-w-fali-elektromagnetycznej">Zadanie 9 – Ruch cząstki w fali elektromagnetycznej</h2>
-<div class="arithmatex">\[
-\vec E = E_0 \cos(kx - \omega t) \hat y
-\]</div>
-<p>Siła Lorentza:</p>
-<div class="arithmatex">\[
-\vec F = q(\vec E + \vec v \times \vec B)
-\]</div>
-<ol>
-<li>Zapisz pełne równanie ruchu.</li>
-<li>Zbadaj ruch dla małych prędkości.</li>
-<li>Wyjaśnij, dlaczego pole magnetyczne samo nie wykonuje pracy.</li>
-<li>Zaproponuj schemat symulacji numerycznej.</li>
+<li>Dla transformatora idealnego i obciążenia rezystancyjnego <span class="arithmatex">\(R_L=4\,\Omega\)</span> po stronie wtórnej wyznacz przekładnię napięciową i prądową oraz prądy w uzwojeniach.</li>
+<li>Policz moc po stronie wtórnej i pierwotnej (dla idealnego transformatora powinny być równe).</li>
+<li>(Wersja „rzeczywista”) Jeśli opór uzwojenia wtórnego to <span class="arithmatex">\(r_2=0.4\,\Omega\)</span>, policz spadek napięcia na obciążeniu i straty mocy w uzwojeniu wtórnym.</li>
 </ol>
 <hr />
 <h2 id="zadanie-10-prady-wirowe-hamowanie-magnetyczne">Zadanie 10 – Prądy wirowe (hamowanie magnetyczne)</h2>
@@ -1950,6 +1947,7 @@ m \frac{dv}{dt} = - \gamma v
 v(t) = v_0 e^{-\frac{\gamma}{m} t}
 \]</div>
 <ol>
+<li>Uzasadnij jakościowo, dlaczego dla cienkiej płytki przewodzącej poruszającej się w polu <span class="arithmatex">\(B\)</span> często dostaje się w przybliżeniu <span class="arithmatex">\(F\propto v\)</span> (małe <span class="arithmatex">\(v\)</span>, małe prądy, liniowość Ohma).</li>
 <li>Wyjaśnij mechanizm powstawania prądów wirowych.</li>
 <li>Wyjaśnij prawo Lenza.</li>
 <li>Zinterpretuj zanikanie prędkości.</li>
