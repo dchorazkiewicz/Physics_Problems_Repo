@@ -34,7 +34,7 @@ Ciało porusza się w polu grawitacyjnym Ziemi bez oporu powietrza. Rzut ukośny
 
 ---
 
-## Zadanie 3 – Tor parametryczny i eliminacja czasu
+## Zadanie 3 – Eliminacja czasu i interpretacja przyspieszenia (parabola)
 
 Dane jest równanie toru w postaci parametrycznej:
 

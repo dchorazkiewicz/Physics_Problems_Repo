@@ -182,7 +182,7 @@ $$
 
 ---
 
-## Zadanie 8 – Równanie różniczkowe I rzędu
+## Zadanie 8 – Równanie różniczkowe I rzędu (zanik wykładniczy)
 
 $$
 \frac{dy}{dt} = -k y
@@ -192,7 +192,7 @@ $$
 2. Zwizualizuj rozwiązanie w aplikacji html/js dla różnych wartości parametru $k$ i różnych warunków początkowych $y(0)$.
 ---
 
-## Zadanie 9 – Oscylator harmoniczny
+## Zadanie 9 – Oscylator harmoniczny (równanie ruchu jako ODE II rzędu)
 
 $$
 \frac{d^2 x}{dt^2} + \omega^2 x = 0
