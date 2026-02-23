@@ -16,7 +16,7 @@ Dane: $R_1 = 100 , \Omega$, $R_2 = 220 , \Omega$, $R_3 = 330 , \Omega$.
 
 ---
 
-### Zadanie 2 – Dzielnik napięcia
+### Zadanie 2 – Dzielnik napięcia (zastosowanie prawa Kirchhoffa)
 
 Źródło $U = 12 , \mathrm{V}$. Rezystory w szeregu: $R_1 = 1 , \mathrm{k}\Omega$, $R_2 = 2 , \mathrm{k}\Omega$.
 
@@ -50,7 +50,7 @@ $R_1 = 1 , \mathrm{k}\Omega$, $R_2 = 2 , \mathrm{k}\Omega$, $R_3 = 3 , \mathrm{k
 
 ---
 
-### Zadanie 5 – Układ mieszany rezystorów
+### Zadanie 5 – Układ mieszany rezystorów (pełna analiza prądów i napięć)
 
 Układ: $R_1$ i $R_2$ w szeregu, ta gałąź równolegle z $R_3$.
 Dane: $R_1 = 200 , \Omega$, $R_2 = 300 , \Omega$, $R_3 = 150 , \Omega$. Źródło $U = 12 , \mathrm{V}$.
@@ -78,7 +78,7 @@ $R_5 = 220 , \Omega$ (rezystor mostkujący),
 
 ---
 
-### Zadanie 7 – Obwód z dwoma źródłami napięcia
+### Zadanie 7 – Obwód z dwoma źródłami napięcia (układ wieloźródłowy)
 
 Dane:
 $U_1 = 12 , \mathrm{V}$, $U_2 = 5 , \mathrm{V}$,
@@ -90,7 +90,7 @@ $R_1 = 100 , \Omega$, $R_2 = 220 , \Omega$, $R_3 = 330 , \Omega$, $R_4 = 150 , \
 
 ---
 
-### Zadanie 8 – Pojemność zastępcza
+### Zadanie 8 – Pojemność zastępcza (analogia do rezystorów)
 
 Dane: $C_1 = 100 , \mathrm{nF}$, $C_2 = 220 , \mathrm{nF}$, $C_3 = 330 , \mathrm{nF}$, $C_4 = 470 , \mathrm{nF}$.
 
@@ -128,4 +128,3 @@ $R_{12} = 150 , \Omega$, $R_{23} = 270 , \Omega$, $R_{13} = 470 , \Omega$,
 2. Wyznacz napięcia węzłowe $V_1$, $V_2$, $V_3$.
 3. Oblicz prądy w rezystorach między węzłami.
 4. Sprawdź spełnienie prawa Kirchhoffa w każdym węźle.
-
