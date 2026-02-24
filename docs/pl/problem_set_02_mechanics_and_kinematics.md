@@ -14,7 +14,7 @@ $$
 2. Dla danych parametrów $x_0=0$, $v_0=5,\text{m/s}$, $a=-2,\text{m/s}^2$:
 
     * oblicz czas zatrzymania,
-    * maksymalną prędkość,
+    * maksymalną prędkość w zależności od czasu i znaku przyspieszenia,
     * oblicz maksymalne przemieszczenie.
 
 3. Zwizualizuj $x(t)$, $v(t)$, $a(t)$.
