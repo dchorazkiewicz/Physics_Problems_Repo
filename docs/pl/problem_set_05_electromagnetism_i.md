@@ -67,7 +67,7 @@ Dla nich
 2. Narysuj trajektorię ruchu.
 3. Oblicz czas osiągnięcia prędkości pionowej $50\,\mathrm{m/s}$.
 4. Oblicz energię kinetyczną po $t = 0.05\,\mathrm{s}$.
-5. Sprawdź zgodność z bilansem energii $qEd$.
+5. Sprawdź zgodność z bilansem energii.
 
 ---
 
