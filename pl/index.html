@@ -1910,24 +1910,22 @@
 </ul>
 </li>
 <li><strong>Klonowanie</strong>: Pobierz repozytorium na swój komputer lokalny.</li>
-<li>
-<p><strong>Tworzenie Dokumentacji</strong>:</p>
-<ul>
+<li><strong>Tworzenie Dokumentacji</strong>:<ul>
 <li>Listy zadań znajdują się w odpowiednich działach w menu.</li>
 <li>Do każdego pliku z zadaniami (np. <code>problem_set_01_mathematical_foundations.md</code>) przypisany jest dedykowany katalog na rozwiązania (np. <code>problem_set_01_mathematical_foundations_solution/</code>).</li>
-<li>Katalogi te są Twoją <strong>przestrzenią roboczą</strong>. Należy w nich tworzyć pliki Markdown zawierające rozwiązania, dowody oraz notatki teoretyczne.</li>
+<li>Katalogi te są Twoją <strong>przestrzenią roboczą</strong> — to w nich tworzysz i utrzymujesz pliki Markdown z rozwiązaniami, dowodami oraz notatkami teoretycznymi.</li>
+<li>Struktura jest przygotowana z góry: każda lista zadań ma swój katalog (folder) na rozwiązania, a w nim placeholdery na zadania (np. <code>task_01.md</code>, <code>task_02.md</code>, …).</li>
+<li>Twoim zadaniem nie jest tworzenie struktury materiałów, lecz systematyczne uzupełnianie istniejących plików własnym rozumowaniem, komentarzami oraz analizą rozwiązań — repozytorium jest gotowym warsztatem pracy, który w trakcie semestru wypełniasz treścią.</li>
+<li>W tych samych katalogach możesz umieszczać dodatkowe materiały wspierające omawianie tematów (np. grafiki, wykresy, pliki HTML/JS, dane wejściowe, wyniki symulacji). Dla porządku trzymaj rozwiązanie każdego zadania przede wszystkim w odpowiadającym mu pliku <code>task_XX.md</code>, a materiały pomocnicze odkładaj do sensownie nazwanych podfolderów. Bałagan w strukturze plików będzie źle odbierany i może być brany pod uwagę przy ocenianiu — tak samo jak treść rozwiązań i sposób ich prezentacji.</li>
 </ul>
-<p>W repozytorium przygotowane są katalogi zawierające puste pliki przeznaczone na Twoje rozwiązania (np. <code>task_01.md</code>, <code>task_02.md</code>, …). </p>
-<p>Twoim zadaniem nie jest tworzenie struktury materiałów, lecz systematyczne uzupełnianie istniejących plików własnym rozumowaniem, komentarzami oraz analizą rozwiązań. Repozytorium stanowi zatem gotowy warsztat pracy, który w trakcie semestru wypełniasz treścią odzwierciedlającą Twój proces myślenia.</p>
-<p>W tych samych podkatalogach możesz również umieszczać dodatkowe materiały, które wspierają omawianie tematów (np. grafiki, wykresy, pliki HTML/JS, dane wejściowe, wyniki symulacji). Dla porządku zaleca się trzymanie rozwiązania każdego zadania przede wszystkim w odpowiadającym mu pliku <code>task_XX.md</code>, a materiały pomocnicze odkładać do sensownie nazwanych podfolderów. Bałagan w strukturze plików będzie źle odbierany i może być brany pod uwagę przy ocenianiu — tak samo jak treść rozwiązań i sposób ich prezentacji.
-4.  <strong>Utrwalanie zmian</strong>: Regularnie przesyłaj swoje rozwiązania na serwer (Commit &amp; Push).</p>
 </li>
+<li><strong>Utrwalanie zmian</strong>: Regularnie przesyłaj swoje rozwiązania na serwer (Commit &amp; Push).</li>
 </ol>
 <h2 id="rola-notatek-w-przygotowaniu-do-egzaminu">Rola notatek w przygotowaniu do egzaminu</h2>
-<p>Kluczowe jest zrozumienie różnicy między środowiskiem pracy podczas semestru a weryfikacją wiedzy:</p>
+<p>Dobre notatki mają w tym kursie <strong>dwa cele</strong>:</p>
 <ul>
-<li><strong>Egzamin końcowy</strong>: Ma formę <strong>pisemną, stacjonarną i odbywa się bez dostępu do technologii</strong>. Podczas egzaminu nie będziesz mieć dostępu do komputera, telefonu ani systemów AI.</li>
-<li><strong>Cel notatek</strong>: Twoje repozytorium służy do nauki. Musisz przygotować, przeczytać i zrozumieć zawarte w nim rozwiązania teraz, aby być w stanie samodzielnie odtworzyć tok rozumowania na sali egzaminacyjnej.</li>
+<li><strong>Prezentacja rozwiązań na zajęciach</strong>: Notatki są podstawą do omawiania zadań. Student poproszony o pokazanie i wyjaśnienie rozwiązania powinien móc je szybko wyświetlić w <strong>wyrenderowanej</strong> formie (np. podgląd Markdown w VS Code lub jako PDF/HTML) i przejść przez pełny tok rozumowania.</li>
+<li><strong>Przygotowanie do egzaminu</strong>: Egzamin końcowy ma formę <strong>pisemną, stacjonarną i odbywa się bez dostępu do technologii</strong>. Repozytorium służy do nauki. Rozwiązania powinny być opracowane i zrozumiane w trakcie semestru, tak aby podczas egzaminu możliwe było samodzielne odtworzenie toku rozumowania.</li>
 </ul>
 <h2 id="wykorzystanie-ai-do-personalizacji-nauki">Wykorzystanie AI do personalizacji nauki</h2>
 <p>Zdecydowanie zaleca się wykorzystanie narzędzi Generative AI (ChatGPT, Claude, Gemini) na etapie przygotowywania materiałów. Technologia ta pozwala na stworzenie <strong>spersonalizowanych notatek</strong>:</p>
@@ -1948,7 +1946,7 @@
 <p>Studenci zainteresowani technologią mogą opublikować swoje notatki w formie strony internetowej przy użyciu GitHub Pages.</p>
 <ul>
 <li>Służy do tego polecenie <code>mkdocs gh-deploy</code>.</li>
-<li><strong>Zastrzeżenie</strong>: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi.</li>
+<li><strong>Zastrzeżenie</strong>: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi. Jednocześnie jest to praktyczny atut: jeśli opublikujesz notatki jako publiczną stronę WWW, podczas zajęć nie musisz mieć dostępu do własnego komputera — wystarczy link do repozytorium/strony (nawet z telefonu), aby szybko odnaleźć rozwiązanie i płynnie przejść do jego omówienia.</li>
 </ul>
 <hr />
 <h3 id="dostepne-dziay">Dostępne Działy</h3>

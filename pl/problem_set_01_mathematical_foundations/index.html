@@ -523,10 +523,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-5-krzywizna-toru" class="md-nav__link">
+  <a href="#zadanie-5-krzywizna-toru-i-przyspieszenie-normalne" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 5 – Krzywizna toru
+        Zadanie 5 – Krzywizna toru i przyspieszenie normalne
       
     </span>
   </a>
@@ -1903,10 +1903,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-5-krzywizna-toru" class="md-nav__link">
+  <a href="#zadanie-5-krzywizna-toru-i-przyspieszenie-normalne" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 5 – Krzywizna toru
+        Zadanie 5 – Krzywizna toru i przyspieszenie normalne
       
     </span>
   </a>
@@ -2012,14 +2012,14 @@ A =
 <ul>
 <li>Oblicz <span class="arithmatex">\(A\vec a\)</span>.</li>
 <li>Oblicz <span class="arithmatex">\(\det A\)</span>.</li>
-<li>Oceń, czy przekształcenie zachowuje orientację przestrzeni.</li>
+<li>Sprawdź, czy przekształcenie zachowuje orientację przestrzeni.</li>
 </ul>
 <hr />
 <h2 id="zadanie-2-tor-parametryczny-predkosc-i-przyspieszenie">Zadanie 2 – Tor parametryczny, prędkość i przyspieszenie</h2>
 <p>Proszę wypisać wszystkie kroki obliczeń a nie same wyniki. Proszę narysować wykres toru i wektorów prędkości oraz przyspieszenia w wybranych punktach.</p>
-<p>Dany jest tor parametryczny:</p>
+<p>Dane jest równanie parametryczne toru w 2D:</p>
 <div class="arithmatex">\[
-\vec r(t) = \bigl(t^2,\sin t,e^{-t}\bigr)
+\vec r(t) = \bigl(t^2,\sin t, 5\bigr)
 \]</div>
 <ul>
 <li>Wyznacz prędkość
@@ -2069,10 +2069,10 @@ A =
 <hr />
 <h2 id="zadanie-4-geometria-krzywych-parametrycznych">Zadanie 4 – Geometria krzywych parametrycznych</h2>
 <p>Zbadaj następujące krzywe:</p>
-<p>A) <span class="arithmatex">\(x = R\cos t,  y = R\sin t\)</span></p>
-<p>B) <span class="arithmatex">\(x = a\cos t, y = b\sin t\)</span></p>
-<p>C) <span class="arithmatex">\(x = t, y = t^2\)</span></p>
-<p>D) <span class="arithmatex">\(x = \cosh t, y = \sinh t\)</span></p>
+<p>A) <span class="arithmatex">\(\ x(t) = R\cos t,\quad  y(t) = R\sin t\)</span></p>
+<p>B) <span class="arithmatex">\(\ x(t) = a\cos t, \quad y(t) = b\sin t\)</span></p>
+<p>C) <span class="arithmatex">\(\ x(t) = t, \quad   y(t) = t^2\)</span></p>
+<p>D) <span class="arithmatex">\(\ x(t) = \cosh t, \quad y(t) = \sinh t\)</span></p>
 <p>Dla każdej krzywej:</p>
 <ol>
 <li>Wyeliminuj parametr (jeśli możliwe).</li>
@@ -2081,15 +2081,47 @@ A =
 <li>Sprawdź, czy prędkość/przyspieszenie ma stałą wartość (<span class="arithmatex">\(|\vec v| = const\)</span> lub <span class="arithmatex">\(|\vec a| = const\)</span>).</li>
 </ol>
 <hr />
-<h2 id="zadanie-5-krzywizna-toru">Zadanie 5 – Krzywizna toru</h2>
+<h2 id="zadanie-5-krzywizna-toru-i-przyspieszenie-normalne">Zadanie 5 – Krzywizna toru i przyspieszenie normalne</h2>
 <p>Dla elipsy:</p>
 <div class="arithmatex">\[
 x = a\cos t, \qquad y = b\sin t
 \]</div>
 <ol>
-<li>Wyznacz prędkość i przyspieszenie.</li>
-<li>Oblicz promień krzywizny w punkcie <span class="arithmatex">\(t=0\)</span>.</li>
-<li>Porównaj wynik z przypadkiem okręgu <span class="arithmatex">\(a=b\)</span>.</li>
+<li>
+<p>Wyznacz wektor prędkości <span class="arithmatex">\(\vec v(t)\)</span> oraz przyspieszenia <span class="arithmatex">\(\vec a(t)\)</span>.</p>
+</li>
+<li>
+<p>Wyznacz jednostkowy wektor styczny do toru
+   $$
+   \hat T(t)=\frac{\vec v(t)}{|\vec v(t)|}.
+   $$</p>
+</li>
+<li>
+<p>Rozłóż przyspieszenie na składową styczną i normalną:
+   $$
+   \vec a(t)=a_t(t)\hat T(t)+\vec a_n(t),
+   $$
+   oraz wyznacz wartość przyspieszenia normalnego <span class="arithmatex">\(a_n(t)=|\vec a_n(t)|\)</span>.</p>
+</li>
+<li>
+<p>Korzystając z relacji
+   $$
+   a_n=\frac{v^2}{R},
+   $$
+   wyznacz promień krzywizny toru w punkcie <span class="arithmatex">\(t=0\)</span>.</p>
+</li>
+<li>
+<p>Porównaj wynik z przypadkiem okręgu <span class="arithmatex">\(a=b\)</span>.</p>
+</li>
+<li>
+<p><strong>Interpretacja fizyczna.</strong>
+   Odpowiedz na pytania:</p>
+</li>
+<li>
+<p>Czy większa krzywizna toru oznacza większe przyspieszenie normalne?</p>
+</li>
+<li>W którym miejscu elipsy tor jest bardziej „zakrzywiony”: przy końcu półosi większej czy mniejszej?</li>
+<li>Wyjaśnij, dlaczego przyspieszenie normalne można interpretować jako przyczynę zmiany kierunku ruchu.</li>
 </ol>
 <hr />
 <h2 id="zadanie-6-dugosc-krzywej-i-cakowanie-numeryczne-most-do-fizyki">Zadanie 6 – Długość krzywej i całkowanie numeryczne (most do fizyki)</h2>
@@ -2139,7 +2171,7 @@ x = t, \qquad y = t^2, \qquad t \in [0,1]
 $$
 W = \int_C \vec F \cdot d\vec r
 $$</li>
-<li>Zapisz całkę jako granicę sumy Riemanna i oblicz jej wartość.</li>
+<li>Zapisz całkę jako granicę sumy Riemanna i oblicz jej wartość numerycznie w HTML/JS, porównując z wynikiem analitycznym (jeśli możliwe).</li>
 </ol>
 <hr />
 <h2 id="zadanie-8-rownanie-rozniczkowe-i-rzedu-zanik-wykadniczy">Zadanie 8 – Równanie różniczkowe I rzędu (zanik wykładniczy)</h2>
