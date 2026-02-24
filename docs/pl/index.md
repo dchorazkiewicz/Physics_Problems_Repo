@@ -61,7 +61,7 @@ Zdecydowanie zaleca się wykorzystanie narzędzi Generative AI (ChatGPT, Claude,
 Studenci zainteresowani technologią mogą opublikować swoje notatki w formie strony internetowej przy użyciu GitHub Pages.
 
 * Służy do tego polecenie `mkdocs gh-deploy`.
-* **Zastrzeżenie**: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi.
+* **Zastrzeżenie**: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi. Jednocześnie jest to praktyczny atut: jeśli opublikujesz notatki jako publiczną stronę WWW, podczas zajęć nie musisz mieć dostępu do własnego komputera — wystarczy link do repozytorium/strony (nawet z telefonu), aby szybko odnaleźć rozwiązanie i płynnie przejść do jego omówienia.
 
 ---
 
