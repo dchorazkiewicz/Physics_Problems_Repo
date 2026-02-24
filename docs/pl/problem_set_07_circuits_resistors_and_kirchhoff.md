@@ -6,7 +6,7 @@
 
 ### Zadanie 1 – Rezystancja zastępcza
 
-Dane: $R_1 = 100 , \Omega$, $R_2 = 220 , \Omega$, $R_3 = 330 , \Omega$.
+Dane: $R_1 = 100\ \Omega$, $R_2 = 220\ \Omega$, $R_3 = 330\  \Omega$.
 
 1. Oblicz rezystancję zastępczą dla połączenia szeregowego.
 2. Oblicz rezystancję zastępczą dla połączenia równoległego.
@@ -18,20 +18,20 @@ Dane: $R_1 = 100 , \Omega$, $R_2 = 220 , \Omega$, $R_3 = 330 , \Omega$.
 
 ### Zadanie 2 – Dzielnik napięcia (zastosowanie prawa Kirchhoffa)
 
-Źródło $U = 12 , \mathrm{V}$. Rezystory w szeregu: $R_1 = 1 , \mathrm{k}\Omega$, $R_2 = 2 , \mathrm{k}\Omega$.
+Źródło $U = 12\ \mathrm{V}$. Rezystory w szeregu: $R_1 = 1\ \mathrm{k}\Omega$, $R_2 = 2\ \mathrm{k}\Omega$.
 
 1. Oblicz napięcie na $R_2$.
 2. Oblicz prąd w obwodzie.
 3. Oblicz moc wydzielaną na $R_1$ i na $R_2$.
-4. Dobierz wartość $R_2$ tak, aby napięcie na nim wynosiło $9 , \mathrm{V}$ przy $R_1 = 1 , \mathrm{k}\Omega$.
+4. Dobierz wartość $R_2$ tak, aby napięcie na nim wynosiło $9\ \mathrm{V}$ przy $R_1 = 1\ \mathrm{k}\Omega$.
 
 ---
 
 ### Zadanie 3 – Prawo Kirchhoffa (jedno oczko)
 
-W jednym oczku: źródło $U = 9 , \mathrm{V}$ oraz rezystory $R_1 = 100 , \Omega$, $R_2 = 200 , \Omega$, $R_3 = 150 , \Omega$ (szeregowo).
+W jednym oczku: źródło $U = 9\ \mathrm{V}$ oraz rezystory $R_1 = 100\ \Omega$, $R_2 = 200\ \Omega$, $R_3 = 150\ \Omega$ (szeregowo).
 
-1. Zapisz równanie KVL.
+1. Zapisz równanie KVL oraz KCL.
 2. Oblicz prąd w obwodzie.
 3. Oblicz spadki napięć na każdym rezystorze.
 4. Sprawdź bilans mocy.
@@ -40,8 +40,8 @@ W jednym oczku: źródło $U = 9 , \mathrm{V}$ oraz rezystory $R_1 = 100 , \Omeg
 
 ### Zadanie 4 – Prawo Kirchhoffa (węzeł)
 
-Źródło prądowe $I = 30 , \mathrm{mA}$ zasila węzeł, z którego wychodzą trzy gałęzie do masy:
-$R_1 = 1 , \mathrm{k}\Omega$, $R_2 = 2 , \mathrm{k}\Omega$, $R_3 = 3 , \mathrm{k}\Omega$.
+Źródło prądowe $I = 30\ \mathrm{mA}$ zasila węzeł, z którego wychodzą trzy gałęzie do masy:
+$R_1 = 1\ \mathrm{k}\Omega$, $R_2 = 2\ \mathrm{k}\Omega$, $R_3 = 3\ \mathrm{k}\Omega$.
 
 1. Zapisz równanie KCL.
 2. Oblicz napięcie węzła.
@@ -62,7 +62,6 @@ Dane: $R_1 = 200 , \Omega$, $R_2 = 300 , \Omega$, $R_3 = 150 , \Omega$. Źródł
 
 ---
 
-## CZĘŚĆ II – Większe topologie (nadal elementarne)
 
 ### Zadanie 6 – Mostek rezystorowy
 
