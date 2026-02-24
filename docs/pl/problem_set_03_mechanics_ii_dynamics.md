@@ -41,7 +41,7 @@ Ciało o masie $m$ zsuwa się z równi o kącie $\alpha$. Współczynnik tarcia 
 Dana siła jednowymiarowa:
 
 $$
-F(x)=kx
+F(x)=-kx
 $$
 
 * Zapisz równanie ruchu i rozwiąż je.
