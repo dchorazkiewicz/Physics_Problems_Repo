@@ -181,8 +181,8 @@ Rozważ wahadło podwójne (dwa masywne punkty $m_1, m_2$ na nieważkich prętac
 
 1. Zapisz współrzędne $(x_1,y_1)$ oraz $(x_2,y_2)$ w funkcji kątów $(\theta_1,\theta_2)$ (do animacji).
 2. Zaimplementuj numeryczną całkę równań (np. RK4) i sprawdź stabilność numeryczną (np. dryf energii dla różnych $\Delta t$).
-3. Zbadaj wrażliwość na warunki początkowe: **symuluj jednocześnie 50 kopii** układu z minimalnie różnymi warunkami początkowymi (np. perturbacja tylko w $\theta_2(0)$ rzędu $10^{-6}$–$10^{-3}$ rad).
-4. Zwizualizuj „rozjeżdżanie się” trajektorii w czasie (np. odległość między położeniem końcówki drugiego wahadła a trajektorią referencyjną).
+3. Zbadaj wrażliwość na warunki początkowe: **symuluj jednocześnie 50 kopii** układu z minimalnie różnymi warunkami początkowymi (np. perturbacja tylko w $\theta_2(0)$ rzędu $10^{-4}$–$10^{-2}$ rad).
+4. Eksperymentuj z różnymi skalami perturbacji i obserwuj rozbieganie trajektorii.
 
 Parametry startowe (do ujednolicenia wyników): $m_1=m_2=1$, $l_1=l_2=1$, $g=9.81$, krok całkowania $\Delta t\le 0.01\,\mathrm{s}$.
 
