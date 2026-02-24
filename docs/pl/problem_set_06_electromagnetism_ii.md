@@ -10,34 +10,20 @@
 
 ## Zadanie 1 – Siła Lorentza
 
-Dane:
+Dane są następujące:
 
-$$
-\vec B = (0,0,1) , \mathrm{T}
-$$
+* $\vec B = (0,0,1) , \mathrm{T}$
 
-$$
-\vec v = (2,3,0) , \mathrm{m/s}
-$$
+* $\vec v = (2,3,0) , \mathrm{m/s}$
 
-$q = 1 , \mathrm{mC}$
+* $q = 1 , \mathrm{mC}$
 
-Siła Lorentza:
-
-$$
-\vec F = q \vec v \times \vec B
-$$
-
-1. Wyznacz $\vec F$.
-2. Oblicz wartość $|\vec F|$.
-3. Czy siła magnetyczna wykonuje pracę?
-4. Wyznacz promień toru dla $m = 0.01 , \mathrm{kg}$:
-
-$$
-q v B = \frac{m v^2}{r}
-$$
-
-5. Jak zmieni się $r$, gdy $B$ zostanie podwojone?
+1. Wyznacz siłę Lorentza $\vec F$ działającą na ładunek.
+2. Rozwiąż równanie ruchu dla tego ładunku, zakładając, że w chwili $t=0$ znajduje się w punkcie $(0,0,0)$.
+3. Oblicz wartość $|\vec F|$.
+4. Czy siła magnetyczna wykonuje pracę?
+5. Wyznacz promień toru dla $m = 0.01 , \mathrm{kg}$:
+6. Jak zmieni się $r$, gdy $B$ zostanie podwojone?
 
 ---
 
@@ -100,17 +86,12 @@ Mamy pręt o długości $L=0.25\,\mathrm{m}$, poruszający się z prędkością 
 
 ---
 
-# CZĘŚĆ II – Analiza i modelowanie (6–10)
 
----
-
-## Zadanie 6 – Pręt na metalowej równi (szyny) w polu $\vec B$: prędkość graniczna 
+## Zadanie 6 – Pręt na metalowej równi (szyny) w polu $\vec B$
 
 Mamy dwie przewodzące, równoległe szyny oddalone o $L$, po nich bez tarcia zsuwa się przewodzący pręt (zamyka obwód). Całość ma opór elektryczny $R$ (szyny+pręt+styki). Jednorodne pole magnetyczne $\vec B$ jest prostopadłe do płaszczyzny szyn.
 
-Dla przykładowych danych:
-
-$m=0.20\,\mathrm{kg}$, $L=0.30\,\mathrm{m}$, $B=0.80\,\mathrm{T}$, $R=0.50\,\Omega$, $\alpha=25^\circ$, $g=9.81\,\mathrm{m/s^2}$.
+Dla przykładowych danych: $m=0.20\,\mathrm{kg}$, $L=0.30\,\mathrm{m}$, $B=0.80\,\mathrm{T}$, $R=0.50\,\Omega$, $\alpha=25^\circ$, $g=9.81\,\mathrm{m/s^2}$.
 
 
 1. Wyznacz SEM ruchową $\mathcal{E}(v)$ i prąd $I(v)$.
@@ -125,13 +106,11 @@ $$
 
 ---
 
-## Zadanie 7 – Pętla wciągana do obszaru pola $B$: siła, prąd, praca (indukcja „na wejściu/wyjściu”)
+## Zadanie 7 – Pętla wciągana do obszaru pola $B$
 
 Prostokątna pętla przewodząca o oporze $R$ ma wymiary $a\times b$. Jest wciągana ze stałą prędkością $v$ w obszar jednorodnego pola $B$ prostopadłego do pętli (pole istnieje tylko w pewnym obszarze przestrzeni).
 
-Dla przykładowych danych:
-
-$a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omega$, $v=1.5\,\mathrm{m/s}$.
+Dla przykładowych danych: $a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omega$, $v=1.5\,\mathrm{m/s}$.
 
 1. Rozpisz strumień $\Phi(t)$ w fazie wjeżdżania (gdy część pętli jest już w polu, ale jeszcze nie cała).
 2. Wyznacz $\mathcal{E}$ i $I$ w tej fazie.
@@ -141,7 +120,7 @@ $a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omeg
 
 ---
 
-## Zadanie 8 – Indukcja własna: cewka + opór, wyłączanie prądu, energia pola
+## Zadanie 8 – Indukcja własna
 
 Obwód RL: cewka o indukcyjności $L$ i oporze $R$ jest zasilana napięciem stałym $U$. Po długim czasie obwód jest w stanie ustalonym, potem w chwili $t=0$ zasilanie zostaje odłączone i pozostaje obwód $L$–$R$ bez źródła.
 
@@ -162,62 +141,12 @@ $$
 
 ---
 
-## Zadanie 9 – Transformator idealny vs rzeczywisty: skąd bierze się napięcie wtórne (Faraday)
+## Zadanie 9 – Transformator idealny vs rzeczywisty
 
-Rdzeń transformatora ma strumień magnetyczny:
-
-$$
-\Phi(t)=\Phi_0\sin(\omega t)
-$$
-
-Uzwojenia mają odpowiednio $N_1$ i $N_2$ zwojów.
-
-Dane:
-
-$N_1=500$, $N_2=50$, $\Phi_0=2.0\times10^{-4}\,\mathrm{Wb}$, $f=50\,\mathrm{Hz}$.
-
-1. Wyznacz wartość skuteczną SEM na uzwojeniu pierwotnym i wtórnym, korzystając z:
-
-$$
-\mathcal{E}(t)=-N\frac{d\Phi}{dt}
-$$
-
-   Uwaga: $\omega = 2\pi f$. Dla sinusoidy możesz zapisać
-   $$
-   \mathcal{E}_\mathrm{rms}=\frac{N\omega\Phi_0}{\sqrt 2}=4.44\, f\, N\, \Phi_0.
-   $$
-
-2. Dla transformatora idealnego i obciążenia rezystancyjnego $R_L=4\,\Omega$ po stronie wtórnej wyznacz przekładnię napięciową i prądową oraz prądy w uzwojeniach, korzystając z:
-   $$
-   \frac{V_2}{V_1}=\frac{N_2}{N_1},\qquad \frac{I_2}{I_1}=\frac{N_1}{N_2}.
-   $$
-3. Policz moc po stronie wtórnej i pierwotnej (dla idealnego transformatora powinny być równe: $P_1=P_2$).
-4. (Wersja „rzeczywista”) Jeśli opór uzwojenia wtórnego to $r_2=0.4\,\Omega$ (szeregowo z $R_L$), policz napięcie na obciążeniu i straty mocy w uzwojeniu wtórnym.
+Wyjaśnij jak działa transformator, jakie są jego idealne właściwości i jak wygląda rzeczywistość. Skąd bierze się napięcie wtórne? Jakie są straty w transformatorze? Jakie są typowe wartości przekładni i sprawności?
 
 ---
 
-## Zadanie 10 – Prądy wirowe (hamowanie magnetyczne)
+## Zadanie 10 – Prądy wirowe
 
-Model siły oporu:
-
-$$
-F = - \gamma v
-$$
-
-Równanie ruchu:
-
-$$
-m \frac{dv}{dt} = - \gamma v
-$$
-
-Rozwiązanie:
-
-$$
-v(t) = v_0 e^{-\frac{\gamma}{m} t}
-$$
-
-0. Uzasadnij jakościowo, dlaczego dla cienkiej płytki przewodzącej poruszającej się w polu $B$ często dostaje się w przybliżeniu $F\propto v$ (małe $v$, małe prądy, liniowość Ohma).
-1. Wyjaśnij mechanizm powstawania prądów wirowych.
-2. Wyjaśnij prawo Lenza.
-3. Zinterpretuj zanikanie prędkości.
-4. Zbadaj granicę $t \to \infty$.
+Wyjaśnij gdzie można wykorzystać prądy wirowe do hamowania ruchu. Jakie są zalety i wady tego rozwiązania? Jakie materiały są najlepsze do generowania prądów wirowych? Jak można zwiększyć siłę hamowania?
