@@ -39,7 +39,7 @@ $$
 
 Proszę wypisać wszystkie kroki obliczeń a nie same wyniki. Proszę narysować wykres toru i wektorów prędkości oraz przyspieszenia w wybranych punktach.
 
-Dane jest równanie parametryczne toru w 2D:
+Dane jest równanie parametryczne toru:
 
 $$
 \vec r(t) = \bigl(t^2,\sin t, 5\bigr)
