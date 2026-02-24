@@ -214,6 +214,7 @@ $$
 
 1. Rozwiąż równanie.
 2. Zwizualizuj rozwiązanie w aplikacji html/js dla różnych wartości parametru $k$ i różnych warunków początkowych $y(0)$.
+
 ---
 
 ## Zadanie 9 – Oscylator harmoniczny (równanie ruchu jako ODE II rzędu)
