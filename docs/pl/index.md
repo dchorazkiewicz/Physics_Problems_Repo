@@ -36,7 +36,7 @@ Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zg
 Dobre notatki mają w tym kursie **dwa cele**:
 
 * **Prezentacja rozwiązań na zajęciach**: Notatki są podstawą do omawiania zadań. Student poproszony o pokazanie i wyjaśnienie rozwiązania powinien móc je szybko wyświetlić w **wyrenderowanej** formie (np. podgląd Markdown w VS Code lub jako PDF/HTML) i przejść przez pełny tok rozumowania.
-* **Przygotowanie do egzaminu**: Egzamin końcowy ma formę **pisemną, stacjonarną i odbywa się bez dostępu do technologii**. Repozytorium służy do nauki: rozwiązania muszą być przygotowane i zrozumiane teraz, abyś był w stanie samodzielnie odtworzyć tok rozumowania na sali egzaminacyjnej.
+* **Przygotowanie do egzaminu**: Egzamin końcowy ma formę **pisemną, stacjonarną i odbywa się bez dostępu do technologii**. Repozytorium służy do nauki. Rozwiązania powinny być opracowane i zrozumiane w trakcie semestru, tak aby podczas egzaminu możliwe było samodzielne odtworzenie toku rozumowania.
 
 ## Wykorzystanie AI do personalizacji nauki
 
