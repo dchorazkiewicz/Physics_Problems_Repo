@@ -18,7 +18,7 @@ $$
    * oblicz $v_{\max}$,
    * oblicz $a_{\max}$.
 
-Odpowiedzi: pełne wypracowanie + interpretacja.
+Odpowiedzi: pełne wyprowadzenie + interpretacja.
 
 ---
 
@@ -35,7 +35,7 @@ Dany jest układ o parametrach początkowych:
 2. Oblicz energię całkowitą układu.
 3. Dla jakiego wychylenia energia kinetyczna stanowi $50%$ energii całkowitej?
 
-Odpowiedzi: pełne wypracowanie + interpretacja.
+Odpowiedzi: pełne wyprowadzenie + interpretacja.
 
 ---
 
@@ -52,7 +52,7 @@ $$
 3. Oblicz $v$ dla $k = 4\pi$, $\omega = 20\pi$.
 4. Czy punkt $x = \lambda$ drga w fazie z punktem $x = 0$?
 
-Odpowiedzi: pełne wypracowanie + interpretacja.
+Odpowiedzi: pełne wyprowadzenie + interpretacja.
 
 ---
 
@@ -105,7 +105,7 @@ $$
 
 5. Porównaj $v_g$ z prędkością fazową $v_f=\frac{\omega}{k}$ i omów, kiedy $v_g\neq v_f$.
 
-Odpowiedzi: algebra + interpretacja.
+6. Uzyj pythona/html/js do wygenerowania dwóch fal i ich superpozycji, pokazując zjawisko dudnień i ruch obwiedni.
 
 ---
 
@@ -117,11 +117,12 @@ $$
 m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = 0
 $$
 
-1. Przedstaw klasyfikację przypadków: podtłumiony, krytyczny, przetłumiony.
-2. Rozwiąż równanie numerycznie (Euler lub RK4).
-3. Zbadaj wpływ parametru $b$.
-4. Wygeneruj wykres $x(t)$.
-5. Wygeneruj portret fazowy.
+1. Wyprowadź ogólne rozwiązanie dla każdego przypadku.
+2. Przedstaw klasyfikację przypadków: podtłumiony, krytyczny, przetłumiony.
+3. Rozwiąż równanie numerycznie (Euler lub RK4).
+4. Zbadaj wpływ parametru $b$.
+5. Wygeneruj wykres $x(t)$.
+6. Wygeneruj portret fazowy.
 
 Wymaganie HTML: interaktywny suwak dla $b$.
 
@@ -133,11 +134,12 @@ $$
 m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = F_0 \cos(\Omega t)
 $$
 
-1. Rozwiąż równanie numerycznie.
-2. Zbadaj amplitudę ustaloną w funkcji $\Omega$.
-3. Wygeneruj wykres rezonansowy.
-4. Zbadaj przesunięcie fazowe.
-5. Zinterpretuj zjawisko rezonansu.
+1. Rozwiąż równanie analitycznie, wyznaczając amplitudę drgań w funkcji $\Omega$.
+2. Rozwiąż równanie numerycznie.
+3. Zbadaj amplitudę ustaloną w funkcji $\Omega$.
+4. Wygeneruj wykres rezonansowy.
+5. Zbadaj przesunięcie fazowe.
+6. Zinterpretuj zjawisko rezonansu.
 
 Wymaganie HTML: interaktywna zmiana częstotliwości wymuszenia.
 
@@ -171,18 +173,17 @@ Wymaganie HTML: animacja całego łańcucha.
 
 ---
 
-## Zadanie 10 – Równanie falowe (metoda różnic skończonych)
+## Zadanie 10 – Wahadło podwójne i chaos deterministyczny
 
-Równanie:
+Cel: **czysto numeryczna analiza** wahadła podwójnego i wizualizacja chaosu deterministycznego.
 
-$$
-\frac{\partial^2 y}{\partial t^2} = v^2 \frac{\partial^2 y}{\partial x^2}
-$$
+Rozważ wahadło podwójne (dwa masywne punkty $m_1, m_2$ na nieważkich prętach $l_1, l_2$) w jednorodnym polu grawitacyjnym $g$. Równania ruchu przyjmij ze standardowej postaci dla wahadła podwójnego (nie wyprowadzamy ich analitycznie na tej liście).
 
-1. Zastosuj dyskretyzację w czasie i przestrzeni.
-2. Zaimplementuj schemat numeryczny.
-3. Zbadaj warunek stabilności (CFL).
-4. Porównaj przypadki stabilny / niestabilny.
-5. Zaimplementuj animację propagacji fali.
+1. Zapisz współrzędne $(x_1,y_1)$ oraz $(x_2,y_2)$ w funkcji kątów $(\theta_1,\theta_2)$ (do animacji).
+2. Zaimplementuj numeryczną całkę równań (np. RK4) i sprawdź stabilność numeryczną (np. dryf energii dla różnych $\Delta t$).
+3. Zbadaj wrażliwość na warunki początkowe: **symuluj jednocześnie 50 kopii** układu z minimalnie różnymi warunkami początkowymi (np. perturbacja tylko w $\theta_2(0)$ rzędu $10^{-6}$–$10^{-3}$ rad).
+4. Zwizualizuj „rozjeżdżanie się” trajektorii w czasie (np. odległość między położeniem końcówki drugiego wahadła a trajektorią referencyjną).
 
-Wymaganie HTML: animacja całego łańcucha.
+Parametry startowe (do ujednolicenia wyników): $m_1=m_2=1$, $l_1=l_2=1$, $g=9.81$, krok całkowania $\Delta t\le 0.01\,\mathrm{s}$.
+
+Wymaganie HTML: animacja wahadła podwójnego w trybie „ensemble” — **50 wahadeł jednocześnie**, każde w **innym kolorze**, aby było widać rozbieganie; dodaj reset i możliwość ustawienia skali perturbacji.
