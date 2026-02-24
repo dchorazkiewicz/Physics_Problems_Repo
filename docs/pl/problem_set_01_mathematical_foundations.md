@@ -132,7 +132,7 @@ $$
 
 3. Rozłóż przyspieszenie na składową styczną i normalną:
    $$
-   \vec a(t)=a_t(t)\hat T(t)+\vec a_n(t),
+   \vec a(t)=\vec a_t(t)+\vec a_n(t),
    $$
    oraz wyznacz wartość przyspieszenia normalnego $a_n(t)=|\vec a_n(t)|$.
 
