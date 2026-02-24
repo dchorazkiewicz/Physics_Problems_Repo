@@ -33,10 +33,10 @@ Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zg
 
 ## Rola notatek w przygotowaniu do egzaminu
 
-Kluczowe jest zrozumienie różnicy między środowiskiem pracy podczas semestru a weryfikacją wiedzy:
+Dobre notatki mają w tym kursie **dwa cele**:
 
-* **Egzamin końcowy**: Ma formę **pisemną, stacjonarną i odbywa się bez dostępu do technologii**. Podczas egzaminu nie będziesz mieć dostępu do komputera, telefonu ani systemów AI.
-* **Cel notatek**: Twoje repozytorium służy do nauki. Musisz przygotować, przeczytać i zrozumieć zawarte w nim rozwiązania teraz, aby być w stanie samodzielnie odtworzyć tok rozumowania na sali egzaminacyjnej.
+* **Prezentacja rozwiązań na zajęciach**: Notatki są podstawą do omawiania zadań. Student poproszony o pokazanie i wyjaśnienie rozwiązania powinien móc je szybko wyświetlić w **wyrenderowanej** formie (np. podgląd Markdown w VS Code lub jako PDF/HTML) i przejść przez pełny tok rozumowania.
+* **Przygotowanie do egzaminu**: Egzamin końcowy ma formę **pisemną, stacjonarną i odbywa się bez dostępu do technologii**. Repozytorium służy do nauki: rozwiązania muszą być przygotowane i zrozumiane teraz, abyś był w stanie samodzielnie odtworzyć tok rozumowania na sali egzaminacyjnej.
 
 ## Wykorzystanie AI do personalizacji nauki
 
