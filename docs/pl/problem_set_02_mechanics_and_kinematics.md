@@ -25,7 +25,7 @@ $$
 
 Ciało porusza się w polu grawitacyjnym Ziemi bez oporu powietrza. Rzut ukośny o prędkości początkowej $v_0$ i kącie $\alpha$ względem poziomu.
 
-* wyprowadź równania ruchu w kierunku poziomym i pionowym,
+* Wyprowadź równania ruchu w kierunku poziomym i pionowym,
 * Wyznacz czas lotu.
 * Wyznacz maksymalną wysokość.
 * Wyznacz zasięg.
@@ -39,12 +39,12 @@ Ciało porusza się w polu grawitacyjnym Ziemi bez oporu powietrza. Rzut ukośny
 Dane jest równanie toru w postaci parametrycznej:
 
 $$
-x(t)=2t, \qquad y(t)=3t^2
+x(t)=2t^2, \qquad y(t)=3t^3
 $$
 
 * Wyeliminuj parametr $t$.
 * Określ typ toru.
-* Oblicz prędkość i przyspieszenie.
+* Oblicz $\vec v(t)$, $|\vec v(t)|$, $\vec a(t)$ oraz $|\vec a(t)|$.
 * Czy przyspieszenie jest stałe?
 
 ---
@@ -53,8 +53,8 @@ $$
 
 Ciało porusza się po okręgu o promieniu $R$ z prędkością kątową $\omega$:
 
-* Wyznacz prędkość i przyspieszenie.
-* Oblicz wartość prędkości.
+* Wyznacz $\vec r(t)$, $\vec v(t)$, $\vec a(t)$.
+* Wyznacz $|\vec r(t)|$, $|\vec v(t)|$, $|\vec a(t)|$.
 * Pokaż, że przyspieszenie jest dośrodkowe.
 * Zwizualizuj wektory $\vec r$, $\vec v$, $\vec a$.
 
@@ -96,7 +96,7 @@ $$
    - ślad cykloidy,
    - opcjonalnie wektory $\vec v$ i $\vec a$ w wybranej chwili.
 
-5. (Opcjonalnie) Porównaj cykloidę z ruchem po okręgu w układzie związanym z kołem.
+5. Porównaj cykloidę z ruchem po okręgu w układzie związanym z kołem.
 
 ---
 
@@ -125,7 +125,10 @@ ciało B z prędkością $\vec v_B=(1,-2)$.
 
 1. Wyznacz prędkość względną $\vec v_{A/B}$.
 2. Określ kierunek ruchu względnego.
-3. Zwizualizuj ruch obu ciał w jednym układzie odniesienia.
+3. Zwizualizuj ruch obu ciał w:
+    - układzie odniesienia związanym z początkiem ukladu współrzędnych,
+    - układzie związanym z ciałem A,
+    - układzie związanym z ciałem B.
 
 
 ---
@@ -163,6 +166,6 @@ $$
 Dla danych pomiarowych $x(t)=t+\frac{1}{20}t^2$ na odcinku $t\in[0,10]$ z krokiem $\Delta t=0.1$:
 
 1. Przybliż prędkość metodą różnic skończonych.
-2. Przybliż przyspieszenie.
+2. Przybliż przyspieszenie metodą różnic skończonych.
 3. Porównaj z rozwiązaniem analitycznym (jeśli znane).
 4. Zbadaj wpływ kroku czasowego na dokładność.
