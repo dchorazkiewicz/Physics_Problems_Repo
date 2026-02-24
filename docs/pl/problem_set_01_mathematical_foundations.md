@@ -31,7 +31,7 @@ $$
 
 * Oblicz $A\vec a$.
 * Oblicz $\det A$.
-* Oceń, czy przekształcenie zachowuje orientację przestrzeni.
+* Sprawdź, czy przekształcenie zachowuje orientację przestrzeni.
 
 ---
 
@@ -39,10 +39,10 @@ $$
 
 Proszę wypisać wszystkie kroki obliczeń a nie same wyniki. Proszę narysować wykres toru i wektorów prędkości oraz przyspieszenia w wybranych punktach.
 
-Dany jest tor parametryczny:
+Dane jest równanie parametryczne toru w 2D:
 
 $$
-\vec r(t) = \bigl(t^2,\sin t,e^{-t}\bigr)
+\vec r(t) = \bigl(t^2,\sin t, 5\bigr)
 $$
 
 * Wyznacz prędkość
@@ -99,13 +99,13 @@ $$
 
 Zbadaj następujące krzywe:
 
-A) $x = R\cos t,  y = R\sin t$
+A) $\ x(t) = R\cos t,\quad  y(t) = R\sin t$
 
-B) $x = a\cos t, y = b\sin t$
+B) $\ x(t) = a\cos t, \quad y(t) = b\sin t$
 
-C) $x = t, y = t^2$
+C) $\ x(t) = t, \quad   y(t) = t^2$
 
-D) $x = \cosh t, y = \sinh t$
+D) $\ x(t) = \cosh t, \quad y(t) = \sinh t$
 
 Dla każdej krzywej:
 
@@ -115,7 +115,7 @@ Dla każdej krzywej:
 4. Sprawdź, czy prędkość/przyspieszenie ma stałą wartość ($|\vec v| = const$ lub $|\vec a| = const$).
 ---
 
-## Zadanie 5 – Krzywizna toru
+## Zadanie 5 – Krzywizna toru i przyspieszenie normalne
 
 Dla elipsy:
 
@@ -123,9 +123,33 @@ $$
 x = a\cos t, \qquad y = b\sin t
 $$
 
-1. Wyznacz prędkość i przyspieszenie.
-2. Oblicz promień krzywizny w punkcie $t=0$.
-3. Porównaj wynik z przypadkiem okręgu $a=b$.
+1. Wyznacz wektor prędkości $\vec v(t)$ oraz przyspieszenia $\vec a(t)$.
+
+2. Wyznacz jednostkowy wektor styczny do toru
+   $$
+   \hat T(t)=\frac{\vec v(t)}{|\vec v(t)|}.
+   $$
+
+3. Rozłóż przyspieszenie na składową styczną i normalną:
+   $$
+   \vec a(t)=a_t(t)\hat T(t)+\vec a_n(t),
+   $$
+   oraz wyznacz wartość przyspieszenia normalnego $a_n(t)=|\vec a_n(t)|$.
+
+4. Korzystając z relacji
+   $$
+   a_n=\frac{v^2}{R},
+   $$
+   wyznacz promień krzywizny toru w punkcie $t=0$.
+
+5. Porównaj wynik z przypadkiem okręgu $a=b$.
+
+6. **Interpretacja fizyczna.**
+   Odpowiedz na pytania:
+
+   * Czy większa krzywizna toru oznacza większe przyspieszenie normalne?
+   * W którym miejscu elipsy tor jest bardziej „zakrzywiony”: przy końcu półosi większej czy mniejszej?
+   * Wyjaśnij, dlaczego przyspieszenie normalne można interpretować jako przyczynę zmiany kierunku ruchu.
 
 ---
 
