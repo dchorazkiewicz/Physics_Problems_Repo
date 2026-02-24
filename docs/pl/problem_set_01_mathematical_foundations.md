@@ -202,7 +202,7 @@ $$
 $$
 W = \int_C \vec F \cdot d\vec r
 $$
-3. Zapisz całkę jako granicę sumy Riemanna i oblicz jej wartość.
+3. Zapisz całkę jako granicę sumy Riemanna i oblicz jej wartość numerycznie w HTML/JS, porównując z wynikiem analitycznym (jeśli możliwe).
 
 ---
 
