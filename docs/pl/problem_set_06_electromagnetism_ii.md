@@ -43,6 +43,8 @@ $$
 
 ## Zadanie 2 – Selekcja prędkości (pola skrzyżowane)
 
+Krzyżujące się pola elektryczne i magnetyczne mogą być użyte do selekcji cząstek o określonej prędkości. Załóżmy, że mamy:
+
 $$
 \vec E = (0,E,0)
 $$
@@ -51,17 +53,9 @@ $$
 \vec B = (0,0,B)
 $$
 
-Warunek ruchu prostoliniowego:
 
-$$
-q E = q v B
-$$
 
-$$
-v_d = \frac{E}{B}
-$$
-
-1. Wyprowadź $v_d$.
+1. Wyprowadź warunek ruchu prostoliniowego.
 2. Oblicz $v_d$ dla $E = 400 , \mathrm{V/m}$, $B = 0.8 , \mathrm{T}$.
 3. Czy energia kinetyczna zmienia się w ruchu ustalonym?
 4. Zinterpretuj zasadę działania selektora prędkości.
@@ -70,73 +64,21 @@ $$
 
 ## Zadanie 3 – Moment magnetyczny ramki
 
-Ramka:
+Mamy przewodzącą ramkę o $N$ zwojach, powierzchni $S$, przez którą płynie prąd $I$. Ramka znajduje się w jednorodnym polu magnetycznym $\vec B$.
 
-$N = 40$
-$S = 0.015 , \mathrm{m^2}$
-$I = 2 , \mathrm{A}$
 
-Pole:
-
-$$
-B = 0.3 , \mathrm{T}
-$$
-
-Moment magnetyczny:
-
-$$
-\vec m = N I S \hat n
-$$
-
-Moment siły:
-
-$$
-\vec M = \vec m \times \vec B
-$$
-
-Energia potencjalna:
-
-$$
-U = - \vec m \cdot \vec B
-$$
-
-1. Wyznacz $\vec m$.
-2. Wyznacz $\vec M$.
-3. Dla jakiego kąta moment jest maksymalny?
-4. Wyznacz $U$.
+1. Zdefiniuj moment magnetyczny $\vec \mu$ ramki:
+2. Wyznacz moment siły $\vec M$.
+3. Dla jakiego kąta moment siły jest maksymalny?
+4. Wyznacz energię potencjalną $U$.
 5. Wskaż położenia stabilne i niestabilne.
 
 ---
 
 ## Zadanie 4 – Obracająca się ramka (indukcja)
 
-$$
-B = 0.4 , \mathrm{T}
-$$
+W jednorodnym polu magnetycznym $\vec B$ znajduje się ramka o powierzchni $S$ i $N$ zwojach. Ramka obraca się z prędkością kątową $\omega$ wokół osi prostopadłej do $\vec B$.
 
-$$
-\omega = 80 , \mathrm{rad/s}
-$$
-
-$$
-S = 0.02 , \mathrm{m^2}
-$$
-
-$$
-N = 100
-$$
-
-Strumień:
-
-$$
-\Phi(t) = N B S \cos(\omega t)
-$$
-
-Prawo indukcji Faradaya:
-
-$$
-\mathcal{E}(t) = - \frac{d \Phi}{dt}
-$$
 
 1. Wyznacz $\Phi(t)$.
 2. Wyznacz $\mathcal{E}(t)$.
@@ -148,15 +90,7 @@ $$
 
 ## Zadanie 5 – Indukcja w poruszającym się pręcie
 
-$L = 0.25 , \mathrm{m}$
-$v = 4 , \mathrm{m/s}$
-$B = 0.6 , \mathrm{T}$
-
-SEM ruchowa:
-
-$$
-\mathcal{E} = B L v
-$$
+Mamy pręt o długości $L=0.25\,\mathrm{m}$, poruszający się z prędkością $v=4\,\mathrm{m/s}$ prostopadle do jednorodnego pola magnetycznego $\vec B=0.6\,\mathrm{T}$.
 
 1. Wyznacz $\mathcal{E}$.
 2. Wyznacz różnicę potencjałów między końcami.
@@ -170,38 +104,24 @@ $$
 
 ---
 
-## Zadanie 6 – Pręt na metalowej równi (szyny) w polu $\vec B$: prędkość graniczna (Lenz + Lorentz + bilans mocy)
+## Zadanie 6 – Pręt na metalowej równi (szyny) w polu $\vec B$: prędkość graniczna 
 
-Model: dwa przewodzące, równoległe szyny oddalone o $L$, po nich bez tarcia zsuwa się przewodzący pręt (zamyka obwód). Całość ma opór elektryczny $R$ (szyny+pręt+styki). Jednorodne pole magnetyczne $\vec B$ jest prostopadłe do płaszczyzny szyn.
+Mamy dwie przewodzące, równoległe szyny oddalone o $L$, po nich bez tarcia zsuwa się przewodzący pręt (zamyka obwód). Całość ma opór elektryczny $R$ (szyny+pręt+styki). Jednorodne pole magnetyczne $\vec B$ jest prostopadłe do płaszczyzny szyn.
 
-Dane:
+Dla przykładowych danych:
 
 $m=0.20\,\mathrm{kg}$, $L=0.30\,\mathrm{m}$, $B=0.80\,\mathrm{T}$, $R=0.50\,\Omega$, $\alpha=25^\circ$, $g=9.81\,\mathrm{m/s^2}$.
 
-1. Wyznacz SEM ruchową $\mathcal{E}=BLv$ i prąd $I(v)$.
+
+1. Wyznacz SEM ruchową $\mathcal{E}(v)$ i prąd $I(v)$.
 2. Pokaż, że na pręt działa siła magnetyczna hamująca wzdłuż szyn:
-
-$$
-F_B = BLI
-$$
-
-   Podaj jej zwrot z prawa Lenza.
-3. Napisz równanie ruchu wzdłuż równi:
-
-$$
-m\frac{dv}{dt}=mg\sin\alpha - F_B(v)
-$$
-
-   i sprowadź je do postaci z „tłumieniem proporcjonalnym do $v$”.
+3. Napisz równanie ruchu wzdłuż równi i sprowadź je do postaci z „tłumieniem proporcjonalnym do $v$”.
 4. Wyznacz prędkość graniczną $v_\infty$ (dla „dowolnie długiej” równi).
-5. Przyjmując $v(0)=0$, wyznacz $v(t)$ oraz stałą czasową $\tau$.
-6. Zrób bilans mocy i pokaż, że w stanie ustalonym:
-
+5. Zrób bilans mocy i pokaż, że w stanie ustalonym:
 $$
 mg\sin\alpha\cdot v = I^2R
 $$
-
-   (energia grawitacyjna zamienia się w ciepło Joule’a).
+(energia grawitacyjna zamienia się w ciepło Joule’a).
 
 ---
 
@@ -209,7 +129,7 @@ $$
 
 Prostokątna pętla przewodząca o oporze $R$ ma wymiary $a\times b$. Jest wciągana ze stałą prędkością $v$ w obszar jednorodnego pola $B$ prostopadłego do pętli (pole istnieje tylko w pewnym obszarze przestrzeni).
 
-Dane:
+Dla przykładowych danych:
 
 $a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omega$, $v=1.5\,\mathrm{m/s}$.
 
@@ -229,7 +149,7 @@ Dane:
 
 $L=0.20\,\mathrm{H}$, $R=5.0\,\Omega$, $U=12\,\mathrm{V}$.
 
-1. Wyznacz prąd ustalony $I_0$.
+1. Wyznacz prąd ustalony $I_0$ przed odłączeniem zasilania.
 2. Po odłączeniu: wyprowadź $I(t)$, stałą czasową $\tau$ i napięcie na cewce $U_L(t)$.
 3. Oblicz energię zgromadzoną w polu magnetycznym cewki tuż przed odłączeniem:
 
@@ -262,9 +182,17 @@ $$
 \mathcal{E}(t)=-N\frac{d\Phi}{dt}
 $$
 
-2. Dla transformatora idealnego i obciążenia rezystancyjnego $R_L=4\,\Omega$ po stronie wtórnej wyznacz przekładnię napięciową i prądową oraz prądy w uzwojeniach.
-3. Policz moc po stronie wtórnej i pierwotnej (dla idealnego transformatora powinny być równe).
-4. (Wersja „rzeczywista”) Jeśli opór uzwojenia wtórnego to $r_2=0.4\,\Omega$, policz spadek napięcia na obciążeniu i straty mocy w uzwojeniu wtórnym.
+   Uwaga: $\omega = 2\pi f$. Dla sinusoidy możesz zapisać
+   $$
+   \mathcal{E}_\mathrm{rms}=\frac{N\omega\Phi_0}{\sqrt 2}=4.44\, f\, N\, \Phi_0.
+   $$
+
+2. Dla transformatora idealnego i obciążenia rezystancyjnego $R_L=4\,\Omega$ po stronie wtórnej wyznacz przekładnię napięciową i prądową oraz prądy w uzwojeniach, korzystając z:
+   $$
+   \frac{V_2}{V_1}=\frac{N_2}{N_1},\qquad \frac{I_2}{I_1}=\frac{N_1}{N_2}.
+   $$
+3. Policz moc po stronie wtórnej i pierwotnej (dla idealnego transformatora powinny być równe: $P_1=P_2$).
+4. (Wersja „rzeczywista”) Jeśli opór uzwojenia wtórnego to $r_2=0.4\,\Omega$ (szeregowo z $R_L$), policz napięcie na obciążeniu i straty mocy w uzwojeniu wtórnym.
 
 ---
 
