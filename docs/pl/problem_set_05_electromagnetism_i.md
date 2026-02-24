@@ -40,8 +40,8 @@ $$r_1 = (0,0), \quad r_2 = (0.4, 0.3)\,\mathrm{m}$$
 
 Dane są dwa ładunki punktowe:
 
-$$+q\  \text{w punkcie}\  (-a, 0)$$
-$$+2q\  \text{w punkcie}\  (a, 0)$$
+* $+q\  \text{w punkcie}\  (-a, 0)$
+* $+2q\  \text{w punkcie}\  (a, 0)$
 
 1. Wyznacz wektor pola $\vec E(0, y)$, $\vec E(x, 0)$ oraz ogólnie $\vec E(x, y)$.
 2. Wyznacz warunek, dla którego składowe $E_x = 0$, $E_y = 0$ oraz zero pola $\vec E = 0$.
@@ -63,11 +63,11 @@ Dane są następujące warunki początkowe
 
 Dla nich 
 
-1. Wyznacz przyspieszenie.
-2. Wyznacz tor ruchu.
+1. Napisz równania ruchu i rozwiąż je analitycznie.
+2. Narysuj trajektorię ruchu.
 3. Oblicz czas osiągnięcia prędkości pionowej $50\,\mathrm{m/s}$.
 4. Oblicz energię kinetyczną po $t = 0.05\,\mathrm{s}$.
-5. Sprawdź zgodność z bilansem energii $qEd$.
+5. Sprawdź zgodność z bilansem energii.
 
 ---
 

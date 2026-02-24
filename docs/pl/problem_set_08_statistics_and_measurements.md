@@ -134,7 +134,7 @@ $$
 
 ---
 
-## Zadanie meta – Błędy systematyczne vs statystyczne (analiza epistemiczna)
+## Zadanie 5 – Błędy systematyczne vs statystyczne (analiza epistemiczna)
 
 Trzy grupy studentów mierzy długość tego samego pręta.
 
@@ -189,11 +189,7 @@ Odpowiedź: obliczenia + interpretacja.
 
 ---
 
-# CZĘŚĆ II – Aplikacje HTML
-
----
-
-## Zadanie 5 (HTML) – Centralne odchylenie graniczne
+## Zadanie 6 (HTML) – Centralne odchylenie graniczne
 
 Zbuduj aplikację symulującą rozkład średniej z próby.
 
@@ -211,7 +207,7 @@ Do oddania: plik HTML + opis wniosków.
 
 ---
 
-## Zadanie 6 (HTML) – Wahadło matematyczne: pomiar $g$
+## Zadanie 7 (HTML) – Wahadło matematyczne: pomiar $g$
 
 Model:
 
@@ -252,7 +248,7 @@ Do oddania: plik HTML + raport z min. 15 okresów.
 
 ---
 
-## Zadanie 7 (HTML) – Oscylator masa–sprężyna: pomiar częstotliwości i wyznaczenie $k$
+## Zadanie 8 (HTML) – Oscylator masa–sprężyna: pomiar częstotliwości i wyznaczenie $k$
 
 Model:
 

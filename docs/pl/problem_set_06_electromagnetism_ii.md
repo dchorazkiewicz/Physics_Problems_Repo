@@ -10,38 +10,26 @@
 
 ## Zadanie 1 – Siła Lorentza
 
-Dane:
+Dane są następujące:
 
-$$
-\vec B = (0,0,1) , \mathrm{T}
-$$
+* $\vec B = (0,0,1) , \mathrm{T}$
 
-$$
-\vec v = (2,3,0) , \mathrm{m/s}
-$$
+* $\vec v = (2,3,0) , \mathrm{m/s}$
 
-$q = 1 , \mathrm{mC}$
+* $q = 1 , \mathrm{mC}$
 
-Siła Lorentza:
-
-$$
-\vec F = q \vec v \times \vec B
-$$
-
-1. Wyznacz $\vec F$.
-2. Oblicz wartość $|\vec F|$.
-3. Czy siła magnetyczna wykonuje pracę?
-4. Wyznacz promień toru dla $m = 0.01 , \mathrm{kg}$:
-
-$$
-q v B = \frac{m v^2}{r}
-$$
-
-5. Jak zmieni się $r$, gdy $B$ zostanie podwojone?
+1. Wyznacz siłę Lorentza $\vec F$ działającą na ładunek.
+2. Rozwiąż równanie ruchu dla tego ładunku, zakładając, że w chwili $t=0$ znajduje się w punkcie $(0,0,0)$.
+3. Oblicz wartość $|\vec F|$.
+4. Czy siła magnetyczna wykonuje pracę?
+5. Wyznacz promień toru dla $m = 0.01 , \mathrm{kg}$:
+6. Jak zmieni się $r$, gdy $B$ zostanie podwojone?
 
 ---
 
 ## Zadanie 2 – Selekcja prędkości (pola skrzyżowane)
+
+Krzyżujące się pola elektryczne i magnetyczne mogą być użyte do selekcji cząstek o określonej prędkości. Załóżmy, że mamy:
 
 $$
 \vec E = (0,E,0)
@@ -51,17 +39,9 @@ $$
 \vec B = (0,0,B)
 $$
 
-Warunek ruchu prostoliniowego:
 
-$$
-q E = q v B
-$$
 
-$$
-v_d = \frac{E}{B}
-$$
-
-1. Wyprowadź $v_d$.
+1. Wyprowadź warunek ruchu prostoliniowego.
 2. Oblicz $v_d$ dla $E = 400 , \mathrm{V/m}$, $B = 0.8 , \mathrm{T}$.
 3. Czy energia kinetyczna zmienia się w ruchu ustalonym?
 4. Zinterpretuj zasadę działania selektora prędkości.
@@ -70,73 +50,21 @@ $$
 
 ## Zadanie 3 – Moment magnetyczny ramki
 
-Ramka:
+Mamy przewodzącą ramkę o $N$ zwojach, powierzchni $S$, przez którą płynie prąd $I$. Ramka znajduje się w jednorodnym polu magnetycznym $\vec B$.
 
-$N = 40$
-$S = 0.015 , \mathrm{m^2}$
-$I = 2 , \mathrm{A}$
 
-Pole:
-
-$$
-B = 0.3 , \mathrm{T}
-$$
-
-Moment magnetyczny:
-
-$$
-\vec m = N I S \hat n
-$$
-
-Moment siły:
-
-$$
-\vec M = \vec m \times \vec B
-$$
-
-Energia potencjalna:
-
-$$
-U = - \vec m \cdot \vec B
-$$
-
-1. Wyznacz $\vec m$.
-2. Wyznacz $\vec M$.
-3. Dla jakiego kąta moment jest maksymalny?
-4. Wyznacz $U$.
+1. Zdefiniuj moment magnetyczny $\vec \mu$ ramki:
+2. Wyznacz moment siły $\vec M$.
+3. Dla jakiego kąta moment siły jest maksymalny?
+4. Wyznacz energię potencjalną $U$.
 5. Wskaż położenia stabilne i niestabilne.
 
 ---
 
 ## Zadanie 4 – Obracająca się ramka (indukcja)
 
-$$
-B = 0.4 , \mathrm{T}
-$$
+W jednorodnym polu magnetycznym $\vec B$ znajduje się ramka o powierzchni $S$ i $N$ zwojach. Ramka obraca się z prędkością kątową $\omega$ wokół osi prostopadłej do $\vec B$.
 
-$$
-\omega = 80 , \mathrm{rad/s}
-$$
-
-$$
-S = 0.02 , \mathrm{m^2}
-$$
-
-$$
-N = 100
-$$
-
-Strumień:
-
-$$
-\Phi(t) = N B S \cos(\omega t)
-$$
-
-Prawo indukcji Faradaya:
-
-$$
-\mathcal{E}(t) = - \frac{d \Phi}{dt}
-$$
 
 1. Wyznacz $\Phi(t)$.
 2. Wyznacz $\mathcal{E}(t)$.
@@ -148,15 +76,7 @@ $$
 
 ## Zadanie 5 – Indukcja w poruszającym się pręcie
 
-$L = 0.25 , \mathrm{m}$
-$v = 4 , \mathrm{m/s}$
-$B = 0.6 , \mathrm{T}$
-
-SEM ruchowa:
-
-$$
-\mathcal{E} = B L v
-$$
+Mamy pręt o długości $L=0.25\,\mathrm{m}$, poruszający się z prędkością $v=4\,\mathrm{m/s}$ prostopadle do jednorodnego pola magnetycznego $\vec B=0.6\,\mathrm{T}$.
 
 1. Wyznacz $\mathcal{E}$.
 2. Wyznacz różnicę potencjałów między końcami.
@@ -166,52 +86,31 @@ $$
 
 ---
 
-# CZĘŚĆ II – Analiza i modelowanie (6–10)
 
----
+## Zadanie 6 – Pręt na metalowej równi (szyny) w polu $\vec B$
 
-## Zadanie 6 – Pręt na metalowej równi (szyny) w polu $\vec B$: prędkość graniczna (Lenz + Lorentz + bilans mocy)
+Mamy dwie przewodzące, równoległe szyny oddalone o $L$, po nich bez tarcia zsuwa się przewodzący pręt (zamyka obwód). Całość ma opór elektryczny $R$ (szyny+pręt+styki). Jednorodne pole magnetyczne $\vec B$ jest prostopadłe do płaszczyzny szyn.
 
-Model: dwa przewodzące, równoległe szyny oddalone o $L$, po nich bez tarcia zsuwa się przewodzący pręt (zamyka obwód). Całość ma opór elektryczny $R$ (szyny+pręt+styki). Jednorodne pole magnetyczne $\vec B$ jest prostopadłe do płaszczyzny szyn.
+Dla przykładowych danych: $m=0.20\,\mathrm{kg}$, $L=0.30\,\mathrm{m}$, $B=0.80\,\mathrm{T}$, $R=0.50\,\Omega$, $\alpha=25^\circ$, $g=9.81\,\mathrm{m/s^2}$.
 
-Dane:
 
-$m=0.20\,\mathrm{kg}$, $L=0.30\,\mathrm{m}$, $B=0.80\,\mathrm{T}$, $R=0.50\,\Omega$, $\alpha=25^\circ$, $g=9.81\,\mathrm{m/s^2}$.
-
-1. Wyznacz SEM ruchową $\mathcal{E}=BLv$ i prąd $I(v)$.
+1. Wyznacz SEM ruchową $\mathcal{E}(v)$ i prąd $I(v)$.
 2. Pokaż, że na pręt działa siła magnetyczna hamująca wzdłuż szyn:
-
-$$
-F_B = BLI
-$$
-
-   Podaj jej zwrot z prawa Lenza.
-3. Napisz równanie ruchu wzdłuż równi:
-
-$$
-m\frac{dv}{dt}=mg\sin\alpha - F_B(v)
-$$
-
-   i sprowadź je do postaci z „tłumieniem proporcjonalnym do $v$”.
+3. Napisz równanie ruchu wzdłuż równi i sprowadź je do postaci z „tłumieniem proporcjonalnym do $v$”.
 4. Wyznacz prędkość graniczną $v_\infty$ (dla „dowolnie długiej” równi).
-5. Przyjmując $v(0)=0$, wyznacz $v(t)$ oraz stałą czasową $\tau$.
-6. Zrób bilans mocy i pokaż, że w stanie ustalonym:
-
+5. Zrób bilans mocy i pokaż, że w stanie ustalonym:
 $$
 mg\sin\alpha\cdot v = I^2R
 $$
-
-   (energia grawitacyjna zamienia się w ciepło Joule’a).
+(energia grawitacyjna zamienia się w ciepło Joule’a).
 
 ---
 
-## Zadanie 7 – Pętla wciągana do obszaru pola $B$: siła, prąd, praca (indukcja „na wejściu/wyjściu”)
+## Zadanie 7 – Pętla wciągana do obszaru pola $B$
 
 Prostokątna pętla przewodząca o oporze $R$ ma wymiary $a\times b$. Jest wciągana ze stałą prędkością $v$ w obszar jednorodnego pola $B$ prostopadłego do pętli (pole istnieje tylko w pewnym obszarze przestrzeni).
 
-Dane:
-
-$a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omega$, $v=1.5\,\mathrm{m/s}$.
+Dla przykładowych danych: $a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omega$, $v=1.5\,\mathrm{m/s}$.
 
 1. Rozpisz strumień $\Phi(t)$ w fazie wjeżdżania (gdy część pętli jest już w polu, ale jeszcze nie cała).
 2. Wyznacz $\mathcal{E}$ i $I$ w tej fazie.
@@ -221,7 +120,7 @@ $a=0.20\,\mathrm{m}$, $b=0.10\,\mathrm{m}$, $B=0.60\,\mathrm{T}$, $R=0.40\,\Omeg
 
 ---
 
-## Zadanie 8 – Indukcja własna: cewka + opór, wyłączanie prądu, energia pola
+## Zadanie 8 – Indukcja własna
 
 Obwód RL: cewka o indukcyjności $L$ i oporze $R$ jest zasilana napięciem stałym $U$. Po długim czasie obwód jest w stanie ustalonym, potem w chwili $t=0$ zasilanie zostaje odłączone i pozostaje obwód $L$–$R$ bez źródła.
 
@@ -229,7 +128,7 @@ Dane:
 
 $L=0.20\,\mathrm{H}$, $R=5.0\,\Omega$, $U=12\,\mathrm{V}$.
 
-1. Wyznacz prąd ustalony $I_0$.
+1. Wyznacz prąd ustalony $I_0$ przed odłączeniem zasilania.
 2. Po odłączeniu: wyprowadź $I(t)$, stałą czasową $\tau$ i napięcie na cewce $U_L(t)$.
 3. Oblicz energię zgromadzoną w polu magnetycznym cewki tuż przed odłączeniem:
 
@@ -242,54 +141,12 @@ $$
 
 ---
 
-## Zadanie 9 – Transformator idealny vs rzeczywisty: skąd bierze się napięcie wtórne (Faraday)
+## Zadanie 9 – Transformator idealny vs rzeczywisty
 
-Rdzeń transformatora ma strumień magnetyczny:
-
-$$
-\Phi(t)=\Phi_0\sin(\omega t)
-$$
-
-Uzwojenia mają odpowiednio $N_1$ i $N_2$ zwojów.
-
-Dane:
-
-$N_1=500$, $N_2=50$, $\Phi_0=2.0\times10^{-4}\,\mathrm{Wb}$, $f=50\,\mathrm{Hz}$.
-
-1. Wyznacz wartość skuteczną SEM na uzwojeniu pierwotnym i wtórnym, korzystając z:
-
-$$
-\mathcal{E}(t)=-N\frac{d\Phi}{dt}
-$$
-
-2. Dla transformatora idealnego i obciążenia rezystancyjnego $R_L=4\,\Omega$ po stronie wtórnej wyznacz przekładnię napięciową i prądową oraz prądy w uzwojeniach.
-3. Policz moc po stronie wtórnej i pierwotnej (dla idealnego transformatora powinny być równe).
-4. (Wersja „rzeczywista”) Jeśli opór uzwojenia wtórnego to $r_2=0.4\,\Omega$, policz spadek napięcia na obciążeniu i straty mocy w uzwojeniu wtórnym.
+Wyjaśnij jak działa transformator, jakie są jego idealne właściwości i jak wygląda rzeczywistość. Skąd bierze się napięcie wtórne? Jakie są straty w transformatorze? Jakie są typowe wartości przekładni i sprawności?
 
 ---
 
-## Zadanie 10 – Prądy wirowe (hamowanie magnetyczne)
+## Zadanie 10 – Prądy wirowe
 
-Model siły oporu:
-
-$$
-F = - \gamma v
-$$
-
-Równanie ruchu:
-
-$$
-m \frac{dv}{dt} = - \gamma v
-$$
-
-Rozwiązanie:
-
-$$
-v(t) = v_0 e^{-\frac{\gamma}{m} t}
-$$
-
-0. Uzasadnij jakościowo, dlaczego dla cienkiej płytki przewodzącej poruszającej się w polu $B$ często dostaje się w przybliżeniu $F\propto v$ (małe $v$, małe prądy, liniowość Ohma).
-1. Wyjaśnij mechanizm powstawania prądów wirowych.
-2. Wyjaśnij prawo Lenza.
-3. Zinterpretuj zanikanie prędkości.
-4. Zbadaj granicę $t \to \infty$.
+Wyjaśnij gdzie można wykorzystać prądy wirowe do hamowania ruchu. Jakie są zalety i wady tego rozwiązania? Jakie materiały są najlepsze do generowania prądów wirowych? Jak można zwiększyć siłę hamowania?

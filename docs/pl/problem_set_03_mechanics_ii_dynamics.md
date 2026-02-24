@@ -15,9 +15,10 @@ $\vec v(0) = (1, -1)\ \mathrm{\frac{m}{s}}$
 z punktu
 $\vec r(0)=(0,0)\ \mathrm{m}$.
 
-* Wyznacz przyspieszenie.
+* Wyznacz $\vec a(t)$.
 * Wyznacz $\vec v(t)$.
 * Wyznacz $\vec r(t)$.
+* Narysuj trajektorię ruchu.
 * Oblicz pracę siły w czasie $t=3\ \mathrm{s}$.
 * Sprawdź zgodność z twierdzeniem o pracy i energii kinetycznej.
 
@@ -25,13 +26,12 @@ $\vec r(0)=(0,0)\ \mathrm{m}$.
 
 ## Zadanie 2 – Równia pochyła z tarciem
 
-Ciało o masie $m$ zsuwa się z równi o kącie $\alpha$.
-Współczynnik tarcia kinetycznego $\mu$.
+Ciało o masie $m$ zsuwa się z równi o kącie $\alpha$. Współczynnik tarcia kinetycznego $\mu$.
 
-* Wyznacz siły działające na ciało.
-* Wyprowadź przyspieszenie.
+* Wyznacz wszystkie siły działające na ciało.
+* Wyprowadź przyspieszenie $\vec a$.
 * Oblicz czas zjazdu z wysokości $h$.
-* Wyznacz prędkość końcową.
+* Wyznacz prędkość końcową $\vec v$.
 * Sprawdź, czy wynik zgadza się z bilansem energetycznym.
 
 ---
@@ -41,12 +41,13 @@ Współczynnik tarcia kinetycznego $\mu$.
 Dana siła jednowymiarowa:
 
 $$
-F(x)=kx
+F(x)=-kx
 $$
 
+* Zapisz równanie ruchu i rozwiąż je.
 * Oblicz pracę przy przemieszczeniu od $0$ do $x_0$.
 * Zinterpretuj wynik jako energię potencjalną.
-* Wyprowadź zależność $F = -\frac{dU}{dx}$.
+* Sprawdź zależność $F = -\frac{dU}{dx}$.
 * Narysuj wykres $F(x)$ oraz $U(x)$.
 
 ---
@@ -55,8 +56,8 @@ $$
 
 Ciało spada z wysokości $h$ bez oporów.
 
-* Zapisz energię całkowitą.
-* Wyznacz prędkość jako funkcję wysokości.
+* Zapisz energię całkowitą $E(h) = T(h) + U(h)$.
+* Wyznacz prędkość jako funkcję wysokości $v(h)$.
 * Porównaj z rozwiązaniem z II zasady Newtona.
 * Dla jakiej wysokości energia kinetyczna stanowi 75% energii całkowitej?
 
@@ -64,8 +65,7 @@ Ciało spada z wysokości $h$ bez oporów.
 
 ## Zadanie 5 – Pęd i zderzenie centralne
 
-Dwa ciała o masach $m_1, m_2$ poruszają się wzdłuż jednej prostej.
-Zderzenie jest sprężyste.
+Dwa ciała o masach $m_1, m_2$ poruszają się wzdłuż jednej prostej. Zderzenie jest sprężyste.
 
 * Zapisz zasady zachowania pędu i energii.
 * Wyznacz prędkości po zderzeniu.
@@ -75,33 +75,31 @@ Zderzenie jest sprężyste.
 
 ---
 
-# Część rozszerzona / modelowa
-
----
-
 ## Zadanie 6 – Ruch z oporem liniowym
 
-Siła oporu:
+Siła oporu wyraża się wzorem:
 
 $$
 F=-kv
 $$
 
-* Zapisz równanie ruchu.
-* Rozwiąż równanie różniczkowe.
-* Wyznacz prędkość graniczną (jeśli istnieje).
-* Zbadaj granicę $t \to \infty$.
+warunki początkowe: $v(0)=v_0$, $x(0)=0$.
+
+* Zapisz równanie ruchu i rozwiąż je.
+* Zbadaj granicę $\lim_{t\to\infty} v(t)$.
 * Porównaj z ruchem bez oporu.
 
 ---
 
 ## Zadanie 7 – Rzut pionowy z oporem
 
-Równanie:
+Mamy równanie ruchu:
 
 $$
 m\frac{dv}{dt} = -mg - kv
 $$
+
+przy warunkach początkowych $v(0)=v_0$, $x(0)=0$.
 
 * Rozwiąż równanie.
 * Wyznacz maksymalną wysokość.
@@ -137,7 +135,7 @@ $$
 * Zapisz równania ruchu.
 * Określ typ ruchu.
 * Wyznacz całkowitą energię.
-* Zinterpretuj geometrycznie tor ruchu.
+* Zinterpretuj geometrycznie tor ruchu, przedstawiając go w aplikacji html/js.
 
 ---
 

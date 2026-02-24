@@ -25,21 +25,18 @@ Aby poprawnie korzystać z udostępnionych materiałów, należy postępować zg
 3.  **Tworzenie Dokumentacji**:
     * Listy zadań znajdują się w odpowiednich działach w menu.
     * Do każdego pliku z zadaniami (np. `problem_set_01_mathematical_foundations.md`) przypisany jest dedykowany katalog na rozwiązania (np. `problem_set_01_mathematical_foundations_solution/`).
-    * Katalogi te są Twoją **przestrzenią roboczą**. Należy w nich tworzyć pliki Markdown zawierające rozwiązania, dowody oraz notatki teoretyczne.
-    
-    W repozytorium przygotowane są katalogi zawierające puste pliki przeznaczone na Twoje rozwiązania (np. `task_01.md`, `task_02.md`, …). 
-    
-    Twoim zadaniem nie jest tworzenie struktury materiałów, lecz systematyczne uzupełnianie istniejących plików własnym rozumowaniem, komentarzami oraz analizą rozwiązań. Repozytorium stanowi zatem gotowy warsztat pracy, który w trakcie semestru wypełniasz treścią odzwierciedlającą Twój proces myślenia.
-    
-    W tych samych podkatalogach możesz również umieszczać dodatkowe materiały, które wspierają omawianie tematów (np. grafiki, wykresy, pliki HTML/JS, dane wejściowe, wyniki symulacji). Dla porządku zaleca się trzymanie rozwiązania każdego zadania przede wszystkim w odpowiadającym mu pliku `task_XX.md`, a materiały pomocnicze odkładać do sensownie nazwanych podfolderów. Bałagan w strukturze plików będzie źle odbierany i może być brany pod uwagę przy ocenianiu — tak samo jak treść rozwiązań i sposób ich prezentacji.
+    * Katalogi te są Twoją **przestrzenią roboczą** — to w nich tworzysz i utrzymujesz pliki Markdown z rozwiązaniami, dowodami oraz notatkami teoretycznymi.
+    * Struktura jest przygotowana z góry: każda lista zadań ma swój katalog (folder) na rozwiązania, a w nim placeholdery na zadania (np. `task_01.md`, `task_02.md`, …).
+    * Twoim zadaniem nie jest tworzenie struktury materiałów, lecz systematyczne uzupełnianie istniejących plików własnym rozumowaniem, komentarzami oraz analizą rozwiązań — repozytorium jest gotowym warsztatem pracy, który w trakcie semestru wypełniasz treścią.
+    * W tych samych katalogach możesz umieszczać dodatkowe materiały wspierające omawianie tematów (np. grafiki, wykresy, pliki HTML/JS, dane wejściowe, wyniki symulacji). Dla porządku trzymaj rozwiązanie każdego zadania przede wszystkim w odpowiadającym mu pliku `task_XX.md`, a materiały pomocnicze odkładaj do sensownie nazwanych podfolderów. Bałagan w strukturze plików będzie źle odbierany i może być brany pod uwagę przy ocenianiu — tak samo jak treść rozwiązań i sposób ich prezentacji.
 4.  **Utrwalanie zmian**: Regularnie przesyłaj swoje rozwiązania na serwer (Commit & Push).
 
 ## Rola notatek w przygotowaniu do egzaminu
 
-Kluczowe jest zrozumienie różnicy między środowiskiem pracy podczas semestru a weryfikacją wiedzy:
+Dobre notatki mają w tym kursie **dwa cele**:
 
-* **Egzamin końcowy**: Ma formę **pisemną, stacjonarną i odbywa się bez dostępu do technologii**. Podczas egzaminu nie będziesz mieć dostępu do komputera, telefonu ani systemów AI.
-* **Cel notatek**: Twoje repozytorium służy do nauki. Musisz przygotować, przeczytać i zrozumieć zawarte w nim rozwiązania teraz, aby być w stanie samodzielnie odtworzyć tok rozumowania na sali egzaminacyjnej.
+* **Prezentacja rozwiązań na zajęciach**: Notatki są podstawą do omawiania zadań. Student poproszony o pokazanie i wyjaśnienie rozwiązania powinien móc je szybko wyświetlić w **wyrenderowanej** formie (np. podgląd Markdown w VS Code lub jako PDF/HTML) i przejść przez pełny tok rozumowania.
+* **Przygotowanie do egzaminu**: Egzamin końcowy ma formę **pisemną, stacjonarną i odbywa się bez dostępu do technologii**. Repozytorium służy do nauki. Rozwiązania powinny być opracowane i zrozumiane w trakcie semestru, tak aby podczas egzaminu możliwe było samodzielne odtworzenie toku rozumowania.
 
 ## Wykorzystanie AI do personalizacji nauki
 
@@ -64,7 +61,7 @@ Zdecydowanie zaleca się wykorzystanie narzędzi Generative AI (ChatGPT, Claude,
 Studenci zainteresowani technologią mogą opublikować swoje notatki w formie strony internetowej przy użyciu GitHub Pages.
 
 * Służy do tego polecenie `mkdocs gh-deploy`.
-* **Zastrzeżenie**: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi.
+* **Zastrzeżenie**: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi. Jednocześnie jest to praktyczny atut: jeśli opublikujesz notatki jako publiczną stronę WWW, podczas zajęć nie musisz mieć dostępu do własnego komputera — wystarczy link do repozytorium/strony (nawet z telefonu), aby szybko odnaleźć rozwiązanie i płynnie przejść do jego omówienia.
 
 ---
 
