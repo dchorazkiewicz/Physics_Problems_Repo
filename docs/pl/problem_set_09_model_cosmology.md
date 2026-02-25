@@ -2,7 +2,7 @@
 
 ---
 
-## Zadanie 1 – Model epicykliczny (Ptolemeusz)
+## Zadanie 1 – Model Ptolemeusza
 
 1. Zapisz ruch planety jako sumę:
    - ruchu po deferencie (okrąg główny),
@@ -29,7 +29,7 @@
 
 ---
 
-## Zadanie 2 – Model heliocentryczny (Kopernik) + ruch względny
+## Zadanie 2 – Model Kopernika
 
 1. Zaimplementuj ruch dwóch planet po okręgach wokół Słońca:
 
