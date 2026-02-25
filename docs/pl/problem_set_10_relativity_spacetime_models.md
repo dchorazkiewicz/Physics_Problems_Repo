@@ -1,4 +1,4 @@
-# Lista 10 – Relatywistyka szczególna i elementy ogólnej
+# Lista 10 – Fizyka relatywistyczna
 
 ---
 
@@ -106,7 +106,7 @@ $$
    $$
    \tau = \gamma \tau_0
    $$
-3. Jaką drogę średnio przebywa muon?
+3. Jaką drogę średnio przebywa mion?
 4. Czy bez relatywistyki dotarłby do powierzchni?
 
 ---

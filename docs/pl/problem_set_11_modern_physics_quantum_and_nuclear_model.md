@@ -5,7 +5,7 @@
 
 ## Zadanie 1 – Dualizm korpuskularno-falowy (de Broglie)
 
-Elektron porusza się z prędkością $v = 2.0 \times 10^6 \, \mathrm{m/s}$
+Elektron porusza się z prędkością $v = 2.0 \times 10^6 \, \mathrm{m/s}$.
 
 1. Oblicz pęd elektronu.
 2. Oblicz długość fali de Broglie’a.
@@ -56,9 +56,9 @@ Na barierę potencjału o parametrach:
 * $U_0 = 5 \, \mathrm{eV}$
 * $a = 0.5 \, \mathrm{nm}$
 
-leci cząstka o energii $E = 3 \, \mathrm{eV}$
+leci cząstka o energii $E = 3\ \mathrm{eV}$
 
-1. Wyjaśnij co się może wydarzyć.
+1. Wyjaśnij, co się może wydarzyć.
 2. Wymień zjawisko fizyczne wykorzystujące tunelowanie.
 
 ---
@@ -81,13 +81,13 @@ Wymaganie: animacja $|\psi(x,t)|^2$.
 
 1. Zbuduj aplikację html/js do wizualizacji gęstości prawdopodobieństwa dla poziomów energetycznych $n=0,1,2,3,4,5$.
 2 Zinterpretuj kształt funkcji falowej i gęstości prawdopodobieństwa.
-3. Wyjaśnij dlaczego czątka musi mieć energię zerową.
+3. Wyjaśnij dlaczego cząstka musi mieć energię zerową.
 
 ---
 
 ## Zadanie 8 – Rozpad promieniotwórczy (model probabilistyczny)
 
-Ilość jąder które nie uległy rozpadowi w czasie $t$ określa wzór:
+Liczba jąder, które nie uległy rozpadowi w czasie $t$ określa wzór:
 
 $$N(t)=N_0 e^{-\lambda t}$$
 
@@ -104,11 +104,11 @@ Wymaganie: wykres symulacji i rozwiązania ciągłego.
 
 1. Wyjaśnij pojęcie defektu masy.
 2. Oblicz energię uwolnioną przy defekcie $\Delta m=0.2 \, \mathrm{u}$.
-4. Porównaj energię z reakcją chemiczną.
-5. Wyjaśnij, dlaczego maksimum energii wiązania przypada w okolicach żelaza.
+3. Porównaj energię z reakcją chemiczną.
+4. Wyjaśnij, dlaczego maksimum energii wiązania przypada w okolicach żelaza.
 
 ---
 
 ## Zadanie 10 – Pytanie wolne
 
-Napisz notatke na dowolny temat związany z fizyką!
+Napisz notatkę na dowolny temat związany z fizyką!
