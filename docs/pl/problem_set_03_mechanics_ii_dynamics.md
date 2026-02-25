@@ -10,10 +10,7 @@ $$
 \vec F = [6, 2]\ \mathrm{N}
 $$
 
-Ciało startuje z prędkością początkową
-$\vec v(0) = (1, -1)\ \mathrm{\frac{m}{s}}$
-z punktu
-$\vec r(0)=(0,0)\ \mathrm{m}$.
+Ciało startuje z prędkością początkową $\vec v(0) = (1, -1)\ \mathrm{\frac{m}{s}}$ z punktu $\vec r(0)=(0,0)\ \mathrm{m}$.
 
 * Wyznacz $\vec a(t)$.
 * Wyznacz $\vec v(t)$.
