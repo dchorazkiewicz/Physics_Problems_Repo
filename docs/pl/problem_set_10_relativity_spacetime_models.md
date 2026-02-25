@@ -3,10 +3,6 @@
 
 ---
 
-# CZĘŚĆ I – Fundament rachunkowy (1–5)
-
----
-
 ## Zadanie 1 – Dylatacja czasu
 
 Statek kosmiczny porusza się z prędkością:
@@ -117,9 +113,6 @@ $$
 
 ---
 
-# CZĘŚĆ II – Modelowanie i rozszerzenia (6–10)
-
----
 
 ## Zadanie 6 – Diagram Minkowskiego (HTML obowiązkowo)
 
