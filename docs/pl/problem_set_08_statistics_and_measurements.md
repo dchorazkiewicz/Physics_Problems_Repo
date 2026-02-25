@@ -49,22 +49,8 @@ I = 0.482 \pm 0.006\ \mathrm{A}
 $$
 
 1. Oblicz wartość oporu $R$.
-2. Wyprowadź wzór na niepewność metodą różniczki zupełnej:
-   $$
-   u(R)=\sqrt{\left(\frac{\partial R}{\partial U}u(U)\right)^2+
-   \left(\frac{\partial R}{\partial I}u(I)\right)^2}
-   $$
-3. Oblicz pochodne cząstkowe:
-   $$
-   \frac{\partial R}{\partial U}, \qquad
-   \frac{\partial R}{\partial I}
-   $$
-4. Oblicz niepewność $u(R)$.
-5. Podaj wynik końcowy:
-   $$
-   R = \hat{R} \pm u(R)
-   $$
-6. Oblicz niepewność względną $\frac{u(R)}{R}$ i wskaż, który pomiar (U czy I) dominuje niepewność.
+2. Wyprowadź wzór na niepewność względną metodą różniczki zupełnej.
+3. Oblicz niepewność względną $\frac{u(R)}{R}$ i wskaż, który pomiar (U czy I) dominuje niepewność.
 
 ---
 
@@ -96,12 +82,7 @@ $$
 
 1. Oblicz wartość $\rho$.
 2. Wyprowadź wzór na niepewność względną metodą różniczki zupełnej.
-3. Oblicz niepewność $u(\rho)$.
-4. Podaj wynik:
-   $$
-   \rho = \hat{\rho} \pm u(\rho)
-   $$
-5. Wskaż, który pomiar daje największy wkład do niepewności.
+3. Wskaż, który pomiar daje największy wkład do niepewności.
 
 ---
 
@@ -129,12 +110,12 @@ $$
    $$
 2. Wykonaj regresję liniową $h$ względem $t^2$.
 3. Wyznacz $g$.
-4. Oszacuj niepewność $u(g)$ z niepewności nachylenia.
+4. Oszacuj niepewność $u(g)$.
 5. Oceń jakość dopasowania (analiza reszt lub współczynnik determinacji $R^2$).
 
 ---
 
-## Zadanie 5 – Błędy systematyczne vs statystyczne (analiza epistemiczna)
+## Zadanie 5 – Błędy systematyczne vs statystyczne
 
 Trzy grupy studentów mierzy długość tego samego pręta.
 
@@ -189,7 +170,7 @@ Odpowiedź: obliczenia + interpretacja.
 
 ---
 
-## Zadanie 6 (HTML) – Centralne odchylenie graniczne
+## Zadanie 6 (HTML) – Centralne Twierdzenie Graniczne
 
 Zbuduj aplikację symulującą rozkład średniej z próby.
 
@@ -209,13 +190,15 @@ Do oddania: plik HTML + opis wniosków.
 
 ## Zadanie 7 (HTML) – Wahadło matematyczne: pomiar $g$
 
-Model:
+Chcemy zbudować aplikację do pomiaru przyspieszenia ziemskiego $g$ za pomocą wahadła matematycznego mierząc okres drgań.
 
 $$
-T = 2\pi \sqrt{\frac{L}{g}}
+g=4\pi^2 \frac{L}{T^2}
 $$
 
-1. Użytkownik ustawia długość $L$ i niepewność $u(L)$.
+Wymagania aplikacji
+
+1. Użytkownik ustawia długość $L$ i jej niepewność $u(L)$.
 2. Pierwsze naciśnięcie spacji uruchamia ruch i stoper.
 3. Kolejne naciśnięcia rejestrują kolejne przejścia przez minimum.
 4. Aplikacja zapisuje czasy $t_i$ i wyznacza okresy:
@@ -244,21 +227,19 @@ $$
    $$
    oraz procentowe wkłady niepewności od $L$ i od $T$.
 
-Do oddania: plik HTML + raport z min. 15 okresów.
+Do oddania: plik HTML + raport z min. 5 okresów.
 
 ---
 
 ## Zadanie 8 (HTML) – Oscylator masa–sprężyna: pomiar częstotliwości i wyznaczenie $k$
 
-Model:
-
-$$
-T = 2\pi \sqrt{\frac{m}{k}}
-$$
+Chcemy zbudować aplikację do stałej sprężyny $k$ za pomocą pomiaru okresu drgań układu masa–sprężyna.
 
 $$
 k = 4\pi^2 \frac{m}{T^2}
 $$
+
+Wymagania aplikacji:
 
 1. Użytkownik ustawia masę $m$ i jej niepewność $u(m)$.
 2. Pierwsze naciśnięcie spacji uruchamia ruch i stoper.
@@ -291,4 +272,4 @@ $$
    $$
    oraz procentowe wkłady niepewności od $m$ i od $T$.
 
-Do oddania: plik HTML + raport z min. 15 okresów + komentarz dotyczący zależności $u(T) \sim 1/\sqrt{n}$.
+Do oddania: plik HTML + raport z min. 10 okresów.
