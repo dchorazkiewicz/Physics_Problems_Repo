@@ -1,5 +1,4 @@
 # Lista 10 – Relatywistyka szczególna i elementy ogólnej
-## Modele czasoprzestrzenne, dylatacja czasu, kontrakcja długości, przesunięcia grawitacyjne
 
 ---
 
@@ -86,9 +85,9 @@ Bliźniak B leci z prędkością $0.9c$ przez 10 lat (czas ziemski) i wraca.
 
 ---
 
-## Zadanie 5 – Muony w atmosferze
+## Zadanie 5 – Miony w atmosferze
 
-Muony powstają na wysokości 10 km.
+Miony powstają na wysokości 10 km.
 
 Czas życia własny:
 
@@ -109,7 +108,6 @@ $$
    $$
 3. Jaką drogę średnio przebywa muon?
 4. Czy bez relatywistyki dotarłby do powierzchni?
-5. Zinterpretuj wynik eksperymentalnie.
 
 ---
 
@@ -149,7 +147,7 @@ $$
 
 ---
 
-## Zadanie 8 – Grawitacyjne przesunięcie ku czerwieni (most do ogólnej relatywistyki)
+## Zadanie 8 – Grawitacyjne przesunięcie ku czerwieni
 
 Przybliżenie (słabe pole):
 
@@ -165,7 +163,7 @@ $$
 
 ---
 
-## Zadanie 9 – Promień Schwarzschilda (element ogólnej relatywistyki)
+## Zadanie 9 – Promień Schwarzschilda
 
 $$
 r_s = \frac{2GM}{c^2}
