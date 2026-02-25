@@ -26,10 +26,10 @@ Answers: full derivation + interpretation.
 
 A system with the following initial parameters is given:
 
-* $m = 1$ kg
-* $k = 100$ N/m
-* $x(0) = 2$ m
-* $v(0) = 1$ m/s
+* $m = 1\ \mathrm{kg}$
+* $k = 100\ \mathrm{N/m}$
+* $x(0) = 2\ \mathrm{m}$
+* $v(0) = 1\ \mathrm{m/s}$
 
 1. Determine the natural frequency.
 2. Calculate the total energy of the system.

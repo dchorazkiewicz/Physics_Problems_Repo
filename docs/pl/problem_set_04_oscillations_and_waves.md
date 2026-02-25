@@ -11,7 +11,7 @@ $$
 
 1. Wyznacz okres $T$ oraz częstotliwość $f$.
 2. Wyznacz maksymalną prędkość oraz maksymalne przyspieszenie.
-3. Dla $A = 0.2\,\mathrm{m}$, $f = 2\,\mathrm{Hz}$:
+3. Dla $A = 0.2\ \mathrm{m}$, $f = 2\ \mathrm{Hz}$:
 
    * oblicz $\omega$,
    * oblicz $v_{\max}$,
@@ -25,10 +25,10 @@ Odpowiedzi: pełne wyprowadzenie + interpretacja.
 
 Dany jest układ o parametrach początkowych:
 
-* $m = 1\,\mathrm{kg}$
-* $k = 100\,\mathrm{N/m}$
-* $x(0) = 2\,\mathrm{m}$
-* $v(0) = 1\,\mathrm{m/s}$
+* $m = 1\ \mathrm{kg}$
+* $k = 100\ \mathrm{N/m}$
+* $x(0) = 2\ \mathrm{m}$
+* $v(0) = 1\ \mathrm{m/s}$
 
 1. Wyznacz częstość własną.
 2. Oblicz energię całkowitą układu.
