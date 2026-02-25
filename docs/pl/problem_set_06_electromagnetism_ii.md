@@ -88,12 +88,12 @@ Mamy dwie przewodzące, równoległe szyny oddalone o $L$, po nich bez tarcia zs
 
 Dla przykładowych danych: 
 
-* $m=0.20\,\mathrm{kg}$
-* $L=0.30\,\mathrm{m}$
-* $B=0.80\,\mathrm{T}$
-* $R=0.50\,\Omega$
+* $m=0.20\ \mathrm{kg}$
+* $L=0.30\ \mathrm{m}$
+* $B=0.80\ \mathrm{T}$
+* $R=0.50\ \Omega$
 * $\alpha=25^\circ$
-* $g=9.81\,\mathrm{m/s^2}$
+* $g=9.81\ \mathrm{m/s^2}$
 
 
 1. Wyznacz SEM ruchową $\mathcal{E}(v)$ i prąd $I(v)$.
@@ -114,11 +114,11 @@ Prostokątna pętla przewodząca o oporze $R$ ma wymiary $a\times b$. Jest wcią
 
 Dla przykładowych danych: 
 
-* $a=0.20\,\mathrm{m}$
-* $b=0.10\,\mathrm{m}$
-* $B=0.60\,\mathrm{T}$
-* $R=0.40\,\Omega$
-* $v=1.5\,\mathrm{m/s}$
+* $a=0.20\ \mathrm{m}$
+* $b=0.10\ \mathrm{m}$
+* $B=0.60\ \mathrm{T}$
+* $R=0.40\ \Omega$
+* $v=1.5\ \mathrm{m/s}$
 
 1. Rozpisz strumień $\Phi(t)$ w fazie wjeżdżania (gdy część pętli jest już w polu, ale jeszcze nie cała).
 2. Wyznacz $\mathcal{E}$ i $I$ w tej fazie.
@@ -134,9 +134,9 @@ Obwód RL: cewka o indukcyjności $L$ i oporze $R$ jest zasilana napięciem sta�
 
 Dane:
 
-* $L=0.20\,\mathrm{H}$
-* $R=5.0\,\Omega$
-* $U=12\,\mathrm{V}$
+* $L=0.20\ \mathrm{H}$
+* $R=5.0\ \Omega$
+* $U=12\ \mathrm{V}$
 
 1. Wyznacz prąd ustalony $I_0$ przed odłączeniem zasilania.
 2. Po odłączeniu: wyprowadź $I(t)$, stałą czasową $\tau$ i napięcie na cewce $U_L(t)$.
