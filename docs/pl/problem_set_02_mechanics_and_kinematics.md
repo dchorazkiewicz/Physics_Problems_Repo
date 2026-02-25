@@ -11,7 +11,7 @@ x(t) = x_0 + v_0 t + \frac{1}{2} a t^2
 $$
 
 1. Wyznacz prędkość $v(t)$ i przyspieszenie $a(t)$.
-2. Dla danych parametrów $x_0=0$, $v_0=5,\text{m/s}$, $a=-2,\text{m/s}^2$:
+2. Dla danych parametrów $x_0=0$, $v_0=5\ \text{m/s}$, $a=-2\ \text{m/s}^2$:
 
     * oblicz czas zatrzymania,
     * maksymalną prędkość w zależności od czasu i znaku przyspieszenia,
@@ -34,7 +34,7 @@ Ciało porusza się w polu grawitacyjnym Ziemi bez oporu powietrza. Rzut ukośny
 
 ---
 
-## Zadanie 3 – Eliminacja czasu i interpretacja przyspieszenia (parabola)
+## Zadanie 3 – Eliminacja czasu i interpretacja przyspieszenia
 
 Dane jest równanie toru w postaci parametrycznej:
 
@@ -43,7 +43,7 @@ x(t)=2t^2, \qquad y(t)=3t^3
 $$
 
 * Wyeliminuj parametr $t$.
-* Określ typ toru.
+* Narysuj tor ruchu.
 * Oblicz $\vec v(t)$, $|\vec v(t)|$, $\vec a(t)$ oraz $|\vec a(t)|$.
 * Czy przyspieszenie jest stałe?
 
@@ -75,7 +75,7 @@ $$
 
 ---
 
-## Zadanie 6 – Cykloida: tor punktu na toczącym się kole (kinematyka + animacja)
+## Zadanie 6 – Cykloida: tor punktu na toczącym się kole
 
 Koło o promieniu $R$ toczy się bez poślizgu po osi $x$. Punkt na obręczy koła tworzy cykloidę:
 
@@ -102,34 +102,26 @@ $$
 
 ## Zadanie 7 – Ruch w 2D z zadanym przyspieszeniem
 
-Dane:
-
-$$
-\vec a = (a_x, a_y) = (2, -3)
-$$
-
-$$
-\vec v(0)=(1,2), \qquad \vec r(0)=(0,0)
-$$
+Dane jest przyspieszenie $\vec a = (2, -3)$ oraz warunki początkowe: $\vec v(0)=(1,0)$, $\vec r(0)=(0,0)$
 
 * Wyznacz $\vec v(t)$.
 * Wyznacz $\vec r(t)$.
-* Określ tor ruchu.
+* Narysuj tor ruchu, wektor prędkości i przyspieszenia w kilku wybranych chwilach czasu albo zrób animację w HTML.
 
 ---
 
 ## Zadanie 8 – Ruch względny
 
-Ciało A porusza się z prędkością $\vec v_A=(3,1)$,
-ciało B z prędkością $\vec v_B=(1,-2)$.
+Ciało A porusza się z prędkością $\vec v_A=(3,1)$, ciało B z prędkością $\vec v_B=(1,-2)$.
 
 1. Wyznacz prędkość względną $\vec v_{A/B}$.
 2. Określ kierunek ruchu względnego.
 3. Zwizualizuj ruch obu ciał w:
-    - układzie odniesienia związanym z początkiem ukladu współrzędnych,
+    - układzie odniesienia związanym z początkiem układu współrzędnych,
     - układzie związanym z ciałem A,
     - układzie związanym z ciałem B.
 
+Najlepiej zrobić to w formie animacji w HTML, ale można też narysować statyczne wykresy torów i wektorów prędkości.
 
 ---
 
@@ -147,14 +139,14 @@ $$
 \vec r_M(t) = R_M\,\bigl(\cos(\omega_M t),\sin(\omega_M t)\bigr)
 $$
 
-* Narysuj oba ruchy w układzie heliocentrycznym (Słońce w środku).
-* Wyznacz położenie Marsa względem Ziemi (układ geocentryczny):
+1. Narysuj oba ruchy w układzie heliocentrycznym (Słońce w środku).
+2. Wyznacz położenie Marsa względem Ziemi (układ geocentryczny):
       $$
       \vec r_{M/Z}(t)=\vec r_M(t)-\vec r_Z(t)
       $$
 
     * Zapisz jawnie składowe $x_{M/Z}(t)$, $y_{M/Z}(t)$.
-* (HTML) Zrób animację z dwoma panelami:
+3. (HTML) Zrób animację z dwoma panelami:
     * panel A: ruch heliocentryczny (Ziemia i Mars na okręgach),
     * panel B: tor Marsa widziany z Ziemi (ślad $\vec r_{M/Z}(t)$).
 
