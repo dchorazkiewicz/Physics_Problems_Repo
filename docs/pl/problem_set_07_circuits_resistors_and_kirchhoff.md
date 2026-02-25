@@ -21,7 +21,7 @@ Oblicz opór zastępczy dla układu przedstawionego na rysunku. Wszystkie rezyst
 
 ## Zadanie 4
 
-Oblicz napięcie na rezystorze R2 oraz natężenie prądu płynącego przez ten rezystor
+Oblicz napięcie na rezystorze R3 oraz natężenie prądu płynącego przez ten rezystor
 
 ![Rysunek układu rezystorów](fig/07_circ/circ_1.png)
 
