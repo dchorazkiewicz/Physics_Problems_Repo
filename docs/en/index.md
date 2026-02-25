@@ -1,6 +1,6 @@
 # Interactive Exercise Notebook
 
-Welcome to the **Math Problems** repository. This project serves as a digital notebook template designed to be your primary working tool throughout the entire course.
+Welcome to the **Physics Problems** repository. This project serves as a digital notebook template designed to be your primary working tool throughout the entire course.
 
 The repository is bilingual and designed to enable you to build your own knowledge base using a version control system.
 

@@ -1,6 +1,6 @@
 # Interaktywny Zeszyt Ćwiczeń
 
-Witaj w repozytorium **Math Problems**. Projekt ten służy jako szablon cyfrowego zeszytu, który ma stanowić Twoje główne narzędzie pracy przez cały okres trwania kursu.
+Witaj w repozytorium **Physics Problems**. Projekt ten służy jako szablon cyfrowego zeszytu, który ma stanowić Twoje główne narzędzie pracy przez cały okres trwania kursu.
 
 Repozytorium jest dwujęzyczne i zaprojektowane w sposób umożliwiający budowę własnej bazy wiedzy w oparciu o system kontroli wersji.
 
