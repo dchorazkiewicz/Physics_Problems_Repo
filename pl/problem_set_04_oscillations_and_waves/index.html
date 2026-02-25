@@ -744,10 +744,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-5-superpozycja-fal-dudnienia-i-predkosc-grupowa-intuicyjny-most" class="md-nav__link">
+  <a href="#zadanie-5-superpozycja-fal-dudnienia-i-predkosc-grupowa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa (intuicyjny most)
+        Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa
       
     </span>
   </a>
@@ -1847,10 +1847,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-5-superpozycja-fal-dudnienia-i-predkosc-grupowa-intuicyjny-most" class="md-nav__link">
+  <a href="#zadanie-5-superpozycja-fal-dudnienia-i-predkosc-grupowa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa (intuicyjny most)
+        Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa
       
     </span>
   </a>
@@ -1939,7 +1939,7 @@ x(t) = A \cos(\omega t + \varphi)
 <li>Wyznacz okres <span class="arithmatex">\(T\)</span> oraz częstotliwość <span class="arithmatex">\(f\)</span>.</li>
 <li>Wyznacz maksymalną prędkość oraz maksymalne przyspieszenie.</li>
 <li>
-<p>Dla <span class="arithmatex">\(A = 0.2\,\mathrm{m}\)</span>, <span class="arithmatex">\(f = 2\,\mathrm{Hz}\)</span>:</p>
+<p>Dla <span class="arithmatex">\(A = 0.2\ \mathrm{m}\)</span>, <span class="arithmatex">\(f = 2\ \mathrm{Hz}\)</span>:</p>
 </li>
 <li>
 <p>oblicz <span class="arithmatex">\(\omega\)</span>,</p>
@@ -1952,17 +1952,17 @@ x(t) = A \cos(\omega t + \varphi)
 <h2 id="zadanie-2-energia-oscylatora-harmonicznego">Zadanie 2 – Energia oscylatora harmonicznego</h2>
 <p>Dany jest układ o parametrach początkowych:</p>
 <ul>
-<li><span class="arithmatex">\(m = 1\,\mathrm{kg}\)</span></li>
-<li><span class="arithmatex">\(k = 100\,\mathrm{N/m}\)</span></li>
-<li><span class="arithmatex">\(x(0) = 2\,\mathrm{m}\)</span></li>
+<li><span class="arithmatex">\(m = 1\ \mathrm{kg}\)</span></li>
+<li><span class="arithmatex">\(k = 100\ \mathrm{N/m}\)</span></li>
+<li><span class="arithmatex">\(x(0) = 2\ \mathrm{m}\)</span></li>
 <li>
-<p><span class="arithmatex">\(v(0) = 1\,\mathrm{m/s}\)</span></p>
+<p><span class="arithmatex">\(v(0) = 1\ \mathrm{m/s}\)</span></p>
 </li>
 <li>
 <p>Wyznacz częstość własną.</p>
 </li>
 <li>Oblicz energię całkowitą układu.</li>
-<li>Dla jakiego wychylenia energia kinetyczna stanowi <span class="arithmatex">\(50%\)</span> energii całkowitej?</li>
+<li>Dla jakiego wychylenia energia kinetyczna stanowi 50% energii całkowitej?</li>
 </ul>
 <p>Odpowiedzi: pełne wyprowadzenie + interpretacja.</p>
 <hr />
@@ -1995,7 +1995,7 @@ y(x,t) = A \cos(kx - \omega t)
 </ol>
 <p>Odpowiedzi: relacja algebraiczna.</p>
 <hr />
-<h2 id="zadanie-5-superpozycja-fal-dudnienia-i-predkosc-grupowa-intuicyjny-most">Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa (intuicyjny most)</h2>
+<h2 id="zadanie-5-superpozycja-fal-dudnienia-i-predkosc-grupowa">Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa</h2>
 <p>Dane są dwie fale harmoniczne:</p>
 <div class="arithmatex">\[
 y_1(x,t)=A\sin(kx-\omega t)
@@ -2014,19 +2014,6 @@ y_2(x,t)=A\sin(kx-(\omega+\Delta\omega)t)
 <p>Zinterpretuj fizycznie: co opisuje obwiednia, a co fala nośna?</p>
 </li>
 <li>
-<p>(Pakiet falowy) Załóż dodatkowo, że drugą falę różni również liczba falowa:
-$$
-k_2 = k+\Delta k
-$$
-Powtórz redukcję i pokaż, że obwiednia porusza się z prędkością grupową:
-$$
-v_g \approx \frac{\Delta\omega}{\Delta k}
-$$</p>
-</li>
-<li>
-<p>Porównaj <span class="arithmatex">\(v_g\)</span> z prędkością fazową <span class="arithmatex">\(v_f=\frac{\omega}{k}\)</span> i omów, kiedy <span class="arithmatex">\(v_g\neq v_f\)</span>.</p>
-</li>
-<li>
 <p>Uzyj pythona/html/js do wygenerowania dwóch fal i ich superpozycji, pokazując zjawisko dudnień i ruch obwiedni.</p>
 </li>
 </ol>
@@ -2039,7 +2026,7 @@ m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = 0
 <ol>
 <li>Wyprowadź ogólne rozwiązanie dla każdego przypadku.</li>
 <li>Przedstaw klasyfikację przypadków: podtłumiony, krytyczny, przetłumiony.</li>
-<li>Rozwiąż równanie numerycznie (Euler lub RK4).</li>
+<li>Rozwiąż równanie numerycznie (RK4).</li>
 <li>Zbadaj wpływ parametru <span class="arithmatex">\(b\)</span>.</li>
 <li>Wygeneruj wykres <span class="arithmatex">\(x(t)\)</span>.</li>
 <li>Wygeneruj portret fazowy.</li>
@@ -2061,7 +2048,7 @@ m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = F_0 \cos(\Omega t)
 <p>Wymaganie HTML: interaktywna zmiana częstotliwości wymuszenia.</p>
 <hr />
 <h2 id="zadanie-8-dwie-sprzezone-sprezyny-dwa-stopnie-swobody">Zadanie 8 – Dwie sprzężone sprężyny (dwa stopnie swobody)</h2>
-<p>Układ: dwie masy połączone trzema sprężynami.</p>
+<p>Dwie masy połączone ze ścianami w konfiguracji szeregowej sprężynami o stałych <span class="arithmatex">\(k_1\)</span> i <span class="arithmatex">\(k_2\)</span> i <span class="arithmatex">\(k_3\)</span>.</p>
 <ol>
 <li>Zapisz równania ruchu.</li>
 <li>Wyznacz częstości własne.</li>
@@ -2075,10 +2062,10 @@ m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = F_0 \cos(\Omega t)
 <p>Układ: <span class="arithmatex">\(N\)</span> mas połączonych sprężynami.</p>
 <ol>
 <li>Zapisz równania ruchu.</li>
-<li>Rozwiąż numerycznie dla <span class="arithmatex">\(N = 20\)</span>.</li>
+<li>Rozwiąż numerycznie dla <span class="arithmatex">\(N = 20, 50, 100\)</span>.</li>
 <li>Wprowadź lokalne zaburzenie początkowe.</li>
 <li>Obserwuj propagację impulsu.</li>
-<li>Zbadaj wpływ warunków brzegowych.</li>
+<li>Zbadaj wpływ wartości <span class="arithmatex">\(k\)</span> i <span class="arithmatex">\(m\)</span> na prędkość propagacji.</li>
 </ol>
 <p>Wymaganie HTML: animacja całego łańcucha.</p>
 <hr />
