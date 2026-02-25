@@ -67,7 +67,7 @@ leci cząstka o energii $E = 3\ \mathrm{eV}$
 
 1. Zbuduj pakiet Gaussowski:
 
-   $\psi(x,0)=e^{-\frac{x^2}{2\sigma^2}} e^{ik_0 x}$
+   $$\psi(x,0)=e^{-\frac{x^2}{2\sigma^2}} e^{ik_0 x}$$
 
 2. Zaimplementuj ewolucję w czasie (FFT).
 3. Zbadaj rozmywanie pakietu.
@@ -80,7 +80,7 @@ Wymaganie: animacja $|\psi(x,t)|^2$.
 ## Zadanie 7 – Kwantowy oscylator harmoniczny (wizualizacja poziomów)
 
 1. Zbuduj aplikację html/js do wizualizacji gęstości prawdopodobieństwa dla poziomów energetycznych $n=0,1,2,3,4,5$.
-2 Zinterpretuj kształt funkcji falowej i gęstości prawdopodobieństwa.
+2. Zinterpretuj kształt funkcji falowej i gęstości prawdopodobieństwa.
 3. Wyjaśnij dlaczego cząstka musi mieć energię zerową.
 
 ---
