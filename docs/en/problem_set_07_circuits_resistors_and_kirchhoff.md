@@ -1,6 +1,5 @@
 # Linear Circuit Analysis
 
-Problem set (topologically open problems).
 
 ## Problem 1
 
