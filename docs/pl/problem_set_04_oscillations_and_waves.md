@@ -32,7 +32,7 @@ Dany jest układ o parametrach początkowych:
 
 1. Wyznacz częstość własną.
 2. Oblicz energię całkowitą układu.
-3. Dla jakiego wychylenia energia kinetyczna stanowi $50%$ energii całkowitej?
+3. Dla jakiego wychylenia energia kinetyczna stanowi 50% energii całkowitej?
 
 Odpowiedzi: pełne wyprowadzenie + interpretacja.
 
