@@ -76,7 +76,7 @@ Odpowiedzi: relacja algebraiczna.
 
 ---
 
-## Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa (intuicyjny most)
+## Zadanie 5 – Superpozycja fal, dudnienia i prędkość grupowa
 
 Dane są dwie fale harmoniczne:
 
@@ -94,18 +94,7 @@ $$
 
 3. Zinterpretuj fizycznie: co opisuje obwiednia, a co fala nośna?
 
-4. (Pakiet falowy) Załóż dodatkowo, że drugą falę różni również liczba falowa:
-$$
-k_2 = k+\Delta k
-$$
-Powtórz redukcję i pokaż, że obwiednia porusza się z prędkością grupową:
-$$
-v_g \approx \frac{\Delta\omega}{\Delta k}
-$$
-
-5. Porównaj $v_g$ z prędkością fazową $v_f=\frac{\omega}{k}$ i omów, kiedy $v_g\neq v_f$.
-
-6. Uzyj pythona/html/js do wygenerowania dwóch fal i ich superpozycji, pokazując zjawisko dudnień i ruch obwiedni.
+4. Uzyj pythona/html/js do wygenerowania dwóch fal i ich superpozycji, pokazując zjawisko dudnień i ruch obwiedni.
 
 ---
 
@@ -119,7 +108,7 @@ $$
 
 1. Wyprowadź ogólne rozwiązanie dla każdego przypadku.
 2. Przedstaw klasyfikację przypadków: podtłumiony, krytyczny, przetłumiony.
-3. Rozwiąż równanie numerycznie (Euler lub RK4).
+3. Rozwiąż równanie numerycznie (RK4).
 4. Zbadaj wpływ parametru $b$.
 5. Wygeneruj wykres $x(t)$.
 6. Wygeneruj portret fazowy.
@@ -147,7 +136,8 @@ Wymaganie HTML: interaktywna zmiana częstotliwości wymuszenia.
 
 ## Zadanie 8 – Dwie sprzężone sprężyny (dwa stopnie swobody)
 
-Układ: dwie masy połączone trzema sprężynami.
+Dwie masy połączone ze ze ścianami w konfiguracji szeregowej sprężynami o stałych $k_1$ i $k_2$ i $k_3$.
+
 
 1. Zapisz równania ruchu.
 2. Wyznacz częstości własne.
@@ -164,10 +154,10 @@ Wymaganie HTML: animacja ruchu obu mas.
 Układ: $N$ mas połączonych sprężynami.
 
 1. Zapisz równania ruchu.
-2. Rozwiąż numerycznie dla $N = 20$.
+2. Rozwiąż numerycznie dla $N = 20, 50, 100$.
 3. Wprowadź lokalne zaburzenie początkowe.
 4. Obserwuj propagację impulsu.
-5. Zbadaj wpływ warunków brzegowych.
+5. Zbadaj wpływ wartości $k$ i $m$ na prędkość propagacji.
 
 Wymaganie HTML: animacja całego łańcucha.
 
