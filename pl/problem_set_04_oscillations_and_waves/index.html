@@ -799,10 +799,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-10-rownanie-falowe-metoda-roznic-skonczonych" class="md-nav__link">
+  <a href="#zadanie-10-wahado-podwojne-i-chaos-deterministyczny" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 10 – Równanie falowe (metoda różnic skończonych)
+        Zadanie 10 – Wahadło podwójne i chaos deterministyczny
       
     </span>
   </a>
@@ -1902,10 +1902,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zadanie-10-rownanie-falowe-metoda-roznic-skonczonych" class="md-nav__link">
+  <a href="#zadanie-10-wahado-podwojne-i-chaos-deterministyczny" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie 10 – Równanie falowe (metoda różnic skończonych)
+        Zadanie 10 – Wahadło podwójne i chaos deterministyczny
       
     </span>
   </a>
@@ -1947,7 +1947,7 @@ x(t) = A \cos(\omega t + \varphi)
 <li>oblicz <span class="arithmatex">\(v_{\max}\)</span>,</li>
 <li>oblicz <span class="arithmatex">\(a_{\max}\)</span>.</li>
 </ol>
-<p>Odpowiedzi: pełne wypracowanie + interpretacja.</p>
+<p>Odpowiedzi: pełne wyprowadzenie + interpretacja.</p>
 <hr />
 <h2 id="zadanie-2-energia-oscylatora-harmonicznego">Zadanie 2 – Energia oscylatora harmonicznego</h2>
 <p>Dany jest układ o parametrach początkowych:</p>
@@ -1964,7 +1964,7 @@ x(t) = A \cos(\omega t + \varphi)
 <li>Oblicz energię całkowitą układu.</li>
 <li>Dla jakiego wychylenia energia kinetyczna stanowi <span class="arithmatex">\(50%\)</span> energii całkowitej?</li>
 </ul>
-<p>Odpowiedzi: pełne wypracowanie + interpretacja.</p>
+<p>Odpowiedzi: pełne wyprowadzenie + interpretacja.</p>
 <hr />
 <h2 id="zadanie-3-fala-harmoniczna">Zadanie 3 – Fala harmoniczna</h2>
 <p>Dane jest równanie fali:</p>
@@ -1977,7 +1977,7 @@ y(x,t) = A \sin(kx - \omega t)
 <li>Oblicz <span class="arithmatex">\(v\)</span> dla <span class="arithmatex">\(k = 4\pi\)</span>, <span class="arithmatex">\(\omega = 20\pi\)</span>.</li>
 <li>Czy punkt <span class="arithmatex">\(x = \lambda\)</span> drga w fazie z punktem <span class="arithmatex">\(x = 0\)</span>?</li>
 </ol>
-<p>Odpowiedzi: pełne wypracowanie + interpretacja.</p>
+<p>Odpowiedzi: pełne wyprowadzenie + interpretacja.</p>
 <hr />
 <h2 id="zadanie-4-rownanie-falowe">Zadanie 4 – Równanie falowe</h2>
 <p>Dana jest funkcja:</p>
@@ -2026,8 +2026,10 @@ $$</p>
 <li>
 <p>Porównaj <span class="arithmatex">\(v_g\)</span> z prędkością fazową <span class="arithmatex">\(v_f=\frac{\omega}{k}\)</span> i omów, kiedy <span class="arithmatex">\(v_g\neq v_f\)</span>.</p>
 </li>
+<li>
+<p>Uzyj pythona/html/js do wygenerowania dwóch fal i ich superpozycji, pokazując zjawisko dudnień i ruch obwiedni.</p>
+</li>
 </ol>
-<p>Odpowiedzi: algebra + interpretacja.</p>
 <hr />
 <h2 id="zadanie-6-oscylator-tumiony">Zadanie 6 – Oscylator tłumiony</h2>
 <p>Równanie:</p>
@@ -2035,6 +2037,7 @@ $$</p>
 m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = 0
 \]</div>
 <ol>
+<li>Wyprowadź ogólne rozwiązanie dla każdego przypadku.</li>
 <li>Przedstaw klasyfikację przypadków: podtłumiony, krytyczny, przetłumiony.</li>
 <li>Rozwiąż równanie numerycznie (Euler lub RK4).</li>
 <li>Zbadaj wpływ parametru <span class="arithmatex">\(b\)</span>.</li>
@@ -2048,6 +2051,7 @@ m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = 0
 m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = F_0 \cos(\Omega t)
 \]</div>
 <ol>
+<li>Rozwiąż równanie analitycznie, wyznaczając amplitudę drgań w funkcji <span class="arithmatex">\(\Omega\)</span>.</li>
 <li>Rozwiąż równanie numerycznie.</li>
 <li>Zbadaj amplitudę ustaloną w funkcji <span class="arithmatex">\(\Omega\)</span>.</li>
 <li>Wygeneruj wykres rezonansowy.</li>
@@ -2078,19 +2082,17 @@ m \frac{d^2 x}{dt^2} + b \frac{dx}{dt} + k x = F_0 \cos(\Omega t)
 </ol>
 <p>Wymaganie HTML: animacja całego łańcucha.</p>
 <hr />
-<h2 id="zadanie-10-rownanie-falowe-metoda-roznic-skonczonych">Zadanie 10 – Równanie falowe (metoda różnic skończonych)</h2>
-<p>Równanie:</p>
-<div class="arithmatex">\[
-\frac{\partial^2 y}{\partial t^2} = v^2 \frac{\partial^2 y}{\partial x^2}
-\]</div>
+<h2 id="zadanie-10-wahado-podwojne-i-chaos-deterministyczny">Zadanie 10 – Wahadło podwójne i chaos deterministyczny</h2>
+<p>Cel: <strong>czysto numeryczna analiza</strong> wahadła podwójnego i wizualizacja chaosu deterministycznego.</p>
+<p>Rozważ wahadło podwójne (dwa masywne punkty <span class="arithmatex">\(m_1, m_2\)</span> na nieważkich prętach <span class="arithmatex">\(l_1, l_2\)</span>) w jednorodnym polu grawitacyjnym <span class="arithmatex">\(g\)</span>. Równania ruchu przyjmij ze standardowej postaci dla wahadła podwójnego (nie wyprowadzamy ich analitycznie na tej liście).</p>
 <ol>
-<li>Zastosuj dyskretyzację w czasie i przestrzeni.</li>
-<li>Zaimplementuj schemat numeryczny.</li>
-<li>Zbadaj warunek stabilności (CFL).</li>
-<li>Porównaj przypadki stabilny / niestabilny.</li>
-<li>Zaimplementuj animację propagacji fali.</li>
+<li>Zapisz współrzędne <span class="arithmatex">\((x_1,y_1)\)</span> oraz <span class="arithmatex">\((x_2,y_2)\)</span> w funkcji kątów <span class="arithmatex">\((\theta_1,\theta_2)\)</span> (do animacji).</li>
+<li>Zaimplementuj numeryczną całkę równań (np. RK4) i sprawdź stabilność numeryczną (np. dryf energii dla różnych <span class="arithmatex">\(\Delta t\)</span>).</li>
+<li>Zbadaj wrażliwość na warunki początkowe: <strong>symuluj jednocześnie 50 kopii</strong> układu z minimalnie różnymi warunkami początkowymi (np. perturbacja tylko w <span class="arithmatex">\(\theta_2(0)\)</span> rzędu <span class="arithmatex">\(10^{-4}\)</span>–<span class="arithmatex">\(10^{-2}\)</span> rad).</li>
+<li>Eksperymentuj z różnymi skalami perturbacji i obserwuj rozbieganie trajektorii.</li>
 </ol>
-<p>Wymaganie HTML: animacja całego łańcucha.</p>
+<p>Parametry startowe (do ujednolicenia wyników): <span class="arithmatex">\(m_1=m_2=1\)</span>, <span class="arithmatex">\(l_1=l_2=1\)</span>, <span class="arithmatex">\(g=9.81\)</span>, krok całkowania <span class="arithmatex">\(\Delta t\le 0.01\,\mathrm{s}\)</span>.</p>
+<p>Wymaganie HTML: animacja wahadła podwójnego w trybie „ensemble” — <strong>50 wahadeł jednocześnie</strong>, każde w <strong>innym kolorze</strong>, aby było widać rozbieganie; dodaj reset i możliwość ustawienia skali perturbacji.</p>
 
 
 
