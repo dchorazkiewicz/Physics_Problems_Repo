@@ -65,16 +65,6 @@ Students interested in technology can publish their notes as a website using Git
 
 ---
 
-### Available Sections
-
-* **Algebra**: Matrices, determinants, systems of equations.
-* **Geometry**: Vectors, lines, and planes.
-* **Analysis**: Limits, derivatives, function analysis, integrals.
-* **Probabilistic Methods**: Probability theory, statistics, estimation.
-
-_Select a section from the menu on the left to begin._
-
----
 
 ## How to use Artificial Intelligence in this course
 

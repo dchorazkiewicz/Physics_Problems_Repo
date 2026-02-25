@@ -63,17 +63,6 @@ Studenci zainteresowani technologią mogą opublikować swoje notatki w formie s
 * Służy do tego polecenie `mkdocs gh-deploy`.
 * **Zastrzeżenie**: Jest to element całkowicie dobrowolny, nie wpływa na ocenę końcową i służy wyłącznie samorozwojowi. Jednocześnie jest to praktyczny atut: jeśli opublikujesz notatki jako publiczną stronę WWW, podczas zajęć nie musisz mieć dostępu do własnego komputera — wystarczy link do repozytorium/strony (nawet z telefonu), aby szybko odnaleźć rozwiązanie i płynnie przejść do jego omówienia.
 
----
-
-### Dostępne Działy
-
-* **Algebra**: Macierze, wyznaczniki, układy równań.
-* **Geometria**: Wektory, proste i płaszczyzny.
-* **Analiza**: Granice, pochodne, badanie funkcji, całki.
-* **Metody Probabilistyczne**: Rachunek prawdopodobieństwa, statystyka, estymacja.
-
-_Wybierz dział z menu po lewej stronie, aby rozpocząć._
-
 
 ---
 
