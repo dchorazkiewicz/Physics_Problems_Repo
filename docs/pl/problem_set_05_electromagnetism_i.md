@@ -5,9 +5,9 @@
 
 ## Zadanie 1 – Potencjał i energia
 
-Dla ładunku punktowego $q = 4\,\mu\mathrm{C}$
+Dla ładunku punktowego $q = 4\ \mu\mathrm{C}$
 
-1. Oblicz potencjał w $r = 0.3\,\mathrm{m}$.
+1. Oblicz potencjał w $r = 0.3\ \mathrm{m}$.
 2. Oblicz różnicę potencjałów między $0.3\,\mathrm{m}$ i $0.6\,\mathrm{m}$.
 3. Oblicz pracę przeniesienia ładunku próbnego $q_0 = 2\,\mu\mathrm{C}$.
 4. Oblicz natężenie pola z pochodnej potencjału.
@@ -19,7 +19,7 @@ Dla ładunku punktowego $q = 4\,\mu\mathrm{C}$
 
 Dane są dwa ładunki punktowe:
 
-$$q_1 = 3\,\mu\mathrm{C}, \quad q_2 = -5\,\mu\mathrm{C}$$
+$$q_1 = 3\ \mu\mathrm{C}, \quad q_2 = -5\ \mu\mathrm{C}$$
 
 zlokalizowane w punktach:
 
