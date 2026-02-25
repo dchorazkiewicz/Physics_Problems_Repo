@@ -1,12 +1,7 @@
-# Lista 6 – Elektromagnetyzm II
-
-## Magnetyzm, indukcja i dynamika pola elektromagnetycznego
+# Lista 6 – Elektromagnetyzm II - Magnetyzm, indukcja i dynamika pola elektromagnetycznego
 
 ---
 
-# CZĘŚĆ I – Fundament rachunkowy (1–5)
-
----
 
 ## Zadanie 1 – Siła Lorentza
 

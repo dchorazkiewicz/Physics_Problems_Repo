@@ -1,4 +1,3 @@
-
 # Lista 4 – Drgania i fale: systemy dynamiczne i propagacja zaburzeń
 
 
