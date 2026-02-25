@@ -1,150 +1,63 @@
 # **Lista – Analiza obwodów liniowych (zadania otwarte topologicznie)**
 
-**Instrukcja ogólna**
+## Zadanie 1
 
-W każdym zadaniu:
+Oblicz opór zastępczy dla układu przedstawionego na rysunku. Wszystkie rezystory mają opór 5 $\Omega$.
 
-1. Znajdź lub zaprojektuj schemat obwodu spełniający warunki zadania (rysunek własny lub z literatury)
-2. Jednoznacznie oznacz węzły, oczka i kierunki prądów
-3. Podaj dane elementów (dowolne sensowne wartości)
-4. Wykonaj wymaganą analizę
-5. Sprawdź bilans mocy
+![Rysunek układu rezystorów](fig/07_circ/oz_1.png)
 
----
+## Zadanie 2
 
-## **Zadanie 1 – Redukowalny układ mieszany**
+Oblicz opór zastępczy dla układu przedstawionego na rysunku. Wszystkie rezystory mają opór 3 $\Omega$.
 
-Znajdź obwód rezystancyjny, który można całkowicie zredukować metodą:
+![Rysunek układu rezystorów](fig/07_circ/oz_2.png)
 
-* połączeń szeregowych i równoległych
-* bez użycia praw Kirchhoffa
 
-Wykonaj:
+## Zadanie 3
 
-* redukcję krok po kroku
-* oblicz rezystancję widzianą przez źródło
-* wyznacz prąd źródła
+Oblicz opór zastępczy dla układu przedstawionego na rysunku. Wszystkie rezystory mają opór 10 $\Omega$.
 
----
+![Rysunek układu rezystorów](fig/07_circ/oz_3.png)
 
-## **Zadanie 2 – Układ wymagający prawa Kirchhoffa**
+## Zadanie 4
 
-Znajdź obwód rezystancyjny, który **nie jest redukowalny** operacjami szeregowymi i równoległymi.
+Oblicz napięcie na rezystorze R2 oraz natężenie prądu płynącego przez ten rezystor
 
-Wykonaj:
+![Rysunek układu rezystorów](fig/07_circ/circ_1.png)
 
-* identyfikację oczek lub węzłów
-* rozwiązanie metodą oczkową lub węzłową
-* interpretację fizyczną przepływu prądów
+## Zadanie 5
 
----
+Dla poniższego układu oblicz opór zastępczy oraz natężenie prądu płynącego ampereomierzem A.
 
-## **Zadanie 3 – Dwa oczka z dwoma źródłami napięcia**
+![Rysunek układu rezystorów](fig/07_circ/circ_2.png)
 
-Znajdź obwód planarnego grafu z:
+## Zadanie 6
 
-* dwoma oczkami
-* dwoma źródłami napięcia
+Dla poniższego układu oblicz opór zastępczy oraz natężenia prądów na każdym z rezystorów.
 
-Wykonaj:
+![Rysunek układu rezystorów](fig/07_circ/circ_3.png)
 
-* zapis równań oczkowych
-* rozwiązanie układu
-* porównanie mocy źródeł i odbiorników
+## Zadanie 7
 
----
+Dla poniższego układu oblicz opór zastępczy oraz różnicę potencjałów między punktami A i B.
 
-## **Zadanie 4 – Węzeł z wieloma gałęziami**
+![Rysunek układu rezystorów](fig/07_circ/circ_4.png)
 
-Znajdź obwód zawierający węzeł o stopniu ≥4.
+## Zadanie 8
 
-Wykonaj:
+Oblicz natężenie prądu płynącego przez ampereomierz.
 
-* zapis równania KCL
-* wyznaczenie napięcia węzła
-* analizę rozdziału prądów
+![Rysunek układu rezystorów](fig/07_circ/circ_5.png)
 
----
 
-## **Zadanie 5 – Mostek rezystorowy**
+## Zadanie 9
 
-Znajdź dowolny mostek rezystorowy (np. Wheatstone’a lub inny wariant).
+Oblicz natężenie prądu płynącego przez ampereomierz.
 
-Wykonaj:
+![Rysunek układu rezystorów](fig/07_circ/circ_6.png)
 
-* analizę metodą węzłową lub oczkową
-* wyznaczenie prądu w gałęzi mostkującej
-* interpretację warunku równowagi mostka
+## Zadanie 10
 
----
+Oblicz natężenie prądu płynącego przez ampereomierz.
 
-## **Zadanie 6 – Obwód wieloźródłowy**
-
-Znajdź obwód zawierający:
-
-* co najmniej jedno źródło napięcia
-* co najmniej jedno źródło prądu
-
-Wykonaj:
-
-* analizę pełną
-* rozdział mocy źródeł
-* interpretację energetyczną
-
----
-
-## **Zadanie 7 – Ekwiwalent Thevenina/Nortona**
-
-Wybierz fragment dowolnego obwodu jako port.
-
-Wykonaj:
-
-* wyznaczenie modelu Thevenina
-* wyznaczenie modelu Nortona
-* weryfikację poprzez podłączenie obciążenia
-
----
-
-## **Zadanie 8 – Analiza metodą węzłową (≥3 węzły)**
-
-Znajdź obwód wymagający rozwiązania układu równań węzłowych (min. 3 niewiadome).
-
-Wykonaj:
-
-* zapis macierzowy
-* rozwiązanie
-* interpretację grafową
-
----
-
-## **Zadanie 9 – Obwód z kondensatorami (statyka)**
-
-Znajdź układ kondensatorów o strukturze mieszanej.
-
-Wykonaj:
-
-* redukcję
-* wyznaczenie pojemności zastępczej
-* analizę rozkładu napięć
-
----
-
-## **Zadanie 10 – Obwód dynamiczny RC**
-
-Znajdź obwód RC pierwszego rzędu.
-
-Wykonaj:
-
-* zapis równania różniczkowego
-* rozwiązanie czasowe
-* interpretację stałej czasowej
-* analizę energetyczną
-
----
-
-# **Uwagi**
-
-* Schemat może pochodzić z literatury, internetu lub projektu własnego
-* Kluczowa jest **formalna analiza**, nie liczby
-* W każdym zadaniu wymagany jest rysunek
-
+![Rysunek układu rezystorów](fig/07_circ/circ_7.png)
