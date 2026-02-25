@@ -2,9 +2,6 @@
 
 ---
 
-# CZĘŚĆ I – Fundament rachunkowy (zadania 1–5)
-
----
 
 ## Zadanie 1 – Potencjał i energia
 
@@ -18,7 +15,7 @@ Dla ładunku punktowego $q = 4\,\mu\mathrm{C}$
 
 ---
 
-## Zadanie 2 – Siła Coulomba (wektorowo)
+## Zadanie 2 – Siła Coulomba
 
 Dane są dwa ładunki punktowe:
 
@@ -32,7 +29,6 @@ $$r_1 = (0,0), \quad r_2 = (0.4, 0.3)\,\mathrm{m}$$
 2. Oblicz jej wartość.
 3. Wyznacz energię potencjalną układu.
 4. Oblicz pracę potrzebną do rozdzielenia ładunków na odległość $2\,\mathrm{m}$.
-5. Sprawdź zależność skalowania siły przy podwojeniu odległości.
 
 ---
 
@@ -75,9 +71,9 @@ Dla nich
 
 Kondensator płaski:
 
-$S = 0.02\,\mathrm{m^2}$
-$d = 5\,\mathrm{mm}$
-$U = 500\,\mathrm{V}$
+* $S = 0.02\,\mathrm{m^2}$
+* $d = 5\,\mathrm{mm}$
+* $U = 500\,\mathrm{V}$
 
 1. Oblicz pojemność.
 2. Oblicz energię zgromadzoną w kondensatorze.
@@ -85,9 +81,6 @@ $U = 500\,\mathrm{V}$
 4. Oblicz gęstość energii pola.
 5. Oblicz siłę przyciągania między okładkami.
 
----
-
-# CZĘŚĆ II – Modelowanie (zadania 6–10)
 
 ---
 
@@ -125,7 +118,7 @@ Wymaganie: animacja toru ruchu.
 
 ## Zadanie 8 – Energia układu trzech ładunków
 
-1. Zapisz energię całkowitą jako sumę energii par.
+1. Zapisz energię całkowitą układu.
 2. Oblicz energię dla konfiguracji trójkąta równobocznego.
 3. Zbadaj zmianę energii przy zmianie znaku jednego ładunku.
 4. Znajdź konfigurację minimalnej energii (numerycznie).
@@ -137,12 +130,7 @@ Wymaganie: animacja toru ruchu.
 
 Dipol w jednorodnym polu $E_0$.
 
-1. Wyprowadź moment siły:
-
-$$
-\vec M = \vec p \times \vec E
-$$
-
+1. Wyprowadź wzór na moment siły działający na dipol.
 2. Oblicz energię potencjalną dipola.
 3. Wyznacz równanie ruchu kątowego.
 4. Zlinearyzuj równanie dla małych wychyleń.
