@@ -23,7 +23,7 @@ $$
 
 ## Zadanie 2 – Rzut ukośny
 
-Ciało porusza się w polu grawitacyjnym Ziemi bez oporu powietrza. Rzut ukośny o prędkości początkowej $v_0$ i kącie $\alpha$ względem poziomu.
+Ciało porusza się w polu grawitacyjnym Ziemi bez oporu powietrza. Rozważ rzut ukośny o prędkości początkowej $v_0$ i kącie $\alpha$ względem poziomu.
 
 * Wyprowadź równania ruchu w kierunku poziomym i pionowym,
 * Wyznacz czas lotu.

@@ -198,7 +198,7 @@ x = t, \qquad y = t^2, \qquad t \in [0,1]
 $$
 
 1. Wyznacz wektor prędkości $\vec v(t)$.
-2. Oblicz pracę wykonana przez siłę $\vec F$ wzdłuż toru, czyli całkę krzywoliniową:
+2. Oblicz pracę wykonaną przez siłę $\vec F$ wzdłuż toru, czyli całkę krzywoliniową:
 $$
 W = \int_C \vec F \cdot d\vec r
 $$
