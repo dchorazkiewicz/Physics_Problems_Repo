@@ -116,13 +116,13 @@
 1. Zdefiniuj środek masy:
 
    $$
-   \vec R = \frac{M \vec r_1 + m \vec r_2}{M + m}
+   \vec R = \frac{m_1 \vec r_1 + m_2 \vec r_2}{m_1 + m_2}
    $$
 
 2. Pokaż, że dla układu izolowanego:
 
    $$
-   M \vec r_1 + m \vec r_2 = \text{const}
+   m_1 \vec r_1 + m_2 \vec r_2 = \text{const}
    $$
 
 3. Zapisz równania ruchu:
@@ -134,7 +134,7 @@
    m_2 \ddot{\vec r}_2 = - G \frac{m_1 m_2}{|\vec r_2 - \vec r_1|^3} (\vec r_2 - \vec r_1)
    $$
 
-4. Zbadaj zależność toru od stosunku mas $m/M$.
+4. Zbadaj zależność toru od stosunku mas $m_1/m_2$.
 
 **HTML:**
 

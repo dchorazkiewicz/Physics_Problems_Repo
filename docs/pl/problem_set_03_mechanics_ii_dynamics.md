@@ -80,7 +80,7 @@ $$
 F=-kv
 $$
 
-warunki początkowe: $v(0)=v_0$, $x(0)=0$.
+Warunki początkowe: $v(0)=v_0$, $x(0)=0$.
 
 * Zapisz równanie ruchu i rozwiąż je.
 * Zbadaj granicę $\lim_{t\to\infty} v(t)$.

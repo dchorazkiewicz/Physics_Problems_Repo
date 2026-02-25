@@ -21,13 +21,13 @@ Oblicz opór zastępczy dla układu przedstawionego na rysunku. Wszystkie rezyst
 
 ## Zadanie 4
 
-Oblicz napięcie na rezystorze R3 oraz natężenie prądu płynącego przez ten rezystor
+Oblicz napięcie na rezystorze R3 oraz natężenie prądu płynącego przez ten rezystor.
 
 ![Rysunek układu rezystorów](fig/07_circ/circ_1.png)
 
 ## Zadanie 5
 
-Dla poniższego układu oblicz opór zastępczy oraz natężenie prądu płynącego ampereomierzem A.
+Dla poniższego układu oblicz opór zastępczy oraz natężenie prądu płynącego amperomierzem A.
 
 ![Rysunek układu rezystorów](fig/07_circ/circ_2.png)
 
@@ -45,19 +45,19 @@ Dla poniższego układu oblicz opór zastępczy oraz różnicę potencjałów mi
 
 ## Zadanie 8
 
-Oblicz natężenie prądu płynącego przez ampereomierz.
+Oblicz natężenie prądu płynącego przez amperomierz.
 
 ![Rysunek układu rezystorów](fig/07_circ/circ_5.png)
 
 
 ## Zadanie 9
 
-Oblicz natężenie prądu płynącego przez ampereomierz.
+Oblicz natężenie prądu płynącego przez amperomierz.
 
 ![Rysunek układu rezystorów](fig/07_circ/circ_6.png)
 
 ## Zadanie 10
 
-Oblicz natężenie prądu płynącego przez ampereomierz.
+Oblicz natężenie prądu płynącego przez amperomierz.
 
 ![Rysunek układu rezystorów](fig/07_circ/circ_7.png)

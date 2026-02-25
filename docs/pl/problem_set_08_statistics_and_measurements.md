@@ -1,5 +1,4 @@
 # Lista 8 – Statystyka i pomiary
-## Analiza danych, niepewność, propagacja, estymacja parametrów
 
 ---
 
@@ -190,7 +189,7 @@ Do oddania: plik HTML + opis wniosków.
 
 ## Zadanie 7 (HTML) – Wahadło matematyczne: pomiar $g$
 
-Chcemy zbudować aplikację do pomiaru przyspieszenia ziemskiego $g$ za pomocą wahadła matematycznego mierząc okres drgań.
+Chcemy zbudować aplikację do pomiaru przyspieszenia ziemskiego $g$ za pomocą wahadła matematycznego, mierząc okres drgań.
 
 $$
 g=4\pi^2 \frac{L}{T^2}
@@ -233,7 +232,7 @@ Do oddania: plik HTML + raport z min. 5 okresów.
 
 ## Zadanie 8 (HTML) – Oscylator masa–sprężyna: pomiar częstotliwości i wyznaczenie $k$
 
-Chcemy zbudować aplikację do stałej sprężyny $k$ za pomocą pomiaru okresu drgań układu masa–sprężyna.
+Chcemy zbudować aplikację do wyznaczania stałej sprężystości $k$ za pomocą pomiaru okresu drgań układu masa–sprężyna.
 
 $$
 k = 4\pi^2 \frac{m}{T^2}

@@ -17,8 +17,8 @@ Dla następujących danych:
 2. Rozwiąż równanie ruchu dla tego ładunku, zakładając, że w chwili $t=0$ znajduje się w punkcie $(0,0,0)$.
 3. Oblicz wartość $|\vec F|$.
 4. Czy siła magnetyczna wykonuje pracę?
-5. Wyznacz promień toru dla $m = 0.01\ \mathrm{kg}$:
-6. Jak zmieni się $r$, gdy $B$ zostanie podwojone?
+5. Wyznacz promień toru dla $m = 0.01\ \mathrm{kg}$.
+6. Jak zmieni się $r$, gdy wartość $B$ zostanie podwojona?
 
 ---
 
@@ -37,7 +37,7 @@ $$
 
 
 1. Wyprowadź warunek ruchu prostoliniowego.
-2. Oblicz $v_d$ dla $E = 400 , \mathrm{V/m}$, $B = 0.8 , \mathrm{T}$.
+2. Oblicz $v_d$ dla $E = 400\ \mathrm{V/m}$, $B = 0.8\  \mathrm{T}$.
 3. Czy energia kinetyczna zmienia się w ruchu ustalonym?
 4. Zinterpretuj zasadę działania selektora prędkości.
 
@@ -153,7 +153,7 @@ $$
 
 ## Zadanie 9 – Transformator idealny vs rzeczywisty
 
-Wyjaśnij jak działa transformator, jakie są jego idealne właściwości i jak wygląda rzeczywistość. Skąd bierze się napięcie wtórne? Jakie są straty w transformatorze? Jakie są typowe wartości przekładni i sprawności?
+Wyjaśnij, jak działa transformator, jakie są jego idealne właściwości i jak wygląda rzeczywistość. Skąd bierze się napięcie wtórne? Jakie są straty w transformatorze? Jakie są typowe wartości przekładni i sprawności?
 
 ---
 

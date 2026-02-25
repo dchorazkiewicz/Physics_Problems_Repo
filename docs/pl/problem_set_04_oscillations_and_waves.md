@@ -135,7 +135,7 @@ Wymaganie HTML: interaktywna zmiana częstotliwości wymuszenia.
 
 ## Zadanie 8 – Dwie sprzężone sprężyny (dwa stopnie swobody)
 
-Dwie masy połączone ze ze ścianami w konfiguracji szeregowej sprężynami o stałych $k_1$ i $k_2$ i $k_3$.
+Dwie masy połączone ze ścianami w konfiguracji szeregowej sprężynami o stałych $k_1$ i $k_2$ i $k_3$.
 
 
 1. Zapisz równania ruchu.
