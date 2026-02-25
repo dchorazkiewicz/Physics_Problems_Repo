@@ -49,6 +49,7 @@ Dane zdarzenia w układzie $S$:
 $$
 x_1 = 0, \quad t_1 = 0
 $$
+
 $$
 x_2 = 900\,\mathrm{m}, \quad t_2 = 4\,\mu\mathrm{s}
 $$
