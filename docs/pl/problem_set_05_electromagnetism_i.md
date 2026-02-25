@@ -88,7 +88,7 @@ Kondensator płaski:
 
 Układ: trzy dowolne ładunki w płaszczyźnie.
 
-1. Zaimplementuj funkcję obliczającą wektor pola $E(x, y)$.
+1. Zaimplementuj funkcję obliczającą wektor pola $\vac E(x, y)$.
 2. Wygeneruj mapę wektorową pola.
 3. Znajdź numerycznie punkt równowagi.
 4. Zbadaj stabilność punktu równowagi (małe przesunięcie).
