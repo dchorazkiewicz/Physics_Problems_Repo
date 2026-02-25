@@ -153,7 +153,7 @@ $$
 
 ---
 
-## Zadanie 6 – Długość krzywej i całkowanie numeryczne (most do fizyki)
+## Zadanie 6 – Długość krzywej i całkowanie numeryczne
 
 Dany jest tor parametryczny w 2D:
 
@@ -206,7 +206,7 @@ $$
 
 ---
 
-## Zadanie 8 – Równanie różniczkowe I rzędu (zanik wykładniczy)
+## Zadanie 8 – Równanie różniczkowe I rzędu
 
 $$
 \frac{dy}{dt} = -k y
@@ -217,7 +217,7 @@ $$
 
 ---
 
-## Zadanie 9 – Oscylator harmoniczny (równanie ruchu jako ODE II rzędu)
+## Zadanie 9 – Oscylator harmoniczny
 
 $$
 \frac{d^2 x}{dt^2} + \omega^2 x = 0
@@ -230,7 +230,7 @@ $$
 
 ---
 
-## Zadanie 10 – Moment pędu w ruchu po okręgu (wektory + interpretacja fizyczna)
+## Zadanie 10 – Moment pędu w ruchu po okręgu
 
 Rozważ ruch po okręgu w płaszczyźnie $xy$:
 
