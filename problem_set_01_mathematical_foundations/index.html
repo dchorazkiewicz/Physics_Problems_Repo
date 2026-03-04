@@ -2656,20 +2656,16 @@ x(t) = t,\qquad y(t)=t^2,\qquad t\in[0,1]
 </ol>
 <p>$$
    \vec v(t)=\frac{d\vec r}{dt}
-   $$</p>
-<ol>
-<li>Determine the magnitude of the velocity <span class="arithmatex">\(|\vec v(t)|\)</span>.</li>
-<li>Write the arc length of the trajectory as an integral:</li>
-</ol>
+   $$
+2. Determine the magnitude of the velocity <span class="arithmatex">\(|\vec v(t)|\)</span>.
+3. Write the arc length of the trajectory as an integral:</p>
 <p>$$
    s = \int_0^1 |\vec v(t)|\,dt
-   $$</p>
-<ol>
-<li>Calculate this integral analytically (if possible) or reduce it to a form that requires a numerical method.</li>
-<li>Implement the trapezoidal rule in HTML/JS to calculate <span class="arithmatex">\(s\)</span>:</li>
-<li>check the convergence of the result with an increasing number of divisions <span class="arithmatex">\(N\)</span>,</li>
-<li>plot the error as a function of <span class="arithmatex">\(N\)</span>.</li>
-</ol>
+   $$
+4. Calculate this integral analytically (if possible) or reduce it to a form that requires a numerical method.
+5. Implement the trapezoidal rule in HTML/JS to calculate <span class="arithmatex">\(s\)</span>:
+   - check the convergence of the result with an increasing number of divisions <span class="arithmatex">\(N\)</span>,
+   - plot the error as a function of <span class="arithmatex">\(N\)</span>.</p>
 <p>Requirement: visualization of the trajectory and the ability to change <span class="arithmatex">\(N\)</span> in the application.</p>
 <hr />
 <h2 id="problem-7-work-of-a-force-along-a-trajectory">Problem 7 – Work of a force along a trajectory</h2>
@@ -2683,12 +2679,10 @@ x = t, \qquad y = t^2, \qquad t \in [0,1]
 \]</div>
 <ol>
 <li>Determine the velocity vector <span class="arithmatex">\(\vec v(t)\)</span>.</li>
-<li>Calculate the work done by the force <span class="arithmatex">\(\vec F\)</span> along the trajectory, i.e., the line integral:</li>
-</ol>
-<p>$$
+<li>Calculate the work done by the force <span class="arithmatex">\(\vec F\)</span> along the trajectory, i.e., the line integral:
+   $$
    W = \int_C \vec F \cdot d\vec r
-   $$</p>
-<ol>
+   $$</li>
 <li>Write the integral as the limit of a Riemann sum and calculate its value numerically in HTML/JS, comparing it with the analytical result (if possible).</li>
 </ol>
 <hr />
@@ -2721,19 +2715,15 @@ x = t, \qquad y = t^2, \qquad t \in [0,1]
 </ol>
 <p>$$
    \vec v(t)=\dot{\vec r}(t)
-   $$</p>
-<ol>
-<li>Calculate the angular momentum with respect to the origin:</li>
-</ol>
+   $$
+2. Calculate the angular momentum with respect to the origin:</p>
 <p>$$
    \vec L(t)=m\,\vec r(t)\times \vec v(t)
-   $$</p>
-<ol>
-<li>Show that <span class="arithmatex">\(|\vec L|=mR^2\omega\)</span> is constant, and the vector <span class="arithmatex">\(\vec L\)</span> is perpendicular to the plane of motion.</li>
-<li>Interpret the direction of <span class="arithmatex">\(\vec L\)</span> (right-hand rule).</li>
-<li>(Optional) Add a constant centripetal force and calculate the torque:</li>
-</ol>
-<p>$$
+   $$
+3. Show that <span class="arithmatex">\(|\vec L|=mR^2\omega\)</span> is constant, and the vector <span class="arithmatex">\(\vec L\)</span> is perpendicular to the plane of motion.
+4. Interpret the direction of <span class="arithmatex">\(\vec L\)</span> (right-hand rule).
+5. (Optional) Add a constant centripetal force and calculate the torque:
+   $$
    \vec \tau = \vec r \times \vec F
    $$</p>
 <p>Verify the relationship <span class="arithmatex">\(\vec \tau = \frac{d\vec L}{dt}\)</span> for uniform circular motion.</p>
